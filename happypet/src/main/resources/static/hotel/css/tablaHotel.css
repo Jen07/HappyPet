@@ -1,0 +1,62 @@
+@charset "ISO-8859-1";
+
+.tableContainer{
+  
+    margin: 1em;
+    width: 100%;
+}
+
+#table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+caption{
+    font-weight: 1000;
+}
+
+#tablax tr:nth-child(event){
+    background-color: grey;
+}
+
+ th{
+   background-color: var(--clr-primary-400);
+   color:var(--clr-neutral-100);
+}
+  tr:nth-of-type(even)  {
+    background-color: var(--clr-neutral-200)
+}
+
+ th,  td{
+    padding:.5em;
+}
+
+.button{
+   text-decoration: none;
+    cursor: pointer;
+    padding: .5em 1em;
+    display: block;
+    text-align: center;
+    transition:transform .250s;
+    width: 80%;
+}
+
+.button-delete{
+    background-color: var(--clr-delete-400);
+    color:var(--clr-neutral-100);
+    border-radius: 50em;
+    
+}
+
+.button-edit{
+    background-color: var(--clr-edit-400);
+    border-radius: 50em;
+  
+}
+
+.button-send{
+   background-color: var(--clr-primary-200);
+    border-radius: 50em;
+    
+}
+

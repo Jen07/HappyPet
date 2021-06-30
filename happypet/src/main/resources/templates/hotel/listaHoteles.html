@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <title>Lista de Hoteles</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/hotel/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/hotel/css/navBar.css}">
+
+    <link rel="stylesheet" type="text/css" href="/hotel/css/tablaHotel.css">
+    <link rel="stylesheet" type="text/css" href="/hotel/css/estiloModal.css">
+    <link rel="stylesheet" type="text/css" href="/hotel/css/estiloRegistro.css">
+
+     <link rel ="stylesheet " href = " https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css "> 
+</head>
+
+<body>
+
+
+    <div class="navegationBar" th:replace="~{general/header::head}"></div>
+
+    <div class="container">
+        
+        <div class="tableContainer">
+            <table id="table" class="table">
+                <caption>
+                    Lista de Hoteles
+                </caption>
+                <thead>
+                        <th>Codigo</th>
+                        <th>Ciudad Veterinaria</th> 
+                        <th>Cantidad de Habitaciones</th>
+                        <th>Precio</th>
+                        <th>Direcci&oacute;n</th>
+                        <th>Detalles</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+
+                </thead>
+
+                <tbody >
+                </tbody>
+
+            </table>
+        </div>
+        
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" onclick="closeModal()"> &times;</span>
+                    <h2>Modificar Hotel</h2>
+                </div>
+                <div class="modal-body">
+    
+                    <div th:replace="~{hotel/modificarForm::formModify}"> </div>
+    
+                </div>
+    
+            </div>
+        </div>
+
+        <div id="ver" class="modal">
+            <div class="modal-content2">
+                <div class="modal-header">
+                    <span class="close" onclick="closeModal()"> &times;</span>
+                    <h1>Hotel</h1>
+                </div>
+    
+                <div class="modal-body">
+    
+                    <div>
+                        <div class="cardH" style="width: 18rem;">
+                            <div class="body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> 
+
+    <footer th:replace="general/footer.html :: foot"> </footer>
+   
+
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="/hotel/js/tablaAlert.js"></script>
+
+    <script  src = " https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js " ></script> 
+
+</body>
+
+
+</html>
