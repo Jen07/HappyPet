@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <!--style-->
     <link rel="stylesheet" type="text/css" href="/general/style.css" />
-    <link rel="stylesheet" type="text/css" href="/employeeCSS/list_employee.css" />
+    <link rel="stylesheet" type="text/css" href="/users/employeeCSS/list_employee.css" />
     <link rel="stylesheet" type="text/css" href="/general/header.css" />
     <!--icon-->
     <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
@@ -39,7 +39,7 @@
         </div>
 
         <br/><br/><br/><br/>
-        <div class="dTable" id="contenedor" th:include="/employee/table_list_employee"></div>
+        <div class="dTable" id="contenedor" th:include="users/table_list_employee"></div>
     </div>
 
     <!-- Imagenes -->
@@ -49,7 +49,7 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
-    <script src="/users_js/funtion_employee.js"></script>
+    <script src="/users/users_js/funtion_employee.js"></script>
 </body>
 <!--<div class="footer" th:replace="~{general/footer :: foot}"></div>-->
 <div class="footer" th:replace="~{general/footer :: foot}"></div>

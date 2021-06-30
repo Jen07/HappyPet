@@ -26,7 +26,7 @@ public class Clothes_Controller {
     @RequestMapping("/inicio")
     public ModelAndView inicio() {
         ModelAndView view = new ModelAndView();
-        view.setViewName("clothes/list");
+        view.setViewName("products/clothes/list");
         return view;
     }
 
@@ -47,7 +47,7 @@ public class Clothes_Controller {
     @RequestMapping("/showAdd")
     public ModelAndView showAdd() {
         ModelAndView view = new ModelAndView();
-		view.setViewName("clothes/add");
+		view.setViewName("products/clothes/add");
         return view;
     }
 
@@ -55,7 +55,7 @@ public class Clothes_Controller {
 	public ModelAndView getDetail(@RequestParam int codigo, Model model) {
 		model.addAttribute("p", svClothes.findById(codigo) );
 		ModelAndView view = new ModelAndView();
-		view.setViewName("clothes/divDetail");
+		view.setViewName("products/clothes/divDetail");
 		return view;
 	}
 

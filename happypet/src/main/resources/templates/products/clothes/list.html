@@ -7,7 +7,7 @@
     <title>Productos Ropa</title>
     <!-- style-->
     <link rel="stylesheet" type="text/css" href="/general/style.css" />
-    <link rel="stylesheet" type="text/css" href="/productsCSS/style.css" />
+    <link rel="stylesheet" type="text/css" href="/products/productsCSS/style.css" />
 <link rel="stylesheet" type="text/css" href="/general/header.css" />
 
     <!-- Icon -->
@@ -38,7 +38,7 @@
         </div>
 
         <br/><br/><br/><br/>
-        <div class="dTable" id="contenedor" th:include="/clothes/table"></div>
+        <div class="dTable" id="contenedor" th:include="/products/clothes/table"></div>
     </div>
 
     <!-- Imagenes -->
@@ -48,7 +48,7 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
-    <script src="/clothes_js/list.js"></script>
+    <script src="/products/clothes_js/list.js"></script>
 </body>
 <div class="footer" th:replace="~{general/footer :: foot}"></div>
 

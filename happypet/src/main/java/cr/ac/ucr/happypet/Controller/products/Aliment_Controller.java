@@ -28,7 +28,7 @@ public class Aliment_Controller {
     @RequestMapping("/inicio")
     public ModelAndView inicio() {
         ModelAndView view = new ModelAndView();
-		view.setViewName("aliment/list");
+		view.setViewName("products/aliment/list");
         return view;
     }
 
@@ -50,7 +50,7 @@ public class Aliment_Controller {
     @RequestMapping("/showAdd")
     public ModelAndView showAdd() {
         ModelAndView view = new ModelAndView();
-		view.setViewName("aliment/add");
+		view.setViewName("products/aliment/add");
         return view;
     }
 
@@ -70,7 +70,7 @@ public class Aliment_Controller {
 		model.addAttribute("p", svAliment.findById(codigo));
 
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/aliment/divDetail");
+		view.setViewName("products/aliment/divDetail");
 		return view;
 	}
 

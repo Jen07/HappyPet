@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="/general/style.css" />
-    <link rel="stylesheet" type="text/css" href="/employeeCSS/add_employee.css" />
+    <link rel="stylesheet" type="text/css" href="/users/employeeCSS/add_employee.css" />
     <link rel="stylesheet" type="text/css" href="/general/header.css" />
     <!-- Icon -->
     <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
@@ -26,10 +26,10 @@
 
                 <div class="col-rigth">
                     <div class="divImagen" th:if="${e?.imagen}">
-                        <img th:src="@{'/imageEmployee/'+${e.imagen} }"></img>
+                        <img th:src="@{'/users/imageEmployee/'+${e.imagen} }"></img>
                     </div>
                     <div class="divImagen" th:unless="${e.imagen}">
-                        <img th:src="@{/imageEmployee/default.jpg}"></img>
+                        <img th:src="@{/users/imageEmployee/default.jpg}"></img>
                     </div>
                 </div>
 
@@ -106,7 +106,7 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
-    <script src="/users_js/editEmployee.js"></script>
+    <script src="/users/users_js/editEmployee.js"></script>
 </body>
 <div class="footer" th:replace="~{general/footer :: foot}"></div>
 

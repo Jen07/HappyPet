@@ -44,7 +44,7 @@ public class Employee_Controller {
 		model.addAttribute("employee", svEmployee.findByid(id));
 
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/employee/div_Detail");
+		view.setViewName("/users/div_Detail");
 
 		return view;
 	}
@@ -60,7 +60,7 @@ public class Employee_Controller {
 	@RequestMapping(value = "addPagina", method = RequestMethod.GET)
 	public ModelAndView addEmPagina(Model model) {
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/employee/add_employee");
+		view.setViewName("/users/add_employee");
 		return view;
 	}
 
@@ -70,7 +70,7 @@ public class Employee_Controller {
 		model.addAttribute("e", svEmployee.findByid(id));
 
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/employee/edit_employee");
+		view.setViewName("/users/edit_employee");
 		return view;
 	}
 
@@ -84,7 +84,7 @@ public class Employee_Controller {
 
 		try {
 			if (!imagen.isEmpty()) {
-				Path addressImagen = Paths.get("src//main//resources//static/imageEmployee");
+				Path addressImagen = Paths.get("src//main//resources//static//users/imageEmployee");
 				String addresAbsolute = addressImagen.toFile().getAbsolutePath();
 				System.out.println(addresAbsolute);
 				byte[] byteImagen;
@@ -131,7 +131,7 @@ public class Employee_Controller {
 
 		try {
 			if (!imagen.isEmpty()) {
-				Path addressImagen = Paths.get("src//main//resources//static/imageEmployee");
+				Path addressImagen = Paths.get("src//main//resources//static//users/imageEmployee");
 				String addresAbsolute = addressImagen.toFile().getAbsolutePath();
 				System.out.println(addresAbsolute);
 				byte[] byteImagen;
@@ -168,7 +168,7 @@ public class Employee_Controller {
 	public ModelAndView filtrar(@RequestParam String text, Model model) {
 		model.addAttribute("employee", log.search(svEmployee.listaTodo(), text));
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/employee/div");
+		view.setViewName("/users/div");
 		return view;
 	}
 
@@ -176,7 +176,7 @@ public class Employee_Controller {
 	public ModelAndView search(@RequestParam String text, @RequestParam String filtro, Model model) {
 		model.addAttribute("employee", log.search(svEmployee.listaTodo(), text, filtro));
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/employee/div");
+		view.setViewName("/users/div");
 		return view;
 	}
 

@@ -41,7 +41,7 @@ formulario.addEventListener("submit", function (e) {
                         clearInterval(timerInterval)
                     }
                 }).then((result) => {
-                    window.location.href = `/inicio`;
+                    window.location.href = `/entry`;
                 });
 
             } else {

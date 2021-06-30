@@ -1,9 +1,9 @@
 <div class="card">
     <div class="card__image" th:if="${employee?.imagen}" style="max-width: 20%">
-        <img th:src="@{'/imageEmployee/'+${employee.imagen} }"></img>
+        <img th:src="@{'/users/imageEmployee/'+${employee.imagen} }"></img>
     </div>
     <div class="card__image" th:unless="${employee.imagen}" style="max-width: 20%">
-        <img th:src="@{/imageEmployee/default.jpg}"></img>
+        <img th:src="@{/users/imageEmployee/default.jpg}"></img>
     </div>
     <label><b>cédula: </b></label><label th:text="${employee.id}"></label><br>
     <label><b>Nombre: </b></label><label th:text="${employee.name}"></label><br>
