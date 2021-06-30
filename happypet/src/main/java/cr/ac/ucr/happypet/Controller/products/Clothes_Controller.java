@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import cr.ac.ucr.happypet.Controller.MainController;
 import cr.ac.ucr.happypet.Model.products.Clothes;
 import cr.ac.ucr.happypet.Service.products.IClothesService;
 
 @RestController
 @RequestMapping("/clothes")
-public class Clothes_Controller {
+public class Clothes_Controller extends MainController{
 
     @Autowired
     private IClothesService svClothes;
