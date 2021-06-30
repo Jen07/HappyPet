@@ -1,0 +1,73 @@
+<div th:fragment="head" class="head__container">
+    <div class="head__logo">
+        <a href="/">
+            <img th:src="@{/general/logo.svg}" alt="logo" class="head__image" />
+        </a>
+        <p>Happy Pet</p>
+    </div>
+
+    <nav class="head__nav">
+         <!--
+            <li  id="op0" class="dropdown"><a href="/inicio" class="head__link ">Inicio</a> </li>
+           
+            <li id="op1" class="dropdown"><a href="/login" class="head__link">Login</a> </li>
+             -->
+
+            <li class="dropdown" id="op2">
+                <a  href="#Usuarios" class="head__link">Usuarios</a>
+                <div class="dropdown-content">
+                    <a href="/entry" id="op3">Empleados</a>
+                    <a href="#clientes">Clientes</a>
+                </div>
+            </li>
+
+
+            <li class="dropdown" id="op4">
+                <a  href="#Productos" class="head__link">Productos</a>
+                <div class="dropdown-content">
+                    <a id="op5" href="/clothes/inicio">Ropa</a>
+                    <a id="op6" href="/aliment/inicio">Alimentos</a>
+                    <a href="#veterinarios">Veterinarios</a>
+                </div>
+            </li>
+            <!--
+            <li class="dropdown">
+                <a  href="#animales" class="head__link">Animales</a>
+                <div class="dropdown-content">
+                    <a href="#enVenta">En venta</a>
+                    <a href="#enAdopcion">En adopci&oacute;n</a>
+
+                </div>
+            </li>
+
+            <li class="dropdown">
+                <a  href="#Beneficiencias" class="head__link">Beneficiencias</a>
+                <div class="dropdown-content">
+                    <a href="#cursos">Cursos</a>
+                    <a href="#campanias">Campa&ntilde;as</a>
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a   href="#Medicina" class="head__link">Medicina</a>
+                <div class="dropdown-content">
+                    <a href="#laboratorio">Examenes de laboratorio</a>
+                    <a href="#anestesia">Anestesia general</a>
+                    <a href="#cirugia">Cirug&iacute;a general</a>
+                    <a href="#vacunas">Vacunas</a>
+                    <a href="#odontologia">Odontolog&iacute;a</a>
+                    <a href="#radiografias">Radiograf&iacute;as digitales</a>
+
+                </div>
+            </li>
+            <li class="dropdown">
+                <a href="#Hotel"  class="head__link" >Hotel</a>
+                <div class="dropdown-content">
+                    <a href="#actividades">Actividades</a>
+                    <a href="#reservacion">Reservaci&oacute;n</a>
+                </div>
+            </li>     
+            -->
+            <li class="dropdown" id="op7"><a id="cerrarSesion" href="/" class="head__link">Cerrar sesi&oacute;n</a></li>
+    </nav>
+</div>

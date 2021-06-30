@@ -1,0 +1,57 @@
+:root{
+
+    font-size: 1.2em;
+/*
+    /---------------------------------------------/
+    /*                 Color-Scheme                
+    /---------------------------------------------/*/
+
+    --clr-neutral-100: #fcfcfc;
+    --clr-neutral-200: #d9d9d9;
+    --clr-neutral-300: #999999;
+    --clr-neutral-400: #8c8c8c;
+    --clr-neutral-500: #666666;
+    --clr-neutral-600: #333333;
+
+    --clr-primary-200: #80BD5D;
+    --clr-primary-400: #517D3E;
+    --clr-accent-300: #BC4944;
+    --clr-contrast-300: #E78C4D;
+
+    --clr-delete-400: #D8524E;
+    --clr-edit-400: #EFAC50;
+}
+
+  li.dropdown {
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--clr-neutral-100);
+    
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }	
+  
+  .dropdown-content a:hover {
+ 	background-color: var(--clr-contrast-300);
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+
+  .head__nav a:active a:on{
+    background-color: #BC4944;
+  }

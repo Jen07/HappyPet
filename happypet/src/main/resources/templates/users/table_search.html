@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/general/style.css" />
+<link rel="stylesheet" type="text/css" href="/employeeCSS/list_employee.css" />
+<link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+<title>B&uacute;squeda</title>
+</head>
+<body>
+
+	<div class="navegationBar" th:replace="~{general/header :: head}"></div>
+
+	<div class="dTable">
+		<table id="table">
+			<thead>
+				<tr>
+					<th>C&eacute;dula</th>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Carnet</th>
+					<th>Acciones</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="em: ${employee}">
+					<td th:text="${em.id}"></td>
+					<td th:text="${em.name}"></td>
+					<td th:text="${em.lastName}"></td>
+					<td th:text="${em.carnet}"></td>
+					<td><a><button type="button" class="bDetail"></button></a> <a
+						href="/employee/edit_employee"
+						th:href="@{/employee/getEdit?id=} + ${em.id}">
+							<button type="button" class="bEdit"></button>
+					</a> <a href="/employee/list_employee"
+						th:href="@{/employee/delete?id=} + ${em.id}">
+							<button type="button" class="bDelete"></button>
+					</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

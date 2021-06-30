@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
+    <title>Agregar Empleado</title>
+    <!-- style-->
+    <link rel="stylesheet" type="text/css" href="/general/style.css" />
+    <link rel="stylesheet" type="text/css" href="/employeeCSS/add_employee.css" />
+    <link rel="stylesheet" type="text/css" href="/general/header.css" />
+    <!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+</head>
+
+<body>
+
+    <div class="navegationBar" th:replace="~{general/header :: head}"></div>
+
+    <div class="container">
+        <form class="Dform" id="formulario" autocomplete="off" enctype="multipart/form-data">
+            <a href="/entry">
+                <button type="button" class="b-back"><i class="fas fa-arrow-circle-left fa-3x"></i></button>
+            </a>
+            <h2 class="title">Nuevo Empleado</h2>
+
+            <div class="div-form">
+                <div class="fila-l">
+                    <input type="file" id="imagen" name="imagen">
+                    <label for="imagen"><i class="fas fa-upload"></i>&nbsp;Selecione una imagen</label>
+                    <span>
+                        <strong>Nombre imagen:</strong>
+                        <span id="file-name">ninguno</span>
+                    </span>
+                </div>
+                
+                <div class="col-left">
+                    <label class="subtitle"> C&eacute;dula:</label> <input type="text" id="id" name="id" maxlength="9"
+                        pattern="[0-9]{9}" title="Ingresar solo numero del 0-9 eje:114725987" required="required">
+
+                </div>
+                <div class="col-rigth">
+                    <label class="subtitle"> Nombre:</label>
+                    <input type="text" id="name" name="name"
+                        pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Jennifer"
+                        required="required">
+                </div>
+                <div class="col-left">
+                    <label class="subtitle"> Apellido:</label>
+                     <input type="text" id="lastName" name="lastName"
+                        pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Granados"
+                        required="required">
+                </div>
+                <div class="col-rigth">
+                    <label class="subtitle"> Tel&eacute;fono:</label>
+                     <input type="tel" id="tel" name="tel"
+                        maxlength="8" pattern="[0-9]{8}"
+                        title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" required="required">
+                </div>
+                <div class="col-left">
+                    <label class="subtitle"> Salario:</label> 
+                    <input type="text" id="salary" name="salary" maxlength="8"
+                        pattern="[0-9]{8}" title="Ingresar solo numeros para el salario" required="required">
+                </div>
+                <div class="col-rigth">
+                    <label class="subtitle"> Tipo:</label> <select id="type" name="type">
+                        <option value="Administrador">Administrador</option>
+                        <option value="Servicio">Servicio</option>
+                    </select>
+                </div>
+                <div class="col-left">
+                    <label class="subtitle"> Contrase&ntilde;a:</label><input type="password" id="passw" name="passw"
+                        required="required">
+                </div>
+                <div class="col-rigth">
+                    <label class="subtitle">Correo electr&oacute;nico:</label><input type="email" id="mail" name="mail"
+                        placeholder="xxx@gmail.com" required="required">
+                </div>
+
+                <div class="fila-l">
+                    <label class="subtitle">Direcci&oacute;n:</label>
+                    <textarea id="address" name="address" resize:none required="required"></textarea>
+                </div>
+                <div class="fila-button">
+                    <br><button id="bAdd" type="submit">Agregar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script -->
+    <script src="/users_js/addEmployee.js"></script>
+</body>
+<div class="footer" th:replace="~{general/footer :: foot}"></div>
+
+</html>

@@ -1,0 +1,148 @@
+@charset "ISO-8859-1";
+
+/* dise�o en conjunto*/
+
+input[type=text],
+select {
+    width: 37%;
+    padding: 10px 7px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#bSearch {
+    width: 50px;
+    height: 40px;
+    background-color: #80BD5D;
+    padding: 5px 10px;
+    border: none;
+    -webkit-box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+
+/* dise�o del botones */
+
+.d-btn-Add {
+    margin-left: 8%;
+    float: left;
+}
+
+.bAdd {
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.3);
+    background-color: #80BD5D;
+}
+
+
+/* dise�o de boton cuando pasan mose */
+
+.bAdd:hover {
+    background-color: #80ff80;
+}
+
+#bSearch:hover {
+    background-color: #80ff80;
+}
+
+
+/*Dise�o del div buscar*/
+
+.dSearch {
+    margin-right: 3em;
+    float: right;
+}
+
+
+/*Dise�o de la tabla*/
+
+.dTable {
+    width: 85%;
+    overflow-x: auto;
+    margin: 0px auto;
+}
+
+#encabesado {
+    text-align: left;
+    background-color: lightgreen;
+    color: black;
+    text-align: center;
+    border: 1px solid black;
+}
+
+#buttonsAcions {
+    width: 160px;
+}
+
+#table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table td,
+#table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#table tr:nth-child(even) {
+    background-color: lightgrey;
+}
+
+#table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #D9D9D9;
+    color: black;
+    text-align: center;
+}
+
+
+/*
+.bEdit{
+    background-image:url('/imageEmployee/editar1.png');
+    background-color: #F8ED0C ;
+}
+
+.bDetail{
+    background-image:url('/imageEmployee/curriculum.png');
+}*/
+
+.bDelete,
+.bDetail,
+.bEdit {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 40px;
+    background-size: 100% 100%;
+    -webkit-box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 7px;
+    border: none;
+    background-size: 50%;
+    color: black;
+}
+
+.bEdit:hover {
+    background-color: #80ff80;
+}
+
+.bDetail:hover {
+    background-color: #80ff80;
+}
+
+.bDelete:hover {
+    background-color: #80ff80;
+}
+
+.container {
+    padding: 7px 15px;
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" href="/general/style.css" />
+    <link rel="stylesheet" type="text/css" href="/employeeCSS/add_employee.css" />
+    <link rel="stylesheet" type="text/css" href="/general/header.css" />
+    <!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+    <title>Editar Empleado</title>
+</head>
+
+<div class="navegationBar" th:replace="~{general/header :: head}"></div>
+
+<body>
+    <div class="container">
+        <form class="Dform" id="formulario2" autocomplete="off">
+           
+            <div class="div-form">
+                <div class="col-left">
+                    <h2 class="title">Editar Empleado</h2>
+                </div>
+
+                <div class="col-rigth">
+                    <div class="divImagen" th:if="${e?.imagen}">
+                        <img th:src="@{'/imageEmployee/'+${e.imagen} }"></img>
+                    </div>
+                    <div class="divImagen" th:unless="${e.imagen}">
+                        <img th:src="@{/imageEmployee/default.jpg}"></img>
+                    </div>
+                </div>
+
+                <div class="fila-l">
+                    <input type="file" id="imagen" name="imagen">
+                    <label for="imagen"><i class="fas fa-upload"></i>&nbsp;Selecione una imagen</label>
+                    <span>
+                        <strong>Nombre imagen:</strong>
+                        <span id="file-name">ninguno</span>
+                    </span>
+                    <input type="hidden" id="oldimagen" th:value="${e.imagen}" />
+                </div>
+
+                <div class="col-left">
+                    <label class="subtitle"> C&eacute;dula:</label>
+                    <input type="text" id="id" name="id" th:value="${e.id}" maxlength="9" pattern="[0-9]{9}"
+                        title="Ingresar solo numero del 0-9 eje:114725987" required="required">
+
+                </div>
+                <div class="col-rigth">
+                    <label class="subtitle"> Nombre:</label>
+                    <input type="text" id="name" name="name" th:value="${e.name}"
+                        pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Jennifer"
+                        required="required">
+                </div>
+                <div class="col-left">
+                    <label class="subtitle"> Apellido:</label>
+                    <input type="text" id="lastName" name="lastName" th:value="${e.lastName}"
+                        pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Granados"
+                        required="required">
+                </div>
+                <div class="col-rigth">
+                    <label class="subtitle"> Tel&eacute;fono:</label>
+                    <input type="tel" id="tel" name="tel" th:value="${e.phone}" maxlength="8" pattern="[0-9]{8}"
+                        title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" required="required">
+                </div>
+                <div class="col-left">
+                    <label class="subtitle"> Salario:</label>
+                    <input type="text" id="salary" name="salary" th:value="${e.salary}" maxlength="8" pattern="[0-9]{8}"
+                        title="Ingresar solo numeros para el salario" required="required">
+                </div>
+                <div class="col-rigth">
+                    <label class="subtitle"> Tipo:</label>
+                    <select id="type" name="type">
+                        <option th:selected="${e.type=='Administrador'}" value="Administrador">Administrador</option>
+                        <option th:selected="${e.type=='Servicio'}" value="Servicio">Servicio</option>
+                    </select><br />
+                </div>
+                <div class="col-left">
+                    <label class="subtitle"> Contrase&ntilde;a:</label>
+                    <input type="password" id="passw" name="passw" th:value="${e.password}" required="required">
+                </div>
+                <div class="col-rigth">
+                    <label class="subtitle">Correo electr&oacute;nico:</label>
+                    <input type="email" id="mail" name="mail" th:value="${e.mail}" placeholder="xxx@gmail.com"
+                        required="required">
+                </div>
+
+                <div class="fila-l">
+                    <label class="subtitle">Direcci&oacute;n:</label>
+                    <textarea id="address" name="address" th:text="${e.address}" required="required"></textarea>
+                </div>
+                <div class="fila-button">
+                    <br><button id="bAdd" type="submit">Modificar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script -->
+    <script src="/users_js/editEmployee.js"></script>
+</body>
+<div class="footer" th:replace="~{general/footer :: foot}"></div>
+
+</html>
