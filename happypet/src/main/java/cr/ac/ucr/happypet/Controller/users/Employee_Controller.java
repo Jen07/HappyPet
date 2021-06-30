@@ -86,7 +86,6 @@ public class Employee_Controller {
 			if (!imagen.isEmpty()) {
 				Path addressImagen = Paths.get("src//main//resources//static//users/imageEmployee");
 				String addresAbsolute = addressImagen.toFile().getAbsolutePath();
-				System.out.println(addresAbsolute);
 				byte[] byteImagen;
 				byteImagen = imagen.getBytes();
 				Path allAddress = Paths.get(addresAbsolute + "//" + imagen.getOriginalFilename());
