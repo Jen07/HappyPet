@@ -1,0 +1,19 @@
+.card_body{
+    display: flex;
+    width: 100%;
+   
+    border: .1em solid red;
+}
+
+.card_body>div{
+    flex-basis: 100%;
+    margin: .5em;
+}
+
+.card_body>div+div{
+    margin: .5em;
+}
+
+.card_body form{
+    display: flex;
+}

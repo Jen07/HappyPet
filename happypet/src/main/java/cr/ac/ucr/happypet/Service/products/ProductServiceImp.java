@@ -30,7 +30,11 @@ public class ProductServiceImp implements IProductService{
     public void delete(int id){
         repo.deleteById(id);
     }
-
+    
+    @Override
+    public Product findById(int id) {
+        return repo.findById(id);
+    }
 
     
 }

@@ -1,0 +1,25 @@
+<article class="card" th:fragment="card" th:object="${animal}">
+
+	<div th:replace="~{animals/fragments/animal_image :: image}"></div>
+
+	<div>
+		<h2 class="card__title" th:text="${animal.name.isEmpty() ? 'N/A' : animal.name}"></h2>
+		<p class="card__subtitle" th:text="*{specie}"></p>
+	</div>
+
+	<ul>
+		<li>Raza: <span th:text="*{breed}"></span></li>
+		<li>Nacimiento: <span th:text="*{born}"></li>
+	</ul>
+
+	<div th:switch="${animal.type}">
+
+		<a th:case="C" class="btn card__btn" th:href="@{/animal/details/{id} (id=*{registerId.id})}">Detalles</a>
+
+		<a th:case="A" class="btn card__btn" th:href="@{/animal/details/{id} (id=*{registerId.id})}">Adoptar</a>
+
+		<a th:case="S" class="btn card__btn" th:href="@{/animal/details/{id} (id=*{registerId.id})}">Comprar</a>
+
+	</div>
+
+</article>

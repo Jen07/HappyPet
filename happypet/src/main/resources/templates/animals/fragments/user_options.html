@@ -1,0 +1,4 @@
+<th:block th:fragment="options">
+    <option hidden selected value="">Seleccione un dueño</option>
+    <option th:each="temp : ${users}" th:text="${temp.id} + '-' + ${temp.name}" th:value="${temp.id}"></option>
+</th:block>

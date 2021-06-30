@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="~{layout/head_block :: head}"></div>
+</head>
+
+<body>
+
+    <header>
+        <div th:replace="~{layout/header :: head}"></div>
+    </header>
+
+    <div class="container">
+        <div th:replace="~{billing/fragments/bill :: bill}"></div>
+        <td> <a id="sendMail" class="btn btn-delete" th:onclick="confirmSend([[${bill.id}]])">Enviar nuevamente a mi
+                correo</i></a></td>
+    </div>
+    <footer>
+        <div th:replace="~{layout/footer :: foot}"></div>
+    </footer>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script th:src="@{/animals/assets/scripts/billing/bill_detail.js}"></script>
+
+</body>
+
+</html>

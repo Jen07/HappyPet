@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{animals/layout/head_block :: head}"></div>
+</head>
+
+<body>
+	<header>
+		<div th:replace="~{animals/layout/header :: head}"></div>
+	</header>
+
+	<div class="container">
+		<h1 class="ta-center">Mascotas en adopción.</h1>
+
+		<h2 class="ta-center" th:unless="${adopt}">
+			No se han recuperado las mascotas en adopcion.
+		</h2>
+
+		<div class="row justify-evenly" th:if="${adopt}">
+			<h2 class="ta-center" th:if="${adopt.size() == 0}">
+				Actualmente no existen mascotas en adopcion.
+			</h2>
+
+			<div class="col s3 m-1" th:unless="${adopt.size() == 0}" th:each="animal : ${adopt}">
+				<div th:replace="~{animals/fragments/animal_card :: card}"></div>
+			</div>
+		</div>
+
+		<hr>
+
+		<h1 class="ta-center">Mascotas en venta.</h1>
+
+		<h2 class="ta-center" th:unless="${sale}">
+			No se han recuperado las mascotas en venta.
+		</h2>
+
+		<div class="row justify-evenly" th:if="${sale}">
+			<h2 class="ta-center" th:if="${sale.size() == 0}">
+				Actualmente no existen mascotas en venta.
+			</h2>
+
+			<div class="col s3 m-1" th:unless="${sale.size() == 0}" th:each="animal : ${sale}">
+				<div th:replace="~{animals/fragments/animal_card :: card}"></div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<div th:replace="~{animals/layout/footer :: foot}"></div>
+	</footer>
+</body>
+
+</html>

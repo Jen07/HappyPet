@@ -1,0 +1,32 @@
+<th:block th:fragment="table">
+
+    <table>
+        <thead>
+            <tr>
+                <th>Numero</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Detalle</th>
+                <th>Archivar</th>
+            </tr>
+        </thead>
+
+        <tbody class="table">
+            <tr th:each="bill :${bills}" th:id="${bill.id}">
+                <td> <span th:text="${bill.id}"></span></td>
+                <td> <span th:text="${bill.formattedDate}"></span></td>
+                <td> <span th:text="${bill.getTotalString()}"></span></td>
+
+                <td> <a class="btn btn-send" th:href="@{/billing/bill_detail/{id} (id=${bill.id})}"><i
+                            class="far fa-address-card"></i></a></td>
+                <td> <a class="btn btn-delete" th:onclick="onArchive([[${bill.id}]])"><i class="fas fa-archive"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p>Facturas archivadas: <span th:text="${archievedTotal}"></span></p>
+    <td> <a class="btn btn-send" th:onclick="onUnArchive([[${user}]])">Desarchivar facturas</a></td>
+
+
+</th:block>

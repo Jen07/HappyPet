@@ -1,0 +1,205 @@
+<th:block th:fragment="register">
+
+    <form method="post" th:action="@{/animal/register}" class="animal__form">
+
+        <th:block th:switch="${register_type}">
+
+            <th:block th:case="gestion">
+                <label>Tipo de gestion</label>
+
+                <div class="row">
+                    <div class="col s6">
+                        <input type="radio" name="type" value="S" class="form-check-input" id="radio_s" required>
+                        <label for="radio_s" class="form-check-label">Venta</label>
+                    </div>
+                    <div class="col s6">
+                        <input type="radio" name="type" value="A" class="form-check-input" id="radio_a" required>
+                        <label for="radio_a" class="form-check-label">Adopcion</label>
+                    </div>
+                </div>
+            </th:block>
+
+            <th:block th:case="user">
+                <label>Seleccione un usuario</label>
+                <input type="hidden" name="type" value="C">
+                <div class="row">
+                    <div class="col s8">
+                        <select id="combo_client" name="owner" required class="input_field">
+                            <div th:replace="~{animals/fragments/user_options :: options}"></div>
+                        </select>
+                    </div>
+                    <div class="col s3 off-s1">
+                        <input type="text" placeholder="Filtro..." id="combo_filter" class="input_field">
+                    </div>
+                </div>
+            </th:block>
+        </th:block>
+
+        <div>
+            <label for="name">Nombre</label>
+            <input type="text" name="name" placeholder="Nombre..." id="name" class="input_field">
+        </div>
+
+        <div>
+            <label for="born">Nacimiento</label>
+            <input type="date" name="born" id="born" required class="input_field">
+        </div>
+
+        <div class="row">
+            <div class="col s6">
+                <label for="combo_specie">Especie</label>
+                <select id="combo_specie" name="specie" required class="input_field">
+                    <div th:replace="~{animals/fragments/species_options :: options}"></div>
+                </select>
+            </div>
+
+            <div class="col s6">
+                <label for="combo_breed">Raza</label>
+                <select id="combo_breed" name="breed" required class="input_field">
+                    <div th:replace="~{animals/fragments/breeds_options :: options}"></div>
+                </select>
+            </div>
+        </div>
+
+        <div>
+            <input type="radio" name="gender" id="gender-m" value="M" required>
+            <label for="gender-m">Macho</label>
+
+        </div>
+
+        <div class="form-check">
+            <input type="radio" name="gender" id="gender-f" value="F" required>
+            <label for="gender-f">Hembra</label>
+
+        </div>
+
+        <div class="row">
+            <div class="col s6">
+                <label for="height">Altura (cm)</labelf>
+                    <div class="tagged_input">
+                        <input type="number" name="height" id="height" min="10" max="3000" required class="input_field">
+
+                    </div>
+            </div>
+
+            <div class="col s6">
+                <label for="weight">Peso (gr)</label>
+                <div class="tagged_input">
+                    <input type="number" name="weight" id="weight" min="10" max="30000" required class="input_field">
+
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="neutered" id="neutered" />
+            <label for="neutered">Está castrado</label>
+        </div>
+
+        <div class="row justify-center">
+            <div class="col s4">
+                <input type="submit" class="btn btn-send">
+            </div>
+        </div>
+    </form>
+</th:block>
+
+<!--      Fragmento        -->
+
+<th:block th:fragment="modify">
+
+    <form method="get" action="/animal/modify" class="animal__form" th:object="${animal}">
+
+        <input type="hidden" name="id" th:value="*{id}">
+
+        <div th:if="*{type}== 'C'">
+            <h2>Mascota de: <span th:text="${register.owner}"></span></h2>
+            <input type="hidden" name="type" value="C">
+        </div>
+
+        <div th:if="*{type}!= 'C'">
+            <label>Tipo de gestion</label>
+            <div class="row">
+                <div class="col s6">
+                    <input type="radio" name="type" value="S" th:checked="*{type}== 'S'" id="radio_s" required>
+                    <label for="radio_s">Venta</label>
+                </div>
+                <div class="col s6">
+                    <input type="radio" name="type" value="A" th:checked="*{type}== 'A'" id="radio_a" required>
+                    <label for="radio_a">Adopcion</label>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <label for="name">Nombre</label>
+            <input type="text" name="name" th:value="*{name}" placeholder="Dowg" id="name" required>
+        </div>
+
+        <div>
+            <label for="born">Nacimiento</label>
+            <input type="date" th:value="*{born}" name="born" id="born" required>
+        </div>
+
+        <div class="row">
+            <div class="col s6">
+                <label for="combo_specie">Especie</label>
+                <select id="combo_specie" name="specie">
+                    <option th:each="temp:${species}" th:value="${temp.specie}" th:text="${temp.specie}"
+                        th:selected="${temp.specie==animal.specie}"></option>
+                </select>
+
+            </div>
+
+            <div class="col s6">
+                <label for="combo_breed">Raza</label>
+                <select id="combo_breed" name="breed" required>
+                    <option th:each="temp:${breeds}" th:value="${temp.breed}" th:text="${temp.breed}"
+                        th:selected="${temp.breed==animal.breed}"></option>
+                </select>
+
+            </div>
+        </div>
+
+        <div>
+            <input type="radio" name="gender" value="M" th:checked="*{gender}== 'F'" id="gender-m" required>
+            <label for="gender-m">Macho</label>
+        </div>
+
+        <div class="form-check">
+            <input type="radio" name="gender" value="F" th:checked="*{gender}== 'M'" id="gender-f" required>
+            <label for="gender-f">Hembra</label>
+        </div>
+
+        <div class="row">
+            <div class="col s6">
+                <label for="height">Altura</label>
+                <div class="tagged_input">
+                    <input type="number" name="height" min="10" max="2500" th:value="*{height}" required id="height">
+                    <span>.cm</span>
+                </div>
+            </div>
+
+            <div class="col s6">
+                <label for="weight">Peso</label>
+                <div class="tagged_input">
+                    <input type="number" name="weight" min="10" max="30000" th:value="*{weight}" required id="weight">
+                    <span>.gr</span>
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <input type="checkbox" name="neutered" th:checked="*{neutered}" id="neutered" />
+            <label for="neutered">Está castrado</label>
+        </div>
+
+
+        <div class="row justify-center">
+            <div class="col s4">
+                <input type="submit" class="btn btn-send">
+            </div>
+        </div>
+
+    </form>
+</th:block>

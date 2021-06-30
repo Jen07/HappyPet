@@ -1,0 +1,44 @@
+<h2 class="ta-center" th:unless="${images}">
+    No se han recuperado imagenes.
+</h2>
+
+<div class="row justify-evenly" th:if="${images}">
+
+    <h2 class="ta-center" th:if="${images.size() == 0}">
+        No hay imagenes para mostrar
+    </h2>
+
+    <div th:unless="${images.size() == 0}">
+
+        <div class="table__container" th:fragment="table">
+            <table class="table images_table" id="images_table">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr th:each="temp : ${images}">
+                        <td class="animal_images" th:id="${temp.id}">
+                            <img th:src="@{'/animal/build_image/' + ${temp.id}}">
+                            <div class="row justify-evenly">
+                                <div class="col s2">
+                                    <a class="btn btn-send"><i class="far fa-address-card"></i></a>
+                                </div>
+                                <div class="col s2">
+                                    <a class="btn btn-delete"><i class="fas fa-trash-alt"></i></a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

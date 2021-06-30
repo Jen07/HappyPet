@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+	<link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+	<div th:replace="~{animals/layout/head_block :: head}"></div>
+	<link th:href="@{/animals/assets/css/animal.css}" rel="stylesheet" />
+</head>
+
+<body th:id="${animal.id}">
+	<header>
+		<div th:replace="~{animals/layout/header :: head}"></div>
+	</header>
+
+	<div class="container">
+		<h1>
+			Gestión de imágenes de <span th:text="${animal.name}"></span>.
+		</h1>
+
+		<a onclick="mountForm()" class="btn btn-send">Agregar foto</a>
+
+
+
+		<div id="imagesTable">
+			<div th:replace="~{animals/fragments/images_table :: table}"></div>
+		</div>
+
+		<div class="row justify-center">
+			<div class="col s3">
+				<a class="btn btn-edit"
+					onclick="window.location.href = (window.location.href.toString().replace('images', 'details'))">Volver</a>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<div th:replace="~{animals/layout/footer :: foot}"></div>
+	</footer>
+
+	<script th:src="@{/animals/assets/scripts/animal/image_preview.js}"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+	<script th:src="@{/animals/assets/scripts/animal/animal_scripts_images.js}"></script>
+
+</body>
+
+
+
+</html>

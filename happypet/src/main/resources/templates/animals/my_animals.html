@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{animals/layout/head_block :: head}"></div>
+</head>
+
+<body>
+	<header>
+		<div th:replace="~{animals/layout/header :: head}"></div>
+	</header>
+
+	<div class="container">
+		<h1 class="ta-center">Mis mascotas.</h1>
+
+		<h2 class="ta-center" th:unless="${animals}">
+			No se han recuperado las mascotas.
+		</h2>
+
+		<div class="row justify-evenly" th:if="${animals}">
+			<h2 class="ta-center" th:if="${animals.size() == 0}">
+				Aun no tienes mascotas registradas.
+			</h2>
+
+			<div class="col s3 m-1" th:unless="${animals.size() == 0}" th:each="animal : ${animals}">
+				<div th:replace="~{animals/fragments/animal_card :: card}"></div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<div th:replace="~{animals/layout/footer :: foot}"></div>
+	</footer>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<h2 class="ta-center" th:unless="${animals}">
+    No se han recuperado las mascotas.
+</h2>
+
+<div class="row justify-evenly" th:if="${animals}">
+
+    <h2 class="ta-center" th:if="${animals.size() == 0}">
+        No hay mascotas para mostrar
+    </h2>
+
+    <div th:unless="${animals.size() == 0}">
+
+        <div class="table__container" th:fragment="table">
+            <table class="table animal_table" id="animal_table">
+                <thead>
+                    <tr>
+                        <th>Dueño</th>
+
+                        <th>Nombre</th>
+
+                        <th>Esp.</th>
+                        <th>Raza</th>
+                        <th>Detalles</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr th:each="animal : ${animals}" th:object="${animal}" th:id="*{id}">
+                        <td th:text="${animal.registerId.owner == 0 ? 'N/A' : animal.registerId.owner}"></td>
+                       
+
+                        <td th:text="${animal.name.isEmpty() ? 'N/A' : animal.name}"></td>
+
+                        <td th:text="*{specie}"></td>
+                        <td th:text="*{breed}"></td>
+
+                        <td><a class="btn btn-send "><i class="far fa-address-card"></i></a></td>
+                        <td><a class="btn btn-edit"><i class="far fa-edit"></i></a></td>
+                        <td><a class="btn btn-delete"><i class="fas fa-trash-alt"></i></a></td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

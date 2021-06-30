@@ -1,0 +1,45 @@
+<div th:fragment="carousel">
+    <div th:if="${animal.type.toString() == 'C'}">
+
+        <th:block th:unless="${animal.images}">
+            <h2 class="ta-center">No hay imagenes que mostrar</h2>
+        </th:block>
+
+        <th:block th:if="${animal.images}">
+
+            <th:block th:if="${animal.images.size() == 0}">
+                <h2 class="ta-center">No hay imagenes que mostrar</h2>
+            </th:block>
+
+            <th:block th:unless="${animal.images.size() == 0}">
+
+                <div class="splide">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <li class="splide__slide" style="width: 250px" th:each="temp : ${animal.images}">
+                                <img th:src="@{'/animal/build_image/' + ${temp.id}}">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="splide__progress">
+                    <div class="splide__progress__bar">
+                    </div>
+                </div>
+
+                
+
+            </th:block>
+
+            
+
+        </th:block>
+
+
+
+    </div>
+
+
+
+</div>

@@ -6,6 +6,6 @@ import cr.ac.ucr.happypet.Model.products.Product;
 
 public interface Product_Repository extends JpaRepositoryImplementation<Product,Integer>{
   
-    
+    Product findById(int id);
 
 }

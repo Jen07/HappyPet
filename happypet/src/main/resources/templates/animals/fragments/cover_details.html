@@ -1,0 +1,50 @@
+<div>
+	<div>
+
+		<h2 class="ta-center">Detalles del animal</h2>
+
+		<table th:object="${animal}" class="details-table">
+			<tr>
+				<td>Dueño:</td>
+				<td th:text="*{registerId.owner == 0 ? 'N/A' : registerId.owner}"></td>
+			</tr>
+
+			<tr>
+				<td>Nombre:</td>
+				<td th:text="${animal.name.isEmpty() ? 'N/A' : animal.name}"></td>
+			</tr>
+
+			<tr>
+				<td>Especie:</td>
+				<td th:text="*{specie}"></td>
+			</tr>
+
+			<tr>
+				<td>Raza:</td>
+				<td th:text="*{breed}"></td>
+			</tr>
+
+			<tr>
+				<td>Peso:</td>
+				<td th:text="*{weight}"></td>
+			</tr>
+
+			<tr>
+				<td>Altura:</td>
+				<td th:text="*{height}"></td>
+			</tr>
+
+			<tr>
+				<td>Género:</td>
+				<td th:text="*{gender}"></td>
+			</tr>
+
+			<tr>
+				<td>Castrado:</td>
+				<td th:text="*{neutered} ? 'Si' : 'No'"></td>
+			</tr>
+
+		</table>
+
+	</div>
+</div>

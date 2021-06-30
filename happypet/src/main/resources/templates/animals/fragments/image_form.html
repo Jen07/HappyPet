@@ -1,0 +1,15 @@
+<form class="animal_form" action="/animal/save_image" method="POST" enctype="multipart/form-data" id="imageForm"
+    th:fragment="form">
+    <input type="hidden" name="id" th:value="${id}" id="opt">
+    <div class="row">
+        <div class="col s4 off-s1">
+            <div id="file-preview" class="file_preview"></div>
+        </div>
+        <div class="col s3">
+            <input id="file" type="file" name="file" accept="image/*" required />
+            <input type="submit" value="Enviar">
+        </div>
+    </div>
+
+
+</form>
