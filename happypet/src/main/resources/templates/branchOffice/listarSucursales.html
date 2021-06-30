@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleListadoSucursales.css">
+  <link rel="stylesheet" type="text/css" href="/branchOffice/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleIndex.css">
+  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleInsertSucursal.css">
+  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleModalSucursal.css">
+  <link rel="stylesheet"  href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+</head>
+
+<body class="listar-body">
+
+
+
+  <div th:replace="general/header.html :: head"></div>
+
+
+  <div class="table__container">
+
+    <table id="table_sucursal" class="sucursal_table">
+      <caption>Sucursales</caption>
+      <thead>
+       <th>Cedula juridica</th>
+        <th>Provincia</th>
+        <th>Ciudad</th>
+        <th>Acciones</th>
+      </thead>
+     
+      <tbody class="tbody">
+      
+      </tbody>
+
+    
+
+    </table>
+  </div>
+
+  <div id="myModal" class="modal">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <span class="close" onclick="closeModal()">&times;</span>
+  
+        <h2>Sucursal</h2>
+      </div>
+      <div class="modal-body">
+
+       		<form >
+	       		 <div th:replace="/branchOffice/fragmentos.html :: insertS"></div>
+	       		 <div class="row">
+	             <input class=" btn_insert_sucursal" type="button" value="Guardar" onclick="updateSucursal()">
+	   			 </div> 
+       		</form>
+         
+  
+      </div>
+  
+    </div>
+  
+  </div>
+  
+  
+   <div id="myModalDetails" class="modal">
+
+    <div class="modal-content2">
+      <div class="modal-header">
+        <span class="close" onclick="closeModal2()">&times;</span>
+  
+        <h2>Sucursal</h2>
+      </div>
+      <div class="modal-body">
+
+       		
+         
+  
+      </div>
+  
+    </div>
+  
+  </div>
+   
+ 
+
+
+<footer th:replace="general/footer.html :: foot">
+    
+    </footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+  
+  <script type="text/javascript" src="/branchOffice/js/cruds.js"></script>
+  <script type="text/javascript" src="/branchOffice/js/validaciones.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  
+</body>
+
+</html>

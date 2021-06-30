@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+ 
+    <div th:fragment="insertS" >
+            <div class="row2">
+             <div class="col-25">
+               <label for="">C&eacute;dula jur&iacute;dica</label>
+             </div>
+             <div class="col-75">
+               <input type="text" id="CedulaJuridica" name="CedulaJuridica" placeholder="ejemplo: 7027602360"  onkeypress="return valideKey(event);">
+             </div>
+           </div>
+            <div class="row2">
+             <div class="col-25">
+               <label >Provincia</label>
+             </div>
+             <div class="col-75">
+               <select id="provincia" name="provincia">		                 
+			        <option value="1" >San Jos&eacute;</option>
+			        <option value="2" >Alajuela</option>
+			        <option value="3" >Cartago</option>
+			        <option value="4" >Heredia</option>
+			        <option value="5" >Guanacaste</option>
+			        <option value="6" >Puntarenas</option>
+			        <option value="7" >Lim&oacute;n</option>			        
+               </select>
+             </div>
+           </div>
+           <div class="row2">
+             <div class="col-25">
+               <label >Ciudad</label>
+             </div>
+             <div class="col-75">
+               <select id="ciudad" name="ciudad">
+                 
+               </select>
+             </div>
+           </div>
+            <div class="row">
+             <div class="col-25">
+               <label for="">Correo Electr&oacute;nico</label>
+             </div>
+             <div class="col-75">
+               <input type="text" id="correo" name="correo" placeholder="ejemplo: sujeto@gmail.com" >
+             </div>
+           </div>
+            <div class="row2">
+             <div class="col-25">
+               <label for="">N&uacute;mero de telefono</label>
+             </div>
+             <div class="col-75">
+               <input type="text" id="telefono" name="telefono" placeholder="ejemplo: 2-4105-000" >
+             </div>
+           </div>
+             <div class="row2">
+             <div class="col-25">
+               <label for="">Hora de inicio de atenci&oacute;n</label>
+             </div>
+             <div class="col-75">
+               <input type="time" id="horaInicio" name="horaInicio" >
+             </div>
+           </div>
+           <div class="row2">
+             <div class="col-25">
+               <label for="">Hora de finalizaci&oacute;n de atenci&oacute;n</label>
+             </div>
+             <div class="col-75">
+               <input type="time" id="horaFinal" name="horaFinal" >
+             </div>
+           </div>
+          
+                   
+    </div>
+    
+   
+   
+</body>
+
