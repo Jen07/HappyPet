@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500;700&family=Roboto:ital,wght@0,300;1,100&display=swap');
+
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+:root{
+
+    font-size: 1.2em;
+
+    /*---------------------------------------------*/
+    /*                 Color-Scheme                */
+    /*---------------------------------------------*/
+
+    --clr-neutral-100: #fcfcfc;
+    --clr-neutral-200: #d9d9d9;
+    --clr-neutral-300: #999999;
+    --clr-neutral-400: #8c8c8c;
+    --clr-neutral-500: #666666;
+    --clr-neutral-600: #333333;
+
+    --clr-primary-200: #80BD5D;
+    --clr-primary-400: #517D3E;
+    --clr-accent-300: #BC4944;
+    --clr-contrast-300: #E78C4D;
+
+    --clr-delete-400: #D8524E;
+    --clr-edit-400: #EFAC50;
+}
+
+.listar-body{
+    min-height: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+   	align-items:center;
+    background-color: var(--clr-neutral-100);
+}
+
+
+
+
+
+caption{
+	border: 1px solid #000000;
+	font-size: 30px;
+	font-family: 'Rock Salt', cursive;
+	padding: 20px;
+	font-style: italic;
+	color: #000000;
+	letter-spacing: 1px;
+	background-color: #c0c0c0;
+}
+
+.btn-sucursal{
+    text-decoration: none;
+    cursor: pointer;
+    padding: 1em 1em;  
+    transition:transform .250s;
+    margin-left: 8px;
+    border-radius: 6px;
+}
+
+.btns-delete{
+    background-color: var(--clr-delete-400);
+    color:var(--clr-neutral-100);
+   
+}
+
+.btns-edit{
+    background-color: var(--clr-edit-400);
+    color:var(--clr-neutral-100);
+   
+}
+
+.btns-send{
+    background-color: var(--clr-primary-200);
+    color:var(--clr-neutral-100);
+  
+}
+
+
+.sucursal_table{
+	border: 1px solid #000000;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.sucursal_table th{
+    background-color: var(--clr-primary-400);
+   
+}
+.sucursal_table tbody tr:nth-child(even)  {
+    background-color: var(--clr-neutral-200)
+}
+
+.sucursal_table th, .sucursal_table td{
+    padding:.7em;
+}
+
+
+
+/*------------------------------------------------------------details---------------------------------------------------------------------*/
+
+.cardD{
+
+    max-width:	30em;
+    min-width: 15em;
+
+    box-shadow: .5em .5em 1em -1em;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.cardD ul{
+    list-style: none;
+    padding: 0;
+}
+
+.cardD li{
+    border-bottom:2px solid var(--clr-neutral-300);
+    
+    padding: 10px 10px;
+   	
+}
+
+
+
+

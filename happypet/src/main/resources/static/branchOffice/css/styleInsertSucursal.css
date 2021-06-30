@@ -1,0 +1,114 @@
+
+:root{
+
+    font-size: 1.2em;
+
+    /*---------------------------------------------*/
+    /*                 Color-Scheme                */
+    /*---------------------------------------------*/
+
+    --clr-neutral-100: #fcfcfc;
+    --clr-neutral-200: #d9d9d9;
+    --clr-neutral-300: #999999;
+    --clr-neutral-400: #8c8c8c;
+    --clr-neutral-500: #666666;
+    --clr-neutral-600: #333333;
+
+    --clr-primary-200: #80BD5D;
+    --clr-primary-400: #517D3E;
+    --clr-accent-300: #BC4944;
+    --clr-contrast-300: #E78C4D;
+
+    --clr-delete-400: #D8524E;
+    --clr-edit-400: #EFAC50;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.bodyFormInsert{
+	 background-color: var(--clr-neutral-100);
+	 align-items: center;
+}
+
+
+.containerFormInsert{
+    width: 60%;
+    background-color: var(--clr-neutral-300);
+    min-height: 72vh;
+    padding: 2em 2em;
+}
+
+.btn_insert_sucursal{
+	margin-left: 40%;
+    padding:1em;
+    color: inherit;
+    flex-basis:calc(2 * calc(100% / 12));
+    border: 1px solid var(--clr-primary-400);
+    border-radius: 1em;
+    margin-top: 2em;
+    transition: background-color .250s, color .250s;
+}
+
+.btn_insert_sucursal:hover{
+    color: var(--clr-neutral-100);
+    background-color: var(--clr-primary-200);
+}
+
+
+input[type=text], select, textarea{
+  width: 90%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+input[type=time]{
+  width: 50%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+
+
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+  margin-left: 20%;
+}
+
+.col-75 {
+  float: left;
+  width: 40%;
+  margin-top: 6px;
+}
+
+/* Clear floats after the columns */
+.row2:after {
+  content: "";
+  display: table;
+  clear: both;
+   align-items: center;
+   
+}
+
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+
+
