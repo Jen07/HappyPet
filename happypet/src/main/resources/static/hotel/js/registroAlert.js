@@ -49,20 +49,29 @@ const validarForm = (e)=>{
 const validarCampo = (expresion, input, campo, nombre)=>{
 
 	if(expresion.test(input.value)){
+		
+		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
 		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
-		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');    
-		document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
-		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
-		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+	
+		if(nombre != 'descripcion' && nombre != 'direccion'){  
+		  document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+		  document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
+	      document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+	    }
 		campos[nombre]=true;
-        
+		
 	}else{
+		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
 		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
-		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');  
-		document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');  
-		document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
-		document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
-		campos[nombre]=false;
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto'); 
+
+        if(nombre != 'descripcion' && nombre != 'direccion'){ 
+	    	document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');  
+	    	document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
+	    	document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+	 	}
+	    campos[nombre]=false;
 		
 	}
 }
@@ -80,9 +89,14 @@ textA.forEach((input) =>{
 formulario.addEventListener('submit',(e)=>{
 	e.preventDefault();
 
+    alert(campos.precio)
+	alert(campos.telefono)
+	alert(campos.habitaciones)
+	alert(campos.descripcion)
+	alert(campos.direccion)
+	if(campos.precio && campos.telefono && campos.habitaciones
+		 && campos.descripcion && campos.direccion){
 
-	if(campos.precio && campos.telefono
-		 && campos.habitaciones ){
 		 registrar(); 
 
 	}else{

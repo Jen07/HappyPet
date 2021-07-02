@@ -4,7 +4,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <link rel="stylesheet" type="text/css" href="/hotel/css/estiloRegistro.css">
-    <link rel="stylesheet" type="text/css" th:href="@{/hotel/css/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/hotel/css/navBar.css}">
 
     <title>Registro</title>
@@ -12,7 +12,7 @@
 
 <body class="body">
 
-     <div class="navegationBar" th:replace="~{general/header::head}"></div> 
+    <div class="navegationBar" th:replace="~{general/header::head}"></div>
 
     <div class="containerRegistro" id="containerRegistro">
 
@@ -31,13 +31,14 @@
                 <div class="formulario__grupo " id="grupo__veterinaria">
                     <label for="nameSucursal" class="formulario__label">Nombre de Veterinaria: </label>
                     <div class="formulario__grupo-input">
-                      <select name="codSucursal" id="codSucursal">
-                         <option th:each="suc : ${sucursales}" th:value="${suc.cedulaJuridica}" th:text="${suc.ciudad}" /> 
-                    </select>
-                  </div>
+                        <select name="codSucursal" id="codSucursal">
+                            <option th:each="suc : ${sucursales}" th:value="${suc.cedulaJuridica}"
+                                th:text="${suc.ciudad}"> </option>
+                        </select>
+                    </div>
                 </div>
 
-                   <!-- input precio -->
+                <!-- input precio -->
                 <div class="formulario__grupo" id="grupo__precio">
                     <label for="price" class="formulario__label">Precio por d&iacute;a: </label>
                     <div class="formulario__grupo-input">
@@ -47,21 +48,22 @@
                     <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
                 </div>
 
-                 <!-- input telefono -->
+                <!-- input telefono -->
                 <div class="formulario__grupo " id="grupo__phone">
 
                     <label for="phone" class="formulario__label">Tel&eacute;fono: </label>
-                    <div  class="formulario__grupo-input">
+                    <div class="formulario__grupo-input">
                         <input type="text" name="phone" id="phone" class="formulario__input" placeholder="27100909">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
-                    <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros, minimo 8 digitos maximo 10</p>
+                    <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros, minimo 8 digitos maximo
+                        10</p>
                 </div>
 
-                 <!-- input # habitaciones -->
+                <!-- input # habitaciones -->
                 <div class="formulario__grupo " id="grupo__rooms">
                     <label for="rooms" class="formulario__label">N&uacute;mero de habitaciones: </label>
-                    <div  class="formulario__grupo-input">
+                    <div class="formulario__grupo-input">
                         <input type="text" name="numberOfRooms" id="numberOfRooms" class="formulario__input"
                             placeholder="100">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -70,13 +72,13 @@
 
                 </div>
 
-                 <!-- text Area direccion -->
+                <!-- text Area direccion -->
                 <div class="formulario__grupo " id="grupo__address">
                     <label for="address" class="formulario__label">Direcci&oacute;n: </label>
                     <textarea name="address" id="address" class="area " cols="30" rows="10"></textarea>
                 </div>
 
-                  <!-- text Area descripcion-->
+                <!-- text Area descripcion-->
                 <div class="formulario__grupo " id="grupo__description">
                     <label for="description" class="formulario__label">Descripci&oacute;n: </label>
                     <textarea name="description" id="description" class="area " cols="30" rows="10"></textarea>
@@ -91,7 +93,7 @@
 
                 <div class="formulario__grupo formulario__grupo-btn-enviar">
                     <button id="boton" class="formulario__btn" title="Guardar el registro"
-                       type="submit">Guardar</button>
+                        type="submit">Guardar</button>
                 </div>
 
             </form>
@@ -99,7 +101,7 @@
 
     </div>
 
-     <div class="footer" th:replace="~{general/footer::foot}"></div> 
+    <div class="footer" th:replace="~{general/footer::foot}"></div>
 
     <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>

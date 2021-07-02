@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cr.ac.ucr.happypet.Controller.MainController;
 import cr.ac.ucr.happypet.Model.hotel.Hotel;
 import cr.ac.ucr.happypet.Service.branchOffice.iSucursalService;
 import cr.ac.ucr.happypet.Service.hotel.IHotel;
@@ -15,7 +16,7 @@ import cr.ac.ucr.happypet.Service.hotel.IHotel;
 
 @Controller
 @RequestMapping(value="/hotel")
-public class HotelController {
+public class HotelController extends MainController{
 	
 	@Autowired
 	IHotel hotelService;
@@ -29,8 +30,8 @@ public class HotelController {
 	}
 	
 	@RequestMapping(value= "/registro",method=RequestMethod.GET)
-	
 	public String registro(Model model){
+		System.out.println("HOLA");
 		model.addAttribute("sucursales",sucursalService.listar());
 		return "hotel/registro";
 	}
