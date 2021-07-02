@@ -29,7 +29,7 @@
 					<td th:text="${em.name}"></td>
 					<td th:text="${em.lastName}"></td>
 					<td th:text="${em.carnet}"></td>
-					<td><a><button type="button" class="bDetail"></button></a> <a
+					<td><a class="bDetail"><button type="button"></button></a> <a
 						href="/employee/edit_employee"
 						th:href="@{/employee/getEdit?id=} + ${em.id}">
 							<button type="button" class="bEdit"></button>

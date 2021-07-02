@@ -1,12 +1,25 @@
-window.onload = function(){
-    document.getElementById("op2").style.background='#BC4944';
-    document.getElementById("op3").style.background='#BC4944';
-}
+/*window.onload = function () {
+    /*document.getElementById("op2").style.background = '#BC4944';*/
+    /*document.getElementById("op3").style.background = '#BC4944';
+}*/
+/*
+$(document).ready(function(){
+    
+    const formatter = new Intl.NumberFormat()
+    const salary = document.getElementById("salary");
+    salart.textContent.formatter.format(1.222);
+
+})*/
+
+
+
 
 var formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", function (e) {
     e.preventDefault();
     var datos = new FormData();
+
+    $("#id", '#formulario').mask("9-999-999999");
 
     datos.append("name", document.getElementById("name").value);
     datos.append("lastName", document.getElementById("lastName").value);
@@ -18,81 +31,79 @@ formulario.addEventListener("submit", function (e) {
     datos.append("mail", document.getElementById("mail").value);
     datos.append("address", document.getElementById("address").value);
 
-    if(document.getElementById("imagen").value != ''){ // edita la imagen
+    if (document.getElementById("imagen").value != '') { // edita la imagen
         var file_data = $("#imagen").prop("files")[0];
         datos.append("imagen", file_data);
+       
+        $.ajax({
+            type: "POST",
+            url: '/employee/add',
+            data: datos,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data === "Agregado") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Se agregó Correctamente ------------',
+                        showConfirmButton: false,
+                        timerProgressBar: true,
+                        timer: 2000,
+                    }).then((result) => {
+                        window.location.href = `/entry`;
+                    });
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    } else {
+        $.ajax({
+            type: "POST",
+            url: '/employee/add2',
+            data: datos,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                if (data === "Agregado") {
+                    Swal.fire({
+                        position: '',
+                        icon: 'success',
+                        title: 'Se agregó Correctamente',
+                        showConfirmButton: true,
+                        allowOutsideClick: false,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = `/entry`;
+                        }
+                    });
+                }
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        });
+    }
 
-    $.ajax({
-        type: "POST",
-        url: '/employee/add',
-        data: datos,
-        processData: false,  
-        contentType: false,
-        success: function (data) {
-            if (data === "Agregado") {
-                Swal.fire({
-                    position: '',
-                    icon: 'success',
-                    title: 'Se agregó Correctamente',
-                    showConfirmButton: true,
-                    allowOutsideClick: false,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = `/entry`;
-                    }
-                });
-            }
-        },
-        error: function (data) {
-            console.log(data);
-        }
-    });
-}else{
-    $.ajax({
-        type: "POST",
-        url: '/employee/add2',
-        data: datos,
-        processData: false,  
-        contentType: false,
-        success: function (data) {
-            if (data === "Agregado") {
-                Swal.fire({
-                    position: '',
-                    icon: 'success',
-                    title: 'Se agregó Correctamente',
-                    showConfirmButton: true,
-                    allowOutsideClick: false,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = `/entry`;
-                    }
-                });
-            }
-        },
-        error: function (data) {
-            console.log(data);
-        }
-    });
-}
-    
 });
 
 let inputFile = document.getElementById("imagen");
 let fileName = document.getElementById("file-name");
 
-inputFile.addEventListener('change',function(event){
+inputFile.addEventListener('change', function (event) {
     let uploadedFileName = event.target.files[0].name;
-    let vari=uploadedFileName.split('.');
-    if(vari[vari.length-1]=="png" || vari[vari.length-1]=="jpg" || vari[vari.length-1]=="jpeg"){
-        fileName.textContent =uploadedFileName;
-    }else{
+    let vari = uploadedFileName.split('.');
+    if (vari[vari.length - 1] == "png" || vari[vari.length - 1] == "jpg" || vari[vari.length - 1] == "jpeg") {
+        fileName.textContent = uploadedFileName;
+    } else {
         Swal.fire({
             icon: 'error',
             title: 'Solo se permiten imágenes',
             timer: 2000
         });
-        fileName.textContent ="ninguno";
-        document.getElementById("imagen").value="";
+        fileName.textContent = "ninguno";
+        document.getElementById("imagen").value = "";
     }
-   
+
 });

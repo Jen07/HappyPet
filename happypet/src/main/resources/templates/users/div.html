@@ -16,10 +16,11 @@
 				<td th:text="${e.type}"></td> 
 			    <td id="buttonsAcions">
 
-				<button type="button" class="btn-detail bDetail" name="btn-detail" th:onclick="|bDetail('${e.id')|">
+				<button type="button" class="btn-detail bDetail" name="btn-detail" 
+				th:onclick="|bDetail2('${e.id}')|">
 				<i class="far fa-address-card fa-lg"></i></button>
 
-					<a href="/employee/getEdit?id=${e.id}">
+					<a href="/employee/getEdit?id="+ '${e.id}'>
 					<button type="button" class="bEdit btn-edit" name="btn-edit">
 					<i class="far fa-edit fa-lg"></i></button></a>
 							

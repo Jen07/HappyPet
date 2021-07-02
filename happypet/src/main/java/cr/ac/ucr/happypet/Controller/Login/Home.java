@@ -8,11 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import cr.ac.ucr.happypet.Controller.MainController;
 import cr.ac.ucr.happypet.Service.users.IUserService;
 
 
 @Controller
-public class Home {
+public class Home extends  MainController{
 
 	@Autowired
 	IUserService svUser;

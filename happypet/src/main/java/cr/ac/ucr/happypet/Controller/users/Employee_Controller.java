@@ -7,10 +7,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -26,7 +30,7 @@ import cr.ac.ucr.happypet.Service.users.IEmployeeService;
 
 @RestController
 @RequestMapping("/employee")
-public class Employee_Controller extends MainController {
+public class Employee_Controller extends MainController{
 
 	@Autowired
 	private IEmployeeService svEmployee;
@@ -46,8 +50,13 @@ public class Employee_Controller extends MainController {
 
 		ModelAndView view = new ModelAndView();
 		view.setViewName("/users/div_Detail");
-
 		return view;
+	}
+
+	/* Obtiene la información del empleado a mostrar en detalles */
+	@GetMapping("/detail2/{id}")
+	public Employee getDetailEmployee2(@PathVariable int id) {
+		return svEmployee.findByid(id);
 	}
 
 	/* Elimina al Empleado */
@@ -163,16 +172,7 @@ public class Employee_Controller extends MainController {
 		return "Agregado";
 	}
 
-	/* sin funcionalidad para filtrar */
 	@PostMapping("/search")
-	public ModelAndView filtrar(@RequestParam String text, Model model) {
-		model.addAttribute("employee", log.search(svEmployee.listaTodo(), text));
-		ModelAndView view = new ModelAndView();
-		view.setViewName("/users/div");
-		return view;
-	}
-
-	@PostMapping("/search2")
 	public ModelAndView search(@RequestParam String text, @RequestParam String filtro, Model model) {
 		model.addAttribute("employee", log.search(svEmployee.listaTodo(), text, filtro));
 		ModelAndView view = new ModelAndView();
