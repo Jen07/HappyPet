@@ -10,7 +10,7 @@
 
 <body th:id="${animal.id}">
 	<header>
-		<div th:replace="~{animals/layout/header :: head}"></div>
+		<div th:replace="~{general/header :: head}"></div>
 	</header>
 
 	<div class="container">
@@ -35,7 +35,7 @@
 	</div>
 
 	<footer>
-		<div th:replace="~{animals/layout/footer :: foot}"></div>
+		<div th:replace="~{general/footer :: foot}"></div>
 	</footer>
 
 	<script th:src="@{/animals/assets/scripts/animal/image_preview.js}"></script>

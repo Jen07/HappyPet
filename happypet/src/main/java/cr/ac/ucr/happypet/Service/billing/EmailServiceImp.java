@@ -12,7 +12,6 @@ import cr.ac.ucr.happypet.Model.billing.Line;
 @Component
 public class EmailServiceImp {
 
-   
     private JavaMailSender emailSender;
 
     public void sendMail(String body) {

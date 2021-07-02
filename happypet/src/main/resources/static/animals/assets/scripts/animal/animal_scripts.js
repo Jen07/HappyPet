@@ -12,20 +12,20 @@ function addListeners() {
 
 function onTable(e) {
 
-    let selectedId = e.target.parentElement.parentElement.id;
+    let selectedId = e.target.parentElement.parentElement.parentElement.id;
 
     // Boton de detalles
-    if (e.target.classList[1] == "btn-send") {
-        detailsAlert(selectedId);
+    if (e.target.classList[0] == "btn-send") {
+        getDetails(selectedId)
     }
 
     // Boton de edicion
-    if (e.target.classList[1] == "btn-edit") {
+    if (e.target.classList[0] == "btn-edit") {
         window.location.href = `/animal/modify_form?id=${selectedId}`;
     }
 
     // Boton de eliminacion
-    if (e.target.classList[1] == "btn-delete") {
+    if (e.target.classList[0] == "btn-delete") {
         deleteAlert(selectedId);
     }
 }
@@ -37,13 +37,13 @@ const deleteAlert = async (selectedId) => {
     Swal.fire(
         {
             title: `Quieres eliminar al animal ${animalName}?`,
-            text: "Esta accion es irreversible!",
-            icon: 'question',
+            text: "Esta accion es definitiva!",
+            icon: 'warning',
             showCancelButton: true,
             cancelButtonText: "Cancelar",
             confirmButtonColor: '#80BD5D',
             cancelButtonColor: '#D8524E',
-            confirmButtonText: 'Si, eliminarlo!'
+            confirmButtonText: 'Si, Eliminar!'
         }
     ).then((result) => {
 
@@ -53,12 +53,13 @@ const deleteAlert = async (selectedId) => {
 
             Swal.fire(
                 {
-                    title: `Eliminado exitosamente`,
+                    title: `Se Elimino con Exito!`,
                     text: "El animal ha sido eliminado.",
                     icon: 'success',
                     showCancelButton: false,
-                    confirmButtonColor: '#80BD5D',
-                    confirmButtonText: 'Confirmar!'
+                    showConfirmButton: false,
+                    timer: 2000
+
                 }
             )
         }
@@ -90,8 +91,36 @@ const bringAnimal = async (id) => {
     return await response.text();
 }
 
-const bringDetails = async (id) => {
-    response = await fetch(`/animal/cover_details/${id}`);
-    return await response.text();
+function getDetails(animal) {
+
+    $.getJSON('/animal/getDetails/' + animal, function (animal) {
+        var modal = '';
+        modal += '<div class="cardD">';
+        modal += '<ul>';
+        modal += ' <li> Nombre: <label>' + animal.name + '</label></li>';
+        modal += ' <li> Especie: <label>' + animal.specie + '</label></li>';
+        modal += ' <li> Raza: <label>' + animal.breed + '</label></li>';
+        modal += ' <li> Peso: <label>' + animal.weight + '</label></li>';
+        modal += ' <li> Altura: <label>' + animal.height + '</label></li>';
+        modal += ' <li> Género:  <label>' + animal.gender + '</label></li>';
+        modal += ' <li> Castrado:  <label>' + (animal.neutered ? 'Si' : 'No') + '</label></li>';
+        modal += '</ul>';
+        modal += '<div>';
+        modal += '</div>';
+
+        $('.modal-body').html(modal);
+        openModal();
+
+
+    })
 }
 
+function closeModal() {
+    var modal = document.getElementById("myModalDetails");
+    modal.style.display = "none";
+}
+
+function openModal() {
+    var modal = document.getElementById("myModalDetails");
+    modal.style.display = "block";
+}

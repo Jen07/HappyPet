@@ -29,7 +29,7 @@ const deleteAlert = async (selectedId) => {
     Swal.fire(
         {
             title: `Quieres eliminar esta foto?`,
-            text: "Esta accion es irreversible!",
+            text: "Esta accion es definitiva!",
             icon: 'question',
             showCancelButton: true,
             cancelButtonText: "Cancelar",
@@ -49,8 +49,9 @@ const deleteAlert = async (selectedId) => {
                     text: "La foto ha sido eliminada.",
                     icon: 'success',
                     showCancelButton: false,
+                    showConfirmButton: false,
                     confirmButtonColor: '#80BD5D',
-                    confirmButtonText: 'Confirmar!'
+                    timer:2000
                 }
             )
         }

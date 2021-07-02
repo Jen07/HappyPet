@@ -20,12 +20,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import cr.ac.ucr.happypet.Bussines.Logic;
+import cr.ac.ucr.happypet.Controller.MainController;
 import cr.ac.ucr.happypet.Model.users.Employee;
 import cr.ac.ucr.happypet.Service.users.IEmployeeService;
 
 @RestController
 @RequestMapping("/employee")
-public class Employee_Controller {
+public class Employee_Controller extends MainController {
 
 	@Autowired
 	private IEmployeeService svEmployee;

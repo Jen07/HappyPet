@@ -2,7 +2,6 @@ package cr.ac.ucr.happypet.Controller.products;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ import cr.ac.ucr.happypet.Service.products.IClothesService;
 
 @RestController
 @RequestMapping("/clothes")
-public class Clothes_Controller extends MainController{
+public class Clothes_Controller extends MainController {
 
     @Autowired
     private IClothesService svClothes;
@@ -30,7 +29,6 @@ public class Clothes_Controller extends MainController{
         view.setViewName("products/clothes/list");
         return view;
     }
-
 
     @PostMapping("/delete")
     public String delete(@RequestParam int codigo) {
@@ -44,21 +42,20 @@ public class Clothes_Controller extends MainController{
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
 
-
     @RequestMapping("/showAdd")
     public ModelAndView showAdd() {
         ModelAndView view = new ModelAndView();
-		view.setViewName("products/clothes/add");
+        view.setViewName("products/clothes/add");
         return view;
     }
 
     @PostMapping("/detail")
-	public ModelAndView getDetail(@RequestParam int codigo, Model model) {
-		model.addAttribute("p", svClothes.findById(codigo) );
-		ModelAndView view = new ModelAndView();
-		view.setViewName("products/clothes/divDetail");
-		return view;
-	}
+    public ModelAndView getDetail(@RequestParam int codigo, Model model) {
+        model.addAttribute("p", svClothes.findById(codigo));
+        ModelAndView view = new ModelAndView();
+        view.setViewName("products/clothes/divDetail");
+        return view;
+    }
 
     @PostMapping("/add")
     public String saveClothes(@RequestParam String name, @RequestParam int price, @RequestParam String description,

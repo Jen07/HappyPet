@@ -1,5 +1,6 @@
 package cr.ac.ucr.happypet.Model.animals;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.List;
 
@@ -13,17 +14,16 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
-    @author Luis Leiton
-    Clase de animal
+ * @author Luis Leiton Clase de animal
  */
 
 @Entity
 @Table(name = "tb_animals")
 
-public class Animal {
-    
+public class Animal implements Serializable {
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @OneToOne
@@ -33,13 +33,12 @@ public class Animal {
     private String name;
     private Date born;
     private char gender;
-    private char type; 
+    private char type;
     private String specie;
     private String breed;
     private int height;
     private int weight;
     private boolean neutered;
-    
 
     @OneToMany(mappedBy = "animal")
     private List<Image> images;
@@ -139,5 +138,12 @@ public class Animal {
     public void setImages(List<Image> images) {
         this.images = images;
     }
-   
+
+    @Override
+    public String toString() {
+        return "Animal [born=" + born + ", breed=" + breed + ", gender=" + gender + ", height=" + height + ", id=" + id
+                + ", images=" + images + ", name=" + name + ", neutered=" + neutered + ", registerId=" + registerId
+                + ", specie=" + specie + ", type=" + type + ", weight=" + weight + "]";
+    }
+
 }

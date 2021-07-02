@@ -46,15 +46,18 @@ public class AnimalController extends MainController {
 	@Autowired
 	IServicesService servicesRepo;
 
-	@GetMapping("/list_animals")
-	public String listAnimals(Model mod) {
+	@GetMapping("/list_animals/{type}")
+	public String listAnimals(Model mod, @PathVariable String type) {
+		
 
-		List<Animal> adopt = animalsRepo.findByType('A');
-		List<Animal> sale = animalsRepo.findByType('S');
-
-		mod.addAttribute("adopt", adopt);
-		mod.addAttribute("sale", sale);
-
+		if (type.equals("adopt")) {
+			List<Animal> adopt = animalsRepo.findByType('A');
+			mod.addAttribute("adopt", adopt);
+		} else {
+			List<Animal> sale = animalsRepo.findByType('S');
+			mod.addAttribute("sale", sale);
+		}
+		mod.addAttribute("type", type);
 		return "animals/list_animals";
 	}
 

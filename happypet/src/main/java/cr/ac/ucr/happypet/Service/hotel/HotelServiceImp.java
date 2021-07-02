@@ -53,7 +53,6 @@ public class HotelServiceImp implements IHotel {
 
 	@Override
 	public Hotel buscarPorId(Integer id) {
-		
 		return repo.findById(id).get();
 	}
 

@@ -11,7 +11,7 @@
 <body>
 
 	<header>
-		<div th:replace="~{animals/layout/header :: head}"></div>
+		<div th:replace="~{general/header :: head}"></div>
 	</header>
 
 	<div class="container">
@@ -38,28 +38,42 @@
 			</div>
 
 			<div class="col s6">
+
+
+
 				<form method="POST" class="animal_filter" th:action="@{/animal/gestion_animal}">
 
 					<div class="row">
 
-						<div id="filterContainer" class="col s6 ">
+						<div id="filterContainer" class="col s4 ">
 							<div th:replace="~{animals/fragments/filter_gestion :: filter}"></div>
 						</div>
 
-						<div class="col s6 ">
-							<label>Filtrar por</label><br>
-							<select class="my-1" id="filterBy" onchange="changeFilter()">
+						<div class="col s4 ">
+
+							<select id="filterBy" onchange="changeFilter()">
 								<option>Nombre</option>
 								<option>Raza</option>
 								<option>Especie</option>
 								<option>Tipo</option>
 							</select>
 						</div>
+
+						<div class="col s2">
+							<a type="submit" id="bSearch" class="btn filter_button" onclick="filterTable()"><i
+									class="fas fa-search fa-lg"></i></a>
+
+
+
+						</div>
+
 					</div>
 
-					<a type="submit" class="btn filter_button" onclick="filterTable()">Filtrar</a>
+
 				</form>
 			</div>
+
+
 
 		</div>
 
@@ -69,12 +83,22 @@
 
 		<hr>
 
-
-
 	</div>
 
+	<div id="myModalDetails" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="closeModal()">&times;</span>
+
+				<h2>Detalles del animal</h2>
+			</div>
+			<div class="modal-body"></div>
+		</div>
+	</div>
+
+
 	<footer>
-		<div th:replace="~{animals/layout/footer :: foot}"></div>
+		<div th:replace="~{general/footer :: foot}"></div>
 	</footer>
 
 

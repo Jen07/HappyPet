@@ -7,14 +7,17 @@
 
 <body class="home">
 	<header>
-		<div th:replace="~{animals/layout/header :: head}"></div>
+		<div th:replace="~{general/header :: head}"></div>
 	</header>
 	<div class="container">
 
-		<a class="btn btn-send m-2" th:href="@{/animal/list_animals}">Listar</a>
+		<a class="btn btn-send m-2" th:href="@{/animal/list_animals/adopt}">Listar Adopcion</a>
+		<a class="btn btn-send m-2" th:href="@{/animal/list_animals/sale}">Listar Venta</a>
+
 		<a class="btn btn-send m-2" th:href="@{/animal/my_animals/{id}(id=1)}">Mis mascotas (Usuario 1)</a>
 		<a class="btn btn-send m-2" th:href="@{/animal/my_animals/{id}(id=3)}">Mis mascotas (Usuario 3)</a>
-		<a class="btn btn-send m-2" th:href="@{/animal/register_form/{register_type}(register_type='user')}">Registrar</a>
+		<a class="btn btn-send m-2"
+			th:href="@{/animal/register_form/{register_type}(register_type='user')}">Registrar</a>
 		<a class="btn btn-send m-2" th:href="@{/animal/gestion_animal}">Gestión</a>
 
 		<a class="btn btn-send m-2" th:href="@{/billing/my_bills/{id}(id=1)}">Mis facturas (Usuario 1)</a>
@@ -23,7 +26,7 @@
 
 	</div>
 	<footer>
-		<div th:replace="~{animals/layout/footer :: foot}"></div>
+		<div th:replace="~{general/footer :: foot}"></div>
 	</footer>
 </body>
 
