@@ -43,7 +43,7 @@ public class apiController {
 	@GetMapping("/listCantones/{codigoProvincia}")
 public ResponseEntity<List<String>> getListCantones(@PathVariable int codigoProvincia){
 		
-		System.out.println("entro a la api por cantones");
+		System.out.println("entro a la api por cantones=        "+codigoProvincia);
 		return new ResponseEntity<List<String>>(svC.getCantones(codigoProvincia),HttpStatus.OK);
 	}
 

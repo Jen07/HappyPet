@@ -12,7 +12,7 @@
                <label for="">C&eacute;dula jur&iacute;dica</label>
              </div>
              <div class="col-75">
-               <input type="text" id="CedulaJuridica" name="CedulaJuridica" placeholder="ejemplo: 7027602360"  onkeypress="return valideKey(event);">
+               <input type="text" id="CedulaJuridica" name="CedulaJuridica" placeholder="ejemplo: 7027602360" maxlength="12" OnKeyPress="return format('#-###-######',this,event);">
              </div>
            </div>
             <div class="row2">
@@ -54,8 +54,8 @@
                <label for="">N&uacute;mero de telefono</label>
              </div>
              <div class="col-75">
-               <input type="text" id="telefono" name="telefono" placeholder="ejemplo: 2-4105-000" >
-             </div>
+               <input type="text" id="telefono" name="telefono" placeholder="ejemplo: 2-4105-000" maxlength="9" OnKeyPress="return format('####-####',this,event);" >
+             </div>                                                                                             
            </div>
              <div class="row2">
              <div class="col-25">

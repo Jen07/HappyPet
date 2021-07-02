@@ -4,11 +4,14 @@ window.addEventListener("load", startup);
 function startup() {
 	addListeners();
 	clickSelectProvincia();
+	
 }
 
 function addListeners() {
 	let $select = document.getElementById("provincia");
+	let telefono = document.getElementById("telefono");
 	$select.addEventListener("click", clickSelectProvincia);
+	
 }
 
 
@@ -59,7 +62,13 @@ function addSucursal() {
 
 			},
 			error: function(errorMessage) {
-				alert(errorMessage.responseText);
+				Swal.fire({
+					icon: 'error',
+					text: 'Problemas conectando a la base de datos',
+					showConfirmButton: false,
+					timerProgressBar: true,
+					timer: 2000,
+				})
 			}
 		});
 

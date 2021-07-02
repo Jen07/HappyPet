@@ -33,6 +33,7 @@ function onTable(e) {
 	// Boton de detalles
 	if (e.target.classList[1] == "btns-send") {
 		let selectedId = e.target.parentElement.parentElement.children[0].textContent;
+		
 		getSucursalById2(selectedId);
 		
 	}
@@ -41,7 +42,7 @@ function onTable(e) {
 	if (e.target.classList[1] == "btns-edit") {
 		
 		let selectedId = e.target.parentElement.parentElement.children[0].textContent;
-		getSucursalById(selectedId, ciudad);
+		getSucursalById(selectedId);
 		
 
 	}
@@ -50,6 +51,7 @@ function onTable(e) {
 	if (e.target.classList[1] == "btns-delete") {
 		let selectedId = e.target.parentElement.parentElement.children[0].textContent;
 		let ciudad = e.target.parentElement.parentElement.children[2].textContent;
+		
 		alertDeleteSucursal(selectedId, ciudad);
 
 	}
@@ -57,38 +59,21 @@ function onTable(e) {
 
 
 
-
-
-
-
-
 function alertDeleteSucursal(idSucursal, ciudad) {
-
+	
 	Swal.fire({
 		title: `Quieres eliminar la sucursal de ${ciudad} ?`,
 		text: "Esta accion es definitiva!",
-		icon: 'question',
+		icon: 'warning',
 		showCancelButton: true,
 		cancelButtonText: "Cancelar",
-		confirmButtonColor: '#3085d6',
+		confirmButtonColor: '#80BD5D',
 		cancelButtonColor: '#d33',
 		confirmButtonText: 'Si, eliminarlo!'
 	}).then((result) => {
 
 		if (result.isConfirmed) {
-			DeleteSucursal(idSucursal);
-			Swal.fire({
-				icon: 'success',
-				text: 'La sucursal ha sido eliminada.',
-				confirmButtonText: `Ok`,
-			}).then((result) => {
-				if (result.isConfirmed) {
-					ListarSucursales();
-				}
-
-			})
-
-
+			DeleteSucursal(idSucursal);			
 		}
 	})
 
@@ -103,16 +88,30 @@ function DeleteSucursal(idSucursal) {
 		url: "/sucursales/delete/" + idSucursal,
 		cache: false,
 		success: function() {
-
+			Swal.fire({
+				icon: 'success',
+				text: 'La sucursal ha sido eliminada.',
+				showConfirmButton: false,
+				timerProgressBar: true,
+				timer: 2000,
+			}).then((result) => {		
+					ListarSucursales();
+			})
 		},
 		error: function(errorMessage) {
-			alert(errorMessage.responseText);
+			Swal.fire({
+				icon: 'error',
+				text: 'Problemas conectando a la base de datos',
+				showConfirmButton: false,
+				timerProgressBar: true,
+				timer: 2000,
+			})
 
 		}
 	});
 }
 
-/*
+
 function ListarSucursales() {
 
 	$.getJSON('/sucursales/listSucursal', function(json) {
@@ -124,7 +123,7 @@ function ListarSucursales() {
 			tr += '<td>' + json[i].ciudad + '</td>';
 			//tr += '<td>' + json[i].correo + '</td>';
 			//tr += '<td>' + json[i].telefono + '</td>';
-			tr += '<td><button class="btn-sucursal btns-send"><i class="far fa-address-card"></i></button> <button class="btn-sucursal btns-delete"><i class="fas fa-trash-alt"></i></button> <button class="btn-sucursal btns-edit"><i class="far fa-edit"></i></button></td>';
+			tr += '<td> <button class="btn-sucursal btns-send  far fa-address-card fa-1x"> </button> <button class="btn-sucursal btns-delete fas fa-trash-alt fa-1x"></button> <button class="btn-sucursal btns-edit far fa-edit fa-1x"></i></button> </td>';
 			tr += '</tr>';
 		}
 		$('.tbody').html(tr);
@@ -132,8 +131,8 @@ function ListarSucursales() {
 	});
 }
 
-*/
 
+/*
 function ListarSucursales() {
 	
 		
@@ -147,7 +146,8 @@ function ListarSucursales() {
 			{"data": "cedulaJuridica"},
 			{"data": "provincia"},
 			{"data": "ciudad"},
-			{"defaultContent": '<button class="btn-sucursal btns-send  far fa-address-card"> </button> <button class="btn-sucursal btns-delete fas fa-trash-alt"></button> <button class="btn-sucursal btns-edit far fa-edit"></i></button>'}
+			{"defaultContent": '<button class="btn-sucursal btns-send  far fa-address-card fa-1x"> </button> <button class="btn-sucursal btns-delete fas fa-trash-alt fa-1x"></button> <button class="btn-sucursal btns-edit far fa-edit fa-1x"></i></button>'}
+		
 		],
 		"language": {
             "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
@@ -159,12 +159,11 @@ function ListarSucursales() {
 	});
 }
 
-
+*/
 
 function getSucursalById(idSucursal) {
 
-
-
+		
 	$.ajax({
 		url: "/sucursales/getSucursal/" + idSucursal,
 		type: "GET",
@@ -196,7 +195,13 @@ function getSucursalById(idSucursal) {
 
 		},
 		error: function(errorMessage) {
-			alert(errorMessage.responseText);
+			Swal.fire({
+				icon: 'error',
+				text: 'Problemas conectando a la base de datos',
+				showConfirmButton: false,
+				timerProgressBar: true,
+				timer: 2000,
+			})
 		}
 	});
 
@@ -204,7 +209,7 @@ function getSucursalById(idSucursal) {
 }
 
 function getSucursalById2(idSucursal) {
-		alert("entro");
+		
 
 		$.getJSON('/sucursales/getSucursal/' + idSucursal, function(sucursal) {
 		var modal = '';
@@ -221,7 +226,7 @@ function getSucursalById2(idSucursal) {
 		modal+='<div>';
 		modal+='</div>';
 		
-		$('.modal-body').html(modal);
+		$('.modal-body2').html(modal);
 		openModal2();
 		
 	});
@@ -256,7 +261,9 @@ function updateSucursal() {
 				Swal.fire({
 					icon: 'success',
 					text: 'La sucursal ha sido actualizada',
-					confirmButtonText: `Ok`,
+					showConfirmButton: false,
+					timerProgressBar: true,
+					timer: 2000,
 
 				});
 				closeModal();
@@ -265,7 +272,13 @@ function updateSucursal() {
 
 			},
 			error: function(errorMessage) {
-				alert(errorMessage.responseText);
+				Swal.fire({
+					icon: 'error',
+					text: 'Problemas conectando a la base de datos',
+					showConfirmButton: false,
+					timerProgressBar: true,
+					timer: 2000,
+				})
 			}
 		});
 
@@ -292,11 +305,13 @@ function openModal() {
 function closeModal2() {
 	var modal = document.getElementById("myModalDetails");
 	modal.style.display = "none";
+	
 }
 
 function openModal2() {
 	var modal = document.getElementById("myModalDetails");
 	modal.style.display = "block";
+
 
 }
 
