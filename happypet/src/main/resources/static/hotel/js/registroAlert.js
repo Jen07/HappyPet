@@ -7,9 +7,8 @@ const expresiones={
 	precio: /^\d{1,6}$/,
 	telefono: /^\d{8,10}$/,
 	habitaciones: /^\d{1,20}$/,
-	descripcion: /^[a-zA-Z0-9\s]{1,40}$/,
-	direccion: /^[a-zA-Z0-9\s]{1,40}$/
-
+	descripcion: /^[a-zA-Z{À-ÿ0-9\s]{1,40}$/,
+	direccion: /^[a-zA-ZÀ-ÿ0-9\s]{1,40}$/
 }
 
 const campos={
@@ -65,7 +64,7 @@ const validarCampo = (expresion, input, campo, nombre)=>{
 		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
 		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
 		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto'); 
-
+        
         if(nombre != 'descripcion' && nombre != 'direccion'){ 
 	    	document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');  
 	    	document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
@@ -89,11 +88,6 @@ textA.forEach((input) =>{
 formulario.addEventListener('submit',(e)=>{
 	e.preventDefault();
 
-    alert(campos.precio)
-	alert(campos.telefono)
-	alert(campos.habitaciones)
-	alert(campos.descripcion)
-	alert(campos.direccion)
 	if(campos.precio && campos.telefono && campos.habitaciones
 		 && campos.descripcion && campos.direccion){
 
@@ -128,17 +122,18 @@ function registrar() {
 		success: function(result) {
   
                Swal.fire({
-				Icon:'succes',
+				icon: 'success',
 				text: "Registrado Exitosamente",
-				confirmButtonText: 'OK'
+				showConfirmButton: false,
+				timerProgressBar: true,
+				timer: 2000,
 			}).then((result)=>{
-                 if(result.isConfirmed){
                   //  location.reload();
 				  formulario.reset();
 				  document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) =>{
 					  icono.classList.remove('formulario__grupo-correcto');
 				  });
-				 }
+				 
 
 			})
 
