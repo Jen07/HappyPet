@@ -43,6 +43,7 @@ public class ResController {
     
     @DeleteMapping(value="/delete/{code}")
     public ResponseEntity<Void> deleteHotel(@PathVariable int code){
+        
     	hotelService.eliminar(code);
     	return new ResponseEntity<Void>(HttpStatus.OK);
     }
@@ -63,8 +64,6 @@ public class ResController {
     
     @PostMapping(value="/modify/{code}")
     public ResponseEntity<Integer> modifyHotel(@RequestBody Hotel hotel, @PathVariable int code){
-        System.out.println("HOLA");
-        System.out.println("----------CODIGO:    "+code);
         hotel.setSucursal(sucursalS.searchById(String.valueOf(hotel.getCode())));
         hotel.setCode(0);
         hotelService.modificar(hotel, code);

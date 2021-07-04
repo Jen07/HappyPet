@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="/hotel/css/estiloModal.css">
     <link rel="stylesheet" type="text/css" href="/hotel/css/estiloRegistro.css">
 
-     <link rel ="stylesheet " href = " https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css "> 
+    <link rel="stylesheet " href=" https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css ">
 </head>
 
 <body>
@@ -22,30 +22,44 @@
     <div class="navegationBar" th:replace="~{general/header::head}"></div>
 
     <div class="container">
-        
+
         <div class="tableContainer">
+
             <table id="table" class="table">
                 <caption>
                     Lista de Hoteles
                 </caption>
                 <thead>
-                        <th>Codigo</th>
-                        <th>Ciudad Veterinaria</th> 
-                        <th>Cantidad de Habitaciones</th>
-                        <th>Precio</th>
-                        <th>Direcci&oacute;n</th>
-                        <th>Detalles</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
+                    
+                    <th>Ciudad Veterinaria</th>
+                    <th>Cantidad de Habitaciones</th>
+                    <th>Precio</th>
+                    <th>Descripci&oacute;n</th>
+                    <th>Detalles</th>
+                    <th>Modificar</th>
+                    <th>Eliminar</th>
 
                 </thead>
 
-                <tbody >
+                <tbody>
+                    <tr th:each="hotel: ${hoteles}">
+                        <td th:text="${hotel.code}"></td>
+                        <td th:text="${hotel.sucursal.ciudad}"></td>
+                        <td th:text="${hotel.numberOfRooms}"></td>
+                        <td th:text="${hotel.price}"></td>
+                        <td th:text="${hotel.description}"></td>
+                        <td><button class="button button-send"><i class="far fa-address-card"></i></button></td>
+                        <td><button class="button button-edit"><i class="far fa-edit"></i></button> </td>
+                        <td> <button class="button button-delete"><i class="fas fa-trash-alt"></i></button> </td>
+                    </tr>
                 </tbody>
-
             </table>
+
+
+
         </div>
-        
+
+
         <div id="myModal" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
@@ -53,11 +67,11 @@
                     <h2>Modificar Hotel</h2>
                 </div>
                 <div class="modal-body">
-    
+
                     <div th:replace="~{hotel/modificarForm::formModify}"> </div>
-    
+
                 </div>
-    
+
             </div>
         </div>
 
@@ -67,9 +81,9 @@
                     <span class="close" onclick="closeModal()"> &times;</span>
                     <h1>Hotel</h1>
                 </div>
-    
+
                 <div class="modal-body">
-    
+
                     <div>
                         <div class="cardH" style="width: 18rem;">
                             <div class="body">
@@ -80,17 +94,19 @@
             </div>
         </div>
 
-    </div> 
+
+
+    </div>
 
     <footer th:replace="general/footer.html :: foot"> </footer>
-   
+
 
     <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="text/javascript" src="/hotel/js/tablaAlert.js"></script>
 
-    <script  src = " https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js " ></script> 
+    <script src=" https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js "></script>
 
 </body>
 
