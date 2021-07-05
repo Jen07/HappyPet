@@ -2,13 +2,14 @@
 <html lang="en">
 
 <head>
-    <div th:replace="~{layout/head_block :: head}"></div>
+    <div th:replace="~{animals/layout/head_block :: head}"></div>
 </head>
 
 <body class="cart">
 
     <header>
-        <div th:replace="~{layout/header :: head}"></div>
+        <div th:replace="~{general/header :: head}"></div>
+        <link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
     </header>
     <div class="container">
 
@@ -20,7 +21,7 @@
 
     </div>
     <footer>
-        <div th:replace="~{layout/footer :: foot}"></div>
+        <div th:replace="~{general/footer :: head}"></div>
     </footer>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>

@@ -1,34 +1,3 @@
-window.addEventListener("load", startup);
-
-function startup() {
-    addListeners();
-    prepareDatatable();
-}
-
-function addListeners() {
-    let table = document.getElementById("animalTable");
-    table.addEventListener("click", (e) => { onTable(e) });
-}
-
-function onTable(e) {
-
-    let selectedId = e.target.parentElement.parentElement.parentElement.id;
-
-    // Boton de detalles
-    if (e.target.classList[0] == "btn-send") {
-        getDetails(selectedId)
-    }
-
-    // Boton de edicion
-    if (e.target.classList[0] == "btn-edit") {
-        window.location.href = `/animal/modify_form?id=${selectedId}`;
-    }
-
-    // Boton de eliminacion
-    if (e.target.classList[0] == "btn-delete") {
-        deleteAlert(selectedId);
-    }
-}
 
 const deleteAlert = async (selectedId) => {
 
@@ -123,4 +92,58 @@ function closeModal() {
 function openModal() {
     var modal = document.getElementById("myModalDetails");
     modal.style.display = "block";
+}
+
+
+function getAnimals() {
+
+}
+
+
+
+function changeFilter() {
+    let filterBy = document.getElementById("filterBy").value;
+    let filterContainer = document.getElementById("filterContainer");
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/reset_filter?filterBy=${filterBy}`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+        filterContainer.innerHTML = info.target.response;
+    });
+}
+
+function filterTable() {
+    let filterBy = document.getElementById("filterBy").value;
+    let filter = document.getElementById("filterContent").value;
+    let table = document.getElementById("animalTable");
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/filter_table?filterBy=${filterBy}&filter=${filter}`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+        table.innerHTML = info.target.response;
+        prepareDatatable();
+    });
+}
+
+function resetTable() {
+    let filterBy = "Nombre";
+    let filter = "";
+    let table = document.getElementById("animalTable");
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/filter_table?filterBy=${filterBy}&filter=${filter}`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+        table.innerHTML = info.target.response;
+      
+    });
+
 }

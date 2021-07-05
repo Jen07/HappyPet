@@ -6,23 +6,23 @@
 
     <th:block th:switch="${filterBy}">
         <div th:case="Nombre">
-            <input type="text" name="filter" class="my-1" id=filterContent>
+            <input type="text" name="filter" id=filterContent>
         </div>
 
         <div th:case="Raza">
-            <select name="filter" class="my-1" id=filterContent>
+            <select name="filter" id=filterContent>
                 <option th:each=" breed : ${breeds}" th:value="${breed.breed}" th:text="${breed.breed}"></option>
             </select>
         </div>
 
         <div th:case="Especie">
-            <select name="filter" class="my-1" id=filterContent>
+            <select name="filter" id=filterContent>
                 <option th:each=" specie : ${species}" th:value="${specie.specie}" th:text="${specie.specie}"></option>
             </select>
         </div>
 
         <div th:case="Tipo">
-            <select name="filter" class="my-1" id=filterContent>
+            <select name="filter"  id=filterContent>
                 <option value="A">Adopcion</option>
                 <option value="S">Venta</option>
                 <option value="C">De cliente</option>

@@ -89,4 +89,10 @@ public class AnimalsServiceImp implements IAnimalsService {
         return repo.findByBreed(filter);
     }
 
+    @Override
+    public List<Animal> findReversedAll() {
+
+        return repo.findAllByOrderByIdDesc();
+    }
+
 }

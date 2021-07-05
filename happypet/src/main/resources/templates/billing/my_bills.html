@@ -2,21 +2,22 @@
 <html lang="en">
 
 <head>
-    <div th:replace="~{layout/head_block :: head}"></div>
+    <div th:replace="~{animals/layout/head_block :: head}"></div>
+    <link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
 </head>
 
 <body th:id="${user}">
 
     <header>
-        <div th:replace="~{layout/header :: head}"></div>
+        <div th:replace="~{general/header :: head}"></div>
     </header>
 
-    <div id="table" class="container">
+    <div class="container">
         <div th:replace="~{billing/fragments/bill_table :: table}"></div>
     </div>
 
     <footer>
-        <div th:replace="~{layout/footer :: foot}"></div>
+        <div th:replace="~{general/footer :: foot}"></div>
     </footer>
 
     <script th:src="@{/animals/assets/scripts/billing/my_bills.js}"></script>

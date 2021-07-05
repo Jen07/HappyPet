@@ -3,9 +3,9 @@
 
 <head>
 	<div th:replace="~{animals/layout/head_block :: head}"></div>
-	
-	<link th:href="@{/animals/assets/css/animal.css}" rel="stylesheet" />
 
+	<link th:href="@{/animals/assets/css/animal.css}" rel="stylesheet" />
+	<link th:href="@{/animals/assets/css/form.css}" rel="stylesheet" />
 </head>
 
 <body>
@@ -19,16 +19,13 @@
 			<div th:replace="~{animals/fragments/animal_form :: modify}"></div>
 		</div>
 
-		<div>
-			<a class="btn btn-edit" onclick="window.history.go(-1)">Volver</a>
-		</div>
-
 	</div>
 
 	<footer>
 		<div th:replace="~{general/footer :: foot}"></div>
 	</footer>
 	<script th:src="@{/animals/assets/scripts/animal/animal_form_elements.js}"></script>
+	<script th:src="@{/animals/assets/scripts/animal/modify_animal.js}"></script>
 </body>
 
 </html>

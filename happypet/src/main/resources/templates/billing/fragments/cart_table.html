@@ -1,27 +1,36 @@
 <th:block th:fragment="table">
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Cantidad</th>
-                <th>Unitario</th>
-                <th>Total</th>
-                <th></th>
-            </tr>
-        </thead>
 
-        <tbody class="table">
-            <tr th:each="line :${shoppingCart.getListLines()}" th:id="${line.product.id}">
-                <td> <span th:text="${line.product.name}"></span></td>
-                <td> <span th:text="${line.quantity}"></span></td>
-                <td> <span th:text="${line.product.getTotalString()}"></span></td>
+    <div class="table__container" th:fragment="table">
+        <table id="table">
+            <thead id="encabesado">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Cantidad</th>
+                    <th>Unitario</th>
+                    <th>Total</th>
+                    <th>Archivar</th>
+                </tr>
+            </thead>
+            <tbody class="tbody" id="contenido">
 
-                <td> <span th:text="${line.getTotalString()}"></span></td>
-                <td> <a class="btn btn-delete" th:onclick="removeFromCart([[${line.product.id}]])"><i class="fas fa-trash-alt"></i></a></td>
-            </tr>
-        </tbody>
-    </table>
+                <tr th:each="line :${shoppingCart.getListLines()}" th:id="${line.product.id}">
+                    <td> <span th:text="${line.product.name}"></span></td>
+                    <td> <span th:text="${line.quantity}"></span></td>
+                    <td> <span th:text="${line.product.getTotalString()}"></span></td>
 
-    <p>Items en el carrito: <span th:text="${shoppingCart.getSize()}" id="onCart"></span></p>
-    <p>Monto total: <span th:text="${shoppingCart.getTotalString()}"></span></p>
-</th:block >
+                    <td> <span th:text="${line.getTotalString()}"></span></td>
+
+                    <td id="buttonsAcions">
+                        <div class="row justify-center">
+                            <a class="btn btn-delete" th:onclick="removeFromCart([[${line.product.id}]])"><i
+                                    class="fas fa-trash-alt"></i></a>
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <p>Items en el carrito: <span th:text="${shoppingCart.getSize()}" id="onCart"></span></p>
+        <p>Monto total: <span th:text="${shoppingCart.getTotalString()}"></span></p>
+</th:block>

@@ -2,11 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-
 	<link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
 	<div th:replace="~{animals/layout/head_block :: head}"></div>
 	<link th:href="@{/animals/assets/css/animal.css}" rel="stylesheet" />
+	<link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
 </head>
+
+<input type="hidden" th:value="${id}" id="opt">
 
 <body th:id="${animal.id}">
 	<header>
@@ -18,9 +20,8 @@
 			Gestión de imágenes de <span th:text="${animal.name}"></span>.
 		</h1>
 
-		<a onclick="mountForm()" class="btn btn-send">Agregar foto</a>
-
-
+		<a onclick="openModal()" class="btn register__button" style="width: 80px;">
+			<i class="fas fa-plus-square fa-2x"></i></a>
 
 		<div id="imagesTable">
 			<div th:replace="~{animals/fragments/images_table :: table}"></div>
@@ -30,6 +31,19 @@
 			<div class="col s3">
 				<a class="btn btn-edit"
 					onclick="window.location.href = (window.location.href.toString().replace('images', 'details'))">Volver</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="myModalDetails" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="closeModal()">&times;</span>
+
+				<h2>Agregar foto</h2>
+			</div>
+			<div class="modal-body" style="width: 55vw; padding: 1em;">
+				<div th:replace="~{animals/fragments/image_form :: form}"></div>
 			</div>
 		</div>
 	</div>
@@ -45,6 +59,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 	<script th:src="@{/animals/assets/scripts/animal/animal_scripts_images.js}"></script>
+
+
 
 </body>
 

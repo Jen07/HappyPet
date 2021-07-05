@@ -1,7 +1,8 @@
 <th:block th:fragment="table">
 
-    <table>
-        <thead>
+
+    <table id="table">
+        <thead id="encabesado">
             <tr>
                 <th>Numero</th>
                 <th>Fecha</th>
@@ -10,8 +11,8 @@
                 <th>Archivar</th>
             </tr>
         </thead>
+        <tbody class="tbody" id="contenido">
 
-        <tbody class="table">
             <tr th:each="bill :${bills}" th:id="${bill.id}">
                 <td> <span th:text="${bill.id}"></span></td>
                 <td> <span th:text="${bill.formattedDate}"></span></td>
