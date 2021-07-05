@@ -14,14 +14,25 @@
     <div class="container">
 
         <h1>Items</h1>
+
+        <div class="row ">
+            <div class="row justify-end mx-4">
+                <a class=" mx-1 btn-delete bDelete ta-center" onclick="clearCart()" style="width: 180px;color: white;"><i
+                        class="fas fa-eraser"></i>
+                    Vaciar carrito</a>
+                <a class="btn-send bEdit ta-center" onclick="buyout()" style="width: 180px;color: white;"> <i
+                        class="fas fa-check-double"></i>
+                    Facturar</a>
+            </div>
+        </div>
+
+
         <div id="cart_table" th:insert="~{billing/fragments/cart_table :: table}"></div>
 
-        <a class="btn btn-delete my-1" onclick="clearCart()"> Vaciar el carrito.</a>
-        <a class="btn btn-delete my-1" onclick="buyout()"> Generar factura.</a>
-
+    </div>
     </div>
     <footer>
-        <div th:replace="~{general/footer :: head}"></div>
+        <div th:replace="~{general/footer :: foot}"></div>
     </footer>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>

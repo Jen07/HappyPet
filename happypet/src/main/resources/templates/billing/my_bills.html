@@ -12,8 +12,14 @@
         <div th:replace="~{general/header :: head}"></div>
     </header>
 
-    <div class="container">
-        <div th:replace="~{billing/fragments/bill_table :: table}"></div>
+    <div class="container ">
+
+        
+
+        <div id="table_cont">
+            <div th:replace="~{billing/fragments/bill_table :: table}"></div>
+        </div>
+
     </div>
 
     <footer>

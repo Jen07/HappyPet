@@ -695,6 +695,14 @@ img {
 	justify-content: space-evenly;
 }
 
+.justify-end {
+	justify-content: flex-end;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
 .details-table {
 	width: 80%;
 }

@@ -3,6 +3,7 @@
 
 <head>
     <div th:replace="~{animals/layout/head_block :: head}"></div>
+    <link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
 </head>
 
 <body>
@@ -13,9 +14,21 @@
 
     <div class="container">
         <div th:replace="~{billing/fragments/bill :: bill}"></div>
-        <td> <a id="sendMail" class="btn btn-delete" th:onclick="confirmSend([[${bill.id}]])">Enviar nuevamente a mi
-                correo</i></a></td>
+
+        <div class="row my-2">
+            <div class="row justify-end ">
+
+                <a id="sendMail" class=" mx-1 btn-delete bDelete ta-center" th:onclick="confirmSend([[${bill.id}]])"
+                    style="width: 190px;color: white;">Reenviar a mi correo</i></a>
+
+
+            </div>
+        </div>
+
     </div>
+
+
+
     <footer>
         <div th:replace="~{general/footer :: foot}"></div>
     </footer>

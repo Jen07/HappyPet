@@ -13,7 +13,7 @@
             </thead>
             <tbody class="tbody" id="contenido">
 
-                <tr th:each="line :${shoppingCart.getListLines()}" th:id="${line.product.id}">
+                <tr th:each="line :${shoppingCart.getListLines()}" th:id="${line.product.cod_product}">
                     <td> <span th:text="${line.product.name}"></span></td>
                     <td> <span th:text="${line.quantity}"></span></td>
                     <td> <span th:text="${line.product.getTotalString()}"></span></td>
@@ -22,7 +22,8 @@
 
                     <td id="buttonsAcions">
                         <div class="row justify-center">
-                            <a class="btn btn-delete" th:onclick="removeFromCart([[${line.product.id}]])"><i
+                            <a class=" btn-delete bDelete"
+                                th:onclick="removeFromCart([[${line.product.cod_product}]])"><i
                                     class="fas fa-trash-alt"></i></a>
                         </div>
                     </td>

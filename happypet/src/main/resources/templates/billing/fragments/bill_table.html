@@ -1,5 +1,20 @@
 <th:block th:fragment="table">
+    <div class="row justify-between">
+        <p>Facturas archivadas: <span th:text="${archievedTotal}"></span></p>
 
+
+
+
+        <a class=" btn-send bDelete ta-center" th:onclick="onUnArchive([[${user}]])"
+            style="width: 250px;color: white;"><i class="fas fa-outdent"></i>
+            Desarchivar facturas</a>
+
+
+
+
+
+
+    </div>
 
     <table id="table">
         <thead id="encabesado">
@@ -7,8 +22,8 @@
                 <th>Numero</th>
                 <th>Fecha</th>
                 <th>Total</th>
-                <th>Detalle</th>
-                <th>Archivar</th>
+                <th>Acciones</th>
+
             </tr>
         </thead>
         <tbody class="tbody" id="contenido">
@@ -18,16 +33,30 @@
                 <td> <span th:text="${bill.formattedDate}"></span></td>
                 <td> <span th:text="${bill.getTotalString()}"></span></td>
 
-                <td> <a class="btn btn-send" th:href="@{/billing/bill_detail/{id} (id=${bill.id})}"><i
-                            class="far fa-address-card"></i></a></td>
-                <td> <a class="btn btn-delete" th:onclick="onArchive([[${bill.id}]])"><i class="fas fa-archive"></i></a>
+
+
+
+                <td id="buttonsAcions">
+                    <div class="row justify-center">
+
+                        <a class=" btn-edit bEdit" th:href="@{/billing/bill_detail/{id} (id=${bill.id})}">
+                            <i class="far fa-address-card"></i></a>
+
+                        <a class=" btn-delete bDelete" th:onclick="onArchive([[${bill.id}]])"><i
+                                class="fas fa-archive"></i></a>
+                    </div>
                 </td>
+
+
+
             </tr>
         </tbody>
+
     </table>
 
-    <p>Facturas archivadas: <span th:text="${archievedTotal}"></span></p>
-    <td> <a class="btn btn-send" th:onclick="onUnArchive([[${user}]])">Desarchivar facturas</a></td>
+
+
+
 
 
 </th:block>
