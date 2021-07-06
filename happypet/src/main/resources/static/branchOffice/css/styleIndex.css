@@ -1,31 +1,3 @@
-
-:root{
-
-    font-size: 1.2em;
-
-    /*---------------------------------------------*/
-    /*                 Color-Scheme                */
-    /*---------------------------------------------*/
-
-    --clr-neutral-100: #fcfcfc;
-    --clr-neutral-200: #d9d9d9;
-    --clr-neutral-300: #999999;
-    --clr-neutral-400: #8c8c8c;
-    --clr-neutral-500: #666666;
-    --clr-neutral-600: #333333;
-
-    --clr-primary-200: #80BD5D;
-    --clr-primary-400: #517D3E;
-    --clr-accent-300: #BC4944;
-    --clr-contrast-300: #E78C4D;
-
-    --clr-delete-400: #D8524E;
-    --clr-edit-400: #EFAC50;
-}
-
-
-
-
   
  ul{
  	margin: 0;
