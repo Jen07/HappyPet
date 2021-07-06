@@ -17,6 +17,8 @@ public class MainController {
         if (shoppingCart == null) {
             shoppingCart = new ShoppingCart();
 
+            // Cambio
+
             Line ln = new Line();
             Product pr = new Product("Mimados", 2500, "Alimento para cachorro", "Perro");
             pr.setCod_product(1);
