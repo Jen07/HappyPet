@@ -15,13 +15,17 @@
 
 <body>
 
-    <div class="navegationBar" th:replace="~{general/header :: head}"></div>
+    <header>
+        <div class="navegationBar" th:replace="~{general/header :: head}"></div>
+    </header>
 
     <div class="container">
         <form class="Dform" id="formulario" name="formulario" autocomplete="off" enctype="multipart/form-data">
+
             <a href="/entry">
                 <button type="button" class="b-back"><i class="fas fa-arrow-circle-left fa-3x"></i></button>
             </a>
+
             <h2 class="title">Nuevo Empleado</h2>
 
             <div class="div-form">
@@ -33,36 +37,34 @@
                         <span id="file-name">ninguno</span>
                     </span>
                 </div>
-                
-                <div class="col-left">
-                    <label class="subtitle"> C&eacute;dula:</label> 
-                    <input type="text" id="id" name="id" maxlength="9"
-                        pattern="[0-9]{9}" title="Ingresar solo numero del 0-9 eje:114725987" required="required">
 
+                <div class="col-left">
+                    <label class="subtitle"> C&eacute;dula:</label>
+                    <input type="text" id="id" name="id" maxlength="9" pattern="[0-9]{9}"
+                        title="Ingresar solo numero del 0-9 eje:114725987" required="required">
                 </div>
+                
                 <div class="col-rigth">
                     <label class="subtitle"> Nombre:</label>
-                    <input type="text" id="name" name="name" maxlength="10"
-                        pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Jennifer"
-                        required="required">
+                    <input type="text" id="name" name="name" maxlength="10" pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]"
+                        title="Ingresar solo letras eje:Jennifer" required="required">
                 </div>
                 <div class="col-left">
                     <label class="subtitle"> Apellido:</label>
-                     <input type="text" id="lastName" name="lastName"
-                        pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Granados"
-                        required="required">
+                    <input type="text" id="lastName" name="lastName" pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]"
+                        title="Ingresar solo letras eje:Granados" required="required">
                 </div>
                 <div class="col-rigth">
                     <label class="subtitle"> Tel&eacute;fono:</label>
-                     <input type="tel" id="tel" name="tel"
-                        maxlength="10" pattern="[0-9]{10}" onkeypress="formatar('####-##-##', this,'tel')"
+                    <input type="tel" id="tel" name="tel" maxlength="10" pattern="[0-9]{10}"
+                        onkeypress="formatar('####-##-##', this,'tel')"
                         title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" required="required">
                 </div>
                 <div class="col-left">
-                    <label class="subtitle"> Salario:</label> 
-                    <input type="text" id="salary" name="salary" maxlength="8"
-                        pattern="[0-9]{8}" onkeypress="formatter('salary')"
-                        title="Ingresar solo numeros para el salario" required="required">
+                    <label class="subtitle"> Salario:</label>
+                    <input type="text" id="salary" name="salary" maxlength="8" pattern="[0-9]{8}"
+                        onkeypress="formatter('salary')" title="Ingresar solo numeros para el salario"
+                        required="required">
                 </div>
                 <div class="col-rigth">
                     <label class="subtitle"> Tipo:</label> <select id="type" name="type">

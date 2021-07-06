@@ -7,8 +7,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -70,11 +68,12 @@ public class Employee_Controller extends MainController{
 	@RequestMapping(value = "addPagina", method = RequestMethod.GET)
 	public ModelAndView addEmPagina(Model model) {
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/users/add_employee");
+		//view.setViewName("/users/add_employee");
+		view.setViewName("/users/addEmployee");
 		return view;
 	}
 
-	/* Direciona a paguina Editar */
+	// Direciona a paguina Editar 
 	@RequestMapping(value = "getEdit", method = RequestMethod.GET)
 	public ModelAndView getEdit(@RequestParam("id") int id, Model model) {//
 		model.addAttribute("e", svEmployee.findByid(id));
@@ -84,7 +83,9 @@ public class Employee_Controller extends MainController{
 		return view;
 	}
 
-	/* Editar Empleado */
+	
+	// Editar Empleado 
+	
 	@PostMapping("/edit") // con foto
 	public String edit(@RequestParam("id") int id, @RequestParam("name") String name,
 			@RequestParam("lastName") String lastName, @RequestParam("salary") int salary,
@@ -131,6 +132,7 @@ public class Employee_Controller extends MainController{
 		return "Listo";
 	}
 
+	
 	@PostMapping("/add")
 	public String add(@RequestParam("id") int id, @RequestParam("name") String name,
 			@RequestParam("lastName") String lastName, @RequestParam("salary") int salary,
@@ -151,9 +153,9 @@ public class Employee_Controller extends MainController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), type,
-				salary);
+		salary);
 		svEmployee.save(e);
 
 		return "Agregado";
@@ -167,6 +169,7 @@ public class Employee_Controller extends MainController{
 			@RequestParam("address") String address, @RequestParam("mail") String mail) {
 
 		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, type, salary);
+		System.out.println(e.toString());
 		svEmployee.save(e);
 
 		return "Agregado";

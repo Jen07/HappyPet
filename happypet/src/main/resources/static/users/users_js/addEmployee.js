@@ -1,25 +1,44 @@
-/*window.onload = function () {
-    /*document.getElementById("op2").style.background = '#BC4944';*/
-    /*document.getElementById("op3").style.background = '#BC4944';
-}*/
-/*
-$(document).ready(function(){
+window.onload = function () {
+    //document.getElementById("op2").style.background = '#BC4944';
+    //document.getElementById("op3").style.background = '#BC4944';
+    document.getElementById("id").value("116670434");
+}
+
+function formatter(id){
+    const number = document.querySelector("#" + id);
+    number.addEventListener('keyup', (e) => {
+        const element = e.target;
+        const value = element.value;
+        element.value = formatNumber(value);
+    });
+}
+
+/* Formato numerico */
+function formatNumber(number) {
+    number = String(number).replace(/\D/g, "");
+    return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
+}
+
+
+function formatar(mascara, documento,id) {
+      
+    var i = documento.value.length;
+    var valor =documento.value;
     
-    const formatter = new Intl.NumberFormat()
-    const salary = document.getElementById("salary");
-    salart.textContent.formatter.format(1.222);
+    if (Number.isInteger(num)) {
+    var saida = mascara.substring(0, 1);
+    var texto = mascara.substring(i)
 
-})*/
-
-
-
+    if (texto.substring(0, 1) != saida) {
+        documento.value += texto.substring(0, 1);
+    }
+  }
+}
 
 var formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", function (e) {
     e.preventDefault();
     var datos = new FormData();
-
-    $("#id", '#formulario').mask("9-999-999999");
 
     datos.append("name", document.getElementById("name").value);
     datos.append("lastName", document.getElementById("lastName").value);

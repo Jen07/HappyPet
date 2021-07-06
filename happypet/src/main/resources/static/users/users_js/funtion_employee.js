@@ -32,8 +32,18 @@ function listar(){
 	})
 }
 
+function dar(num){
+    num= formatNumber(num);
+    return num;
+ }
+ 
+ //Formato numerico
+ function formatNumber(number) {
+     number = String(number).replace(/\D/g, "");
+     return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
+ }
+
 function bDetail2(id){
-alert("cedula: "+id);
     $.getJSON('/employee/detail2/' + id, function(employee) {
 		var modal = '';
 		modal+='<div class="cardD">';
@@ -41,6 +51,7 @@ alert("cedula: "+id);
 		modal+=' <li> Cédula: <label >'+employee.id+'</label></li>';
 		modal+=' <li> Nombre: <label>'+employee.name+'</label></li>';
 		modal+=' <li> Apellido: <label>'+employee.lastName+'</label></li>';
+        modal+=' <li> Salario: <label>'+ dar(employee.salary)+'</label></li>';
 		modal+=' <li> Correo: <label>'+employee.type+'</label></li>';
 		modal+=' <li> Teléfono: <label>'+employee.phone+'</label></li>';
 		modal+=' <li> Correo:: <label>'+employee.mail+'</label></li>';

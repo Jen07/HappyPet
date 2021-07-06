@@ -45,11 +45,11 @@ formulario.addEventListener("submit",function(e){
             },
             error: function (data) {
                 console.log(data);
+                alert("ERROR TEMPOTAL");
             }
         });
 
     }else{
-        //alert("vacio : " +  document.getElementById("oldimagen").value +" -");
         datos.append("oldImage", document.getElementById("oldimagen").value);
         $.ajax({
             type: "POST",
@@ -73,6 +73,7 @@ formulario.addEventListener("submit",function(e){
             },
             error: function (data) {
                 console.log(data);
+                alert("ERROR TEMPOTAL");
             }
         });
     }

@@ -2,57 +2,45 @@
 <html xmls:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Editar Empleado</title>
     <meta charset="ISO-8859-1">
     <meta charset="UTF-8">
-    <!-- Style -->
+    <title>Agregar Empleado</title>
+    <!-- style-->
     <link rel="stylesheet" type="text/css" href="/general/style.css" />
-    <link rel="stylesheet" type="text/css" href="/general/header.css" />
     <link rel="stylesheet" type="text/css" href="/users/employeeCSS/add_employee.css" />
     <link rel="stylesheet" type="text/css" href="/users/employeeCSS/form.css" />
+    <link rel="stylesheet" type="text/css" href="/general/header.css" />
     <!-- Icon -->
     <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
 </head>
 
-<body onload="inicio()">
-    
+<body>
+
     <header>
         <div class="navegationBar" th:replace="~{general/header :: head}"></div>
     </header>
 
     <div class="container">
-        <form class="Dform" id="formulario" autocomplete="off">
-           
+        <form class="Dform formulario" id="formulario" name="formulario" autocomplete="off"
+            enctype="multipart/form-data">
+
+            <h2 class="title">Nuevo Empleado</h2>
+
             <div class="div-form">
-                <div class="col-left">
-                    <h2 class="title">Editar Empleado</h2>
-                </div>
-
-                <div class="col-rigth">
-                    <div class="divImagen" th:if="${e?.imagen}">
-                        <img th:src="@{'/users/imageEmployee/'+${e.imagen} }"></img>
-                    </div>
-                    <div class="divImagen" th:unless="${e.imagen}">
-                        <img th:src="@{/users/imageEmployee/default.jpg}"></img>
-                    </div>
-                </div>
-
                 <div class="fila-l">
-                    <input type="file"  accept="image/*" id="imagen" name="imagen">
+                    <input type="file" accept="image/*" id="imagen" name="imagen">
                     <label for="imagen"><i class="fas fa-upload"></i>&nbsp;Selecione una imagen</label>
                     <span>
                         <strong>Nombre imagen:</strong>
                         <span id="file-name">ninguno</span>
                     </span>
-                    <input type="hidden" id="oldimagen" th:value="${e.imagen}" />
                 </div>
-
 
                 <div class="col-left">
                     <div class="formulario__grupo" id="grupo__id">
                         <label class="subtitle"> C&eacute;dula:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" id="id" name="id" maxlength="11" th:value="${e.id}"
+                            <input type="text" id="id" name="id" maxlength="9"
                                 title="Ingresar solo numero del 0-9 eje:1-166-0434" required="required" />
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
@@ -64,7 +52,7 @@
                     <div class="formulario__grupo" id="grupo__name">
                         <label class="subtitle"> Nombre:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" id="name" name="name" maxlength="10" th:value="${e.name}"
+                            <input type="text" id="name" name="name" maxlength="10"
                                 title="Ingresar solo letras eje:Jennifer" required="required">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
@@ -76,7 +64,7 @@
                     <div class="formulario__grupo" id="grupo__lastName">
                         <label class="subtitle"> Apellido:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" id="lastName" name="lastName" maxlength="10" th:value="${e.lastName}"
+                            <input type="text" id="lastName" name="lastName" maxlength="10"
                                 title="Ingresar solo letras eje:Granados" required="required">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
@@ -89,7 +77,7 @@
                     <div class="formulario__grupo" id="grupo__tel">
                         <label class="subtitle"> Tel&eacute;fono:</label>
                         <div class="formulario__grupo-input">
-                            <input type="tel" id="tel" name="tel" maxlength="9" th:value="${e.phone}"
+                            <input type="tel" id="tel" name="tel" maxlength="9"
                                 OnKeyPress="return format('####-####',this,event);"
                                 title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" required="required">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -102,7 +90,7 @@
                     <div class="formulario__grupo" id="grupo__salary">
                         <label class="subtitle"> Salario:</label>
                         <div class="formulario__grupo-input">
-                            <input type="text" id="salary" name="salary" maxlength="15" th:value="${e.salary}"
+                            <input type="text" id="salary" name="salary" maxlength="15"
                                 OnKeyPress="return formatNum('salary',event);"
                                 title="Ingresar solo numeros para el salario" required="required">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
@@ -116,8 +104,8 @@
                     <div class="formulario__grupo" id="grupo__type">
                         <label class="subtitle"> Tipo:</label>
                         <select id="type" name="type">
-                            <option th:selected="${e.type=='Administrador'}" value="Administrador">Administrador</option>
-                            <option th:selected="${e.type=='Servicio'}" value="Servicio">Servicio</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Servicio">Servicio</option>
                         </select>
                     </div>
                 </div>
@@ -126,7 +114,7 @@
                     <div class="formulario__grupo" id="grupo__passw">
                         <label class="subtitle"> Contrase&ntilde;a:</label>
                         <div class="formulario__grupo-input">
-                            <input type="password" id="passw" name="passw" maxlength="12" th:value="${e.password}" required="required">
+                            <input type="password" id="passw" name="passw" maxlength="12" required="required">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros 0-9 caracteres . - _
@@ -139,8 +127,7 @@
                     <div class="formulario__grupo" id="grupo__mail">
                         <label class="subtitle">Correo electr&oacute;nico:</label>
                         <div class="formulario__grupo-input">
-                            <input type="email" id="mail" name="mail" th:value="${e.mail}"
-                            placeholder="xxx@gmail.com" required="required">
+                            <input type="email" id="mail" name="mail" placeholder="xxx@gmail.com" required="required">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar correo valido</p>
@@ -151,7 +138,8 @@
                     <div class="formulario__grupo" id="grupo__address">
                         <label class="subtitle">Direcci&oacute;n:</label>
                         <div class="formulario__grupo-input">
-                            <textarea id="address" name="address" th:text="${e.address}" resize:none required="required"></textarea>
+                            <textarea id="address" name="address" 
+                            resize:none required="required"></textarea>
                         </div>
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
@@ -166,7 +154,6 @@
             </div>
         </form>
     </div>
-
     <!-- Imagenes -->
     <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
     <!-- JQUERY -->
@@ -174,7 +161,9 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
-    <script src="/users/users_js/edit_Employee.js"></script>
+    <!-- <script src="/users/users_js/addEmployee.js"></script> -->
+    <script src="/users/users_js/add_Employee.js"></script>
+
 
     <div class="footer" th:replace="~{general/footer :: foot}"></div>
 </body>
