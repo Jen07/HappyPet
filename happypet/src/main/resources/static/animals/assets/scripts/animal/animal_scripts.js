@@ -95,9 +95,6 @@ function openModal() {
 }
 
 
-function getAnimals() {
-
-}
 
 
 
@@ -131,7 +128,7 @@ function filterTable() {
     });
 }
 
-function resetTable() {
+function resetTable2() {
     let filterBy = "Nombre";
     let filter = "";
     let table = document.getElementById("animalTable");
@@ -143,7 +140,80 @@ function resetTable() {
 
     xhr.addEventListener("loadend", (info) => {
         table.innerHTML = info.target.response;
-      
+
     });
 
 }
+
+// Validar por que no esta eliminando
+function resetTable() {
+    getAnimals();
+}
+
+
+const getAnimals = () => {
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/get_All`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+
+        // Se reinicia el images para cargarlo con nuevos datos.
+        // Solo al eliminar y agregar.
+        animalsTD = [];
+
+        setTable([...JSON.parse(info.target.response)]);
+    });
+}
+
+let animalsTD = [];
+const content = document.getElementById("contenido");
+
+const setTable = (animalsArray) => {
+    content.innerHTML = "";
+
+    let pages = Math.ceil(animalsTD.length / 5);
+
+    if (animalsArray.length == 0) {
+        content.innerHTML += '<td class="ta-center">No hay imagenes que mostrar.</td>'
+    } else {
+
+        animalsArray.forEach(animal => {
+            animalsTD.push(appendAnimal(animal));
+        });
+
+        for (let i = 0; i < animalsTD.length; i++) {
+            content.innerHTML += animalsTD[i];
+        }
+    }
+}
+
+const appendAnimal = (animal) => {
+    let row = ` 
+                      <tr  id="${animal.id}">
+                        <td>
+                            ${animal.registerId == 0 ? 'N/A' : animal.owner}
+                        </td>
+                        <td>${animal.name == "" ? 'N/A' : animal.name}</td>
+                        <td>${animal.specie}</td>
+                        <td>${animal.breed}</td>
+                        <td id="buttonsAcions">
+                            <div class="row justify-center">
+                                <a class=" btn-send bDetail" onClick="getDetails(${animal.registerId})"><i
+                                        class="far fa-address-card"></i></a>
+                                <a class=" btn-edit bEdit"
+                                    onClick="getDetails(window.location.href = '/animal/modify_form ? id = ${animal.registerId}')">
+                                    <i class="far fa-edit"></i></a>
+                                <a class=" btn-delete bDelete" onClick="deleteAlert(${animal.registerId})"><i
+                                        class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                `
+    return row;
+
+}
+
+getAnimals();

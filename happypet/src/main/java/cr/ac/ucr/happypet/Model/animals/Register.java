@@ -22,8 +22,7 @@ public class Register {
 
     public int owner;
 
-    @OneToOne(mappedBy = "registerId")
-    private Animal animal;
+    private int animal;
 
     public int getId() {
         return id;
@@ -41,11 +40,11 @@ public class Register {
         this.owner = owner;
     }
 
-    public Animal getAnimal() {
+    public int getAnimal() {
         return animal;
     }
 
-    public void setAnimal(Animal animal) {
+    public void setAnimal(int animal) {
         this.animal = animal;
     }
 

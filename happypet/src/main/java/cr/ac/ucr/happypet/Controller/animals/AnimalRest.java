@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cr.ac.ucr.happypet.Model.animals.Animal;
 import cr.ac.ucr.happypet.Model.animals.Image;
+import cr.ac.ucr.happypet.Model.animals.SimpleAnimal;
 import cr.ac.ucr.happypet.Service.animals.animals_service.IAnimalsService;
+import cr.ac.ucr.happypet.Service.users.IUserService;
 
 @RestController
 @RequestMapping(value = "/animal")
@@ -19,6 +21,9 @@ public class AnimalRest {
 
     @Autowired
     IAnimalsService animalsRepo;
+
+    @Autowired
+    IUserService usersRepo;
 
     @GetMapping("/getDetails/{id}")
     public Animal details(@PathVariable final Integer id) {
@@ -48,6 +53,22 @@ public class AnimalRest {
         }
 
         return idImages;
+    }
+
+    @GetMapping("/get_All")
+    public List<SimpleAnimal> getAnimalImages() {
+
+        List<SimpleAnimal> animals = new LinkedList<>();
+
+        for (Animal simpleAnimal : animalsRepo.findAll()) {
+            animals.add(new SimpleAnimal(simpleAnimal.getId(), simpleAnimal.getRegisterId().getId(),
+                    simpleAnimal.getName(), simpleAnimal.getBorn(), simpleAnimal.getGender(), simpleAnimal.getType(),
+                    simpleAnimal.getSpecie(), simpleAnimal.getBreed(), simpleAnimal.getHeight(),
+                    simpleAnimal.getWeight(), simpleAnimal.isNeutered(),
+                    usersRepo.findById(simpleAnimal.getRegisterId().getOwner()).getName()));
+        }
+
+        return animals;
     }
 
 }
