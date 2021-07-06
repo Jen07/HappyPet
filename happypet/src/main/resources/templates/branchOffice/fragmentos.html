@@ -5,79 +5,112 @@
 </head>
 
 <body>
- 
-    <div th:fragment="insertS" >
-            <div class="row2">
-             <div class="col-25">
-               <label for="">C&eacute;dula jur&iacute;dica</label>
-             </div>
-             <div class="col-75">
-               <input type="text" id="CedulaJuridica" name="CedulaJuridica" placeholder="ejemplo: 7027602360" maxlength="12" OnKeyPress="return format('#-###-######',this,event);">
-             </div>
-           </div>
-            <div class="row2">
-             <div class="col-25">
-               <label >Provincia</label>
-             </div>
-             <div class="col-75">
-               <select id="provincia" name="provincia">		                 
-			        <option value="1" >San Jos&eacute;</option>
-			        <option value="2" >Alajuela</option>
-			        <option value="3" >Cartago</option>
-			        <option value="4" >Heredia</option>
-			        <option value="5" >Guanacaste</option>
-			        <option value="6" >Puntarenas</option>
-			        <option value="7" >Lim&oacute;n</option>			        
-               </select>
-             </div>
-           </div>
-           <div class="row2">
-             <div class="col-25">
-               <label >Ciudad</label>
-             </div>
-             <div class="col-75">
-               <select id="ciudad" name="ciudad">
-                 
-               </select>
-             </div>
-           </div>
-            <div class="row">
-             <div class="col-25">
-               <label for="">Correo Electr&oacute;nico</label>
-             </div>
-             <div class="col-75">
-               <input type="text" id="correo" name="correo" placeholder="ejemplo: sujeto@gmail.com" >
-             </div>
-           </div>
-            <div class="row2">
-             <div class="col-25">
-               <label for="">N&uacute;mero de telefono</label>
-             </div>
-             <div class="col-75">
-               <input type="text" id="telefono" name="telefono" placeholder="ejemplo: 2-4105-000" maxlength="9" OnKeyPress="return format('####-####',this,event);" >
-             </div>                                                                                             
-           </div>
-             <div class="row2">
-             <div class="col-25">
-               <label for="">Hora de inicio de atenci&oacute;n</label>
-             </div>
-             <div class="col-75">
-               <input type="time" id="horaInicio" name="horaInicio" >
-             </div>
-           </div>
-           <div class="row2">
-             <div class="col-25">
-               <label for="">Hora de finalizaci&oacute;n de atenci&oacute;n</label>
-             </div>
-             <div class="col-75">
-               <input type="time" id="horaFinal" name="horaFinal" >
-             </div>
-           </div>
-          
-                   
-    </div>
-    
-   
-   
-</body>
 
+  <div th:fragment="insertS">
+
+    <di class="row2">
+      <div class="col-left">
+      <div class="formulario__grupo" id="grupo__CedulaJuridica">       
+          <label for="" class="formulario__label">C&eacute;dula jur&iacute;dica</label>
+          <div class="formulario__grupo-input">
+            <input type="text" class="formulario__input" id="CedulaJuridica" name="CedulaJuridica"
+              placeholder="ejemplo: 7027602360" maxlength="12" OnKeyPress="return format('#-###-######',this,event);">
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+        </div>
+      </div>
+        <div class="col-rigth">
+        <div class="formulario__grupo" id="grupo__telefono">
+            <label for="" class="formulario__label">N&uacute;mero de telefono</label>
+            <div class="formulario__grupo-input ">
+              <input type="text" class="formulario__input" id="telefono" name="telefono" placeholder="ejemplo: 2-4105-000"
+                maxlength="9" OnKeyPress="return format('####-####',this,event);">
+              <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+          </div>
+        </div>
+    </di>
+    
+    
+
+
+    <div class="row2">
+      <div class="formulario__grupo" id="grupo__correo">
+        <div class="col-left">
+          <label for="" class="formulario__label">Correo Electr&oacute;nico</label>
+          <div class="formulario__grupo-input">
+            <input type="text" class="formulario__input" id="correo" name="correo"
+              placeholder="ejemplo: sujeto@gmail.com">
+            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+          </div>
+          <p class="formulario__input-error">correo incorrecto</p>
+        </div>
+      </div>
+
+      <div class="col-rigth">
+        <label for="" class="formulario__label">Horario de atención</label>
+        <div class="col-time">
+          <div class="formulario__grupo" id="grupo__horaInicio">
+            
+            <div class="formulario__grupo-input ">
+              <input type="time" class="formulario__input" id="horaInicio" name="horaInicio">
+              <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error"></p>
+          </div>
+        </div>
+        
+        <div class="col-time" style="margin-left: 2%;">
+          <div class="formulario__grupo " id="grupo__horaFinal">
+           
+            <div class="formulario__grupo-input">
+              <input type="time" class="formulario__input" id="horaFinal" name="horaFinal">
+              <i class="formulario__validacion-estado fas fa-times-circle"></i>
+            </div>
+            <p class="formulario__input-error"></p>
+          </div>
+        </div>
+       
+      </div>
+      
+    </div>
+
+    <div class="row2">
+      <div class="col-left">
+        <label class="formulario__label">Provincia</label>
+        <select id="provincia" name="provincia">
+          <option value="1">San Jos&eacute;</option>
+          <option value="2">Alajuela</option>
+          <option value="3">Cartago</option>
+          <option value="4">Heredia</option>
+          <option value="5">Guanacaste</option>
+          <option value="6">Puntarenas</option>
+          <option value="7">Lim&oacute;n</option>
+        </select>
+      </div>
+
+      <div class="col-rigth">
+        <label class="formulario__label">Ciudad</label>
+        <select id="ciudad" name="ciudad"></select>
+      </div>
+    </div>
+
+
+
+
+
+    
+
+    <div class="formulario__mensaje" id="formulario__mensaje">
+      <p> <i class="fas fa-exclamation-triangle"></i> <b>Error:</b>
+        Porfavor llenar el formulario correctamente </p>
+    </div>
+
+  </div>
+
+
+
+
+</body>
