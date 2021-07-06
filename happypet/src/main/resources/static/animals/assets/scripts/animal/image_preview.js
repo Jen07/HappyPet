@@ -1,3 +1,5 @@
+
+
 function readFile(input) {
     let previewZone = document.getElementById('file-preview');
 
@@ -19,9 +21,11 @@ function readFile(input) {
     }
 }
 
-const setPreviewer = () =>{
+const setPreviewer = () => {
     let fileUpload = document.getElementById('file');
     fileUpload.onchange = function (e) {
         readFile(e.srcElement);
     }
 }
+
+setPreviewer();

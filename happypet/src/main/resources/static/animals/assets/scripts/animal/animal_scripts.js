@@ -1,34 +1,3 @@
-window.addEventListener("load", startup);
-
-function startup() {
-    addListeners();
-    prepareDatatable();
-}
-
-function addListeners() {
-    let table = document.getElementById("animalTable");
-    table.addEventListener("click", (e) => { onTable(e) });
-}
-
-function onTable(e) {
-
-    let selectedId = e.target.parentElement.parentElement.parentElement.id;
-
-    // Boton de detalles
-    if (e.target.classList[0] == "btn-send") {
-        getDetails(selectedId)
-    }
-
-    // Boton de edicion
-    if (e.target.classList[0] == "btn-edit") {
-        window.location.href = `/animal/modify_form?id=${selectedId}`;
-    }
-
-    // Boton de eliminacion
-    if (e.target.classList[0] == "btn-delete") {
-        deleteAlert(selectedId);
-    }
-}
 
 const deleteAlert = async (selectedId) => {
 
@@ -124,3 +93,127 @@ function openModal() {
     var modal = document.getElementById("myModalDetails");
     modal.style.display = "block";
 }
+
+
+
+
+
+function changeFilter() {
+    let filterBy = document.getElementById("filterBy").value;
+    let filterContainer = document.getElementById("filterContainer");
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/reset_filter?filterBy=${filterBy}`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+        filterContainer.innerHTML = info.target.response;
+    });
+}
+
+function filterTable() {
+    let filterBy = document.getElementById("filterBy").value;
+    let filter = document.getElementById("filterContent").value;
+    let table = document.getElementById("animalTable");
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/filter_table?filterBy=${filterBy}&filter=${filter}`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+        table.innerHTML = info.target.response;
+        prepareDatatable();
+    });
+}
+
+function resetTable2() {
+    let filterBy = "Nombre";
+    let filter = "";
+    let table = document.getElementById("animalTable");
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/filter_table?filterBy=${filterBy}&filter=${filter}`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+        table.innerHTML = info.target.response;
+
+    });
+
+}
+
+// Validar por que no esta eliminando
+function resetTable() {
+    getAnimals();
+}
+
+
+const getAnimals = () => {
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/get_All`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+
+        // Se reinicia el images para cargarlo con nuevos datos.
+        // Solo al eliminar y agregar.
+        animalsTD = [];
+
+        setTable([...JSON.parse(info.target.response)]);
+    });
+}
+
+let animalsTD = [];
+const content = document.getElementById("contenido");
+
+const setTable = (animalsArray) => {
+    content.innerHTML = "";
+
+    let pages = Math.ceil(animalsTD.length / 5);
+
+    if (animalsArray.length == 0) {
+        content.innerHTML += '<td class="ta-center">No hay imagenes que mostrar.</td>'
+    } else {
+
+        animalsArray.forEach(animal => {
+            animalsTD.push(appendAnimal(animal));
+        });
+
+        for (let i = 0; i < animalsTD.length; i++) {
+            content.innerHTML += animalsTD[i];
+        }
+    }
+}
+
+const appendAnimal = (animal) => {
+    let row = ` 
+                      <tr  id="${animal.id}">
+                        <td>
+                            ${animal.registerId == 0 ? 'N/A' : animal.owner}
+                        </td>
+                        <td>${animal.name == "" ? 'N/A' : animal.name}</td>
+                        <td>${animal.specie}</td>
+                        <td>${animal.breed}</td>
+                        <td id="buttonsAcions">
+                            <div class="row justify-center">
+                                <a class=" btn-send bDetail" onClick="getDetails(${animal.registerId})"><i
+                                        class="far fa-address-card"></i></a>
+                                <a class=" btn-edit bEdit"
+                                    onClick="getDetails(window.location.href = '/animal/modify_form ? id = ${animal.registerId}')">
+                                    <i class="far fa-edit"></i></a>
+                                <a class=" btn-delete bDelete" onClick="deleteAlert(${animal.registerId})"><i
+                                        class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                `
+    return row;
+
+}
+
+getAnimals();

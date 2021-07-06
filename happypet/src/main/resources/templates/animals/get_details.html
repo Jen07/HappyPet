@@ -16,7 +16,15 @@
 	<div class="container">
 		<div th:replace="~{animals/fragments/animal_banner :: banner}"></div>
 
+
+
 		<div th:replace="~{animals/fragments/animal_carousel :: carousel}"></div>
+
+		<div th:if="${animal.type.toString() == 'C'}">
+			<a class="btn register__button" th:href="@{/animal/images/{id} (id = ${animal.id})}" style="width: 100px;">
+				Gestión de fotos
+			</a>
+		</div>
 
 		<div th:switch="${animal.type.toString()}">
 
@@ -41,19 +49,21 @@
 
 			</div>
 
-			<a th:case="A" th:href="@{/gestion/register_adopt/{id} (id = ${id})}" class="btn btn-delete m-2">
-				Confirmar envio de solicitud de adopción.
-			</a>
+			<div class="row justify-center">
+				<div class="col s4 ">
+					<a th:case="A" th:href="@{/gestion/register_adopt/{id} (id = ${id})}" class="btn btn-delete m-2">
+						Confirmar envio de solicitud de adopción.
+					</a>
 
-			<a th:case="S" th:href="@{/gestion/register_sale/{id} (id = ${id})}" class="btn btn-delete m-2">
-				Confirmar envío de solicitud de compra.
-			</a>
+					<a th:case="S" th:href="@{/gestion/register_sale/{id} (id = ${id})}" class="btn btn-delete m-2">
+						Confirmar envío de solicitud de compra.
+					</a>
+				</div>
+			</div>
 
 		</div>
 
-		<div th:if="${animal.type.toString() == 'C'}">
-			<a class="btn btn-send" th:href="@{/animal/images/{id} (id = ${animal.id})}">Agregar fotos</a>
-		</div>
+
 
 	</div>
 

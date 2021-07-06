@@ -18,6 +18,7 @@
                         <ul class="splide__list">
                             <li class="splide__slide" style="width: 250px" th:each="temp : ${animal.images}">
                                 <img th:src="@{'/animal/build_image/' + ${temp.id}}">
+
                             </li>
                         </ul>
                     </div>
@@ -27,19 +28,7 @@
                     <div class="splide__progress__bar">
                     </div>
                 </div>
-
-                
-
             </th:block>
-
-            
-
         </th:block>
-
-
-
     </div>
-
-
-
 </div>

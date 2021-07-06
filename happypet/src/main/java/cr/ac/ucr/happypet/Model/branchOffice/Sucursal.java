@@ -91,6 +91,10 @@ public class Sucursal {
 	
 	
 	
-
+@Override
+public String toString() {
+	
+	return super.toString();
+}
 	
 }

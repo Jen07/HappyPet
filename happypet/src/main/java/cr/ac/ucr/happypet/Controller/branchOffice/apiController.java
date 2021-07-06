@@ -56,7 +56,7 @@ public ResponseEntity<List<String>> getListCantones(@PathVariable int codigoProv
 
 	@PostMapping("/addSucursal")
 	public ResponseEntity<Integer> addSucursal(@RequestBody Sucursal sucursal){
-		System.out.println("inserto bien");
+		System.out.println(sucursal.getCedulaJuridica());
 		sv.save(sucursal);
 		return new ResponseEntity<Integer>(1,HttpStatus.OK);
 	}

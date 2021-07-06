@@ -14,9 +14,10 @@ function getBreeds() {
 
         xhr.open("GET", `/animal/getbreeds/?specie=${e.target.value}`, true);
         xhr.send();
-    
+
         xhr.addEventListener("loadend", (info) => {
             setBreeds(info.target.response);
+            validarSelect(document.getElementById('combo_breed'), 'breed', 'raza');
         });
     });
 }
@@ -26,16 +27,16 @@ function setBreeds(result) {
     combo.innerHTML = result;
 }
 
-function getClients(){
+function getClients() {
     combo = document.getElementById("combo_client");
     filter = document.getElementById("combo_filter");
-    if(combo){
-        filter.addEventListener("keyup", (e)=>{
+    if (combo) {
+        filter.addEventListener("keyup", (e) => {
             const xhr = new XMLHttpRequest();
 
             xhr.open("GET", `/animal/filter_users/?filter=${filter.value}`, true);
             xhr.send();
-        
+
             xhr.addEventListener("loadend", (info) => {
                 setClients(info.target.response);
             });

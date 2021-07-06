@@ -10,10 +10,9 @@
         <p style="margin: 0; padding: 1em;">Fecha: <span th:text="${bill.formattedDate}"></span></p>
         <h2 style="margin: 0; padding: 1em; text-align: center;">Detalle</h2>
 
-        <table style="width: 100%; border-collapse: collapse;">
-
-            <thead style="background-color: #80BD5D; color:#fcfcfc;">
-                <tr style="text-align: center;">
+        <table id="table">
+            <thead id="encabesado">
+                <tr>
                     <th style="padding: 1em;"> Nombre </th>
                     <th> Descripcion </th>
                     <th> Precio unitario </th>
@@ -21,8 +20,9 @@
                     <th> Precio total </th>
                 </tr>
             </thead>
+            <tbody class="tbody" id="contenido">
 
-            <tbody>
+
                 <tr style="text-align: center;" th:each=" line : ${bill.lines}">
                     <td style="padding: .5em;" th:text="${line.product.name}"></td>
                     <td th:text="${line.product.description}"></td>

@@ -1,5 +1,6 @@
 package cr.ac.ucr.happypet.Controller.animals;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -48,7 +49,6 @@ public class AnimalController extends MainController {
 
 	@GetMapping("/list_animals/{type}")
 	public String listAnimals(Model mod, @PathVariable String type) {
-		
 
 		if (type.equals("adopt")) {
 			List<Animal> adopt = animalsRepo.findByType('A');
@@ -82,11 +82,17 @@ public class AnimalController extends MainController {
 	public String gestion(Model mod) {
 
 		List<Animal> animals = new LinkedList<Animal>();
+		HashMap<Integer, String> userMap = new HashMap<>();
 
-		animals = animalsRepo.findAll();
+		for (User user : usersRepo.getAll()) {
+			userMap.put(user.getId(), (user.getName() + " " + user.getLastName()));
+		}
+
+		animals = animalsRepo.findReversedAll();
 
 		mod.addAttribute("filterBy", "Nombre");
 		mod.addAttribute("animals", animals);
+		mod.addAttribute("users", userMap);
 		return "animals/gestion_animal";
 	}
 
@@ -102,6 +108,9 @@ public class AnimalController extends MainController {
 		mod.addAttribute("animal", animal);
 		mod.addAttribute("species", species);
 		mod.addAttribute("breeds", breeds);
+		if (animal.getRegisterId().getOwner() != 0) {
+			mod.addAttribute("owner", usersRepo.findById(animal.getRegisterId().getOwner()));
+		}
 		return "animals/modify";
 	}
 
@@ -133,12 +142,6 @@ public class AnimalController extends MainController {
 		animalsRepo.save(animal);
 
 		return "redirect:/animal/gestion_animal/";
-	}
-
-	@GetMapping("/cover_details/{id}")
-	public String getCoverDetails(Model mod, @PathVariable Integer id) {
-		mod.addAttribute("animal", animalsRepo.findById(id));
-		return "animals/fragments/cover_details";
 	}
 
 	@GetMapping("/reset_filter")

@@ -11,6 +11,9 @@ public interface IAnimalsService {
     void delete(Animal animal);
 
     List<Animal> findAll();
+
+    List<Animal> findReversedAll();
+
     List<Animal> findByOwner(int owner);
     List<Animal> findByType(char type);
     

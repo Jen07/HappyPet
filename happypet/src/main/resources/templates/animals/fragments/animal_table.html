@@ -21,25 +21,30 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-                <tbody class="tbody" id="contenido"></tbody>
+                <tbody class="tbody" id="contenido">
 
-                <tr th:each="animal : ${animals}" th:object="${animal}" th:id="*{id}">
-                    <td th:text="${animal.registerId.owner == 0 ? 'N/A' : animal.registerId.owner}"></td>
+                    <tr th:each="animal : ${animals}" th:object="${animal}" th:id="*{id}">
+                        <td th:text="${animal.registerId.owner == 0 ? 'N/A' : users.get(animal.registerId.owner)}"></td>
 
 
-                    <td th:text="${animal.name.isEmpty() ? 'N/A' : animal.name}"></td>
+                        <td th:text="${animal.name.isEmpty() ? 'N/A' : animal.name}"></td>
 
-                    <td th:text="*{specie}"></td>
-                    <td th:text="*{breed}"></td>
+                        <td th:text="*{specie}"></td>
+                        <td th:text="*{breed}"></td>
 
-                    <td id="buttonsAcions">
-                        <div class="row justify-center">
-                            <a class=" btn-send bDetail"><i class="far fa-address-card"></i></a>
-                            <a class=" btn-edit bEdit"><i class="far fa-edit"></i></a>
-                            <a class=" btn-delete bDelete"><i class="fas fa-trash-alt"></i></a>
-                        </div>
-                    </td>
-                </tr>
+                        <td id="buttonsAcions">
+                            <div class="row justify-center">
+                                <a class=" btn-send bDetail" th:onClick="getDetails([[${animal.registerId.id}]])"><i
+                                        class="far fa-address-card"></i></a>
+
+                                <a class=" btn-edit bEdit"
+                                    th:onClick="getDetails(window.location.href = `/animal/modify_form?id=${[[${animal.registerId.id}]]}`)">
+                                    <i class="far fa-edit"></i></a>
+                                <a class=" btn-delete bDelete" th:onClick="deleteAlert([[${animal.registerId.id}]])"><i
+                                        class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+                    </tr>
 
                 </tbody>
             </table>

@@ -30,8 +30,6 @@ function addSucursal() {
 		horaFinal: $('#horaFinal').val(),
 	}
 
-	if (validarCamposVacios(sucursal)) {
-
 		$.ajax({
 			url: "/sucursales/addSucursal",
 			data: JSON.stringify(sucursal),
@@ -69,10 +67,9 @@ function addSucursal() {
 					timerProgressBar: true,
 					timer: 2000,
 				})
+				alert(errorMessage.responseText);
 			}
 		});
-
-	}
 }
 
 

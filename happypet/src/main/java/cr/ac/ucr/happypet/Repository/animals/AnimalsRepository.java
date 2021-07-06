@@ -22,4 +22,6 @@ public interface AnimalsRepository extends JpaRepository<Animal, Integer> {
 
     @Query(value = "CALL pr_get_register_by_owner(:id_owner);", nativeQuery = true)
     List<Animal> findByOwner(@Param("id_owner") int owner);
+
+    List<Animal> findAllByOrderByIdDesc();
 }
