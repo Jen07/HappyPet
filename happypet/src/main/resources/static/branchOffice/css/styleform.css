@@ -114,7 +114,7 @@
 
 .formulario__grupo-correcto,
 .formulario__validacion-estado{
- color: #1ed12d;
+
  opacity: 1;
  
 }
@@ -129,9 +129,7 @@
     visibility: visible;
 }
 
-.formulario__grupo-incorrecto .formulario__label{
-    color: red;
-}
+
 
 .formulario__grupo-incorrecto .formulario__validacion-estado{
     color: red;
