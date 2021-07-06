@@ -9,7 +9,7 @@ formulario.addEventListener("submit", function (e) {
     var password=  datos.get("password");
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/checkloging", true);
+    xhttp.open("POST", "/login/checkloging", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send("id=" + id + "&password=" + password);
 
@@ -41,7 +41,7 @@ formulario.addEventListener("submit", function (e) {
                         clearInterval(timerInterval)
                     }
                 }).then((result) => {
-                    window.location.href = `/entry`;
+                    window.location.href = `/employee/inicio`;
                 });
 
             } else {

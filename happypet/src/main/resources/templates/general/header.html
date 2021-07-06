@@ -15,7 +15,7 @@
 
             <nav class="head__nav">
 
-                <th:block th:if="false">
+                <th:block th:if="true">
                     <li class="dropdown">
                         <a href="#animales" class="head__link">Animales</a>
                         <div class="dropdown-content">
@@ -62,11 +62,10 @@
                         </div>
                     </li>
 
-
                     <li class="dropdown" id="op2">
                         <a href="#Usuarios" class="head__link">Usuarios</a>
                         <div class="dropdown-content">
-                            <a href="/entry" id="op3">Empleados</a>
+                            <a href="/employee/inicio" id="op3">Empleados</a>
                             <a href="#clientes">Clientes</a>
                         </div>
                     </li>
@@ -86,8 +85,7 @@
                     </li>
                 </th:block>
                 <!-- ------------------------------------------------------------------------------------------------------->
-                <th:block th:unless="false">
-
+                <th:block th:unless="true">
 
                     <li class="dropdown">
                         <a href="#animales" class="head__link">Animales</a>
@@ -107,8 +105,6 @@
                         </div>
                     </li>
 
-
-
                     <li class="dropdown">
                         <a href="#servicios" class="head__link">Servicios</a>
                         <div class="dropdown-content">
@@ -123,7 +119,7 @@
                         <a href="#perfil" class="head__link">Servicios</a>
                         <div class="dropdown-content">
                             <a href="#compras">Compras</a>
-                            <a href="#cerrarSesion">Cerrar sesión</a>
+                            <a href="/">Cerrar sesión</a>
                             <a href="#misMascotas">Mis mascotas</a>
 
                         </div>
@@ -135,9 +131,6 @@
                             <span class="cart_number" th:text="${shoppingCart.getSize()}" id="cartNumber"></span>
                         </a>
                     </li>
-
-
-
                 </th:block>
             </nav>
         </div>

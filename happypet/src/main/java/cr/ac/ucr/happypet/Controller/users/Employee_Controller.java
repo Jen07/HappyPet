@@ -35,6 +35,14 @@ public class Employee_Controller extends MainController{
 
 	private Logic log = new Logic();
 
+	/*Ingresa a cuenta employee*/	
+	@RequestMapping("/inicio")
+	public ModelAndView checkLogin(){		
+		ModelAndView view = new ModelAndView();
+		view.setViewName("users/list_employee");
+		return view;
+	}
+
 	@RequestMapping("/listar")
 	public ResponseEntity<List<Employee>> listar() {
 		List<Employee> lista = svEmployee.listaTodo();

@@ -13,20 +13,15 @@ import cr.ac.ucr.happypet.Service.users.IUserService;
 
 
 @Controller
+@RequestMapping("/login")
 public class Home extends  MainController{
 
 	@Autowired
 	IUserService svUser;
-	
-	//Inicio
-	@RequestMapping("/inicio")
-	public String inicio() {
-		return "inicio";
-	}
 
 
 	//Regustrarse
-	@RequestMapping("/")
+	@RequestMapping("/inicio")
 	public String login() {
 		return "/general/login";
 	}
@@ -39,10 +34,5 @@ public class Home extends  MainController{
 		return check;
 	}
 	
-	/*Ingresa a cuenta employee*/	
-	@RequestMapping("/entry")
-	public String checkLogin(){		
-		return "users/list_employee";
-	}
 
 }
