@@ -2,14 +2,14 @@
 var formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", function (e) {
     e.preventDefault();
- 
+
     var datos = new FormData(formulario);
 
-    var id=  datos.get("id");
-    var password=  datos.get("password");
+    var id = datos.get("id");
+    var password = datos.get("password");
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/login/checkloging", true);
+    xhttp.open("POST", "/checkloging", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send("id=" + id + "&password=" + password);
 
@@ -58,15 +58,20 @@ formulario.addEventListener("submit", function (e) {
 
 });
 
-function login(id){
-    console.log(id);
-    const xhr = new XMLHttpRequest();
-
-            xhr.open("POST", `/login`, true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            xhr.send(`id=${id}`);
-            
-            xhr.addEventListener("loadend", (info) => {
-                window.location.href=`/sucursal/`;
-            });
+function login(userId) {
+    postForm(userId);
 }
+
+function postForm(param) {
+    var form = document.createElement('form');
+    form.setAttribute('method', 'POST');
+    form.setAttribute('action', '/login');
+    var hiddenField = document.createElement('input');
+    hiddenField.setAttribute('type', 'hidden');
+    hiddenField.setAttribute('name', "userId");
+    hiddenField.setAttribute('value', param);
+    form.appendChild(hiddenField);
+    document.body.appendChild(form);
+    form.submit();
+}
+

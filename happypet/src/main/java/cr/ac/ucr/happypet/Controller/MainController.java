@@ -7,13 +7,12 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import cr.ac.ucr.happypet.Model.billing.Line;
 import cr.ac.ucr.happypet.Model.billing.ShoppingCart;
 import cr.ac.ucr.happypet.Model.products.Product;
-import cr.ac.ucr.happypet.Model.users.User;
 
-@SessionAttributes("shoppingCart, activeUser")
+@SessionAttributes("shoppingCart")
 public class MainController {
 
     @ModelAttribute("shoppingCart")
-    public ShoppingCart shoppingCart(@SessionAttribute(required = false) ShoppingCart shoppingCart) {
+    public ShoppingCart getSession(@SessionAttribute(required = false) ShoppingCart shoppingCart) {
 
         if (shoppingCart == null) {
             shoppingCart = new ShoppingCart();
@@ -26,19 +25,10 @@ public class MainController {
 
             shoppingCart.addLine(ln);
 
+            System.out.println("Entra");
         }
+
         return shoppingCart;
-    }
-
-    @ModelAttribute("activeUser")
-    public User activeUser(@SessionAttribute(required = false) User activeUser) {
-
-        if (activeUser == null) {
-            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
-            activeUser = new User();
-        }
-
-        return activeUser;
     }
 
 }

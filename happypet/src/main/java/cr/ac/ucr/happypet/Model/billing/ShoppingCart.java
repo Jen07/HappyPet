@@ -6,19 +6,24 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import cr.ac.ucr.happypet.Model.users.User;
+
 public class ShoppingCart {
+
+    private User name;
 
     private HashMap<Long, Line> lines;
 
-    public ShoppingCart(){
+    public ShoppingCart() {
         lines = new HashMap<>();
+        name = new User();
     }
 
     public HashMap<Long, Line> getLines() {
         return lines;
     }
 
-    public List<Line> getListLines(){
+    public List<Line> getListLines() {
         return new LinkedList<Line>(lines.values());
     }
 
@@ -26,20 +31,20 @@ public class ShoppingCart {
         this.lines = lines;
     }
 
-    public void addLine(Line line){
+    public void addLine(Line line) {
         long id = line.getProduct().getCod_product();
 
-        if(lines.containsKey(id)){            
+        if (lines.containsKey(id)) {
             lines.get(id).addQuantity(line.getQuantity());
-        }else{
+        } else {
             lines.put(id, line);
         }
     }
 
-    public int getTotal(){
+    public int getTotal() {
         int total = 0;
 
-        for(Map.Entry<Long, Line> entry : lines.entrySet()){
+        for (Map.Entry<Long, Line> entry : lines.entrySet()) {
             total += entry.getValue().getTotal();
         }
         return total;
@@ -51,7 +56,7 @@ public class ShoppingCart {
         return (String.format("₡%s", formatted));
     }
 
-    public int getSize(){
+    public int getSize() {
         return lines.size();
     }
 
@@ -60,9 +65,17 @@ public class ShoppingCart {
     }
 
     public void removeLine(long id) {
-        if(lines.containsKey(id)){            
+        if (lines.containsKey(id)) {
             lines.remove(id);
         }
+    }
+
+    public User getUser() {
+        return name;
+    }
+
+    public void setUser(User name) {
+        this.name = name;
     }
 
 }

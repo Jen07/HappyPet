@@ -6,14 +6,13 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-
 @Entity
-@Table(name="tb_user")
+@Table(name = "tb_user")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
-	
-	@Id
-	private int id;
+
+    @Id
+    private int id;
     private String name;
     private String lastName;
     private String mail;
@@ -23,10 +22,11 @@ public class User {
     private String type;
     private String imagen;
 
-    public User() {}
-    
-    public User(int id, String name, String lastName,String password, String mail, 
-    String phone,String address,String imagen,String type) {
+    public User() {
+    }
+
+    public User(int id, String name, String lastName, String password, String mail, String phone, String address,
+            String imagen, String type) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -38,8 +38,8 @@ public class User {
         this.type = type;
     }
 
-      public User(int id, String name, String lastName, String password, String mail, 
-              String phone, String address,String type) {
+    public User(int id, String name, String lastName, String password, String mail, String phone, String address,
+            String type) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -74,7 +74,7 @@ public class User {
         this.lastName = lastName;
     }
 
-	public String getMail() {
+    public String getMail() {
         return mail;
     }
 
@@ -125,10 +125,7 @@ public class User {
     @Override
     public String toString() {
         return "User [address=" + address + ", id=" + id + ", imagen=" + imagen + ", lastName=" + lastName + ", mail="
-                + mail + ", name=" + name + ", password=" + password + ", phone=" + phone + "]";
+                + mail + ", name=" + name + ", password=" + password + ", phone=" + phone + ", type=" + type + "]";
     }
-
-    
-	
 
 }
