@@ -34,6 +34,7 @@ public class MainController {
     public User activeUser(@SessionAttribute(required = false) User activeUser) {
 
         if (activeUser == null) {
+            System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++");
             activeUser = new User();
         }
 

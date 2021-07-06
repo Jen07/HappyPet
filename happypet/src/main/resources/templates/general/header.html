@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
     <html xmlns:th="http://www.thymeleaf.org">
 
     <head>
@@ -14,8 +14,9 @@
             </div>
 
             <nav class="head__nav">
-
-                <th:block th:if="true">
+                <p th:text="${activeUser}"></p>
+                <p>lpl</p>
+                <th:block th:if="${activeUser.type} == 'Administrador'">
                     <li class="dropdown">
                         <a href="#animales" class="head__link">Animales</a>
                         <div class="dropdown-content">
@@ -85,7 +86,7 @@
                     </li>
                 </th:block>
                 <!-- ------------------------------------------------------------------------------------------------------->
-                <th:block th:unless="true">
+                <th:block th:unless="${activeUser.type} == 'Administrador'">
 
                     <li class="dropdown">
                         <a href="#animales" class="head__link">Animales</a>

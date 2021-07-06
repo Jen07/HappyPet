@@ -113,10 +113,10 @@ public class Employee_Controller extends MainController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		/*
 		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), type,
 				salary);
-		svEmployee.edit(id, e);
+		svEmployee.edit(id, e);*/
 
 		return "Listo";
 	}
@@ -127,7 +127,7 @@ public class Employee_Controller extends MainController{
 			@RequestParam("tel") String phone, @RequestParam("type") String type, @RequestParam("passw") String passw,
 			@RequestParam("address") String address, @RequestParam("mail") String mail,
 			@RequestParam("oldImage") String imagen) {
-
+				/*
 		Employee e = new Employee();
 		if (imagen.equals("")) {
 			e = new Employee(id, name, lastName, passw, mail, phone, address, type, salary);
@@ -135,7 +135,7 @@ public class Employee_Controller extends MainController{
 			e = new Employee(id, name, lastName, passw, mail, phone, address, imagen, type, salary);
 		}
 
-		svEmployee.edit(id, e);
+		svEmployee.edit(id, e);*/
 
 		return "Listo";
 	}
@@ -161,10 +161,10 @@ public class Employee_Controller extends MainController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		/*
 		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), type,
 		salary);
-		svEmployee.save(e);
+		svEmployee.save(e);*/
 
 		return "Agregado";
 	}

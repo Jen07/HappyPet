@@ -17,13 +17,13 @@ formulario.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status === 200) {
             var respuesta = xhttp.responseText;
             console.log("Entro   " + respuesta);
-            if (respuesta === "true") {
+            if (respuesta !== "null") {
 
                 let timerInterval
                 Swal.fire({
                     title: 'Cargando Datos!',
                     html: 'Ingresara en <b></b> milliseconds.',
-                    timer: 2000,
+                    timer: 1000,
                     timerProgressBar: true,
                     didOpen: () => {
                         Swal.showLoading()
@@ -41,7 +41,7 @@ formulario.addEventListener("submit", function (e) {
                         clearInterval(timerInterval)
                     }
                 }).then((result) => {
-                    window.location.href = `/employee/inicio`;
+                    login(respuesta)
                 });
 
             } else {
@@ -57,3 +57,16 @@ formulario.addEventListener("submit", function (e) {
 
 
 });
+
+function login(id){
+    console.log(id);
+    const xhr = new XMLHttpRequest();
+
+            xhr.open("POST", `/login`, true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send(`id=${id}`);
+            
+            xhr.addEventListener("loadend", (info) => {
+                window.location.href=`/sucursal/`;
+            });
+}

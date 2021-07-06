@@ -20,13 +20,13 @@ public class User {
     private String phone;
     private String address;
     private String password;
-
+    private String type;
     private String imagen;
 
     public User() {}
     
     public User(int id, String name, String lastName,String password, String mail, 
-    String phone,String address,String imagen) {
+    String phone,String address,String imagen,String type) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -35,10 +35,11 @@ public class User {
         this.phone = phone;
         this.address = address;
         this.imagen = imagen;
+        this.type = type;
     }
-    
+
       public User(int id, String name, String lastName, String password, String mail, 
-              String phone, String address) {
+              String phone, String address,String type) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -46,6 +47,7 @@ public class User {
         this.mail = mail;
         this.phone = phone;
         this.address = address;
+        this.type = type;
     }
 
     public int getId() {
@@ -110,6 +112,14 @@ public class User {
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     @Override

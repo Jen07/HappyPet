@@ -10,32 +10,21 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(referencedColumnName ="id")
 public class Employee extends User{
 	
-    private String type;
     private int salary;
     
     public Employee() {}
 	
     
     public Employee(int id, String name, String lastName, String password, String mail, String phone,
-			String address, String imagen, String type, int salary) {
+			String address, String imagen, int salary) {
 		super(id, name, lastName, password, mail, phone, address, imagen);
-		this.type = type;
 		this.salary = salary;
 	}
 
 	public Employee(int id, String name, String lastName, String password, String mail, String phone,
-			String address, String type, int salary) {
-		super(id, name, lastName,password, mail, phone, address);
-		this.type = type;
+			String address, int salary,String type) {
+		super(id, name, lastName, password, mail, phone, address, type);
 		this.salary = salary;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public int getSalary() {
@@ -48,7 +37,7 @@ public class Employee extends User{
 
 	@Override
 	public String toString() {
-		return "Employee [type=" + type + ", salary=" + salary + "]";
+		return "Employee salary=" + salary + "]";
 	}   
     
 }

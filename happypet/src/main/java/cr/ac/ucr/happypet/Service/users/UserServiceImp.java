@@ -25,13 +25,7 @@ public class UserServiceImp implements IUserService {
 
 	@Override
 	public String checkUser(String id, String password) {
-		String check = "false";
-
-		if (repo.checkUser(id, password) != null) {
-			check = "true";
-		}
-
-		return check;
+		return repo.checkUser(id, password) ;
 	}
 
 	@Override
