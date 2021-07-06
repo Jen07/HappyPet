@@ -61,6 +61,11 @@ public class AnimalController extends MainController {
 		return "animals/list_animals";
 	}
 
+	@GetMapping({ "/", "/index", "/home" })
+	public String home() {
+		return "animals/home";
+	}
+
 	@GetMapping("/my_animals/{id}")
 	public String myanimals(Model mod, @PathVariable Integer id) {
 

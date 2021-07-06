@@ -9,7 +9,7 @@ public class HomeController extends MainController {
 
     @GetMapping({ "/", "/index", "/home" })
     public String home() {
-        return "animals/home";
+        return "branchOffice/index";
     }
 
 }

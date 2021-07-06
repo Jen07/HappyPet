@@ -125,4 +125,14 @@ public class SimpleAnimal implements Serializable {
         this.neutered = neutered;
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+
+    
+
 }
