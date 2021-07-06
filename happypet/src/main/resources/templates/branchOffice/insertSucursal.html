@@ -3,9 +3,10 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="/branchOffice/css/styleInsertSucursal.css">
+ <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleInsertSucursal.css">
 <link rel="stylesheet" type="text/css" href="/branchOffice/css/style.css">
  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleIndex.css">
+  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleform.css"> 
 </head>
 <body class="bodyFormInsert">
 
@@ -14,12 +15,14 @@
 	
 		</div>
 
-    <div class="containerFormInsert">
-    <form >
-    	<div th:replace="branchOffice/fragmentos.html :: insertS"></div>
-    	<div class="row">
+    <div class="container" >
+      
+    <form action="" class="formulario containerForm" id="formulario">
+      <label for="" class="titulo">Registro Sucursal Veterinaria</label>
+    	 <div th:replace="branchOffice/fragmentos.html :: insertS"></div>
+     	<div class="row2">
              <input class=" btn_insert_sucursal" type="button" value="Registrar" onclick="addSucursal()">
-   		 </div> 
+   		 </div>   
     </form>
       
     </div>
@@ -30,10 +33,11 @@
     </footer>
 
 
-
+  <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="/branchOffice/js/jsInsertSucursal.js"></script>
+   <script type="text/javascript" src="/branchOffice/js/jsInsertSucursal.js"></script> 
   <script type="text/javascript" src="/branchOffice/js/validaciones.js"></script>
+  <script type="text/javascript" src="/branchOffice/js/validateform.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
