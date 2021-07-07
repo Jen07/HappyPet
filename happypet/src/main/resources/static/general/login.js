@@ -16,10 +16,7 @@ formulario.addEventListener("submit", function (e) {
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4 && xhttp.status === 200) {
             var respuesta = xhttp.responseText;
-            console.log("Entro   " + respuesta);
-            if (respuesta !== "") {
-
-
+        
 
             if (respuesta !== "") {
 
