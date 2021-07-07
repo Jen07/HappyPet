@@ -10,46 +10,41 @@
 
     <div th:unless="${animals.size() == 0}">
 
-        <div class="table__container" th:fragment="table">
-            <table id="table">
-                <thead id="encabesado">
-                    <tr>
-                        <th>Dueño</th>
-                        <th>Nombre</th>
-                        <th>Esp.</th>
-                        <th>Raza</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="tbody" id="contenido">
+        <div th:fragment="table">
+            <div class="table__container">
+                <table id="table">
+                    <thead id="encabesado">
+                        <tr>
+                            <th>Dueño</th>
+                            <th>Nombre</th>
+                            <th>Esp.</th>
+                            <th>Raza</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody" id="contenido">
+                    </tbody>
 
-                    <tr th:each="animal : ${animals}" th:object="${animal}" th:id="*{id}">
-                        <td th:text="${animal.registerId.owner == 0 ? 'N/A' : users.get(animal.registerId.owner)}"></td>
+                </table>
 
+            </div>
+            <div class="row justify-between">
+                <div id="pagging"></div>
+                <div>
+                    <label for="">Registros por pagina:</label>
+                    <select name="" id="peerPage">
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="25">25</option>
+                    </select>
+                </div>
 
-                        <td th:text="${animal.name.isEmpty() ? 'N/A' : animal.name}"></td>
+            </div>
 
-                        <td th:text="*{specie}"></td>
-                        <td th:text="*{breed}"></td>
-
-                        <td id="buttonsAcions">
-                            <div class="row justify-center">
-                                <a class=" btn-send bDetail" th:onClick="getDetails([[${animal.registerId.id}]])"><i
-                                        class="far fa-address-card"></i></a>
-
-                                <a class=" btn-edit bEdit"
-                                    th:onClick="getDetails(window.location.href = `/animal/modify_form?id=${[[${animal.registerId.id}]]}`)">
-                                    <i class="far fa-edit"></i></a>
-                                <a class=" btn-delete bDelete" th:onClick="deleteAlert([[${animal.registerId.id}]])"><i
-                                        class="fas fa-trash-alt"></i></a>
-                            </div>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
         </div>
 
     </div>
+
+</div>
 
 </div>

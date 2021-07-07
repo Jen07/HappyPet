@@ -6,10 +6,14 @@ import cr.ac.ucr.happypet.Model.animals.Image;
 
 public interface IImagesService {
     List<Image> findAll();
+
     List<Image> findByAnimalId(int id);
 
     Image findById(int id);
-    
-    void delete (Image img);
-    void save (Image img);
+
+    void delete(Image img);
+
+    void deleteAll(List<Image> img);
+
+    void save(Image img);
 }

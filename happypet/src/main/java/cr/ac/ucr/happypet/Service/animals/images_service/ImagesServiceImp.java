@@ -39,4 +39,10 @@ public class ImagesServiceImp implements IImagesService {
         repo.save(img);
     }
 
+    @Override
+    public void deleteAll(List<Image> img) {
+        repo.deleteAll(img);
+
+    }
+
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import cr.ac.ucr.happypet.Service.animals.animals_service.IAnimalsService;
 import cr.ac.ucr.happypet.Service.animals.breeds_service.IBreedsService;
+import cr.ac.ucr.happypet.Service.animals.images_service.IImagesService;
 import cr.ac.ucr.happypet.Service.animals.registers_service.IRegistersService;
 import cr.ac.ucr.happypet.Service.animals.services_service.IServicesService;
 import cr.ac.ucr.happypet.Service.animals.species_service.ISpeciesService;
@@ -46,6 +47,9 @@ public class AnimalController extends MainController {
 
 	@Autowired
 	IServicesService servicesRepo;
+
+	@Autowired
+	IImagesService imagesRepo;
 
 	@GetMapping("/list_animals/{type}")
 	public String listAnimals(Model mod, @PathVariable String type) {
@@ -168,11 +172,10 @@ public class AnimalController extends MainController {
 		return "animals/fragments/filter_gestion";
 	}
 
-
-
 	@GetMapping("/delete/{id}")
 	public String deleteAnimal(@PathVariable("id") final Integer id, Model mod) {
 		mod.addAttribute("animalName", animalsRepo.findById(id).getName());
+		imagesRepo.deleteAll(imagesRepo.findByAnimalId(id));
 		animalsRepo.delete(animalsRepo.findById(id));
 		registersRepo.delete(registersRepo.findById(id));
 		return "animals/fragments/animal_name";
