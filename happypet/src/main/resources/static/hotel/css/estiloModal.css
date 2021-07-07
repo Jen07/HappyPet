@@ -26,20 +26,37 @@ body {font-family: Arial, Helvetica, sans-serif;}
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 70%;
 }
 
 .modal-content2 {
+  position: relative;
   background-color: #fefefe;
   margin: auto;
-  padding: 20px;
+  padding: 0;
   border: 1px solid #888;
-  width: 30%;
+  width: 42%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s
 }
+
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
 
 /* The Close Button */
 .close {
-  color: #aaaaaa;
+  color: white;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -52,14 +69,26 @@ body {font-family: Arial, Helvetica, sans-serif;}
   cursor: pointer;
 }
 
+.modal-header {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+  padding: 2px 16px;
+  background-color: #5cb85c;
+  color: white;
+}
+
 .cardH{
 
-    max-width: 20em;
-    min-width: 15em;
-
-    box-shadow: .5em .5em 1em -1em;
-    border-radius: 4px;
-    overflow: hidden;
+  max-width:	30em;
+  min-width: 15em;
+  border-radius: 4px;
+  overflow: hidden;
 }
 .cardH ul{
     list-style: none;
@@ -69,7 +98,6 @@ body {font-family: Arial, Helvetica, sans-serif;}
 .cardH li{
     border-bottom:2px solid var(--clr-neutral-300);
     margin: 10px ;
-    margin-right:60px;
     padding: 10px 10px;
    
 }

@@ -30,16 +30,15 @@
     max-width: 800px;
     width: 100%;
     margin: auto;
-    margin-top: -35px;
+    margin-top: -20px;
     padding: 40px;
     background-color:#d9d9d9;
 }
 /*modificar*/
 .main2{
-    max-width: 800px;
     width: 100%;
     margin: auto;
-    margin-top: -20px;
+    margin-top: -2px;
     padding: 40px;
     background-color:#d9d9d9;
 }
@@ -158,12 +157,6 @@
     background-color: var(--clr-primary-400);
 }
 
-.formulario__grupo-correcto,
-.formulario__validacion-estado{
- color: #1ed12d;
- opacity: 1;
- 
-}
 
 .formulario__grupo-correcto .formulario__grupo-input, .formulario__grupo-correcto .area{
     border: 3px solid #1ed12d;
@@ -175,9 +168,6 @@
     visibility: visible;
 }
 
-.formulario__grupo-incorrecto .formulario__label{
-    color: red;
-}
 
 .formulario__grupo-incorrecto .formulario__validacion-estado{
     color: red;

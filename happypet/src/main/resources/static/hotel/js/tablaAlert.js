@@ -1,19 +1,19 @@
-
-window.addEventListener("load", startup);
+$(document).ready(function () {
+	listarHoteles();
+});
 var codeModificar;
+var ciudadSucursal;
 
-
-function startup() {
-	addListeners();
-	ListarHoteles();
+function inicio() {
+	listarHoteles();
 }
 
-function addListeners() {
-	let table = document.getElementById("table");
-	table.addEventListener("click", (e) => { onTable(e) });
-}
+// function addListeners() {
+// 	let table = document.getElementById("table");
+// 	table.addEventListener("click", (e) => { onTable(e) });
+// }
 
-function onTable(e) {
+/* function onTable(e) {
 
 	// Boton de detalles
 	if (e.target.classList[1] == "button-send") {
@@ -34,12 +34,12 @@ function onTable(e) {
 		deleteAlert(selectedId, nombreHotel);
 
 	}
-}
+} */
 
-function deleteAlert(idHotel, nombreHotel) {
+function deleteAlert(idHotel) {
 
 	swal.fire({
-		title: `Desea eliminar el hotel ` + nombreHotel + `?`,
+		title: `Desea eliminar el hotel ` + ciudadSucursal+ `?`,
 		text: "Esta acción es definitiva",
 		icon: 'warning',
 		showCancelButton: true,
@@ -61,16 +61,16 @@ function deleteHotel(idHotel) {
 		url: "/hoteles/delete/" + idHotel,
 		cache: false,
 		success: function () {
-				Swal.fire({
-					icon: 'success',
-					text: 'El hotel ha sido eliminado.',
-					showConfirmButton: false,
-					timerProgressBar: true,
-					timer: 2000,
-				}).then((result) => {
-					ListarHoteles();
-				})
-			
+			Swal.fire({
+				icon: 'success',
+				text: 'El hotel ha sido eliminado.',
+				showConfirmButton: false,
+				timerProgressBar: true,
+				timer: 2000,
+			}).then((result) => {
+				ListarHoteles();
+			})
+
 		},
 		error: function (errorMessage) {
 			alert("ERROR");
@@ -169,8 +169,8 @@ function modify() {
 				timer: 2000,
 			}).then((result) => {
 				//	location.reload();
-			    	closeModal();
-					ListarHoteles();	
+				closeModal();
+				ListarHoteles();
 			})
 		},
 		error: function (errorMessage) {
@@ -184,10 +184,8 @@ function listado(id) {
 
 	$.getJSON("/hoteles/GetHotel/" + id, function (hotel) {
 		var html = '';
-		html += ' <div >';
-		html += '<label>  Ciudad Veterinaria:' + hotel.sucursal.ciudad + ' </label>'
-		html += '</div>';
 		html += '<ul >';
+		html += '<li ><label> Ciudad Veterinaria:     ' + hotel.sucursal.ciudad  + ' </label></li> ';
 		html += '<li ><label># habitaciones:     ' + hotel.numberOfRooms + ' </label></li> ';
 		html += '<li ><label>Precio:    ' + hotel.price + '   </label></li>';
 		html += '<li ><label>Tel&eacute;fono:   ' + hotel.phone + ' </label></li>';
@@ -203,12 +201,35 @@ function listado(id) {
 	});
 
 }
+
+ 
+function listarHoteles() {
+	$.getJSON("/hoteles/listaHoteles", function (lista) {
+		var html = '';
+
+		for (var i = 0; i < lista.length; i++) {
+			html += '<tr class="trlist">';
+			html += '<td>' + lista[i].sucursal.ciudad + '</td>';
+			html += '<td>' + lista[i].numberOfRooms + '</td>';
+			html += '<td>' + lista[i].price + '</td>';
+			html += '<td><button type="button" class="btn-detail bDetail far fa-address-card fa-lg" name="btn-detail" onclick="listado('+lista[i].code+')"></button>'+
+                    '<button type="button" class="bEdit btn-edit far fa-edit fa-lg" name="btn-edit" onclick="modal('+lista[i].code+')" ></class=></button></a>'+
+			        '<button type="button" class="btn-delete bDelete fas fa-trash-alt fa-lg" onclick="deleteAlert('+lista[i].code+')" ></button></td>';
+			html += '</tr>';
+			ciudadSucursal=lista[i].sucursal.ciudad;
+		}
+
+		$('.cuerpo').html(html);
+	});
+} 
+
+
 //modificar Validacion
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 const textA = document.querySelectorAll("#formulario textarea");
 
-const expresiones={
+const expresiones = {
 	precio: /^\d{1,6}$/,
 	telefono: /^\d{8,10}$/,
 	habitaciones: /^\d{1,20}$/,
@@ -216,91 +237,91 @@ const expresiones={
 	direccion: /^[a-zA-ZÀ-ÿ0-9\s]{1,40}$/
 }
 
-const campos={
-	precio:false,
-	telefono:false,
-	habitaciones:false,
+const campos = {
+	precio: false,
+	telefono: false,
+	habitaciones: false,
 	descripcion: false,
-	direccion:false
+	direccion: false
 }
 
-const validarForm = (e)=>{
-  switch (e.target.name){
-	  case "price":
-	    validarCampo(expresiones.precio, e.target,'precio','precio');
-		
-	  break;
+const validarForm = (e) => {
+	switch (e.target.name) {
+		case "price":
+			validarCampo(expresiones.precio, e.target, 'precio', 'precio');
 
-	  case "phone":
-		validarCampo(expresiones.telefono, e.target,'phone','telefono');
-	  break;
+			break;
 
-	  case "numberOfRooms":
-	    validarCampo(expresiones.habitaciones, e.target,'rooms','habitaciones');
-	  break;
+		case "phone":
+			validarCampo(expresiones.telefono, e.target, 'phone', 'telefono');
+			break;
 
-	  case "address":
-		validarCampo(expresiones.direccion, e.target,'address','direccion');
-	  break;
+		case "numberOfRooms":
+			validarCampo(expresiones.habitaciones, e.target, 'rooms', 'habitaciones');
+			break;
 
-	  case "description":
-		validarCampo(expresiones.descripcion, e.target,'description','descripcion');
-	  break;
+		case "address":
+			validarCampo(expresiones.direccion, e.target, 'address', 'direccion');
+			break;
 
-  }
-}
+		case "description":
+			validarCampo(expresiones.descripcion, e.target, 'description', 'descripcion');
+			break;
 
-const validarCampo = (expresion, input, campo, nombre)=>{
-
-	if(expresion.test(input.value)){
-		
-		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
-		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
-		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
-	
-		if(nombre != 'descripcion' && nombre != 'direccion'){  
-		  document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
-		  document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
-	      document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
-	    }
-		campos[nombre]=true;
-		
-	}else{
-		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
-		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
-		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto'); 
-        
-        if(nombre != 'descripcion' && nombre != 'direccion'){ 
-	    	document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');  
-	    	document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
-	    	document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
-	 	}
-	    campos[nombre]=false;
-		
 	}
 }
 
-inputs.forEach((input) =>{
-     input.addEventListener('keyup',validarForm);
-	 input.addEventListener('blur',validarForm);
+const validarCampo = (expresion, input, campo, nombre) => {
+
+	if (expresion.test(input.value)) {
+
+		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+
+		if (nombre != 'descripcion' && nombre != 'direccion') {
+			document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+			document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
+			document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+		}
+		campos[nombre] = true;
+
+	} else {
+		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
+		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
+
+		if (nombre != 'descripcion' && nombre != 'direccion') {
+			document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
+			document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
+			document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
+		}
+		campos[nombre] = false;
+
+	}
+}
+
+inputs.forEach((input) => {
+	input.addEventListener('keyup', validarForm);
+	input.addEventListener('blur', validarForm);
 });
 
-textA.forEach((input) =>{
-	input.addEventListener('keyup',validarForm);
-	input.addEventListener('blur',validarForm);
+textA.forEach((input) => {
+	input.addEventListener('keyup', validarForm);
+	input.addEventListener('blur', validarForm);
 });
 
-formulario.addEventListener('submit',(e)=>{
+formulario.addEventListener('submit', (e) => {
 	e.preventDefault();
 
-	if(campos.precio && campos.telefono && campos.habitaciones
-		 && campos.descripcion && campos.direccion){
+	if (campos.precio && campos.telefono && campos.habitaciones
+		&& campos.descripcion && campos.direccion) {
 
-		 modify(); 
+		modify();
 
-	}else{
-        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
-		
+	} else {
+		document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+
 	}
 });
 //-------------------------------------------------------------------------------------------------------------------

@@ -7,7 +7,7 @@
     <title>Lista de Hoteles</title>
 
     <link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/hotel/css/navBar.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/general/header.css}">
 
     <link rel="stylesheet" type="text/css" href="/hotel/css/tablaHotel.css">
     <link rel="stylesheet" type="text/css" href="/hotel/css/estiloModal.css">
@@ -19,44 +19,26 @@
 <body>
 
 
-    <div class="navegationBar" th:replace="~{general/header::head}"></div>
+    <div class="navegationBar" th:replace="~{general/header :: head}"></div>
 
     <div class="container">
 
-        <div class="tableContainer">
+        <div class="tableContainer" id="contenedor">
 
             <table id="table" class="table">
                 <caption>
                     Lista de Hoteles
                 </caption>
                 <thead>
-                    
                     <th>Ciudad Veterinaria</th>
                     <th>Cantidad de Habitaciones</th>
                     <th>Precio</th>
-                    <th>Descripci&oacute;n</th>
-                    <th>Detalles</th>
-                    <th>Modificar</th>
-                    <th>Eliminar</th>
-
+                    <th>Acciones</th>
                 </thead>
 
-                <tbody>
-                    <tr th:each="hotel: ${hoteles}">
-                        <td th:text="${hotel.code}"></td>
-                        <td th:text="${hotel.sucursal.ciudad}"></td>
-                        <td th:text="${hotel.numberOfRooms}"></td>
-                        <td th:text="${hotel.price}"></td>
-                        <td th:text="${hotel.description}"></td>
-                        <td><button class="button button-send"><i class="far fa-address-card"></i></button></td>
-                        <td><button class="button button-edit"><i class="far fa-edit"></i></button> </td>
-                        <td> <button class="button button-delete"><i class="fas fa-trash-alt"></i></button> </td>
-                    </tr>
+                <tbody class="cuerpo" id="contenido">
                 </tbody>
             </table>
-
-
-
         </div>
 
 
@@ -85,7 +67,7 @@
                 <div class="modal-body">
 
                     <div>
-                        <div class="cardH" style="width: 18rem;">
+                        <div class="cardH" >
                             <div class="body">
                             </div>
                         </div>
