@@ -1,30 +1,30 @@
 function inicio(){
 	listar();
-   /* document.getElementById("op2").style.background='#BC4944';
-    document.getElementById("op3").style.background='#BC4944';*/
+    document.getElementById("op2").style.background='#BC4944';
+    document.getElementById("op4").style.background='#BC4944';
 }
 
 function listar(){
-	$.getJSON('/employee/listar', function (lista) {
+	$.getJSON('/client/listar', function (lista) {
 		$('#contenido').empty();
 		const tabla = document.querySelector('#table tbody');
-		lista.forEach(e => {
+		lista.forEach(c => {
 			const fila = document.createElement('tr');
 			fila.innerHTML += `
-				<td>${e.id}</td>
-				<td>${e.name}</td>
-				<td>${e.lastName}</td>
-                <td>${e.type}</td>  
+				<td>${c.id}</td>
+				<td>${c.name}</td>
+				<td>${c.lastName}</td>
+
 			    <td id="buttonsAcions">
 
                 <button type="button" class="btn-detail bDetail" name="btn-detail" 
-                onclick="bDetail2(${e.id})"><i class="far fa-address-card fa-lg"></i></button>
+                onclick="bDetail(${c.id})"><i class="far fa-address-card fa-lg"></i></button>
 
-					<a href="/employee/getEdit?id=${e.id}">
+					<a href="/client/getEdit?id=${c.id}">
 					<button type="button" class="bEdit btn-edit" name="btn-edit">
 					<i class="far fa-edit fa-lg"></i></button></a>
 							
-				<button type="button" class="btn-delete bDelete" onclick="bDelete(${e.id})">
+				<button type="button" class="btn-delete bDelete" onclick="bDelete(${c.id})">
 				<i class="fas fa-trash-alt fa-lg"></i></button>
 			</td>`;
 			tabla.appendChild(fila);
@@ -32,30 +32,18 @@ function listar(){
 	})
 }
 
-function dar(num){
-    num= formatNumber(num);
-    return num;
- }
- 
- //Formato numerico
- function formatNumber(number) {
-     number = String(number).replace(/\D/g, "");
-     return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
- }
-
-function bDetail2(id){
-    $.getJSON('/employee/detail2/' + id, function(employee) {
+function bDetail(id){
+    $.getJSON('/client/detail/' + id, function(client) {
 		var modal = '';
 		modal+='<div class="cardD">';
 		modal+='<ul>';
-		modal+=' <li> Cédula: <label >'+employee.id+'</label></li>';
-		modal+=' <li> Nombre: <label>'+employee.name+'</label></li>';
-		modal+=' <li> Apellido: <label>'+employee.lastName+'</label></li>';
-        modal+=' <li> Salario: <label>'+ dar(employee.salary)+'</label></li>';
-		modal+=' <li> Correo: <label>'+employee.type+'</label></li>';
-		modal+=' <li> Teléfono: <label>'+employee.phone+'</label></li>';
-		modal+=' <li> Correo:: <label>'+employee.mail+'</label></li>';
-		modal+='<li> Dirreción:  <label>'+employee.address+'</label></li>';
+		modal+=' <li> Cédula: <label >'+client.id+'</label></li>';
+		modal+=' <li> Nombre: <label>'+client.name+'</label></li>';
+		modal+=' <li> Apellido: <label>'+client.lastName+'</label></li>';
+		modal+=' <li> Tipo: <label>'+client.type+'</label></li>';
+		modal+=' <li> Teléfono: <label>'+client.phone+'</label></li>';
+		modal+=' <li> Correo: <label>'+client.mail+'</label></li>';
+		modal+='<li> Dirreción:  <label>'+client.address+'</label></li>';
 		modal+='</ul>';
 		modal+='<div>';
 		modal+='</div>';
@@ -82,24 +70,6 @@ function bEdit(id){
     xhttp.send("id=" + id);
 }
 
-/* Devuelve un html Para mostrar toda la informacion del emplado */
-function bDetail(id) {	
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/employee/detail", true);
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("id=" + id);
-
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState == 4 && xhttp.status === 200) {
-            Swal.fire({
-                html: xhttp.responseText,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Volver'
-            })
-        }
-    }
-}
-
 /*Elimina al empleado pero antes muestra mensaje de verificación 
 y actualiza solo la tabla sin recargar la paguina */
 function bDelete(id) {
@@ -116,7 +86,7 @@ function bDelete(id) {
         if (result.isConfirmed) {
 
             var xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "/employee/delete", true);
+            xhttp.open("POST", "/client/delete", true);
             xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhttp.send("id=" + id);
 			var res=xhttp.responseText;
@@ -138,13 +108,14 @@ function bDelete(id) {
     })
 }
 
+
 function bSearch(){
 var filtar = document.getElementById("cxBuscar").value;
 var text = document.getElementById("search").value;
 var div = document.getElementById("contenedor");
 var xhttp = new XMLHttpRequest();
 
-xhttp.open("POST", "/employee/search", true);
+xhttp.open("POST", "/client/search", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send("text=" + text+"&filtro="+filtar);
 

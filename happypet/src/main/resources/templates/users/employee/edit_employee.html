@@ -53,7 +53,7 @@
                         <label class="subtitle"> C&eacute;dula:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" id="id" name="id" maxlength="11" th:value="${e.id}"
-                                title="Ingresar solo numero del 0-9 eje:1-166-0434" required="required" />
+                                title="Ingresar solo numero del 0-9 eje:1-166-0434"  />
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
@@ -65,7 +65,7 @@
                         <label class="subtitle"> Nombre:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" id="name" name="name" maxlength="10" th:value="${e.name}"
-                                title="Ingresar solo letras eje:Jennifer" required="required">
+                                title="Ingresar solo letras eje:Jennifer" >
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar letras</p>
@@ -77,7 +77,7 @@
                         <label class="subtitle"> Apellido:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" id="lastName" name="lastName" maxlength="10" th:value="${e.lastName}"
-                                title="Ingresar solo letras eje:Granados" required="required">
+                                title="Ingresar solo letras eje:Granados" >
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar letras</p>
@@ -91,7 +91,7 @@
                         <div class="formulario__grupo-input">
                             <input type="tel" id="tel" name="tel" maxlength="9" th:value="${e.phone}"
                                 OnKeyPress="return format('####-####',this,event);"
-                                title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" required="required">
+                                title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" >
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
@@ -104,7 +104,7 @@
                         <div class="formulario__grupo-input">
                             <input type="text" id="salary" name="salary" maxlength="15" th:value="${e.salary}"
                                 OnKeyPress="return formatNum('salary',event);"
-                                title="Ingresar solo numeros para el salario" required="required">
+                                title="Ingresar solo numeros para el salario" >
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
@@ -126,7 +126,7 @@
                     <div class="formulario__grupo" id="grupo__passw">
                         <label class="subtitle"> Contrase&ntilde;a:</label>
                         <div class="formulario__grupo-input">
-                            <input type="password" id="passw" name="passw" maxlength="12" th:value="${e.password}" required="required">
+                            <input type="password" id="passw" name="passw" maxlength="12" th:value="${e.password}" >
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros 0-9 caracteres . - _
@@ -140,7 +140,7 @@
                         <label class="subtitle">Correo electr&oacute;nico:</label>
                         <div class="formulario__grupo-input">
                             <input type="email" id="mail" name="mail" th:value="${e.mail}"
-                            placeholder="xxx@gmail.com" required="required">
+                            placeholder="xxx@gmail.com" >
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar correo valido</p>
@@ -150,9 +150,8 @@
                 <div class="fila-l">
                     <div class="formulario__grupo" id="grupo__address">
                         <label class="subtitle">Direcci&oacute;n:</label>
-                        <div class="formulario__grupo-input">
-                            <textarea id="address" name="address" th:text="${e.address}" resize:none required="required"></textarea>
-                        </div>
+                            <textarea class="area" id="address" name="address" 
+                            resize:none th:text="${e.address}"></textarea>
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                 </div>
@@ -160,9 +159,8 @@
                 <div class="formulario__mensaje" id="formulario__mensaje"></div>
 
                 <div class="fila-button">
-                    <br><button id="bAdd" type="submit">Agregar</button>
+                    <br><button id="bAdd" type="submit">Modificar</button>
                 </div>
-
             </div>
         </form>
     </div>
@@ -174,7 +172,7 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
-    <script src="/users/users_js/edit_Employee.js"></script>
+    <script src="/users/employee_js/edit_Employee.js"></script>
 
     <div class="footer" th:replace="~{general/footer :: foot}"></div>
 </body>

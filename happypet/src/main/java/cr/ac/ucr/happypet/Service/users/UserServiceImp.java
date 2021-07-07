@@ -30,7 +30,7 @@ public class UserServiceImp implements IUserService {
 
 	@Override
 	public String checkUser(String id, String password) {
-		return repo.checkUser(id, password) ;
+		return repo.checkUser(id, password);
 	}
 
 	@Override
@@ -46,6 +46,11 @@ public class UserServiceImp implements IUserService {
 	@Override
 	public User findById(int id) {
 		return repo.findById(id).get();
+	}
+
+	@Override
+	public void delete(int id) {
+		repo.deleteById(id);
 	}
 
 }

@@ -24,7 +24,9 @@ import org.springframework.web.servlet.ModelAndView;
 import cr.ac.ucr.happypet.Bussines.Logic;
 import cr.ac.ucr.happypet.Controller.MainController;
 import cr.ac.ucr.happypet.Model.users.Employee;
+import cr.ac.ucr.happypet.Model.users.User;
 import cr.ac.ucr.happypet.Service.users.IEmployeeService;
+import cr.ac.ucr.happypet.Service.users.IUserService;
 
 @RestController
 @RequestMapping("/employee")
@@ -33,19 +35,22 @@ public class Employee_Controller extends MainController{
 	@Autowired
 	private IEmployeeService svEmployee;
 
+	@Autowired
+	private IUserService svUser;
+
 	private Logic log = new Logic();
 
 	/*Ingresa a cuenta employee*/	
 	@RequestMapping("/inicio")
 	public ModelAndView checkLogin(){		
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/users/employee/list_employee");/***************----- */
+		view.setViewName("/users/employee/list_employee");
 		return view;
 	}
 
 	@RequestMapping("/listar")
-	public ResponseEntity<List<Employee>> listar() {
-		List<Employee> lista = svEmployee.listaTodo();
+	public ResponseEntity<List<User>> listar() {
+		List<User> lista =log.listarEmployee(svUser.getAll());
 		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 
