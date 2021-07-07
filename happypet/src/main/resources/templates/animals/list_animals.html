@@ -8,6 +8,7 @@
 <body>
 	<header>
 		<div th:replace="~{general/header :: head}"></div>
+		<script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
 	</header>
 
 	<div class="container">
@@ -30,6 +31,9 @@
 				</div>
 			</div>
 			<hr>
+			<script>
+				stilishAdoption();
+			</script>
 		</th:block>
 
 
@@ -51,6 +55,9 @@
 			</div>
 
 			<hr>
+			<script>
+				stilishSale();
+			</script>
 		</th:block>
 
 	</div>

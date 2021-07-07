@@ -102,12 +102,26 @@ born.addEventListener('change', validarForm);
 
 
 formulario.addEventListener('submit', (e) => {
+    reValidate();
+
     if (!(campos.altura && campos.peso && campos.raza && campos.especie && campos.fecha)) {
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo'); 3
         e.preventDefault();
-        reValidate();
+
+
+        Swal.fire({
+            title: 'Error en el formulario',
+            text: "Verifique la información e intente de nuevo",
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        });
+
+
+
     }
 });
+
 
 const reValidate = () => {
 
@@ -115,14 +129,22 @@ const reValidate = () => {
         validarCampo(expresiones.nombre, document.getElementById('name'), 'name', 'nombre');
     }
 
-
     validarCampo(expresiones.altura, document.getElementById('height'), 'height', 'altura');
     validarCampo(expresiones.peso, document.getElementById('weight'), 'weight', 'peso');
     validarSelect(document.getElementById('combo_breed'), 'breed', 'raza');
     validarSelect(document.getElementById('combo_specie'), 'specie', 'especie');
     validarSelect(document.getElementById('born'), 'born', 'fecha');
-    validarSelect(document.getElementById('combo_client'), 'owner', 'duenio');
+
+
+    if (document.getElementById('combo_client')) {
+        validarSelect(document.getElementById('combo_client'), 'owner', 'duenio');
+    }
+
+
 }
+
+
+
 
 const setChecked = (campo) => {
     document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');

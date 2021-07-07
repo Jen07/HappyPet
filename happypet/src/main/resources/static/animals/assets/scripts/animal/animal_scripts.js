@@ -22,13 +22,12 @@ const deleteAlert = async (selectedId) => {
 
             Swal.fire(
                 {
-                    title: `Se Elimino con Exito!`,
+                    title: `Se eliminó con exitosamente!`,
                     text: "El animal ha sido eliminado.",
                     icon: 'success',
                     showCancelButton: false,
                     showConfirmButton: false,
                     timer: 2000
-
                 }
             )
         }
@@ -50,7 +49,7 @@ const detailsAlert = async (selectedId) => {
 
 // Prepara la eliminacion luego de confirmar
 function prepareDeleate(id) {
-    fetch(`/animal/delete/?id=${id}`).then((response) => {
+    fetch(`/animal/delete/${id}`).then((response) => {
         resetTable();
     })
 }
@@ -94,10 +93,6 @@ function openModal() {
     modal.style.display = "block";
 }
 
-
-
-
-
 function changeFilter() {
     let filterBy = document.getElementById("filterBy").value;
     let filterContainer = document.getElementById("filterContainer");
@@ -123,8 +118,8 @@ function filterTable() {
     xhr.send();
 
     xhr.addEventListener("loadend", (info) => {
-        table.innerHTML = info.target.response;
-        prepareDatatable();
+        setTable([...JSON.parse(info.target.response)]);
+
     });
 }
 
@@ -142,7 +137,6 @@ function resetTable2() {
         table.innerHTML = info.target.response;
 
     });
-
 }
 
 // Validar por que no esta eliminando
@@ -168,33 +162,69 @@ const getAnimals = () => {
     });
 }
 
+
 let animalsTD = [];
 const content = document.getElementById("contenido");
 
-const setTable = (animalsArray) => {
+
+let min = 0;
+let min = 0;
+let min = 0;
+
+
+
+const setDatacell = (animalsArray) => {
     content.innerHTML = "";
+
 
     let pages = Math.ceil(animalsTD.length / 5);
 
     if (animalsArray.length == 0) {
-        content.innerHTML += '<td class="ta-center">No hay imagenes que mostrar.</td>'
+        content.innerHTML += '<td colspan="5" class="ta-center">No hay que mostrar.</td>'
     } else {
 
-        animalsArray.forEach(animal => {
-            animalsTD.push(appendAnimal(animal));
-        });
 
-        for (let i = 0; i < animalsTD.length; i++) {
-            content.innerHTML += animalsTD[i];
+        for (let i = animalsArray.length - 1; i > 0; i--) {
+            animalsTD.push(appendAnimal(animalsArray[i]));
         }
     }
+
+    setTable();
 }
+
+
+
+const setTable = () => {
+    for (let i = 0; i < animalsTD.length; i++) {
+        content.innerHTML += animalsTD[i];
+    }
+}
+
+
+const getAnimalsFiltered = (filter, value) => {
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("GET", `/animal/get_All`, true);
+    xhr.send();
+
+    xhr.addEventListener("loadend", (info) => {
+
+        // Se reinicia el images para cargarlo con nuevos datos.
+        // Solo al eliminar y agregar.
+        animalsTD = [];
+
+        setTable([...JSON.parse(info.target.response)]);
+    });
+}
+
+
 
 const appendAnimal = (animal) => {
     let row = ` 
                       <tr  id="${animal.id}">
                         <td>
-                            ${animal.registerId == 0 ? 'N/A' : animal.owner}
+                            ${animal.owner == null ? 'N/A' : animal.owner}
                         </td>
                         <td>${animal.name == "" ? 'N/A' : animal.name}</td>
                         <td>${animal.specie}</td>
@@ -204,7 +234,7 @@ const appendAnimal = (animal) => {
                                 <a class=" btn-send bDetail" onClick="getDetails(${animal.registerId})"><i
                                         class="far fa-address-card"></i></a>
                                 <a class=" btn-edit bEdit"
-                                    onClick="getDetails(window.location.href = '/animal/modify_form ? id = ${animal.registerId}')">
+                                    onClick="getDetails(window.location.href = '/animal/modify_form?id=${animal.registerId}')">
                                     <i class="far fa-edit"></i></a>
                                 <a class=" btn-delete bDelete" onClick="deleteAlert(${animal.registerId})"><i
                                         class="fas fa-trash-alt"></i></a>

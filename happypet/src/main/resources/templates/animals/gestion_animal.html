@@ -18,42 +18,36 @@
 
 	<div class="container">
 
-		<h1 class="ta-center">Centro de control animal.</h1>
+		<h1 class="ta-center">Centro de gestión animal.</h1>
 
-		<div class="row">
-
-
+		<div class="row justify-between">
 
 
 
+			<div class="col s6">
+				<div class="row">
+					<a th:href="@{/animal/register_form/gestion}" class="btn register__button"><i
+							class="fas fa-plus-square fa-2x"></i><span>Animal
+							de gestion.</span></a>
 
-			<a th:href="@{/animal/register_form/gestion}" class="btn register__button"><i
-					class="fas fa-plus-square fa-2x"></i><span>Animal
-					de gestion.</span></a>
+					<a th:href="@{/animal/register_form/user}" class="btn register__button"><i
+							class="fas fa-plus-square fa-2x"></i><span>Animal de
+							usuario.</span></a>
+				</div>
 
-			<a th:href="@{/animal/register_form/user}" class="btn register__button"><i
-					class="fas fa-plus-square fa-2x"></i><span>Animal de
-					usuario.</span></a>
-
-
-
-			<div class="col s3"></div>
-
-
+			</div>
 
 			<div class="col s4">
-
-
 
 				<form method="POST" class="animal_filter" th:action="@{/animal/gestion_animal}">
 
 					<div class="row">
 
-						<div id="filterContainer" class="col s5 ">
+						<div id="filterContainer">
 							<div th:replace="~{animals/fragments/filter_gestion :: filter}"></div>
 						</div>
 
-						<div class="col s4 ">
+						<div>
 
 							<select id="filterBy" onchange="changeFilter()">
 								<option>Nombre</option>
@@ -63,17 +57,11 @@
 							</select>
 						</div>
 
-						<div class="col s2">
+						<div>
 							<a type="submit" id="bSearch" class="btn filter_button" onclick="filterTable()"><i
 									class="fas fa-search fa-lg"></i></a>
-
-
-
 						</div>
-
 					</div>
-
-
 				</form>
 			</div>
 
@@ -110,10 +98,13 @@
 
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
-
+	<script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
 	<script th:src="@{/animals/assets/scripts/animal/animal_scripts.js}"></script>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		stilishGestion();
+	</script>
 </body>
 
 </html>

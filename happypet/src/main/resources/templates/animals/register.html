@@ -26,9 +26,13 @@
 	<footer>
 		<div th:replace="~{general/footer :: foot}"></div>
 	</footer>
-
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
 	<script th:src="@{/animals/assets/scripts/animal/animal_form_elements.js}"></script>
 	<script th:src="@{/animals/assets/scripts/animal/form_animal.js}"></script>
+	<script>
+		stilishGestion();
+	</script>
 </body>
 
 </html>

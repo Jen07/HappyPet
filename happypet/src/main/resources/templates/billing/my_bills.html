@@ -14,7 +14,7 @@
 
     <div class="container ">
 
-        
+
 
         <div id="table_cont">
             <div th:replace="~{billing/fragments/bill_table :: table}"></div>
@@ -28,7 +28,10 @@
 
     <script th:src="@{/animals/assets/scripts/billing/my_bills.js}"></script>
     <script th:src="@{/animals/assets/scripts/billing/bill_detail.js}"></script>
-
+    <script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
+    <script>
+        stilishBills();
+    </script>
 </body>
 
 </html>

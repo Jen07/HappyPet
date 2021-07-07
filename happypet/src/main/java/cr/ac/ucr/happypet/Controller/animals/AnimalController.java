@@ -168,37 +168,12 @@ public class AnimalController extends MainController {
 		return "animals/fragments/filter_gestion";
 	}
 
-	@GetMapping("/filter_table")
-	public String filterTable(@RequestParam String filterBy, String filter, Model mod) {
 
-		List<Animal> animals = null;
 
-		switch (filterBy) {
-			case "Especie":
-				animals = animalsRepo.findBySpecie(filter);
-				break;
-
-			case "Raza":
-				animals = animalsRepo.findByBreed(filter);
-				break;
-
-			case "Tipo":
-				animals = animalsRepo.findByType(filter.charAt(0));
-				break;
-
-			case "Nombre":
-				animals = animalsRepo.findByName(filter);
-				break;
-		}
-
-		mod.addAttribute("animals", animals);
-
-		return "animals/fragments/animal_table";
-	}
-
-	@GetMapping("/delete")
-	public String deleteAnimal(@RequestParam("id") final Integer id, Model mod) {
+	@GetMapping("/delete/{id}")
+	public String deleteAnimal(@PathVariable("id") final Integer id, Model mod) {
 		mod.addAttribute("animalName", animalsRepo.findById(id).getName());
+		animalsRepo.delete(animalsRepo.findById(id));
 		registersRepo.delete(registersRepo.findById(id));
 		return "animals/fragments/animal_name";
 	}

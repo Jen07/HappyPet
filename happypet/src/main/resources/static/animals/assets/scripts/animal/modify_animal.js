@@ -13,17 +13,15 @@ const expresiones = {
     raza: /^[a-zA-Z]{3,15}$/,
     especie: /^[a-zA-Z]{3,15}$/,
     fecha: /^[a-zA-Z]{3,15}$/,
-    duenio: /^[a-zA-Z]{3,15}$/,
 }
 
 const campos = {
-    nombre: false,
-    altura: false,
-    peso: false,
-    raza: false,
-    especie: false,
-    fecha: false,
-    duenio: false,
+    nombre: true,
+    altura: true,
+    peso: true,
+    raza: true,
+    especie: true,
+    fecha: true,
 }
 
 const validarForm = (e) => {
@@ -73,21 +71,16 @@ const validarCampo = (expresion, input, campo, nombre) => {
 
 const validarSelect = (input, campo, nombre) => {
 
-
-
     if (input.value != "") {
         setChecked(campo)
         campos[nombre] = true;
 
     } else {
-
         setUnChecked(campo);
         campos[nombre] = false;
     }
 
 }
-
-
 
 inputs.forEach((input) => {
     input.addEventListener('keyup', validarForm);
@@ -106,6 +99,14 @@ formulario.addEventListener('submit', (e) => {
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo'); 3
         e.preventDefault();
         reValidate();
+
+        Swal.fire({
+            title: 'Error en el formulario',
+            text: "Verifique la información e intente de nuevo",
+            icon: 'error',
+            showConfirmButton: false,
+            timer: 1500
+        });
     }
 });
 
@@ -115,13 +116,16 @@ const reValidate = () => {
         validarCampo(expresiones.nombre, document.getElementById('name'), 'name', 'nombre');
     }
 
-
     validarCampo(expresiones.altura, document.getElementById('height'), 'height', 'altura');
     validarCampo(expresiones.peso, document.getElementById('weight'), 'weight', 'peso');
     validarSelect(document.getElementById('combo_breed'), 'breed', 'raza');
     validarSelect(document.getElementById('combo_specie'), 'specie', 'especie');
     validarSelect(document.getElementById('born'), 'born', 'fecha');
-    validarSelect(document.getElementById('combo_client'), 'owner', 'duenio');
+
+
+    if (document.getElementById('combo_client')) {
+        validarSelect(document.getElementById('combo_client'), 'owner', 'duenio');
+    }
 }
 
 const setChecked = (campo) => {

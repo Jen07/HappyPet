@@ -1,33 +1,11 @@
-.formulario__grupo-correcto,
-.formulario__validacion-estado {
-	color: #1ed12d;
-	opacity: 1;
+.formulario__grupo-incorrecto .formulario__input,
+.formulario__grupo-incorrecto .area {
+	border: 3px solid red;
 }
 
 .formulario__grupo-correcto .formulario__input,
 .formulario__grupo-correcto .area {
 	border: 3px solid #1ed12d;
-}
-
-.formulario__grupo-correcto .formulario__validacion-estado {
-	color: #1ed12d;
-	opacity: 1;
-	visibility: visible;
-}
-
-.formulario__grupo-incorrecto .formulario__label {
-	color: red;
-}
-
-.formulario__grupo-incorrecto .formulario__validacion-estado {
-	color: red;
-	opacity: 1;
-	visibility: visible;
-}
-
-.formulario__grupo-incorrecto .formulario__input,
-.formulario__grupo-incorrecto .area {
-	border: 3px solid red;
 }
 
 .formulario__mensaje {
@@ -45,8 +23,8 @@
 
 .formulario__validacion-estado {
 	position: relative;
-	left: 290px;
-	bottom: 25px;
+	left: 275px;
+	bottom: 30px;
 	z-index: 100;
 	font-size: 16px;
 	opacity: 0;
@@ -70,4 +48,8 @@
 
 .row-separator {
 	margin-bottom: 0.5em;
+}
+
+.subtitle {
+	font-weight: bold;
 }

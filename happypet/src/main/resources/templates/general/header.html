@@ -22,10 +22,10 @@
         <nav class="head__nav">
 
             <th:block th:if="${shoppingCart.getUser().getType()} == 'Administrador'">
-                <li class="dropdown">
+                <li class="dropdown" id="an1">
                     <a href="#animales" class="head__link">Animales</a>
                     <div class="dropdown-content">
-                        <a th:href="@{/animal/gestion_animal}">Gestionar mascotas.</a>
+                        <a th:href="@{/animal/gestion_animal}" id="an2">Gestionar mascotas.</a>
                     </div>
                 </li>
 
@@ -94,10 +94,10 @@
             <th:block th:unless="${shoppingCart.getUser().getType()} == 'Administrador'">
 
                 <li class="dropdown">
-                    <a href="#animales" class="head__link">Animales</a>
+                    <a href="#animales" class="head__link" id="an3">Animales</a>
                     <div class="dropdown-content">
-                        <a th:href="@{/animal/list_animals/adopt}">En adopci&oacute;n</a>
-                        <a th:href="@{/animal/list_animals/sale}">En venta </a>
+                        <a th:href="@{/animal/list_animals/adopt}" id="an4">En adopci&oacute;n</a>
+                        <a th:href="@{/animal/list_animals/sale}" id="an5">En venta </a>
 
                     </div>
                 </li>
@@ -121,13 +121,13 @@
                     </div>
                 </li>
 
-                <li class="dropdown">
+                <li class="dropdown" id="an6">
                     <a href="#perfil" class="head__link">Perfil</a>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content" >
 
-                        <a th:onclick="relocate('/animal/my_animals',[[${shoppingCart.user.id}]])">Mis mascotas</a>
+                        <a th:onclick="relocate('/animal/my_animals',[[${shoppingCart.user.id}]])" id="an7">Mis mascotas</a>
 
-                        <a th:onclick="relocate('/billing/my_bills',[[${shoppingCart.user.id}]])">Mis
+                        <a th:onclick="relocate('/billing/my_bills',[[${shoppingCart.user.id}]])" id="an8">Mis
                             facturas</a>
 
                         <a href="/">Cerrar sesión</a>

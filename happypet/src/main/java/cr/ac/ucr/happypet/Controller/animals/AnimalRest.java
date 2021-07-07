@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cr.ac.ucr.happypet.Model.animals.Animal;
@@ -61,14 +62,65 @@ public class AnimalRest {
         List<SimpleAnimal> animals = new LinkedList<>();
 
         for (Animal simpleAnimal : animalsRepo.findAll()) {
-            animals.add(new SimpleAnimal(simpleAnimal.getId(), simpleAnimal.getRegisterId().getId(),
+
+            SimpleAnimal an = new SimpleAnimal(simpleAnimal.getId(), simpleAnimal.getRegisterId().getId(),
                     simpleAnimal.getName(), simpleAnimal.getBorn(), simpleAnimal.getGender(), simpleAnimal.getType(),
                     simpleAnimal.getSpecie(), simpleAnimal.getBreed(), simpleAnimal.getHeight(),
-                    simpleAnimal.getWeight(), simpleAnimal.isNeutered(),
-                    usersRepo.findById(simpleAnimal.getRegisterId().getOwner()).getName()));
+                    simpleAnimal.getWeight(), simpleAnimal.isNeutered(), "0");
+
+            if (simpleAnimal.getRegisterId().getOwner() != 0) {
+                an.setOwner(usersRepo.findById(simpleAnimal.getRegisterId().getOwner()).getName() + " "
+                        + usersRepo.findById(simpleAnimal.getRegisterId().getOwner()).getLastName());
+            }
+
+            animals.add(an);
         }
 
         return animals;
+    }
+
+    @GetMapping("/filter_table")
+    public List<SimpleAnimal> filterTable(@RequestParam String filterBy, String filter) {
+
+        List<Animal> animals = null;
+
+        switch (filterBy) {
+            case "Especie":
+                animals = animalsRepo.findBySpecie(filter);
+                break;
+
+            case "Raza":
+                animals = animalsRepo.findByBreed(filter);
+                break;
+
+            case "Tipo":
+                animals = animalsRepo.findByType(filter.charAt(0));
+                break;
+
+            case "Nombre":
+                animals = animalsRepo.findByName(filter);
+                break;
+        }
+
+        List<SimpleAnimal> simple = new LinkedList<>();
+
+        for (Animal simpleAnimal : animals) {
+
+            SimpleAnimal an = new SimpleAnimal(simpleAnimal.getId(), simpleAnimal.getRegisterId().getId(),
+                    simpleAnimal.getName(), simpleAnimal.getBorn(), simpleAnimal.getGender(), simpleAnimal.getType(),
+                    simpleAnimal.getSpecie(), simpleAnimal.getBreed(), simpleAnimal.getHeight(),
+                    simpleAnimal.getWeight(), simpleAnimal.isNeutered(), "0");
+
+            if (simpleAnimal.getRegisterId().getOwner() != 0) {
+                an.setOwner(usersRepo.findById(simpleAnimal.getRegisterId().getOwner()).getName() + " "
+                        + usersRepo.findById(simpleAnimal.getRegisterId().getOwner()).getLastName());
+            }
+
+            simple.add(an);
+        }
+
+        return simple;
+
     }
 
 }
