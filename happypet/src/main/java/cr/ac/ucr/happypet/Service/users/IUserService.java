@@ -8,6 +8,7 @@ public interface IUserService {
 	
     void add(User u);
     void edit(int id,User u);
+    void delete(int id);
 
     String checkUser(String id,String password);
 

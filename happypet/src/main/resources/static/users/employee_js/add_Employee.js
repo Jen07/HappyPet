@@ -1,9 +1,7 @@
-function inicio(){
-    dar('salary');
-   // document.getElementById("op2").style.background='#BC4944';
-   // document.getElementById("op3").style.background='#BC4944';
+function inicio() {
+    document.getElementById("op2").style.background = '#BC4944';
+    document.getElementById("op4").style.background = '#BC4944'; //-----------
 }
-
 
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
@@ -11,12 +9,13 @@ const textA = document.querySelectorAll("#formulario textarea");
 
 const expresiones = {
     id: /^[0-9\-]{9}$/,
-    name: /^[A-Za-zÁ-ÿ0-9\s]{4,10}$/, 
-    lastName: /^[A-Za-zÁ-ÿ0-9\s]{4,10}$/,
+    name: /^[A-Za-zÁ-ÿ\s]{4,10}$/,
+    lastName: /^[A-Za-zÁ-ÿ\s]{4,10}$/,
     tel: /^[0-9\-]{8,10}$/,
     salary: /^[0-9\.]{7,15}$/, //-----------------
     passw: /^[a-zA-Z0-9\-\.\ñ\_]{4,12}$/,
     mail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[a-zA-Z0-9-.]+$/,//--------------------------
+    address:/^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#]{4,150}$/,
 }
 
 //Validar solo entre numeros
@@ -33,22 +32,16 @@ function valideKey(evt) {
     }
 }
 
-function dar(id){
-    const number = document.querySelector("#" + id);
-    const element =number;
-    const value = element.value;
-    element.value = formatNumber(value);
-}
-
 //Poner valida antes de poner formato numero
 function formatNum(id, e) {
     const number = document.querySelector("#" + id);
 
     if (valideKey(e)) {
-        const element = number;
+        const element = e.target;
         const value = element.value;
         element.value = formatNumber(value);
     }
+
 }
 
 //Formato numerico
@@ -92,13 +85,14 @@ function format(mascara, documento, evt) {
 //** Estilo del form Correcto - Incorrecto */
 
 const campos = {
-    id: true,
-    name: true,
-    lastName: true,
-    tel: true,
-    salary: true,
-    passw: true,
-    mail: true,
+    id: false,
+    name: false,
+    lastName: false,
+    tel: false,
+    salary: false,
+    passw: false,
+    mail: false,
+    address: false
 }
 
 
@@ -132,6 +126,10 @@ const validarForm = (e) => {
         case "mail":
             validarCampo(expresiones.mail, e.target, 'mail', 'mail');
             break;
+
+        case "address":
+            validarCampo(expresiones.address, e.target, 'address', 'address');
+            break;
     }
 }
 
@@ -143,7 +141,7 @@ const validarCampo = (expresion, input, campo, nombre) => {
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
 
-        if ( nombre != 'passw' ) {
+        if (nombre != 'passw' && nombre != 'address') {
             document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
             document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
@@ -156,7 +154,7 @@ const validarCampo = (expresion, input, campo, nombre) => {
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
 
-        if ( nombre != 'passw' ) {
+        if (nombre != 'passw' && nombre != 'address') {
             document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
             document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
@@ -180,21 +178,51 @@ formulario.addEventListener('submit', (e) => {
     e.preventDefault();
 
     if (campos.name && campos.lastName && campos.tel && campos.salary && campos.passw
-        && campos.mail) {
+        && campos.mail && campos.address) {
 
         registrar();
 
     } else {
+        var divError = document.querySelectorAll(".formulario__grupo");
+
+        divError.forEach((input) => {
+            var inputError = document.querySelector(`#${input.id} input`);
+
+
+            if (inputError != null) {
+                if (!campos[inputError.id]) {
+                    revalidated(input.id);
+                }
+            } else {
+                if (!campos.address) {
+                    revalidated("grupo__address");
+                }
+            }
+
+        });
+
+
         Swal.fire({
-            title: 'Error al mandar',
-            text: "Llene la informacion correctamente",
+            title: 'Error en el Formulario',
+            text: "Verifique la información e intente de nuevo",
             icon: 'error',
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
         });
+
     }
 });
 
+function revalidated(campo) {
+    document.getElementById(`${campo}`).classList.add('formulario__grupo-incorrecto');
+    document.getElementById(`${campo}`).classList.remove('formulario__grupo-correcto');
+    document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+
+    if (campo != "address") {
+        document.querySelector(`#${campo} i`).classList.add('fa-times-circle');
+        document.querySelector(`#${campo} i`).classList.remove('fa-check-circle');
+    }
+}
 /* Quitar puntos */
 function quitar() {
     var salary = document.getElementById("salary").value;
@@ -224,15 +252,15 @@ function registrar() {
 
         $.ajax({
             type: "POST",
-            url: '/employee/edit',
+            url: '/employee/add',
             data: datos,
             processData: false,
             contentType: false,
             success: function (data) {
-                if (data === "Listo") {
+                if (data === "Agregado") {
                     Swal.fire({
                         icon: 'success',
-                        title:  'Se modifico Correctamente',
+                        title: 'Se agregó Correctamente',
                         showConfirmButton: false,
                         timerProgressBar: true,
                         timer: 2000,
@@ -246,19 +274,18 @@ function registrar() {
             }
         });
     } else {
-        datos.append("oldImage", document.getElementById("oldimagen").value);
         $.ajax({
             type: "POST",
-            url: '/employee/edit2',
+            url: '/employee/add2',
             data: datos,
             processData: false,
             contentType: false,
             success: function (data) {
-                if (data === "Listo") {
+                if (data === "Agregado") {
                     Swal.fire({
                         position: '',
                         icon: 'success',
-                        title: 'Se modifico Correctamente',
+                        title: 'Se agregó Correctamente',
                         showConfirmButton: false,
                         timer: 2000
                     }).then((result) => {
@@ -268,7 +295,6 @@ function registrar() {
             },
             error: function (data) {
                 console.log(data);
-                alert("ERROR TEMPOTAL");
             }
         });
     }

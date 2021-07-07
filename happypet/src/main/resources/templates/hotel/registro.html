@@ -28,7 +28,7 @@
 
             <form action="" class="formulario" id="formulario">
                 <!-- combo box nombres veterinaria -->
-                <div class="formulario__grupo " id="grupo__veterinaria">
+                <div  id="grupo__veterinaria">
                     <label for="nameSucursal" class="formulario__label">Nombre de Veterinaria: </label>
                     <div class="formulario__grupo-input">
                         <select name="codSucursal" id="codSucursal">
@@ -39,10 +39,11 @@
                 </div>
 
                 <!-- input precio -->
-                <div class="formulario__grupo" id="grupo__precio">
+                <div class="formulario__grupo" id="grupo__price">
                     <label for="price" class="formulario__label">Precio por d&iacute;a: </label>
                     <div class="formulario__grupo-input">
-                        <input type="text" name="price" id="price" class="formulario__input" placeholder="2300">
+                        <input type="text" name="price" id="price" class="formulario__input" 
+                           placeholder="2300" maxlength="12" OnKeyPress="return formatNum('price',event);">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
@@ -53,7 +54,8 @@
 
                     <label for="phone" class="formulario__label">Tel&eacute;fono: </label>
                     <div class="formulario__grupo-input">
-                        <input type="text" name="phone" id="phone" class="formulario__input" placeholder="27100909">
+                        <input type="text" name="phone" id="phone" class="formulario__input" placeholder="2710-0909"
+                        maxlength="12" OnKeyPress="return format('####-####',this,event);">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros, minimo 8 digitos maximo
@@ -64,7 +66,7 @@
                 <div class="formulario__grupo " id="grupo__rooms">
                     <label for="rooms" class="formulario__label">N&uacute;mero de habitaciones: </label>
                     <div class="formulario__grupo-input">
-                        <input type="text" name="numberOfRooms" id="numberOfRooms" class="formulario__input"
+                        <input type="text" name="numberOfRooms" id="rooms" class="formulario__input"
                             placeholder="100">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
@@ -75,23 +77,17 @@
                 <!-- text Area direccion -->
                 <div class="formulario__grupo " id="grupo__address">
                     <label for="address" class="formulario__label">Direcci&oacute;n: </label>
-                    <textarea name="address" id="address" class="area " cols="30" rows="10"></textarea>
+                    <textarea name="address" id="address" class="area " resize:none></textarea>
                 </div>
 
                 <!-- text Area descripcion-->
                 <div class="formulario__grupo " id="grupo__description">
                     <label for="description" class="formulario__label">Descripci&oacute;n: </label>
-                    <textarea name="description" id="description" class="area " cols="30" rows="10"></textarea>
+                    <textarea name="description" id="description" class="area " resize:none></textarea>
                 </div>
 
 
-                <div class="formulario__mensaje" id="formulario__mensaje">
-                    <p> <i class="fas fa-exclamation-triangle"></i> <b>Error:</b>
-                        Porfavor llenar el formulario correctamente </p>
-                </div>
-
-
-                <div class="formulario__grupo formulario__grupo-btn-enviar">
+                <div class="formulario__grupo-btn-enviar">
                     <button id="boton" class="formulario__btn" title="Guardar el registro"
                         type="submit">Guardar</button>
                 </div>

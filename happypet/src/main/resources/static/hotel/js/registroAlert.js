@@ -3,74 +3,127 @@ const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 const textA = document.querySelectorAll("#formulario textarea");
 
+/*Validaciones numericas y mascaras  */
+function formatNum(id, e) {
+    const number = document.querySelector("#" + id);
+
+    if (valideKey(e)) {
+        const element = e.target;
+        const value = element.value;
+        element.value = formatNumber(value);
+    }
+
+}
+
+//Formato numerico
+function formatNumber(number) {
+    number = String(number).replace(/\D/g, "");
+    return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
+}
+
+//validacion de campos del formulario 
+function valideKey(evt) {
+		
+	// code is the decimal ASCII representation of the pressed key.
+	var code = (evt.which) ? evt.which : evt.keyCode;
+
+	if (code == 8) { // backspace.
+		return true;
+	} else if (code >= 48 && code <= 57) { // is a number.
+		
+		return true;
+	} else { // other keys.
+		return false;
+	}
+}
+
+function format(mascara, documento,evt) {
+	
+	if(valideKey(evt)){
+	var i = documento.value.length;
+	var salida = mascara.substring(0, 1);
+	var texto = mascara.substring(i)
+
+	if (texto.substring(0, 1) != salida) {
+		documento.value += texto.substring(0, 1);
+	}
+	}else{
+		return false;
+	}
+
+}
+//-----------------------------------------------------------------------------------------------------
+
+//VALIDACIONES DE CAMPOS 
+
 const expresiones={
-	precio: /^\d{1,6}$/,
-	telefono: /^\d{8,10}$/,
+	precio:  /[0-9.]{4,12}/,
+	telefono: /[0-9+-]{8,10}/,
 	habitaciones: /^\d{1,20}$/,
 	descripcion: /^[a-zA-Z{À-ÿ0-9\s]{1,40}$/,
 	direccion: /^[a-zA-ZÀ-ÿ0-9\s]{1,40}$/
 }
 
 const campos={
-	precio:false,
-	telefono:false,
-	habitaciones:false,
-	descripcion: false,
-	direccion:false
+	price:false,
+	phone:false,
+	rooms:false,
+	address:false,
+	description: false
 }
 
 const validarForm = (e)=>{
   switch (e.target.name){
 	  case "price":
-	    validarCampo(expresiones.precio, e.target,'precio','precio');
+	    validarCampo(expresiones.precio, e.target,'price');
 		
 	  break;
 
 	  case "phone":
-		validarCampo(expresiones.telefono, e.target,'phone','telefono');
+		validarCampo(expresiones.telefono, e.target,'phone');
 	  break;
 
 	  case "numberOfRooms":
-	    validarCampo(expresiones.habitaciones, e.target,'rooms','habitaciones');
+	    validarCampo(expresiones.habitaciones, e.target,'rooms');
 	  break;
 
 	  case "address":
-		validarCampo(expresiones.direccion, e.target,'address','direccion');
+		validarCampo(expresiones.direccion, e.target,'address');
 	  break;
 
 	  case "description":
-		validarCampo(expresiones.descripcion, e.target,'description','descripcion');
+		validarCampo(expresiones.descripcion, e.target,'description');
 	  break;
 
   }
 }
 
-const validarCampo = (expresion, input, campo, nombre)=>{
+const validarCampo = (expresion, input, campo)=>{
 
 	if(expresion.test(input.value)){
 		
-		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+		
 		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
 		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
 	
-		if(nombre != 'descripcion' && nombre != 'direccion'){  
+		if(campo != 'description' && campo != 'address'){  
 		  document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
 		  document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
 	      document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
 	    }
-		campos[nombre]=true;
+		campos[campo]=true;
 		
 	}else{
-		document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+	
 		document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
 		document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto'); 
         
-        if(nombre != 'descripcion' && nombre != 'direccion'){ 
+        if(campo != 'description' && campo != 'address'){ 
 	    	document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');  
 	    	document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
 	    	document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
 	 	}
-	    campos[nombre]=false;
+	    campos[campo]=false;
 		
 	}
 }
@@ -85,21 +138,62 @@ textA.forEach((input) =>{
 	input.addEventListener('blur',validarForm);
 });
 
+
 formulario.addEventListener('submit',(e)=>{
 	e.preventDefault();
 
-	if(campos.precio && campos.telefono && campos.habitaciones
-		 && campos.descripcion && campos.direccion){
+	if(campos.price && campos.phone && campos.rooms
+		 && campos.description && campos.address){
 
 		 registrar(); 
 
 	}else{
-        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+		var divError = document.querySelectorAll(".formulario__grupo");
 		
+		divError.forEach((input) =>{
+			console.dir(input);
+			var inputError = document.querySelector(`#${input.id} input`);
+		
+
+            if(inputError!=null){
+				
+	 		  if(!campos[inputError.id]){	
+				revalidated(input.id);
+			 }
+			}else{
+				
+			   if(!campos.address){
+				  revalidated(input.id);
+			   }else if(!campos.description){
+				   revalidated(input.id);  
+			   }
+			}
+	    });
+
+		Swal.fire({
+			title: 'Error en el formulario',
+			text: "Verifique la información e intente de nuevo",
+			icon: 'error',
+			showConfirmButton: false,
+			timer: 2000
+		});
 	}
 });
 
 
+function revalidated(campo){
+	
+		document.getElementById(`${campo}`).classList.add('formulario__grupo-incorrecto');
+		document.getElementById(`${campo}`).classList.remove('formulario__grupo-correcto'); 
+		if(campo != 'grupo__description' && campo != 'grupo__address'){
+         document.querySelector(`#${campo} i`).classList.add('fa-times-circle');  
+         document.querySelector(`#${campo} i`).classList.remove('fa-check-circle');
+	   }
+}
+
+
+//--------------------------------------------------------------------------------------------------------
+//REGISTRAR
 function registrar() {
      
 	var hotel = {

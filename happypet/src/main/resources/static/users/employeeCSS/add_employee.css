@@ -1,5 +1,5 @@
 @charset "ISO-8859-1";
-/* dise�o del titulo*/
+/* diseño del titulo*/
 
 .title {
     text-align: center;
@@ -61,7 +61,7 @@
     font-weight: bold;
 }
 
-input[type=text], #passw, select, #tel, #mail, #address {
+input[type=text], #passw, select, #tel, #mail,.area{
     width: 100%;
     padding: 8px 0;
     border: 1px solid #ccc;
