@@ -128,13 +128,11 @@ function registrar() {
 				timerProgressBar: true,
 				timer: 2000,
 			}).then((result)=>{
-                  //  location.reload();
 				  formulario.reset();
 				  document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) =>{
 					  icono.classList.remove('formulario__grupo-correcto');
 				  });
 				 
-
 			})
 
 			
