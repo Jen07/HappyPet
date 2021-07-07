@@ -2,10 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+
 </head>
 
 <body>
     <div th:fragment="head" class="head__container">
+        <script>
+            function relocate(route, id) {
+                window.location.href = `${route}/${id}`
+            }
+        </script>
         <div class="head__logo">
             <a href="/sucursal/">
                 <img th:src="@{/general/logo.svg}" alt="logo" class="head__image" />
@@ -118,10 +124,13 @@
                 <li class="dropdown">
                     <a href="#perfil" class="head__link">Perfil</a>
                     <div class="dropdown-content">
-                        <a href="#compras">Compras</a>
-                        <a href="/">Cerrar sesión</a>
-                        <a href="#misMascotas">Mis mascotas</a>
 
+                        <a th:onclick="relocate('/animal/my_animals',[[${shoppingCart.user.id}]])">Mis mascotas</a>
+
+                        <a th:onclick="relocate('/billing/my_bills',[[${shoppingCart.user.id}]])">Mis
+                            facturas</a>
+
+                        <a href="/">Cerrar sesión</a>
                     </div>
                 </li>
 

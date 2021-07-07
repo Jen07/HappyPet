@@ -19,6 +19,10 @@ formulario.addEventListener("submit", function (e) {
             console.log("Entro   " + respuesta);
             if (respuesta !== "") {
 
+
+
+            if (respuesta !== "") {
+
                 let timerInterval
                 Swal.fire({
                     title: 'Cargando Datos!',
