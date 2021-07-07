@@ -16,6 +16,11 @@ public class UserServiceImp implements IUserService {
 	private User_Repository repo;
 
 	@Override
+	public void add(User u) {
+		repo.save(u);
+	}
+
+	@Override
 	public void edit(int id, User u) {
 		Optional<User> opcional = repo.findById(id);
 		if (opcional.isPresent()) {

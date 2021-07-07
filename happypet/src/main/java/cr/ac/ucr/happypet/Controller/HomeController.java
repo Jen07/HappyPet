@@ -2,7 +2,6 @@ package cr.ac.ucr.happypet.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import cr.ac.ucr.happypet.Model.billing.ShoppingCart;
+import cr.ac.ucr.happypet.Model.users.User;
 import cr.ac.ucr.happypet.Service.users.IUserService;
 
 @Controller
@@ -27,17 +27,22 @@ public class HomeController extends MainController {
     // Verifica el login
     @PostMapping("/checkloging")
     @ResponseBody
-    public String checkLogin(@RequestParam String id, @RequestParam String password, final Model mod) {
+    public String checkLogin(@RequestParam String id, @RequestParam String password) {
         String check = svUser.checkUser(id, password);
         System.out.println(check);
         return check;
     }
 
     @PostMapping("/login")
-    public String makeLogin(@RequestParam int userId, @ModelAttribute ShoppingCart session, final Model mod) {
-
+    public String makeLogin(@RequestParam int userId, @ModelAttribute ShoppingCart session) {
         session.setUser(svUser.findById(userId));
         return "redirect:/sucursal/";
+    }
+
+    @GetMapping("/entryLogin")
+    public String login(@ModelAttribute ShoppingCart session){
+        session.setUser(new User());
+        return "redirect:/index";
     }
 
 }

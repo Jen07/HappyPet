@@ -6,6 +6,7 @@ import cr.ac.ucr.happypet.Model.users.User;
 
 public interface IUserService {
 	
+    void add(User u);
     void edit(int id,User u);
 
     String checkUser(String id,String password);

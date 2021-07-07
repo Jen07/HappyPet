@@ -39,7 +39,7 @@ public class Employee_Controller extends MainController{
 	@RequestMapping("/inicio")
 	public ModelAndView checkLogin(){		
 		ModelAndView view = new ModelAndView();
-		view.setViewName("users/list_employee");
+		view.setViewName("/users/employee/list_employee");/***************----- */
 		return view;
 	}
 
@@ -55,7 +55,7 @@ public class Employee_Controller extends MainController{
 		model.addAttribute("employee", svEmployee.findByid(id));
 
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/users/div_Detail");
+		view.setViewName("/users/employee/div_Detail");
 		return view;
 	}
 
@@ -76,8 +76,7 @@ public class Employee_Controller extends MainController{
 	@RequestMapping(value = "addPagina", method = RequestMethod.GET)
 	public ModelAndView addEmPagina(Model model) {
 		ModelAndView view = new ModelAndView();
-		//view.setViewName("/users/add_employee");
-		view.setViewName("/users/addEmployee");
+		view.setViewName("/users/employee/addEmployee");
 		return view;
 	}
 
@@ -87,7 +86,7 @@ public class Employee_Controller extends MainController{
 		model.addAttribute("e", svEmployee.findByid(id));
 
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/users/edit_employee");
+		view.setViewName("/users/employee/edit_employee");
 		return view;
 	}
 
@@ -113,10 +112,9 @@ public class Employee_Controller extends MainController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		/*
-		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), type,
-				salary);
-		svEmployee.edit(id, e);*/
+		
+		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), salary, type);
+		svEmployee.edit(id, e);
 
 		return "Listo";
 	}
@@ -127,15 +125,15 @@ public class Employee_Controller extends MainController{
 			@RequestParam("tel") String phone, @RequestParam("type") String type, @RequestParam("passw") String passw,
 			@RequestParam("address") String address, @RequestParam("mail") String mail,
 			@RequestParam("oldImage") String imagen) {
-				/*
+			
 		Employee e = new Employee();
 		if (imagen.equals("")) {
-			e = new Employee(id, name, lastName, passw, mail, phone, address, type, salary);
+			e = new Employee(id, name, lastName, passw, mail, phone, address, salary, type);
 		} else {
-			e = new Employee(id, name, lastName, passw, mail, phone, address, imagen, type, salary);
+			e = new Employee(id, name, lastName, passw, mail, phone, address, imagen, salary, type);
 		}
 
-		svEmployee.edit(id, e);*/
+		svEmployee.edit(id, e);
 
 		return "Listo";
 	}
@@ -161,10 +159,9 @@ public class Employee_Controller extends MainController{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		/*
-		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), type,
-		salary);
-		svEmployee.save(e);*/
+	
+		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), salary, type);
+		svEmployee.save(e);
 
 		return "Agregado";
 	}
@@ -176,7 +173,7 @@ public class Employee_Controller extends MainController{
 			@RequestParam("tel") String tel, @RequestParam("type") String type, @RequestParam("passw") String passw,
 			@RequestParam("address") String address, @RequestParam("mail") String mail) {
 
-		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, type, salary);
+		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, salary, type);
 		System.out.println(e.toString());
 		svEmployee.save(e);
 
@@ -187,7 +184,7 @@ public class Employee_Controller extends MainController{
 	public ModelAndView search(@RequestParam String text, @RequestParam String filtro, Model model) {
 		model.addAttribute("employee", log.search(svEmployee.listaTodo(), text, filtro));
 		ModelAndView view = new ModelAndView();
-		view.setViewName("/users/div");
+		view.setViewName("/users/employee/div");
 		return view;
 	}
 

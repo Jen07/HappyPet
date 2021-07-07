@@ -237,7 +237,7 @@ function registrar() {
                         timerProgressBar: true,
                         timer: 2000,
                     }).then((result) => {
-                        window.location.href = `/entry`;
+                        window.location.href = `/employee/inicio`;
                     });
                 }
             },
@@ -262,7 +262,7 @@ function registrar() {
                         showConfirmButton: false,
                         timer: 2000
                     }).then((result) => {
-                        window.location.href = `/entry`;
+                        window.location.href = `/employee/inicio`;
                     });
                 }
             },

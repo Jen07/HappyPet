@@ -16,8 +16,8 @@ public class Employee extends User{
 	
     
     public Employee(int id, String name, String lastName, String password, String mail, String phone,
-			String address, String imagen, int salary) {
-		super(id, name, lastName, password, mail, phone, address, imagen);
+			String address, String imagen, int salary,String type) {
+		super(id, name, lastName, password, mail, phone, address, imagen,type);
 		this.salary = salary;
 	}
 
@@ -37,7 +37,7 @@ public class Employee extends User{
 
 	@Override
 	public String toString() {
-		return "Employee salary=" + salary + "]";
+		return super.toString()+" Employee salary=" + salary + "]";
 	}   
     
 }

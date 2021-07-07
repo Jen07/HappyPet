@@ -17,7 +17,7 @@ formulario.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status === 200) {
             var respuesta = xhttp.responseText;
             console.log("Entro   " + respuesta);
-            if (respuesta !== "null") {
+            if (respuesta !== "") {
 
                 let timerInterval
                 Swal.fire({
