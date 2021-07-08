@@ -10,7 +10,7 @@ function startup() {
 
 function addListeners() {
     let table = document.getElementById("imagesTable");
-    table.addEventListener("click", (e) => { onTable(e) });
+
 }
 
 
@@ -85,7 +85,21 @@ const submitImage = () => {
         )
 
     } else {
-        document.animal_form.submit()
+
+        makeSend();
+        document.getElementById('file-preview').innerHTML = '';
+        document.animal_form.reset();
+        closeModal();
+
+        setTimeout(function () {
+            resetTable();
+        }, 75);
+
+        setTimeout(function () {
+            resetTable();
+        }, 75);
+
+
     }
 }
 

@@ -2,6 +2,8 @@
 
     <form method="post" th:action="@{/animal/register}" class="formulario animal__form" id="formulario">
 
+        <h1 class="ta-center">Registro de animal.</h1>
+
         <div class="row justify-evenly row-separator">
             <div class="col s12">
                 <th:block th:switch="${register_type}">
@@ -165,7 +167,7 @@
             </div>
         </div>
 
-        <div class="formulario__mensaje" id="formulario__mensaje">
+        <div class="formulario__mensaje" id="formulario__mensaje" style="display: none;">
             <p> <i class="fas fa-exclamation-triangle"></i> <b>Error:</b>
                 Porfavor llenar el formulario correctamente </p>
         </div>
@@ -185,13 +187,16 @@
 <th:block th:fragment="modify">
 
     <form method="get" action="/animal/modify" class="formulario animal__form" id="formulario" th:object="${animal}">
+
+        <h1 class="ta-center">Modificar animal.</h1>
+
         <input type="hidden" name="id" th:value="*{id}">
         <div class="row justify-evenly row-separator">
             <div class="col s12">
 
 
                 <th:block th:if="*{type }!='C' ">
-                    <label>Tipo de gestion</label>
+                    <label class="subtitle">Tipo de gestion</label>
 
                     <div class="row justify-evenly row-separator">
                         <div class="col s6">
@@ -210,7 +215,7 @@
 
 
                 <th:block th:if="*{type}== 'C'">
-                    <h2>Mascota de: <span th:text="${owner.getName} + ' ' + ${owner.getLastName}"></span></h2>
+                    <h3>Mascota de: <span th:text="${owner.getName} + ' ' + ${owner.getLastName}"></span></h3>
                     <input type="hidden" name="type" value="C">
                 </th:block>
 
@@ -223,7 +228,7 @@
         <div class="row justify-evenly row-separator">
             <div class="formulario__grupo col s5" id="grupo__name">
 
-                <label for="name" class="formulario__label">Nombre </label>
+                <label for="name" class="formulario__label subtitle">Nombre </label>
                 <div class="formulario__grupo-input">
                     <input type="text" name="name" id="name" class="formulario__input" placeholder="Nombre..."
                         maxlength="15" th:value="*{name}">
@@ -234,7 +239,7 @@
 
 
             <div class="formulario__grupo col s5" id="grupo__born">
-                <label for="born" class="formulario__label">Nacimiento</label>
+                <label for="born" class="formulario__label subtitle">Nacimiento</label>
 
                 <input type="date" name="born" id="born" class="input_field formulario__input" th:value="*{born}">
 
@@ -246,13 +251,9 @@
 
         </div>
 
-
-
-
-
         <div class="row justify-evenly">
             <div class="formulario__grupo col s5" id="grupo__specie">
-                <label for="combo_specie" class="formulario__label">Especie</label>
+                <label for="combo_specie" class="formulario__label subtitle">Especie</label>
 
                 <select id="combo_specie" name="specie" class="input_field formulario__input">
                     <option th:each="temp:${species}" th:value="${temp.specie}" th:text="${temp.specie}"
@@ -263,7 +264,7 @@
             </div>
 
             <div class="formulario__grupo col s5" id="grupo__breed">
-                <label for="combo_breed" class="formulario__label">Raza</label>
+                <label for="combo_breed" class="formulario__label subtitle">Raza</label>
                 <select id="combo_breed" name="breed" class="input_field formulario__input">
                     <option th:each="temp:${breeds}" th:value="${temp.breed}" th:text="${temp.breed}"
                         th:selected="${temp.breed==animal.breed}"></option>
@@ -280,7 +281,7 @@
 
         <div class="row justify-evenly row-separator">
             <div class="col s5">
-                <label>Sexo</label>
+                <label class="subtitle">Sexo</label>
                 <div class="row">
 
                     <div class="col s6">
@@ -306,7 +307,7 @@
 
 
             <div class="formulario__grupo col s5" id="grupo__height">
-                <label for="height" class="formulario__label">Altura (cm)</label>
+                <label for="height" class="formulario__label subtitle">Altura (cm)</label>
                 <div class="formulario__grupo-input tagged_input">
                     <input type="text" name="height" id="height" class="formulario__input" placeholder="100" min="1"
                         max="10000" th:value="*{height}">
@@ -316,7 +317,7 @@
             </div>
 
             <div class="formulario__grupo col s5" id="grupo__weight">
-                <label for="weight" class="formulario__label">Peso (gr)</label>
+                <label for="weight" class="formulario__label subtitle">Peso (gr)</label>
                 <div class="formulario__grupo-input tagged_input">
                     <input type="text" name="weight" id="weight" class="formulario__input" placeholder="100" min="1"
                         max="50000" th:value="*{weight}">
@@ -334,7 +335,7 @@
             </div>
         </div>
 
-        <div class="formulario__mensaje" id="formulario__mensaje">
+        <div class="formulario__mensaje" id="formulario__mensaje" style="display: none;">
             <p> <i class="fas fa-exclamation-triangle"></i> <b>Error:</b>
                 Porfavor llenar el formulario correctamente </p>
         </div>

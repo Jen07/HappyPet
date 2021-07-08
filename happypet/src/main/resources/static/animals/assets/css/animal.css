@@ -297,6 +297,19 @@
 	overflow: auto;
 }
 
-.activeButton{
+.activeButton {
 	background-color: var(--clr-accent-300);
+}
+
+#filterContent {
+	width: 11em;
+}
+
+.per_page__container {
+	margin-right: 5%;
+}
+
+.per_page {
+	padding: 0.8em;
+	width: 4em;
 }
