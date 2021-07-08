@@ -31,7 +31,6 @@ public class HotelController extends MainController{
 	
 	@RequestMapping(value= "/registro",method=RequestMethod.GET)
 	public String registro(Model model){
-		System.out.println("HOLA");
 		model.addAttribute("sucursales",sucursalService.listar());
 		return "hotel/registro";
 	}

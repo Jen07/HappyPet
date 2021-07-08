@@ -1,10 +1,7 @@
-
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 const selects = document.querySelectorAll("#formulario select");
 const born = document.getElementById("born");
-
-
 
 const expresiones = {
     nombre: /^[a-zA-Z]{3,15}$/,

@@ -16,4 +16,6 @@ public interface IHotel {
 	void modificar(Hotel hotel, int id);
 	
 	Hotel buscarPorId(Integer id);
+	
+	List<Hotel> buscar(String texto, String filtro);
 }
