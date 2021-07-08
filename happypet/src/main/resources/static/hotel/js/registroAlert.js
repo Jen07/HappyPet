@@ -1,7 +1,12 @@
+$(document).ready(function () {
+	document.getElementById("op8").style.background='#BC4944';
+    document.getElementById("op10").style.background='#BC4944';
+});
 
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
 const textA = document.querySelectorAll("#formulario textarea");
+
 
 /*Validaciones numericas y mascaras  */
 function formatNum(id, e) {
@@ -57,11 +62,11 @@ function format(mascara, documento,evt) {
 //VALIDACIONES DE CAMPOS 
 
 const expresiones={
-	precio:  /[0-9.]{4,12}/,
-	telefono: /[0-9+-]{8,10}/,
+	precio: /^[0-9\.]{4,12}/,
+	telefono: /^[0-9\-]{8,10}/,
 	habitaciones: /^\d{1,20}$/,
-	descripcion: /^[a-zA-Z{À-ÿ0-9\s]{1,40}$/,
-	direccion: /^[a-zA-ZÀ-ÿ0-9\s]{1,40}$/
+	descripcion: /^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#\,]{4,150}$/,
+	direccion: /^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#\,]{4,150}$/
 }
 
 const campos={
@@ -83,7 +88,7 @@ const validarForm = (e)=>{
 		validarCampo(expresiones.telefono, e.target,'phone');
 	  break;
 
-	  case "numberOfRooms":
+	  case "rooms":
 	    validarCampo(expresiones.habitaciones, e.target,'rooms');
 	  break;
 
@@ -194,21 +199,28 @@ function revalidated(campo){
 
 //--------------------------------------------------------------------------------------------------------
 //REGISTRAR
-function registrar() {
-     
-	var hotel = {
 
-		code: $('#codSucursal').val(),
-		numberOfRooms: $('#numberOfRooms').val(),
-		price: $('#price').val(),
+function quitar() {
+    var price = document.getElementById("price").value;
+    while (price.toString().indexOf(".") != -1)
+        price = price.toString().replace(".", "");
+    return price;
+}
+
+function registrar() {
+     var cedulaJuridica = document.getElementById('codSucursal').value;
+	 var price= document.getElementById('price').value;
+	 price = quitar();
+	var hotel = {
+		numberOfRooms: $('#rooms').val(),
 		phone: $('#phone').val(),
 		address: $('#address').val(),
 		description: $('#description').val()
 
 	};
-
+   
 	$.ajax({
-		url: "/hoteles/save",
+		url: "/hoteles/save/"+cedulaJuridica+"/"+price,
 		data: JSON.stringify(hotel),
 		type: "POST",
 		contentType: "application/json;charset=utf-8",

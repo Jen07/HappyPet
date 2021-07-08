@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import cr.ac.ucr.happypet.Model.branchOffice.Sucursal;
@@ -31,11 +32,13 @@ public class ResController {
     @Autowired
     iSucursalService sucursalS;
 
-    @PostMapping(value="/save")
-    public ResponseEntity<Integer> registrarHotel(@RequestBody Hotel hotel) {
-    	
-        hotel.setSucursal(sucursalS.searchById(String.valueOf(hotel.getCode())));
-        hotel.setCode(0);
+    @PostMapping(value="/save/{cedulaJuridica}/{price}")
+    public ResponseEntity<Integer> registrarHotel(@RequestBody Hotel hotel,
+    @PathVariable String cedulaJuridica, @PathVariable int price) {
+        
+       hotel.setSucursal(sucursalS.searchById(cedulaJuridica));
+       hotel.setPrice(price);
+
         hotelService.guardar(hotel);
        
         return new ResponseEntity<Integer>(1,HttpStatus.OK);
@@ -62,10 +65,11 @@ public class ResController {
      	return new ResponseEntity<>(lista,HttpStatus.OK);
      }
     
-    @PostMapping(value="/modify/{code}")
-    public ResponseEntity<Integer> modifyHotel(@RequestBody Hotel hotel, @PathVariable int code){
-        hotel.setSucursal(sucursalS.searchById(String.valueOf(hotel.getCode())));
-        hotel.setCode(0);
+    @PostMapping(value="/modify/{code}/{cedulaJuridica}/{price}")
+    public ResponseEntity<Integer> modifyHotel(@RequestBody Hotel hotel, @PathVariable int code, 
+    @PathVariable String cedulaJuridica, @PathVariable int price){
+        hotel.setSucursal(sucursalS.searchById(cedulaJuridica));
+        hotel.setPrice(price);
         hotelService.modificar(hotel, code);
     	return new ResponseEntity<>(1,HttpStatus.OK);
     }
@@ -75,5 +79,17 @@ public class ResController {
     	List<Hotel>lista= hotelService.buscarTodas();
     	return new ResponseEntity<>(lista,HttpStatus.OK);
     }
-    
+
+    @GetMapping(value="/obtenerHotel/{code}")
+    public ResponseEntity<String> obtener(@PathVariable int code){
+        Hotel hotel=hotelService.buscarPorId(code);
+        String ciudad= hotel.getSucursal().getCiudad();
+        System.out.println(ciudad);
+        return new ResponseEntity<>(ciudad,HttpStatus.OK);
+    }
+
+    @PostMapping(value="/buscar")
+    public List<Hotel> buscar(@RequestParam String texto, @RequestParam String filtro){
+        return hotelService.buscar(texto, filtro);
+    }
 }

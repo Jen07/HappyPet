@@ -1,4 +1,5 @@
 package  cr.ac.ucr.happypet.Service.hotel;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import cr.ac.ucr.happypet.Model.hotel.Hotel;
 import cr.ac.ucr.happypet.Repository.hotel.HotelRepositorio;
+import net.bytebuddy.dynamic.scaffold.MethodGraph.Linked;
 
 
 @Service
@@ -54,6 +56,27 @@ public class HotelServiceImp implements IHotel {
 	@Override
 	public Hotel buscarPorId(Integer id) {
 		return repo.findById(id).get();
+	}
+
+	@Override
+	public List<Hotel> buscar(String texto, String filtro){
+		List<Hotel> hoteles= repo.findAll();
+		List<Hotel> lista= new LinkedList<>() ;
+		texto.toLowerCase();
+
+		if(filtro.equals("code")){
+			lista.add(repo.getById(Integer.parseInt(texto)));
+		}
+
+		for (Hotel hotel : hoteles) {
+		     if(filtro.equals("ciudad")){
+                 if(hotel.getSucursal().getCiudad().toLowerCase().equals(texto)){
+                   lista.add(hotel);
+				 }
+			 }
+		}
+
+		return lista;
 	}
 
 

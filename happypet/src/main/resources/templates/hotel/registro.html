@@ -5,7 +5,6 @@
     <meta charset="ISO-8859-1">
     <link rel="stylesheet" type="text/css" href="/hotel/css/estiloRegistro.css">
     <link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/general/header.css}">
 
     <title>Registro</title>
 </head>
@@ -66,8 +65,8 @@
                 <div class="formulario__grupo " id="grupo__rooms">
                     <label for="rooms" class="formulario__label">N&uacute;mero de habitaciones: </label>
                     <div class="formulario__grupo-input">
-                        <input type="text" name="numberOfRooms" id="rooms" class="formulario__input"
-                            placeholder="100">
+                        <input type="text" name="rooms" id="rooms" class="formulario__input"
+                            placeholder="100"  maxlength="20">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
