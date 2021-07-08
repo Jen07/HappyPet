@@ -79,11 +79,10 @@ public class Client_Controller extends MainController {
 
     @PostMapping("/add")
     public String inicio(@RequestParam("id") int id, @RequestParam("name") String name,
-            @RequestParam("lastName") String lastName, @RequestParam("tel") String tel,
-            @RequestParam("passw") String passw, @RequestParam("address") String address,
-            @RequestParam("mail") String mail) {
+            @RequestParam("lastName") String lastName, @RequestParam("phone") String tel,
+            @RequestParam("passw") String passw,@RequestParam("mail") String mail) {
 
-        User client = new User(id, name, lastName, passw, mail, tel, address, "Cliente");
+        User client = new User(id, name, lastName, passw, mail, tel,"", "Cliente");
         svClient.add(client);
 
         return "Agregado";

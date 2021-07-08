@@ -45,4 +45,9 @@ public class HomeController extends MainController {
         return "redirect:/index";
     }
 
+    @GetMapping("/register")
+    public String name() {
+        return "general/inicioS";
+    }
+
 }

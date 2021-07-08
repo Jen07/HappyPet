@@ -186,11 +186,8 @@ public class Employee_Controller extends MainController{
 	}
 
 	@PostMapping("/search")
-	public ModelAndView search(@RequestParam String text, @RequestParam String filtro, Model model) {
-		model.addAttribute("employee", log.search(svEmployee.listaTodo(), text, filtro));
-		ModelAndView view = new ModelAndView();
-		view.setViewName("/users/employee/div");
-		return view;
+	public List<Employee> search(@RequestParam String text, @RequestParam String filtro, Model model) {
+		return log.search(svEmployee.listaTodo(), text, filtro);
 	}
 
 }

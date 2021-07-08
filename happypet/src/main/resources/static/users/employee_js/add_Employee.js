@@ -1,6 +1,6 @@
 function inicio() {
-    document.getElementById("op2").style.background = '#BC4944';
-    document.getElementById("op4").style.background = '#BC4944'; //-----------
+    document.getElementById("op2").style.background='#BC4944';
+    document.getElementById("op3").style.background='#BC4944';
 }
 
 const formulario = document.getElementById("formulario");

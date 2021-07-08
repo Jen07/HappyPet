@@ -7,7 +7,7 @@
     <!--style-->
     <link rel="stylesheet" type="text/css" href="/general/style.css" />
     <link rel="stylesheet" type="text/css" href="/users/employeeCSS/list_employee.css" />
-    <link rel="stylesheet" type="text/css" href="/general/header.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/general/header.css" /> -->
     <!--icon-->
     <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
     <title>Lista Empleados</title>
@@ -38,7 +38,7 @@
         </div>
 
         <br /><br /><br /><br />
-        <div class="dTable" id="contenedor" th:include="users/employee/table_list_employee"></div>
+        <div class="dTable" id="contenedor" th:replace="users/employee/table_list_employee"></div>
     </div>
 
     <div id="myModalDetails" class="modal">

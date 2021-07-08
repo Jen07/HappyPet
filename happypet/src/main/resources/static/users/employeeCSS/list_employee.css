@@ -61,6 +61,13 @@ select {
 }
 
 /*Dise�o de la tabla*/
+.table__container{
+    margin: 0;
+	margin-top: 1em;
+	height: 300px;
+    overflow: auto;
+}
+
 .dTable {
     width: 85%;
     overflow-x: auto;
@@ -103,17 +110,6 @@ select {
     text-align: center;
 }
 
-
-/*
-.bEdit{
-    background-image:url('/imageEmployee/editar1.png');
-    background-color: #F8ED0C ;
-}
-
-.bDetail{
-    background-image:url('/imageEmployee/curriculum.png');
-}*/
-
 .bDelete,
 .bDetail,
 .bEdit {
@@ -127,6 +123,14 @@ select {
     border: none;
     background-size: 50%;
     color: black;
+}
+
+.pagging {
+	color: white;
+	margin-right: 0.3em;
+	margin-top: 0.5em;
+	display: inline-block;
+	text-align: center;
 }
 
 .bEdit:hover {
@@ -239,4 +243,8 @@ select {
     
     padding: 10px 10px;
    	
+}
+
+.activeButton{
+	background-color: var(--clr-accent-300);
 }

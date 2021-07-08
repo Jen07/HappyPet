@@ -30,7 +30,7 @@
                     <label class="subtitle"> C&eacute;dula:</label>
                     <div class="formulario__grupo-input">
                         <input type="text" id="id" name="id" maxlength="9"
-                            title="Ingresar solo numero del 0-9 eje:1-166-0434" required="required" />
+                            title="Ingresar solo numero del 0-9 eje:1-166-0434" />
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
@@ -42,7 +42,7 @@
                     <label class="subtitle"> Nombre:</label>
                     <div class="formulario__grupo-input">
                         <input type="text" id="name" name="name" maxlength="10"
-                            title="Ingresar solo letras eje:Jennifer" required="required">
+                            title="Ingresar solo letras eje:Jennifer">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar letras</p>
@@ -54,7 +54,7 @@
                     <label class="subtitle"> Apellido:</label>
                     <div class="formulario__grupo-input">
                         <input type="text" id="lastName" name="lastName" maxlength="10"
-                            title="Ingresar solo letras eje:Granados" required="required">
+                            title="Ingresar solo letras eje:Granados">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar letras</p>
@@ -67,7 +67,7 @@
                     <div class="formulario__grupo-input">
                         <input type="tel" id="tel" name="tel" maxlength="9"
                             OnKeyPress="return format('####-####',this,event);"
-                            title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" required="required">
+                            title="Ingresar solo numeros del 0-9 no separarlos eje:85472505">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
@@ -78,7 +78,7 @@
                 <div class="formulario__grupo" id="grupo__passw">
                     <label class="subtitle">Nueva Contrase&ntilde;a:</label>
                     <div class="formulario__grupo-input">
-                        <input type="password" id="passw" name="passw" maxlength="12" required="required">
+                        <input type="password" id="passw" name="passw" maxlength="12">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros 0-9 caracteres . - _
@@ -87,10 +87,10 @@
             </div>
 
             <div class="col-rigth">
-                <div class="formulario__grupo" id="grupo__passw">
+                <div class="formulario__grupo" id="grupo__passw2">
                     <label class="subtitle">Confirmar Contrase&ntilde;a:</label>
                     <div class="formulario__grupo-input">
-                        <input type="password" id="passw" name="passw" maxlength="12" required="required">
+                        <input type="password" id="passw2" name="passw2" maxlength="12">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros 0-9 caracteres . - _
@@ -102,19 +102,18 @@
                 <div class="formulario__grupo" id="grupo__mail">
                     <label class="subtitle">Correo electr&oacute;nico:</label>
                     <div class="formulario__grupo-input">
-                        <input type="email" id="mail" name="mail" placeholder="xxx@gmail.com" required="required">
+                        <input type="email" id="mail" name="mail" placeholder="xxx@gmail.com">
                         <i class="formulario__validacion-estado fas fa-times-circle"></i>
                     </div>
                     <p class="formulario__input-error">Solo se pueden ingresar correo valido</p>
                 </div>
             </div>
 
-            <div class="col-rigth">
+            <div class="fila-l">
                 <div class="formulario__grupo" id="grupo__address">
                     <label class="subtitle">Direcci&oacute;n:</label>
-                    <div class="formulario__grupo-input">
-                        <textarea id="address" name="address" resize:none required="required"></textarea>
-                    </div>
+                        <textarea class="area" id="address" name="address" 
+                        resize:none></textarea>
                     <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
             </div>
@@ -135,7 +134,7 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
-    <!-- <script src="/users/users_js/addEmployee.js"></script> -->
+     <script src="/users/client_js/add.js"></script>
 
     <div class="footer" th:replace="~{general/footer :: foot}"></div>
 </body>

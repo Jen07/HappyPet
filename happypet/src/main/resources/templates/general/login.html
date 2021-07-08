@@ -20,13 +20,17 @@
 
             <div class="dBAdd"></div><br><br>
 
-            <label class="subtitle"><b>Usuario</b></label>
-            <input type="text" placeholder="Numero de cedula" name="id" id="id" maxlength="9"
-            pattern="[0-9]{9}" title="Ingresar solo numero del 0-9 eje:114725987"
-            required="required" >
+            <div class="input-field">
+                <i class="fas fa-user"></i>
+                <input type="text" placeholder="Numero de cedula" name="id" id="id" maxlength="9" pattern="[0-9]{9}"
+                    title="Ingresar solo numero del 0-9 eje:114725987" required="required">
+            </div>
 
-            <label class="subtitle"><b>Contraseña</b></label>
-            <input type="password" placeholder="xxxxx" name="password" id="password" maxlength="15" required="required"><br>
+            <div class="input-field">
+                <i class="fas fa-lock"></i>
+                <input type="password" placeholder="Contraseña" name="password" id="password" maxlength="12"
+                    required="required">
+            </div><br>
 
             <div class="dBLogin">
                 <button type="submit" class="blogin">Iniciar Sesi&oacute;n</button><br><br>
@@ -34,16 +38,18 @@
 
             <div>
                 <label class="subtitle">¿No estas registrado?</label>
-                <a href="#" class="subtitle2">Crear Cuenta</a>
+                <a href="/register" class="subtitle2">Crear Cuenta</a>
             </div>
-            
+
         </form>
         <br><br><br>
     </div>
-	<!-- Alert -->
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
-	<script src="/general/login.js"></script>
+    <script src="/general/login.js"></script>
 </body>
 
 </html>
