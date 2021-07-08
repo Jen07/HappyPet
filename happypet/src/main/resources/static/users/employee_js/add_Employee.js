@@ -1,6 +1,6 @@
 function inicio() {
-    document.getElementById("op2").style.background='#BC4944';
-    document.getElementById("op3").style.background='#BC4944';
+    document.getElementById("op2").style.background = '#BC4944';
+    document.getElementById("op3").style.background = '#BC4944';
 }
 
 const formulario = document.getElementById("formulario");
@@ -15,7 +15,7 @@ const expresiones = {
     salary: /^[0-9\.]{7,15}$/, //-----------------
     passw: /^[a-zA-Z0-9\-\.\ñ\_]{4,12}$/,
     mail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[a-zA-Z0-9-.]+$/,//--------------------------
-    address:/^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#]{4,150}$/,
+    address: /^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#]{4,150}$/,
 }
 
 //Validar solo entre numeros
@@ -32,23 +32,27 @@ function valideKey(evt) {
     }
 }
 
-//Poner valida antes de poner formato numero
-function formatNum(id, e) {
-    const number = document.querySelector("#" + id);
+$("#salary").keypress(function () {
+    const number = document.querySelector('#salary');
+    number.addEventListener('keyup', (e) => {
+            const element = e.target;
+            const value = element.value;
+            element.value = formatNumber(value);
+    });
+});
 
-    if (valideKey(e)) {
-        const element = e.target;
-        const value = element.value;
-        element.value = formatNumber(value);
+
+function formatNumber(n) {
+    n = String(n).replace(/\D/g, "");
+    return n === '' ? n : Number(n).toLocaleString(['ban', 'id']);
+}
+
+$('#salary').keypress(function (tecla) {
+    if (tecla.charCode < 48 || tecla.charCode > 57) {
+        return false;
     }
+});
 
-}
-
-//Formato numerico
-function formatNumber(number) {
-    number = String(number).replace(/\D/g, "");
-    return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
-}
 
 //Formato cedula
 function formatId(mascara, documento, evt) {
@@ -140,10 +144,10 @@ const validarCampo = (expresion, input, campo, nombre) => {
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
 
         if (nombre != 'passw' && nombre != 'address') {
-            document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
-            document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
         }
 
@@ -153,10 +157,10 @@ const validarCampo = (expresion, input, campo, nombre) => {
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
+        document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
 
         if (nombre != 'passw' && nombre != 'address') {
-            document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
-            document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
         }
         campos[nombre] = false;
@@ -177,7 +181,7 @@ textA.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (campos.name && campos.lastName && campos.tel && campos.salary && campos.passw
+    if (campos.id && campos.name && campos.lastName && campos.tel && campos.salary && campos.passw
         && campos.mail && campos.address) {
 
         registrar();
@@ -267,6 +271,13 @@ function registrar() {
                     }).then((result) => {
                         window.location.href = `/employee/inicio`;
                     });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ya esxiste esa cedula!',
+                        footer: 'intenta de nuevo'
+                    })
                 }
             },
             error: function (data) {
@@ -291,6 +302,13 @@ function registrar() {
                     }).then((result) => {
                         window.location.href = `/employee/inicio`;
                     });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ya esxiste esa cedula!',
+                        footer: 'intenta de nuevo'
+                    })
                 }
             },
             error: function (data) {
@@ -306,5 +324,15 @@ let fileName = document.getElementById("file-name");
 inputFile.addEventListener('change', function (event) {
     let uploadedFileName = event.target.files[0].name;
     let vari = uploadedFileName.split('.');
-    fileName.textContent = uploadedFileName;
+    if (vari[vari.length - 1] == "png" || vari[vari.length - 1] == "jpg" || vari[vari.length - 1] == "jpeg") {
+        fileName.textContent = uploadedFileName;
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Solo se permiten imágenes',
+            timer: 2000
+        });
+        fileName.textContent = "ninguno";
+        document.getElementById("imagen").value = "";
+    }
 });

@@ -1,43 +1,9 @@
 function inicio(){
-	//listar();
     getEmployee();
     document.getElementById("op2").style.background='#BC4944';
     document.getElementById("op3").style.background='#BC4944';
 }
 
-function listar(){
-	$.getJSON('/employee/listar', function (lista) {
-		$('#contenido').empty();
-		const tabla = document.querySelector('#table tbody');
-		lista.forEach(e => {
-			const fila = document.createElement('tr');
-			fila.innerHTML += `
-				<td>${e.id}</td>
-				<td>${e.name}</td>
-				<td>${e.lastName}</td>
-                <td>${e.type}</td>  
-			    <td id="buttonsAcions">
-
-                <button type="button" class="btn-detail bDetail" name="btn-detail" 
-                onclick="bDetail2(${e.id})"><i class="far fa-address-card fa-lg"></i></button>
-
-					<a href="/employee/getEdit?id=${e.id}">
-					<button type="button" class="bEdit btn-edit" name="btn-edit">
-					<i class="far fa-edit fa-lg"></i></button></a>
-							
-				<button type="button" class="btn-delete bDelete" onclick="bDelete(${e.id})">
-				<i class="fas fa-trash-alt fa-lg"></i></button>
-			</td>`;
-			tabla.appendChild(fila);
-		});
-	})
-}
-
-function dar(num){
-    num= formatNumber(num);
-    return num;
- }
- 
  //Formato numerico
  function formatNumber(number) {
      number = String(number).replace(/\D/g, "");
@@ -52,7 +18,7 @@ function bDetail2(id){
 		modal+=' <li> Cédula: <label >'+employee.id+'</label></li>';
 		modal+=' <li> Nombre: <label>'+employee.name+'</label></li>';
 		modal+=' <li> Apellido: <label>'+employee.lastName+'</label></li>';
-        modal+=' <li> Salario: <label>'+ dar(employee.salary)+'</label></li>';
+        modal+=' <li> Salario: <label>'+ formatNumber(employee.salary)+'</label></li>';
 		modal+=' <li> Tipo: <label>'+employee.type+'</label></li>';
 		modal+=' <li> Teléfono: <label>'+employee.phone+'</label></li>';
 		modal+=' <li> Correo: <label>'+employee.mail+'</label></li>';
@@ -81,24 +47,6 @@ function bEdit(id){
     xhttp.open("POST", "/getEdit", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send("id=" + id);
-}
-
-/* Devuelve un html Para mostrar toda la informacion del emplado */
-function bDetail(id) {	
-    var xhttp = new XMLHttpRequest();
-    xhttp.open("POST", "/employee/detail", true);
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("id=" + id);
-
-    xhttp.onreadystatechange = function () {
-        if (xhttp.readyState == 4 && xhttp.status === 200) {
-            Swal.fire({
-                html: xhttp.responseText,
-                confirmButtonColor: '#3085d6',
-                confirmButtonText: 'Volver'
-            })
-        }
-    }
 }
 
 /*Elimina al empleado pero antes muestra mensaje de verificación 
@@ -168,7 +116,6 @@ function limpiar(){
     var xhttp = new XMLHttpRequest();
 
     if(text=' '){
-        //listar();
         resetTable();
     }
 }

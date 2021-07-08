@@ -104,6 +104,19 @@ input[type=text], input[type=password] {
     transition: 0.5s;
 }
 
+.bBack{
+    width: 60px;
+    height: 50px;
+    margin-left: 40px;
+    border: none;
+    color: #333;
+}
+
+
+.bBack:hover{
+    color: #517D3E;
+}
+
 .bRegister{
     width: 50%;
     background-color: #517D3E;

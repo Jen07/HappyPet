@@ -29,7 +29,6 @@ public class HomeController extends MainController {
     @ResponseBody
     public String checkLogin(@RequestParam String id, @RequestParam String password) {
         String check = svUser.checkUser(id, password);
-        System.out.println(check);
         return check;
     }
 
