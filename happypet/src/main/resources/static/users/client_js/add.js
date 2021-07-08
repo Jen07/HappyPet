@@ -73,7 +73,6 @@ const campos = {
     lastName: false,
     tel: false,
     passw: false,
-    passw2: false,
     mail: false,
     address: false
 }
@@ -102,10 +101,6 @@ const validarForm = (e) => {
                 validarCampo(expresiones.passw, e.target, 'passw', 'passw');
                 break;
 
-        case "passw2":
-            validarCampo(expresiones.passw2, e.target, 'passw2', 'passw2');
-            break;
-
         case "mail":
             validarCampo(expresiones.mail, e.target, 'mail', 'mail');
             break;
@@ -123,10 +118,10 @@ const validarCampo = (expresion, input, campo, nombre) => {
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
 
-        if (nombre != 'passw' && nombre != 'address' && nombre != 'passw2' ) {
-            document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
-            document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
+        if (nombre != 'passw' && nombre != 'address') {
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
         }
 
@@ -136,10 +131,10 @@ const validarCampo = (expresion, input, campo, nombre) => {
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
+        document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
 
-        if (nombre != 'passw' && nombre != 'address' && nombre != 'passw2' ) {
-            document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
-            document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
+        if (nombre != 'passw' && nombre != 'address') {
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
         }
         campos[nombre] = false;
@@ -160,8 +155,8 @@ textA.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (campos.name && campos.lastName && campos.tel && campos.salary && campos.passw
-        && campos.mail && campos.address && campos.passw) {
+    if (campos.name && campos.lastName && campos.tel && campos.id && campos.passw
+        && campos.mail && campos.address ) {
 
         registrar();
 
@@ -199,11 +194,8 @@ function revalidated(campo) {
     document.getElementById(`${campo}`).classList.add('formulario__grupo-incorrecto');
     document.getElementById(`${campo}`).classList.remove('formulario__grupo-correcto');
     document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
-
-    if (campo != "address") {
-        document.querySelector(`#${campo} i`).classList.add('fa-times-circle');
-        document.querySelector(`#${campo} i`).classList.remove('fa-check-circle');
-    }
+    document.querySelector(`#${campo} i`).classList.add('fa-times-circle');
+    document.querySelector(`#${campo} i`).classList.remove('fa-check-circle');
 }
 
 // Cuanto toca boton agregar con los campos ya correctos
@@ -213,8 +205,7 @@ function registrar() {
     datos.append("name", document.getElementById("name").value);
     datos.append("lastName", document.getElementById("lastName").value);
     datos.append("id", document.getElementById("id").value);
-    datos.append("tel", document.getElementById("tel").value);
-    datos.append("type", document.getElementById("type").value);
+    datos.append("phone", document.getElementById("tel").value);
     datos.append("passw", document.getElementById("passw").value);
     datos.append("mail", document.getElementById("mail").value);
     datos.append("address", document.getElementById("address").value);
@@ -225,7 +216,7 @@ function registrar() {
 
         $.ajax({
             type: "POST",
-            url: '/client/add',
+            url: '/client/addClient',
             data: datos,
             processData: false,
             contentType: false,
@@ -238,8 +229,15 @@ function registrar() {
                         timerProgressBar: true,
                         timer: 2000,
                     }).then((result) => {
-                        window.location.href = `/employee/inicio`;
+                        window.location.href = `/client/inicio`;
                     });
+                }else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ya esxiste esa cedula!',
+                        footer: 'intenta de nuevo'
+                    })
                 }
             },
             error: function (data) {
@@ -249,7 +247,7 @@ function registrar() {
     } else {
         $.ajax({
             type: "POST",
-            url: '/client/add2',
+            url: '/client/addClient2',
             data: datos,
             processData: false,
             contentType: false,
@@ -262,8 +260,15 @@ function registrar() {
                         showConfirmButton: false,
                         timer: 2000
                     }).then((result) => {
-                        window.location.href = `/employee/inicio`;
+                        window.location.href = `/client/inicio`;
                     });
+                }else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Ya esxiste esa cedula!',
+                        footer: 'intenta de nuevo'
+                    })
                 }
             },
             error: function (data) {
@@ -276,9 +281,18 @@ function registrar() {
 let inputFile = document.getElementById("imagen");
 let fileName = document.getElementById("file-name");
 
-//---------------------------------Solo para adentro no para crear cuenta
 inputFile.addEventListener('change', function (event) {
     let uploadedFileName = event.target.files[0].name;
     let vari = uploadedFileName.split('.');
-    fileName.textContent = uploadedFileName;
+    if (vari[vari.length - 1] == "png" || vari[vari.length - 1] == "jpg" || vari[vari.length - 1] == "jpeg") {
+        fileName.textContent = uploadedFileName;
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Solo se permiten imágenes',
+            timer: 2000
+        });
+        fileName.textContent = "ninguno";
+        document.getElementById("imagen").value = "";
+    }
 });

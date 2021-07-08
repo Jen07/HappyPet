@@ -1,5 +1,4 @@
 function inicio() {
-    dar('salary');
     document.getElementById("op2").style.background = '#BC4944';
     document.getElementById("op3").style.background = '#BC4944';
 }
@@ -9,7 +8,6 @@ const inputs = document.querySelectorAll("#formulario input");
 const textA = document.querySelectorAll("#formulario textarea");
 
 const expresiones = {
-    id: /^[0-9\-]{9}$/,
     name: /^[A-Za-zÁ-ÿ0-9\s]{4,10}$/,
     lastName: /^[A-Za-zÁ-ÿ0-9\s]{4,10}$/,
     tel: /^[0-9\-]{8,10}$/,
@@ -33,28 +31,29 @@ function valideKey(evt) {
     }
 }
 
-function dar(id) {
-    const number = document.querySelector("#" + id);
-    const element = number;
-    const value = element.value;
-    element.value = formatNumber(value);
+$("#salary").keypress(function () {
+    const number = document.querySelector('#salary');
+    number.addEventListener('keyup', (e) => {
+            const element = e.target;
+            const value = element.value;
+            element.value = formatNumber(value);
+    });
+});
+
+
+function formatNumber(n) {
+    n = String(n).replace(/\D/g, "");
+    return n === '' ? n : Number(n).toLocaleString(['ban', 'id']);
 }
 
-//Poner valida antes de poner formato numero
-function formatNum(id, e) {
-    const number = document.querySelector("#" + id);
-
-    if (valideKey(e)) {
-        const element = number;
-        const value = element.value;
-        element.value = formatNumber(value);
+$('#salary').keypress(function (tecla) {
+    if (tecla.charCode < 48 || tecla.charCode > 57) {
+        return false;
     }
-}
+});
 
-//Formato numerico
-function formatNumber(number) {
-    number = String(number).replace(/\D/g, "");
-    return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
+function numb(num){
+    return formatNumber(num);
 }
 
 //Formato cedula
@@ -91,7 +90,6 @@ function format(mascara, documento, evt) {
 
 //** Estilo del form Correcto - Incorrecto */
 const campos = {
-    id: true,
     name: true,
     lastName: true,
     tel: true,
@@ -104,10 +102,6 @@ const campos = {
 /**Validación de los campos */
 const validarForm = (e) => {
     switch (e.target.name) {
-
-        case "id":
-            validarCampo(expresiones.id, e.target, 'id', 'id');
-            break;
 
         case "name":
             validarCampo(expresiones.name, e.target, 'name', 'name');
@@ -145,10 +139,10 @@ const validarCampo = (expresion, input, campo, nombre) => {
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
 
         if (nombre != 'passw' && nombre != 'address') {
-            document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
-            document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
         }
 
@@ -158,10 +152,10 @@ const validarCampo = (expresion, input, campo, nombre) => {
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
+        document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
 
         if (nombre != 'passw' && nombre != 'address') {
-            document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
-            document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
             document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
         }
         campos[nombre] = false;
@@ -284,5 +278,15 @@ let fileName = document.getElementById("file-name");
 inputFile.addEventListener('change', function (event) {
     let uploadedFileName = event.target.files[0].name;
     let vari = uploadedFileName.split('.');
-    fileName.textContent = uploadedFileName;
+    if (vari[vari.length - 1] == "png" || vari[vari.length - 1] == "jpg" || vari[vari.length - 1] == "jpeg") {
+        fileName.textContent = uploadedFileName;
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Solo se permiten imágenes',
+            timer: 2000
+        });
+        fileName.textContent = "ninguno";
+        document.getElementById("imagen").value = "";
+    }
 });

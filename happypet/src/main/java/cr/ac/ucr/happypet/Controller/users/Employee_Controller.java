@@ -30,7 +30,7 @@ import cr.ac.ucr.happypet.Service.users.IUserService;
 
 @RestController
 @RequestMapping("/employee")
-public class Employee_Controller extends MainController{
+public class Employee_Controller extends MainController {
 
 	@Autowired
 	private IEmployeeService svEmployee;
@@ -40,9 +40,9 @@ public class Employee_Controller extends MainController{
 
 	private Logic log = new Logic();
 
-	/*Ingresa a cuenta employee*/	
+	/* Ingresa a cuenta employee */
 	@RequestMapping("/inicio")
-	public ModelAndView checkLogin(){		
+	public ModelAndView checkLogin() {
 		ModelAndView view = new ModelAndView();
 		view.setViewName("/users/employee/list_employee");
 		return view;
@@ -50,7 +50,7 @@ public class Employee_Controller extends MainController{
 
 	@RequestMapping("/listar")
 	public ResponseEntity<List<User>> listar() {
-		List<User> lista =log.listarEmployee(svUser.getAll());
+		List<User> lista = log.listarEmployee(svUser.getAll());
 		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 
@@ -85,7 +85,7 @@ public class Employee_Controller extends MainController{
 		return view;
 	}
 
-	// Direciona a paguina Editar 
+	// Direciona a paguina Editar
 	@RequestMapping(value = "getEdit", method = RequestMethod.GET)
 	public ModelAndView getEdit(@RequestParam("id") int id, Model model) {//
 		model.addAttribute("e", svEmployee.findByid(id));
@@ -95,30 +95,26 @@ public class Employee_Controller extends MainController{
 		return view;
 	}
 
-	
-	// Editar Empleado 
-	
+	// Editar Empleado
+
 	@PostMapping("/edit") // con foto
 	public String edit(@RequestParam("id") int id, @RequestParam("name") String name,
 			@RequestParam("lastName") String lastName, @RequestParam("salary") int salary,
 			@RequestParam("tel") String tel, @RequestParam("type") String type, @RequestParam("passw") String passw,
 			@RequestParam("address") String address, @RequestParam("mail") String mail,
-			@RequestParam("imagen") MultipartFile imagen) {
+			@RequestParam("imagen") MultipartFile imagen) throws IOException {
 
-		try {
-			if (!imagen.isEmpty()) {
-				Path addressImagen = Paths.get("src//main//resources//static//users/imageEmployee");
-				String addresAbsolute = addressImagen.toFile().getAbsolutePath();
-				byte[] byteImagen;
-				byteImagen = imagen.getBytes();
-				Path allAddress = Paths.get(addresAbsolute + "//" + imagen.getOriginalFilename());
-				Files.write(allAddress, byteImagen);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
+		String nombreImag = id + ".jpg";
+		if (!imagen.isEmpty()) {
+			Path addressImagen = Paths.get("src//main//resources//static//users/imageEmployee");
+			String addresAbsolute = addressImagen.toFile().getAbsolutePath();
+			byte[] byteImagen;
+			byteImagen = imagen.getBytes();
+			Path allAddress = Paths.get(addresAbsolute + "//" + nombreImag);
+			Files.write(allAddress, byteImagen);
 		}
-		
-		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), salary, type);
+
+		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, nombreImag, salary, type);
 		svEmployee.edit(id, e);
 
 		return "Listo";
@@ -130,7 +126,7 @@ public class Employee_Controller extends MainController{
 			@RequestParam("tel") String phone, @RequestParam("type") String type, @RequestParam("passw") String passw,
 			@RequestParam("address") String address, @RequestParam("mail") String mail,
 			@RequestParam("oldImage") String imagen) {
-			
+
 		Employee e = new Employee();
 		if (imagen.equals("")) {
 			e = new Employee(id, name, lastName, passw, mail, phone, address, salary, type);
@@ -143,32 +139,34 @@ public class Employee_Controller extends MainController{
 		return "Listo";
 	}
 
-	
 	@PostMapping("/add")
 	public String add(@RequestParam("id") int id, @RequestParam("name") String name,
 			@RequestParam("lastName") String lastName, @RequestParam("salary") int salary,
 			@RequestParam("tel") String tel, @RequestParam("type") String type, @RequestParam("passw") String passw,
 			@RequestParam("address") String address, @RequestParam("mail") String mail,
-			@RequestParam("imagen") MultipartFile imagen) {
+			@RequestParam("imagen") MultipartFile imagen) throws IOException {
 
-		try {
+		String result = "Agregado";
+		if (log.validateId(svUser.getAll(), id)) {
+			String nombreImag = id + ".jpg";
 			if (!imagen.isEmpty()) {
 				Path addressImagen = Paths.get("src//main//resources//static//users/imageEmployee");
 				String addresAbsolute = addressImagen.toFile().getAbsolutePath();
 				System.out.println(addresAbsolute);
 				byte[] byteImagen;
 				byteImagen = imagen.getBytes();
-				Path allAddress = Paths.get(addresAbsolute + "//" + imagen.getOriginalFilename());
+				Path allAddress = Paths.get(addresAbsolute + "//" + nombreImag);
 				Files.write(allAddress, byteImagen);
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	
-		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, imagen.getOriginalFilename(), salary, type);
-		svEmployee.save(e);
 
-		return "Agregado";
+			Employee e = new Employee(id, name, lastName, passw, mail, tel, address, nombreImag, salary, type);
+			svEmployee.save(e);
+
+		} else {
+			result = "falla";
+		}
+		
+		return result;
 	}
 
 	// añadir sin imagen
@@ -178,16 +176,21 @@ public class Employee_Controller extends MainController{
 			@RequestParam("tel") String tel, @RequestParam("type") String type, @RequestParam("passw") String passw,
 			@RequestParam("address") String address, @RequestParam("mail") String mail) {
 
-		Employee e = new Employee(id, name, lastName, passw, mail, tel, address, salary, type);
-		System.out.println(e.toString());
-		svEmployee.save(e);
+		String result = "Agregado";
+		if (log.validateId(svUser.getAll(), id)) {
+			Employee e = new Employee(id, name, lastName, passw, mail, tel, address, salary, type);
+			System.out.println(e.toString());
+			svEmployee.save(e);
+		} else {
+			result = "falla";
+		}
 
-		return "Agregado";
+		return result;
 	}
 
 	@PostMapping("/search")
-	public List<Employee> search(@RequestParam String text, @RequestParam String filtro, Model model) {
-		return log.search(svEmployee.listaTodo(), text, filtro);
+	public List<User> search(@RequestParam String text, @RequestParam String filtro, Model model) {
+		return log.search(log.listarEmployee(svUser.getAll()), text, filtro);
 	}
 
 }

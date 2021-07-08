@@ -1,4 +1,5 @@
 @charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
 
 /* dise�o en conjunto*/
 
@@ -11,7 +12,11 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
 }
+
+
 
 #bSearch {
     width: 50px;
@@ -61,17 +66,50 @@ select {
 }
 
 /*Dise�o de la tabla*/
-.table__container{
-    margin: 0;
-	margin-top: 1em;
-	height: 300px;
-    overflow: auto;
+.dTable {
+    justify-content: center;
 }
 
-.dTable {
-    width: 85%;
-    overflow-x: auto;
-    margin: 0px auto;
+.table__container{
+	height: 290px;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0%;
+}
+
+#table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: auto;
+    margin-left: auto;
+}
+
+.buttonPag{
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#pagging{
+    margin-left: 45px;
+}
+
+.pagging2 {
+    width: 28%;
+}
+
+.pagging {
+	color: white;
+	display: inline-block;
+	text-align: center;
+}
+
+#peerPage{
+    width: 25%;
+    padding: 0 0;
 }
 
 #encabesado {
@@ -86,10 +124,6 @@ select {
     width: 160px;
 }
 
-#table {
-    border-collapse: collapse;
-    width: 100%;
-}
 
 #table td,
 #table th {
@@ -125,13 +159,7 @@ select {
     color: black;
 }
 
-.pagging {
-	color: white;
-	margin-right: 0.3em;
-	margin-top: 0.5em;
-	display: inline-block;
-	text-align: center;
-}
+
 
 .bEdit:hover {
     background-color: #80ff80;

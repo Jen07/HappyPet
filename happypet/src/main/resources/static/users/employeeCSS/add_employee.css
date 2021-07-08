@@ -1,4 +1,5 @@
 @charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
 /* diseño del titulo*/
 
 .title {
@@ -62,6 +63,9 @@ input[type=text], #passw, select, #tel, #mail,.area{
     padding: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+    font-size: 1em;
 }
 
 

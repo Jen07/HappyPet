@@ -3,7 +3,6 @@ package cr.ac.ucr.happypet.Bussines;
 import java.util.LinkedList;
 
 import java.util.List;
-import cr.ac.ucr.happypet.Model.users.Employee;
 import cr.ac.ucr.happypet.Model.users.User;
 
 public class Logic {
@@ -30,11 +29,11 @@ public class Logic {
     return employess;
   }
 
-  public List<Employee> search(List<Employee> employees, String text, String filtro) {
-    List<Employee> list = new LinkedList<>();
+  public List<User> search(List<User> employees, String text, String filtro) {
+    List<User> list = new LinkedList<>();
     text=text.toLowerCase();
 
-    for (Employee e : employees) {
+    for (User e : employees) {
       if (filtro.equals("id")) { // id
         if(String.valueOf(e.getId()).toLowerCase().equals(text)){
           list.add(e);
@@ -78,6 +77,20 @@ public class Logic {
       }
     }
     return list;
+  }
+
+
+  public boolean validateId(List<User> lista,int id) {
+    boolean validate=true;
+
+    for (User u : lista) {
+      if(u.getId()==id){
+        System.out.println(u.getId()+" ------/////// "+id);
+        validate=false;
+        break;
+      }
+    }
+    return validate;
   }
 }
 

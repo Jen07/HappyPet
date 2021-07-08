@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <!-- Style -->
     <link rel="stylesheet" type="text/css" href="/general/style.css" />
-    <link rel="stylesheet" type="text/css" href="/general/header.css" />
     <link rel="stylesheet" type="text/css" href="/users/employeeCSS/add_employee.css" />
     <link rel="stylesheet" type="text/css" href="/users/employeeCSS/form.css" />
     <!-- Icon -->
@@ -53,7 +52,7 @@
                         <label class="subtitle"> C&eacute;dula:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" id="id" name="id" maxlength="11" th:value="${e.id}"
-                                title="Ingresar solo numero del 0-9 eje:1-166-0434"  />
+                                title="Este campo no es editable" readonly="readonly"/>
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
@@ -103,7 +102,6 @@
                         <label class="subtitle"> Salario:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" id="salary" name="salary" maxlength="15" th:value="${e.salary}"
-                                OnKeyPress="return formatNum('salary',event);"
                                 title="Ingresar solo numeros para el salario" >
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>

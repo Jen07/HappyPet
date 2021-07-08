@@ -17,15 +17,15 @@
 
     <div class="container">
         <form class="Dform2" id="formulario">
-            <br><br><br>
-
-            <h2 class="title">Resgitrarme como Usuario</h2><br />
-
+            <br>
+            <a  class="bBack" href="/"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+            <h2 class="title">Registrarme como Usuario</h2><br />
             <div class="div-form">
+
                 <div class="col-left input-field">
                     <i class="far fa-address-card"></i>
-                    <input type="text" placeholder="Numero de cedula" name="id" id="id" maxlength="9" pattern="[0-9]{9}"
-                        title="Ingresar solo numero del 0-9 eje:114725987" required="required">
+                    <input type="text" placeholder="Número de cédula" name="id" id="id" maxlength="9" pattern="[0-9]{9}"
+                        title="Ingresar solo números del 0-9 eje:114725987" required="required">
                 </div>
 
                 <div class="col-rigth input-field">
@@ -44,14 +44,15 @@
 
                 <div class="col-rigth input-field">
                     <i class="fas fa-phone"></i>
-                    <input type="text" placeholder="Telefono" name="phone" id="phone" maxlength="9" pattern="[0-9]{8}"
-                        title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" required="required">
+                    <input type="text" placeholder="Teléfono" name="phone" id="phone" maxlength="9" pattern="[0-9]{8}"
+                        title="Ingresar solo números del 0-9 no separarlos eje:85472505" required="required"
+                        OnKeyPress="return format('####-####',this,event);">     
                 </div>
 
                 <div class="fila-l input-field">
                     <i class="fas fa-envelope"></i>
                     <input type="email" placeholder="Correo" name="mail" id="mail" maxlength="25"
-                        title="Ingrese un correo valido" required="required">
+                        title="Ingrese un correo válido" required="required">
                 </div>
 
                 <div class="col-left input-field">
@@ -72,7 +73,7 @@
             </div>
 
         </form>
-        <br><br><br>
+        <br><br>
     </div>
     <!-- Imagenes -->
     <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
