@@ -248,7 +248,7 @@ const setButtons = () => {
 
     // Asignamos un boton para cada pagina de la matriz.
     for (let i = 0; i < animalsPG.length; i++) {
-        buttons.innerHTML += `<a onclick="changePage(${i})" class="btn-send bDetail pagging">${i + 1}</a>`
+        buttons.innerHTML += `<a onclick="changePage(${i})" class="btn-send bDetail pagging ${i == actualPage ? 'activeButton' : ''}">${i + 1}</a>`
     }
 }
 
