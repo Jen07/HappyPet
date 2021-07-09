@@ -179,10 +179,10 @@ const appendBill = (bill) => {
             <td id="buttonsAcions">
                 <div class="row justify-center">
 
-                <a class=" btn-edit bEdit" href="/billing/bill_detail/${bill.id}">
+                <a class=" btn-edit bEdit tip" href="/billing/bill_detail/${bill.id}" title="Detalles">
                     <i class="far fa-address-card"></i></a>
 
-                    <a class=" btn-delete bDelete" onclick="onArchive(${bill.id})"><i
+                    <a class=" btn-delete bDelete tip" onclick="onArchive(${bill.id})" title="Archivar"><i
                         class="fas fa-archive"></i></a>
                 </div>
             </td>
@@ -235,3 +235,4 @@ const filterBills = () => {
     }
 
 }
+

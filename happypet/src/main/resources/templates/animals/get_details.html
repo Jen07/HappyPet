@@ -73,6 +73,13 @@
 
 	<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 	<script th:src="@{/animals/assets/scripts/animal/details_splide.js}"></script>
+	<script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
+
+	<th:block th:if="${animal.type.toString() == 'C'}">
+		<script>
+			stilishMyAnimals();
+		</script>
+	</th:block>
 </body>
 
 

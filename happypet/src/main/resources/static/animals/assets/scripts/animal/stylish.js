@@ -23,4 +23,10 @@ function stilishMyAnimals() {
     document.getElementById("an7").style.background = '#BC4944';
 }
 
+function stilishCart() {
+    document.getElementById("an9").style.background = '#BC4944';
+    document.getElementById("cartNumber").style.background = '#e78c4d';
+}
+
+
 

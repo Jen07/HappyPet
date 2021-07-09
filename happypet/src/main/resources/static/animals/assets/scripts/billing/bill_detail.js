@@ -49,6 +49,7 @@ function sendMail(id) {
     });
 };
 
+/*
 if (document.referrer.endsWith('/billing/cart')) {
     sended++
     Swal.fire({
@@ -56,5 +57,7 @@ if (document.referrer.endsWith('/billing/cart')) {
         text: 'La factura ha sido enviada y llegará a su correo en unos momentos.',
         showConfirmButton: false,
         timer: 3000
-    }) 
+    })
 }
+
+*/
