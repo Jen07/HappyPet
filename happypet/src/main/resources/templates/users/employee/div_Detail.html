@@ -1,0 +1,15 @@
+<div class="card">
+    <div class="card__image" th:if="${employee?.imagen}" style="max-width: 20%">
+        <img th:src="@{'/users/imageEmployee/'+${employee.imagen} }"></img>
+    </div>
+    <div class="card__image" th:unless="${employee.imagen}" style="max-width: 20%">
+        <img th:src="@{/users/imageEmployee/default.jpg}"></img>
+    </div>
+    <label><b>cédula: </b></label><label th:text="${employee.id}"></label><br>
+    <label><b>Nombre: </b></label><label th:text="${employee.name}"></label><br>
+    <label><b>Apellido: </b></label><label th:text="${employee.lastName}"></label><br>
+    <label><b>Tipo: </b></label><label th:text="${employee.type}"></label><br>
+    <label><b>Teléfono: </b></label><label th:text="${employee.phone}"></label><br>
+    <label><b>Correo: </b></label><label th:text="${employee.mail}"></label><br>
+    <label><b>Dirreción: </b></label><label th:text="${employee.address}"></label><br>
+</div>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <link rel="stylesheet" type="text/css" href="/hotel/css/estiloRegistro.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
+
+    <title>Registro</title>
+</head>
+
+<body class="body">
+
+    <div class="navegationBar" th:replace="~{general/header::head}"></div>
+
+    <div class="containerRegistro" id="containerRegistro">
+
+        <section>
+            <div id="name">
+                <header>
+                    <h1>Registro de Hotel</h1>
+                </header>
+            </div>
+        </section>
+
+        <div class="main">
+
+            <form action="" class="formulario" id="formulario">
+                <!-- combo box nombres veterinaria -->
+                <div  id="grupo__veterinaria">
+                    <label for="nameSucursal" class="formulario__label">Nombre de Veterinaria: </label>
+                    <div class="formulario__grupo-input">
+                        <select name="codSucursal" id="codSucursal">
+                            <option th:each="suc : ${sucursales}" th:value="${suc.cedulaJuridica}"
+                                th:text="${suc.ciudad}"> </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- input precio -->
+                <div class="formulario__grupo" id="grupo__price">
+                    <label for="price" class="formulario__label">Precio por d&iacute;a: </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" name="price" id="price" class="formulario__input" 
+                           placeholder="2300" maxlength="12" OnKeyPress="return formatNum('price',event);">
+                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+                </div>
+
+                <!-- input telefono -->
+                <div class="formulario__grupo " id="grupo__phone">
+
+                    <label for="phone" class="formulario__label">Tel&eacute;fono: </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" name="phone" id="phone" class="formulario__input" placeholder="2710-0909"
+                        maxlength="12" OnKeyPress="return format('####-####',this,event);">
+                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros, minimo 8 digitos maximo
+                        10</p>
+                </div>
+
+                <!-- input # habitaciones -->
+                <div class="formulario__grupo " id="grupo__rooms">
+                    <label for="rooms" class="formulario__label">N&uacute;mero de habitaciones: </label>
+                    <div class="formulario__grupo-input">
+                        <input type="text" name="rooms" id="rooms" class="formulario__input"
+                            placeholder="100"  maxlength="20">
+                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+
+                </div>
+
+                <!-- text Area direccion -->
+                <div class="formulario__grupo " id="grupo__address">
+                    <label for="address" class="formulario__label">Direcci&oacute;n: </label>
+                    <textarea name="address" id="address" class="area " resize:none></textarea>
+                </div>
+
+                <!-- text Area descripcion-->
+                <div class="formulario__grupo " id="grupo__description">
+                    <label for="description" class="formulario__label">Descripci&oacute;n: </label>
+                    <textarea name="description" id="description" class="area " resize:none></textarea>
+                </div>
+
+
+                <div class="formulario__grupo-btn-enviar">
+                    <button id="boton" class="formulario__btn" title="Guardar el registro"
+                        type="submit">Guardar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+    <div class="footer" th:replace="~{general/footer::foot}"></div>
+
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="/hotel/js/registroAlert.js"></script>
+</body>
+
+</html>

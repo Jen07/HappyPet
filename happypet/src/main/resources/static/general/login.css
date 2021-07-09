@@ -1,0 +1,228 @@
+/*All de center of the web*/
+
+.container {
+    opacity: 0.8;
+    -moz-opacity: 0.8;
+    filter: alpha(opacity=90);
+    -khtml-opacity: 0.8;
+}
+
+body {
+    background-image: url('fondo5.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 106%;
+}
+
+.Dform2{
+    width: 70%;
+    border-radius: 7px;
+    background-color: #fcfcfc;
+    padding: 10px;
+    margin: 0px auto;
+}
+
+.Dform {
+    width: 28%;
+    border-radius: 7px;
+    background-color: #fcfcfc;
+    padding: 49px 29px;
+    margin: 0px auto;
+}
+
+.title {
+    font-size: 2.2rem;
+    color: #444;
+    margin-bottom: 10px;
+    margin-left: 240px;
+  }
+/*Columnas*/
+
+.div-form {
+    position: relative !important;
+    width: 100% !important;
+    height: 70%!important;
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.fila-l {
+    padding: 8.5px;
+    margin: 0px auto !important;
+    width: 96% !important;
+}
+
+  .col-rigth {
+    padding-right: 0px !important;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+    width: 46% !important;
+    padding: 3px;
+}
+
+.col-left {
+    padding-left: 0px !important;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+    width: 46% !important;
+    padding: 3px;
+}
+  
+
+/* Full-width inputs */
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+
+/* BOTON Ingresar*/
+
+.blogin {
+    width: 100%;
+    background-color: #517D3E;
+    border: none;
+    outline: none;
+    height: 100%;
+    border-radius: 20px;
+    color: black;
+    font-weight: bold;
+    font-style: inherit;
+    font-size: 18px;
+    padding: 18px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.bBack{
+    width: 60px;
+    height: 50px;
+    margin-left: 40px;
+    border: none;
+    color: #333;
+}
+
+
+.bBack:hover{
+    color: #517D3E;
+}
+
+.bRegister{
+    width: 50%;
+    background-color: #517D3E;
+    border: none;
+    outline: none;
+    height: 100%;
+    border-radius: 20px;
+    color: black;
+    font-weight: bold;
+    font-style: inherit;
+    font-size: 18px;
+    padding: 18px;
+    cursor: pointer;
+    transition: 0.5s;
+    margin-left: 220px;
+}
+
+.bRegister:hover{
+    background-color: green;
+}
+
+.blogin:hover {
+    background-color: green;
+}
+
+.subtitle2:hover{
+    color: rgb(21, 211, 62);
+    cursor: pointer;  
+    transform: scale(1.3);
+}
+
+/*All the type text */
+
+.subtitle {
+    font-style: oblique;
+    font-size: 1.1rem;
+}
+
+.subtitle2 {
+    text-decoration: none;
+    font-style: oblique;
+    color: #f44336;
+    font-size: 1.1rem;
+}
+
+/* Center the avatar image inside this container */
+
+.dBAdd {
+    background-image: url('usuario.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 40% 100%;
+    padding: 74px 5px;
+    height: 120%;
+    width: 100%;
+    background-color: #fcfcfc;
+    align-items: center;
+}
+
+.input-field {
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+  }
+  
+  .input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+  }
+  
+  .input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+  }
+  
+  .input-field input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+  }
+
+/* Change styles for span and cancel button on extra small screens */
+
+@media screen and (max-width: 300px) {
+    span.psw {
+        display: block;
+        float: none;
+    }
+    .blogin {
+        margin-left: 0;
+    }
+    .Dform {
+        padding: 20px 40px;
+        margin: 0px auto;
+    }
+}

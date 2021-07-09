@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Login</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!-- style-->
+    <link rel='stylesheet' type='text/css' media='screen' href='/general/login.css'>
+    <!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+</head>
+
+<body>
+    <br><br>
+
+    <div class="container">
+        <form class="Dform2" id="formulario">
+            <br>
+            <a  class="bBack" href="/"><i class="fas fa-arrow-circle-left fa-3x"></i></a>
+            <h2 class="title">Registrarme como Usuario</h2><br />
+            <div class="div-form">
+
+                <div class="col-left input-field">
+                    <i class="far fa-address-card"></i>
+                    <input type="text" placeholder="Número de cédula" name="id" id="id" maxlength="9" pattern="[0-9]{9}"
+                        title="Ingresar solo números del 0-9 eje:114725987" required="required">
+                </div>
+
+                <div class="col-rigth input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Nombre" name="name" id="name" maxlength="9"
+                        pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Jennifer"
+                        required="required">
+                </div>
+
+                <div class="col-left input-field">
+                    <i class="fas fa-user"></i>
+                    <input type="text" placeholder="Apellido" name="lastName" id="lastName" maxlength="9"
+                        pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Granados"
+                        required="required">
+                </div>
+
+                <div class="col-rigth input-field">
+                    <i class="fas fa-phone"></i>
+                    <input type="text" placeholder="Teléfono" name="phone" id="phone" maxlength="9" pattern="[0-9]{8}"
+                        title="Ingresar solo números del 0-9 no separarlos eje:85472505" required="required"
+                        OnKeyPress="return format('####-####',this,event);">     
+                </div>
+
+                <div class="fila-l input-field">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" placeholder="Correo" name="mail" id="mail" maxlength="25"
+                        title="Ingrese un correo válido" required="required">
+                </div>
+
+                <div class="col-left input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Contraseña" name="password" id="password" minlength="4" maxlength="12"
+                        required="required">
+                </div>
+
+                <div class="col-rigth input-field">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" placeholder="Confirmar" name="password2" id="password2" minlength="4" maxlength="12"
+                        required="required">
+                </div>
+            </div><br>
+
+            <div class="dBLogin">
+                <button type="submit" class="bRegister">Registrarme</button><br><br>
+            </div>
+
+        </form>
+        <br><br>
+    </div>
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script -->
+    <script src="/general/inicioS.js"></script>
+</body>
+
+</html>

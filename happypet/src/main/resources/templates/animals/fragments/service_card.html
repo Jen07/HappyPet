@@ -1,0 +1,13 @@
+<article class="card" th:fragment="card" th:object="${service}">
+
+    <div>
+        <h2 class="card__title" th:text="*{title}"> </h2>
+        <p class="card__subtitle" th:text="*{receivedAt}"></p>
+    </div>
+
+    <ul>
+        <li>Detalle: <span th:text="*{description}"></span></li>
+        <li>Precio: <span class="money" th:text="*{price}"></span></li>
+    </ul>
+
+</article>

@@ -1,0 +1,50 @@
+<article th:fragment="banner" class="animal-hero" th:object="${animal}">
+	<div>
+		<h2 class="ta-center p-1 m-0" th:text="${animal.name.isEmpty() ? 'N/A' : animal.name}">
+			Mascota
+		</h2>
+	</div>
+
+	<div class="row justify-center">
+		<div class="col s4 m-1 animal-hero__image">
+			<div th:replace="~{animals/fragments/animal_image :: image}"></div>
+		</div>
+
+		<div class="col s7 m-1">
+			<div class="row">
+				<div class="col s6">
+					<ul>
+						<li>
+							<span>Especie</span>
+							<span th:text="*{specie}"></span>
+						</li>
+						<li>
+							<span>Raza</span>
+							<span th:text="*{breed}"></span>
+						</li>
+						<li>
+							<span>Género</span>
+							<span th:text="*{gender}"></span>
+						</li>
+					</ul>
+				</div>
+				<div class="col s6">
+					<ul>
+						<li>
+							<span>Altura</span>
+							<span th:text="*{height}"></span>cm
+						</li>
+						<li>
+							<span>Peso</span>
+							<span th:text="*{weight}"></span>gr
+						</li>
+						<li>
+							<span>Nacimiento</span>
+							<span th:text="*{born}"></span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</article>

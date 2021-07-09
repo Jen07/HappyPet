@@ -1,0 +1,4 @@
+<th:block th:fragment="options">
+    <option selected value="">Seleccione una especie</option>
+    <option th:each="temp : ${species}" th:text="${temp.specie}" th:value="${temp.specie}"></option>
+</th:block>

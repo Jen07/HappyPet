@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Lista de Hoteles</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
+
+    <link rel="stylesheet" type="text/css" href="/hotel/css/tablaHotel.css">
+    <link rel="stylesheet" type="text/css" href="/hotel/css/estiloModal.css">
+    <link rel="stylesheet" type="text/css" href="/hotel/css/estiloRegistro.css">
+
+</head>
+
+<body>
+
+
+    <div class="navegationBar" th:replace="~{general/header :: head}"></div>
+
+
+    <div class="container">
+
+        <div>
+            <div class="d-btn-Add">
+                <a href="/hotel/registro">
+                    <button class="bAdd"><i class="fas fa-plus fa-2x"></i></button>
+                </a>
+            </div>
+    
+            <div class="dSearch">
+                <select id="cxBuscar" name="index">
+                    <option value="code">C&oacute;digo</option>
+                    <option value="ciudad">Ciudad</option>
+                </select>
+                <input type="text" id="search" name="search" onkeyup="limpiar()">
+                <button type="submit" id="bSearch" th:onclick="bSearch()"><i class="fas fa-search fa-lg"></i></button>
+            </div>
+        </div>
+    
+
+        <div class="tableContainer" id="contenedor">
+
+            <table id="table" class="table">
+                <caption>
+                    Lista de Hoteles
+                </caption>
+                <thead>
+                    <th>Ciudad Veterinaria</th>
+                    <th>Cantidad de Habitaciones</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                </thead>
+
+                <tbody class="cuerpo" id="contenido">
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="row justify-between">
+            <div id="pagging" class="buttons"></div>
+            <div class="registro">
+                <label for="">Registros por p&aacute;gina:</label>
+                <select name="" id="peerPage">
+                    <option value="5" >5</option>
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close" onclick="closeModal()"> &times;</span>
+                    <h2>Modificar Hotel</h2>
+                </div>
+                <div class="modal-body">
+
+                    <div th:replace="~{hotel/modificarForm::formModify}"> </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div id="ver" class="modal">
+            <div class="modal-content2">
+                <div class="modal-header">
+                    <span class="close" onclick="closeModal()"> &times;</span>
+                    <h1>Hotel</h1>
+                </div>
+
+                <div class="modal-body">
+
+                    <div>
+                        <div class="cardH" >
+                            <div class="body">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <footer th:replace="general/footer.html :: foot"> </footer>
+
+
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="/hotel/js/tablaAlert.js"></script>
+
+
+</body>
+
+
+</html>

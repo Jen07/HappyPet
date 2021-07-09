@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+
+<body>
+    <div th:fragment="head" class="head__container">
+        <script>
+            function relocate(route, id) {
+                window.location.href = `${route}/${id}`
+            }
+        </script>
+        <div class="head__logo">
+            <a href="/sucursal/">
+                <img th:src="@{/general/logo.svg}" alt="logo" class="head__image" />
+            </a>
+            <p>Happy Pet</p>
+        </div>
+
+        <nav class="head__nav">
+
+            <th:block th:if="${shoppingCart.getUser().getType()} == 'Administrador'">
+                <li class="dropdown" id="an1">
+                    <a href="#animales" class="head__link">Animales</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/animal/gestion_animal}" id="an2">Gestionar mascotas.</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#Beneficiencias" class="head__link">Beneficiencias</a>
+                    <div class="dropdown-content">
+                        <a href="#cursos">Cursos</a>
+                        <a href="#campanias">Campa&ntilde;as</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#Medicina" class="head__link">Medicina</a>
+                    <div class="dropdown-content">
+                        <a href="#laboratorio">Examenes de laboratorio</a>
+                        <a href="#anestesia">Anestesia general</a>
+                        <a href="#cirugia">Cirug&iacute;a general</a>
+                        <a href="#vacunas">Vacunas</a>
+                        <a href="#odontologia">Odontolog&iacute;a</a>
+                        <a href="#radiografias">Radiograf&iacute;as digitales</a>
+
+                    </div>
+                </li>
+                <li class="dropdown" id="op8">
+                    <a href="#Hotel" class="head__link">Hotel</a>
+                    <div class="dropdown-content">
+                        <a href="/hotel/mostrar" id="op10">Gesti&oacute;n Hotel</a>
+                    </div>
+
+
+                </li>
+                <li class="dropdown" id="op9">
+
+                    <a href="#Registro" class="head__link">Sucursal</a>
+                    <div class="dropdown-content">
+                        <a id="op11" href="/sucursal/listar">Gesti&oacute;n Sucursales</a>
+                    </div>
+                </li>
+
+                <li class="dropdown" id="op2">
+                    <a href="#Usuarios" class="head__link">Usuarios</a>
+                    <div class="dropdown-content">
+                        <a href="/employee/inicio" id="op3">Empleados</a>
+                        <a href="/client/inicio" id="op4">Clientes</a>
+                    </div>
+                </li>
+
+
+                <li class="dropdown" id="op5">
+                    <a href="#Productos" class="head__link">Productos</a>
+                    <div class="dropdown-content">
+                        <a id="op6" href="/clothes/inicio">Ropa</a>
+                        <a id="op7" href="/aliment/inicio">Alimentos</a>
+                    </div>
+                </li>
+
+                <li class="dropdown" id="op7">
+                    <a id="cerrarSesion" href="/entryLogin" class="head__link">Cerrar sesi&oacute;n</a>
+                </li>
+            </th:block>
+            <!-- ------------------------------------------------------------------------------------------------------->
+            <th:block th:unless="${shoppingCart.getUser().getType()} == 'Administrador'">
+
+                <li class="dropdown">
+                    <a href="#animales" class="head__link" id="an3">Animales</a>
+                    <div class="dropdown-content">
+                        <a th:href="@{/animal/list_animals/adopt}" id="an4">En adopci&oacute;n</a>
+                        <a th:href="@{/animal/list_animals/sale}" id="an5">En venta </a>
+
+                    </div>
+                </li>
+
+                <li class="dropdown" id="op5">
+                    <a href="#Productos" class="head__link">Productos</a>
+                    <div class="dropdown-content">
+                        <a id="op6" href="#ropa">Ropa</a>
+                        <a id="op7" href="#alimentos">Alimentos</a>
+                        <a href="#veterinarios">Veterinarios</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#servicios" class="head__link">Servicios</a>
+                    <div class="dropdown-content">
+                        <a href="/medicine/">Medicina</a>
+                        <a href="/reservacion/index">Hoteles</a>
+                        <a href="#beneficiencias">Beneficiencias</a>
+
+                    </div>
+                </li>
+
+                <li class="dropdown" id="an6">
+                    <a href="#perfil" class="head__link">Perfil</a>
+                    <div class="dropdown-content">
+
+                        <a th:onclick="relocate('/animal/my_animals',[[${shoppingCart.user.id}]])" id="an7"
+                            style="cursor: pointer;">Mis mascotas</a>
+
+                        <a th:onclick="relocate('/billing/my_bills',[[${shoppingCart.user.id}]])" id="an8"
+                            style="cursor: pointer;">Mis
+                            facturas</a>
+
+                        <a href="/">Cerrar sesión</a>
+                    </div>
+                </li>
+
+                <li class="dropdown">
+                    <a th:href="@{/billing/cart}" class="head__link cart" id="an9"><i
+                            class="fas fa-cart-arrow-down cart_ico"></i>
+                        <span class="cart_number" th:text="${shoppingCart.getSize()}" id="cartNumber"></span>
+                    </a>
+                </li>
+            </th:block>
+        </nav>
+    </div>
+</body>
+
+</html>

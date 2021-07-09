@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Formulario</title>
+ <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleInsertSucursal.css">
+ <link rel="stylesheet" type="text/css" href="/general/style.css">
+<!--icon-->
+<link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+
+  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleform.css"> 
+</head>
+<body class="bodyFormInsert">
+
+
+	    <div th:replace="general/header.html :: head">
+	
+		</div>
+
+    <div class="container" >
+      
+    <form action="" class="formulario containerForm" id="formulario">
+      <label for="" class="titulo">Registro Sucursal Veterinaria</label>
+    	 <div th:replace="branchOffice/fragmentos.html :: insertS"></div>
+     	<div class=" formulario__grupo-btn-enviar row2">
+             <input class=" formulario__btn" id="btnForm" type="submit" value="Registrar" >
+   		 </div>   
+    </form>
+      
+    </div>
+    
+
+ <footer th:replace="general/footer.html :: foot">
+    
+    </footer>
+
+
+  <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+   <script type="text/javascript" src="/branchOffice/js/jsInsertSucursal.js"></script> 
+  <script type="text/javascript" src="/branchOffice/js/validaciones.js"></script>
+  <script type="text/javascript" src="/branchOffice/js/validateform.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+</html>

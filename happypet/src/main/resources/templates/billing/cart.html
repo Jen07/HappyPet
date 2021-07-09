@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="~{animals/layout/head_block :: head}"></div>
+</head>
+
+<body class="cart">
+
+    <header>
+        <div th:replace="~{general/header :: head}"></div>
+        <link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
+    </header>
+    <div class="container">
+
+        <h1>Carrito de <span th:text="${shoppingCart.user.name}"></span></h1>
+
+        <p>Correo de facturación: <span th:text="${shoppingCart.user.mail}"></span></p>
+
+        <div class=" row ">
+            <div class=" row justify-end">
+                <a class=" mx-1 btn-delete bDelete ta-center" onclick="clearCart()"
+                    style="width: 180px;color: white;"><i class="fas fa-eraser"></i>
+                    Vaciar carrito</a>
+                <a class="btn-send bEdit ta-center" onclick="buyout()" style="width: 180px;color: white;"> <i
+                        class="fas fa-check-double"></i>
+                    Facturar</a>
+            </div>
+        </div>
+
+
+        <div id="cart_table" th:insert="~{billing/fragments/cart_table :: table}"></div>
+
+    </div>
+    </div>
+    <footer>
+        <div th:replace="~{general/footer :: foot}"></div>
+    </footer>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script th:src="@{/animals/assets/scripts/billing/cart.js}"></script>
+    <script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
+<script>
+    stilishCart();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
+    <!--style-->
+    <link rel="stylesheet" type="text/css" href="/general/style.css" />
+    <link rel="stylesheet" type="text/css" href="/users/employeeCSS/list_employee.css" />
+    <!-- <link rel="stylesheet" type="text/css" href="/general/header.css" /> -->
+    <!--icon-->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+    <title>Lista Empleados</title>
+</head>
+
+<body onload="inicio()">
+    <div class="navegationBar" th:replace="~{general/header :: head}"></div>
+
+    <div class="container">
+
+        <div>
+            <div class="d-btn-Add">
+                <a href="/employee/addPagina">
+                    <button class="bAdd"><i class="fas fa-user-plus fa-2x"></i></button>
+                </a>
+            </div>
+
+            <div class="dSearch">
+                <select id="cxBuscar" name="index">
+                    <option value="id">C&eacute;dula</option>
+                    <option value="name">Nombre</option>
+                    <option value="lastName">Apellido</option>
+                    <option value="type">Tipo de Empleado</option>
+                </select>
+                <input type="text" id="search" name="search" onkeyup="limpiar()">
+                <button type="submit" id="bSearch" th:onclick="bSearch()"><i class="fas fa-search fa-lg"></i></button>
+            </div>
+        </div>
+
+        <br /><br /><br /><br />
+        <div class="dTable" id="contenedor" th:replace="users/employee/table_list_employee"></div>
+    </div>
+
+    <div id="myModalDetails" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Empleado</h2>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script -->
+    <script src="/users/employee_js/funtion_employee.js"></script>
+</body>
+<!--<div class="footer" th:replace="~{general/footer :: foot}"></div>-->
+<div class="footer" th:replace="~{general/footer :: foot}"></div>
+
+</html>

@@ -1,0 +1,9 @@
+<div th:fragment="image" th:remove="tag" th:object="${animal}">
+
+    <div th:switch="*{specie}" th:remove="tag">
+        <img th:case="Perro" th:src="@{/animals/assets/images/icons/dog.svg}" alt="Dog default image" class="card__image" />
+        <img th:case="Gato" th:src="@{/animals/assets/images/icons/cat.svg}" alt="Dog default image" class="card__image" />
+        <img th:case="*" th:src="@{/animals/assets/images/icons/other.svg}" alt="Pet default image" class="card__image" />
+    </div>
+
+</div>

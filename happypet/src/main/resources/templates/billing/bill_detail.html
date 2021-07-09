@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="~{animals/layout/head_block :: head}"></div>
+    <link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
+</head>
+
+<body>
+
+    <header>
+        <div th:replace="~{general/header :: head}"></div>
+    </header>
+
+    <div class="container">
+        <div th:replace="~{billing/fragments/bill :: bill}"></div>
+
+        <div class="row my-2">
+            <div class="row justify-end ">
+
+                <a id="sendMail" class=" mx-1 btn-delete bDelete ta-center" th:onclick="confirmSend([[${bill.id}]])"
+                    style="width: 190px;color: white;">Reenviar a mi correo</i></a>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <footer>
+        <div th:replace="~{general/footer :: foot}"></div>
+    </footer>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script th:src="@{/animals/assets/scripts/billing/bill_detail.js}"></script>
+    <script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
+    <script>
+        stilishBills();
+    </script>
+</body>
+
+</html>

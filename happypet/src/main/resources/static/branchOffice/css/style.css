@@ -1,0 +1,735 @@
+/* ---------------------- */
+/*          Indice        */
+/* ---------------------- */
+/*
+    1. Globales
+    2. Tipografia
+    3. Layout
+    4. Componentes
+        4.1 Botones
+        4.2 Tables
+        4.3 Tarjetas
+        4.4 Banners
+        4.5 Forms
+    5. Utilidades
+*/
+
+/* ---------------------- */
+/*       1. Globales      */
+/* ---------------------- */
+
+/* Aqui van los estilos base. */
+
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+:root{
+
+    font-size: 1.2em;
+
+    /*---------------------------------------------*/
+    /*                 Color-Scheme                */
+    /*---------------------------------------------*/
+
+    --clr-neutral-100: #fcfcfc;
+    --clr-neutral-200: #d9d9d9;
+    --clr-neutral-300: #999999;
+    --clr-neutral-400: #8c8c8c;
+    --clr-neutral-500: #666666;
+    --clr-neutral-600: #333333;
+
+    --clr-primary-200: #80BD5D;
+    --clr-primary-400: #517D3E;
+    --clr-accent-300: #BC4944;
+    --clr-contrast-300: #E78C4D;
+
+    --clr-delete-400: #D8524E;
+    --clr-edit-400: #EFAC50;
+}
+
+html{
+    height: 100%;
+    width: 100%;
+    font-family: Newsreader;
+    
+}
+
+body{
+    min-height: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 0;  
+    background-color: var(--clr-neutral-200);
+}
+
+footer,header{
+	width:100%;
+}
+
+footer{
+    margin-top: auto;
+}
+
+
+img{
+    max-width: 100%;
+}
+
+
+/* ---------------------- */
+/*      2. Tipografia     */
+/* ---------------------- */
+
+/*  Aqui va todas las tipografias 
+    generales, h1-6, p, a etc */
+
+/* ---------------------- */
+/*        3. Layout       */
+/* ---------------------- */
+
+/*  Aqui van los elementos de estructuras. 
+    Por ejemplo navs, headers, footers */
+
+
+.head__container, .foot__container{
+    width: 100%;
+    background-color: var(--clr-primary-200);
+    color:var(--clr-neutral-200);
+}
+
+.head__container{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.head__logo{
+    padding:.5em;
+    margin-left: 12%;
+    transition: transform .250s;
+    display: flex;
+}
+
+.head__image{
+    height: 5em;
+    min-height: 5em;
+    
+}
+
+.head__logo p{
+   color:var(--clr-accent-300);
+   text-transform: uppercase;
+   text-align: center;
+   margin-left: .5em;
+   font-weight: bold;
+   padding-top: .5em;
+}
+
+
+.head__logo:hover{
+    cursor:pointer;
+    transform: scale(1.1);
+}
+
+.head__nav {
+    margin-right:  12%;   
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.head__nav .head__link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 1em 0.5em;
+    transition: transform .250s,
+    background-color 0.25s;
+    padding-top: 3em;
+     height: 100%;
+}
+
+.head__nav .head__link:hover {
+    background-color: var(--clr-contrast-300);
+    transform: scale(1.1);
+}
+
+
+.foot__copy{
+	text-align:center;
+	padding: 1em 1em;
+	font-size: .8em;
+}
+
+.foot__address{
+    margin-left: 10%;
+    padding-top: 1em;
+}
+
+.container{
+    width: 80%;
+    background-color: var(--clr-neutral-100);
+    min-height: 72vh;
+    padding: 2em 2em;
+}
+
+
+/*--- Componente que cubre pantalla y confirma eliminacion.---*/
+.confirm__cover{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-color: rgba(51, 51, 51,.4);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.displayed{
+    display: inherit;
+}
+
+.confirm__cover h2{
+    margin-top: 0;
+}
+.confirm__cover h4{
+    margin-bottom: 0;
+}
+
+.confirm__cover .wrapper{
+    background-color: var(--clr-neutral-200);
+    padding: 2em 3em;
+    border-radius: 1em;
+}
+
+
+
+/*--------------------------------------------*/
+
+/* ---------------------- */
+/*     4. Componentes     */
+/* ---------------------- */
+
+/*  Aqui van componentes sueltos 
+    que se van a utilizar
+*/
+
+/* 4.1 Botones */
+
+.btn{
+    text-decoration: none;
+    cursor: pointer;
+    padding: .5em 1em;
+    display: block;
+    text-align: center;
+    transition:transform .250s;
+}
+
+.btn-delete{
+    background-color: var(--clr-delete-400);
+    color:var(--clr-neutral-100);
+    border-radius: 50em;
+}
+
+.btn-edit{
+    background-color: var(--clr-edit-400);
+    color:var(--clr-neutral-100);
+    border-radius: 50em;
+}
+
+.btn-send{
+    background-color: var(--clr-primary-200);
+    color:var(--clr-neutral-100);
+    border-radius: 50em;
+}
+
+
+
+
+.type-buttons-register{
+    margin:1em;
+    padding:1em;
+    color: inherit;
+    flex-basis:calc(5 * calc(100% / 12));
+    border: 1px solid var(--clr-primary-400);
+    border-radius: 1em;
+    
+    transition: background-color .250s, color .250s;
+}
+
+.type-buttons-register:hover{
+    color: var(--clr-neutral-100);
+    background-color: var(--clr-primary-200);
+}
+
+
+/* 4.2 Tables */
+
+.table__container{
+  
+    margin: 1em;
+   
+    width: 70vw;
+}
+
+.animal_table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.animal_table th{
+    background-color: var(--clr-primary-400);
+    color:var(--clr-neutral-100);
+}
+.animal_table tbody tr:nth-of-type(even)  {
+    background-color: var(--clr-neutral-200)
+}
+
+.animal_table th, .animal_table td{
+    padding:.5em;
+}
+
+
+
+
+/* 4.3 Cartas */
+
+.card{
+
+    max-width: 20em;
+    min-width: 15em;
+
+    box-shadow: .5em .5em 1em -1em;
+    border-radius: .5em;
+    overflow: hidden;
+}
+
+.card+.card{
+    margin-left: 10em
+}
+
+.card ul{
+    list-style: none;
+    padding: 0;
+}
+
+.card li{
+    border-bottom:1px solid var(--clr-neutral-300);
+    margin: .5em 0;
+    padding: .5em .5em;
+}
+
+.card__title{
+    color: var(--clr-accent-300);
+}
+
+.card__title, .card__subtitle{
+    text-align: center;
+}
+
+.card__image{
+    max-width: 100%;
+    max-height: 10em;
+    display: flex;
+    margin: auto;
+}
+
+.card__btn{
+    background-color: var(--clr-accent-300);
+    border-radius: 10em;
+    margin: 1em;
+    color: var(--clr-neutral-200);
+    text-transform: uppercase;
+    transition: filter .250s, transform .250s;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
+.card__btn:hover{
+    transform: scale(1.02);
+    filter: brightness(1.2);
+}
+
+/* 4.4 Banners */
+
+
+.animal-hero{
+    min-width: 20em;
+    background: rgb(34,193,195);
+    background: linear-gradient(45deg, var(--clr-contrast-300) 0%, var(--clr-primary-200) 100%);
+}
+
+.animal-hero ul{
+    list-style: none;
+    padding: 0;
+    margin: 0 .5em;
+}
+
+.animal-hero li{
+    list-style: none;
+    padding: .5em;
+    color: var(--clr-neutral-600)
+}
+
+
+.animal-hero li span:first-of-type{
+    display: block;
+    color:var(--clr-accent-300);
+    border-bottom: 1px solid var(--clr-neutral-400);
+}
+
+.animal-hero__image{
+    place-self: center;
+
+
+}
+
+.animal-hero__image img{
+    width: 60%;
+    min-width: 15em;
+    border-radius: 1em;
+}
+
+/* 4.5 Forms */
+
+
+.animal__form{
+    width: 80%;
+    padding: 2em;
+    margin: 1em 0;
+
+    max-width: 40em;
+    border-radius: 1em;
+    background-color: var(--clr-neutral-200);
+}
+
+.animal__form input, .animal__form select{
+    width: 100%;
+    padding:.5em 0 .5em 0;
+    margin-bottom: 1em;
+
+    outline: none;
+    border:none;
+}
+
+.animal__form [type="text"], .animal__form [type="number"], .animal__form [type="date"]{
+    border-bottom: 1px solid var(--clr-neutral-400); 
+}
+
+.animal__form select, .animal__form [type="submit"]{
+    border: 1px solid var(--clr-neutral-400); 
+}
+
+.animal__form [type="radio"], .animal__form [type="checkbox"]{
+    width: auto;
+
+}
+
+.animal__form .tagged_input input{
+    width: 70%;
+}
+
+.animal__form .tagged_input span{
+    padding:.5em 1em .5em 0 ;
+}
+
+
+.animal_filter [type="text"]{
+    width: 80%;
+    padding: .8em;
+}
+.animal_filter [type="submit"]{
+    width: 15%;
+}
+
+
+/* ---------------------- */
+/*     5. Utilidades      */
+/* ---------------------- */
+
+/*----------------------------------------------------------------------------------*/
+/*                         De aqui en adelante clases de utility.                   */
+/*----------------------------------------------------------------------------------*/
+
+.money:before{
+    content: "¢";
+}
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    padding: auto;
+    flex-basis: fill;
+    width: 100%;
+}
+
+/* Set de 12 columnas*/
+
+.col{
+    flex-basis: 100%;
+}
+
+.col.s1{
+    flex-basis:calc(1 * calc(100% / 12));
+}
+
+.col.s2{
+    flex-basis:calc(2 * calc(100% / 12));
+}
+
+.col.s3{
+    flex-basis:calc(3 * calc(100% / 12));
+}
+
+.col.s4{
+    flex-basis:calc(4 * calc(100% / 12));
+}
+
+.col.s5{
+    flex-basis:calc(5 * calc(100% / 12));
+}
+
+.col.s6{
+    flex-basis:calc(6 * calc(100% / 12));
+}
+
+.col.s7{
+    flex-basis:calc(7 * calc(100% / 12));
+}
+
+.col.s8{
+    flex-basis:calc(8 * calc(100% / 12));
+}
+
+.col.s9{
+    flex-basis:calc(9 * calc(100% / 12));
+}
+
+.col.s10{
+    flex-basis:calc(10 * calc(100% / 12));
+}
+
+.col.s11{
+    flex-basis:calc(11 * calc(100% / 12));
+}
+
+.col.s12{ 
+    flex-basis:calc(12 * calc(100% / 12));
+}
+
+/* Crea un offset que permite dejar espacio entre columnas*/
+
+.col.off-s1{
+    margin-left:calc(1 * calc(100% / 12));
+}
+.col.off-s2{
+    margin-left:calc(2 * calc(100% / 12));
+}
+
+.col.off-s3{
+    margin-left:calc(3 * calc(100% / 12));
+}
+.col.off-s4{
+    margin-left:calc(4 * calc(100% / 12));
+}
+.col.off-s5{
+    margin-left:calc(5 * calc(100% / 12));
+}
+.col.off-s6{
+    margin-left:calc(6 * calc(100% / 12));
+}
+.col.off-s7{
+    margin-left:calc(7 * calc(100% / 12));
+}
+.col.off-s8{
+    margin-left:calc(8 * calc(100% / 12));
+}
+.col.off-s9{
+    margin-left:calc(9 * calc(100% / 12));
+}
+.col.off-s10{
+    margin-left:calc(10 * calc(100% / 12));
+}
+.col.off-s11{
+    margin-left:calc(11 * calc(100% / 12));
+}
+.col.off-s12{
+    margin-left:calc(12 * calc(100% / 12));
+}
+
+.col.center{
+    display: flex;
+    justify-content: center;
+}
+
+.m-0{
+    margin: 0em;
+}
+
+.m-1{
+    margin: .5em;
+}
+
+.m-2{
+    margin: 2em;
+}
+
+.m-3{
+    margin: 3em;
+}
+
+.m-4{
+    margin: 4em;
+}
+
+.m-5{
+    margin: 5em;
+}
+
+.p-1{
+    padding: 1em;
+}
+
+.p-2{
+    padding: 2em;
+}
+
+.p-3{
+    padding: 3em;
+}
+
+.p-4{
+    padding: 4em;
+}
+
+.p-5{
+    padding: 5em;
+}
+
+/* Crea un padding en el eje x*/
+
+.px-1{
+    padding: 0 1em;
+}
+
+.px-2{
+    padding: 0 2em;
+}
+
+.px-3{
+    padding: 0 3em;
+}
+
+.px-4{
+    padding: 0 4em;
+}
+
+.px-5{
+    padding: 0 5em ;
+}
+
+/* Crea un padding en el eje y*/
+
+.py-1{
+    padding: 1em 0;
+}
+
+.py-2{
+    padding: 2em 0;
+}
+
+.py-3{
+    padding: 3em 0;
+}
+
+.py-4{
+    padding: 4em 0;
+}
+
+.py-5{
+    padding: 5em 0 ;
+}
+
+
+/* Crea un padding en el eje x*/
+
+.mx-1{
+    margin: 0 1em;
+}
+
+.mx-2{
+    margin: 0 2em;
+}
+
+.mx-3{
+    margin: 0 3em;
+}
+
+.mx-4{
+    margin: 0 4em;
+}
+
+.mx-5{
+    margin: 0 5em ;
+}
+
+/* Crea un padding en el eje y*/
+
+.my-1{
+    margin: 1em 0;
+}
+
+.my-2{
+    margin: 2em 0;
+}
+
+.my-3{
+    margin: 3em 0;
+}
+
+.my-4{
+    margin: 4em 0;
+}
+
+.my-5{
+    margin: 5em 0 ;
+}
+
+.ta-center{
+    text-align: center;
+}
+
+.ta-right{
+    text-align: right;
+}
+
+.justify-center{
+    justify-content: space-evenly;
+}
+
+.justify-evenly{
+    justify-content: space-evenly;
+}
+
+
+
+
+.details-table{
+    width: 80%;
+}
+.details-table tr td:first-child{
+    text-align: right;
+}
+
+
+
+.selected{
+    background-color: var(--clr-contrast-300);
+    transform: scale(1.1);
+}
