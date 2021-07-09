@@ -1,60 +1,54 @@
 <th:block th:fragment="table">
     <div class="row justify-between">
-        <p>Facturas archivadas: <span th:text="${archievedTotal}"></span></p>
+        <div>
+            <p>Facturas archivadas: <span id="totalArchieved" th:text="${archievedTotal}"></span></p>
+        </div>
 
+        <div class="search__container">
 
+            <input type="date" value="date" id="search__input" class="search__input" name="search__input">
 
-
-        <a class=" btn-send bDelete ta-center" th:onclick="onUnArchive([[${user}]])"
-            style="width: 250px;color: white;"><i class="fas fa-outdent"></i>
-            Desarchivar facturas</a>
-
-
-
-
-
+            </form>
+            <a class=" btn-send bDelete bSearch " onclick="filterBills()"><i class="fas fa-search"></i></a>
+            <a class=" btn-delete bDelete bReload " onclick="resetTable()"><i class="fas fa-undo-alt"></i></a>
+        </div>
 
     </div>
 
-    <table id="table">
-        <thead id="encabesado">
-            <tr>
-                <th>Numero</th>
-                <th>Fecha</th>
-                <th>Total</th>
-                <th>Acciones</th>
+    <div class="tContainer">
+        <table id="table">
+            <thead id="encabesado">
+                <tr>
+                    <th>Numero</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
 
-            </tr>
-        </thead>
-        <tbody class="tbody" id="contenido">
+                </tr>
+            </thead>
+            <tbody class="tbody" id="contenido">
+            </tbody>
 
-            <tr th:each="bill :${bills}" th:id="${bill.id}">
-                <td> <span th:text="${bill.id}"></span></td>
-                <td> <span th:text="${bill.formattedDate}"></span></td>
-                <td> <span th:text="${bill.getTotalString()}"></span></td>
+        </table>
+    </div>
 
+    <div class="row justify-between">
+        <div id="pagging"></div>
+        <div class="per_page__container">
+            <label for="">Registros por página:</label>
+            <select name="" id="peerPage" class="per_page">
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+            </select>
+        </div>
+    </div>
 
-
-
-                <td id="buttonsAcions">
-                    <div class="row justify-center">
-
-                        <a class=" btn-edit bEdit" th:href="@{/billing/bill_detail/{id} (id=${bill.id})}">
-                            <i class="far fa-address-card"></i></a>
-
-                        <a class=" btn-delete bDelete" th:onclick="onArchive([[${bill.id}]])"><i
-                                class="fas fa-archive"></i></a>
-                    </div>
-                </td>
-
-
-
-            </tr>
-        </tbody>
-
-    </table>
-
-
+    <div class="row justify-end">
+        <a class=" btn-send bDelete ta-center my-1" th:onclick="onUnArchive([[${user}]])"
+            style="width: 250px;color: white;"><i class="fas fa-outdent"></i>
+            Desarchivar facturas</a>
+    </div>
 
 
 

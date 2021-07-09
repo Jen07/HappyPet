@@ -121,11 +121,13 @@
 
                 <li class="dropdown" id="an6">
                     <a href="#perfil" class="head__link">Perfil</a>
-                    <div class="dropdown-content" >
+                    <div class="dropdown-content">
 
-                        <a th:onclick="relocate('/animal/my_animals',[[${shoppingCart.user.id}]])" id="an7">Mis mascotas</a>
+                        <a th:onclick="relocate('/animal/my_animals',[[${shoppingCart.user.id}]])" id="an7"
+                            style="cursor: pointer;">Mis mascotas</a>
 
-                        <a th:onclick="relocate('/billing/my_bills',[[${shoppingCart.user.id}]])" id="an8">Mis
+                        <a th:onclick="relocate('/billing/my_bills',[[${shoppingCart.user.id}]])" id="an8"
+                            style="cursor: pointer;">Mis
                             facturas</a>
 
                         <a href="/">Cerrar sesión</a>

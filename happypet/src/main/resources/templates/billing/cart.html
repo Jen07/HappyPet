@@ -13,12 +13,14 @@
     </header>
     <div class="container">
 
-        <h1>Items</h1>
+        <h1>Carrito de <span th:text="${shoppingCart.user.name}"></span></h1>
 
-        <div class="row ">
-            <div class="row justify-end mx-4">
-                <a class=" mx-1 btn-delete bDelete ta-center" onclick="clearCart()" style="width: 180px;color: white;"><i
-                        class="fas fa-eraser"></i>
+        <p>Correo de facturación: <span th:text="${shoppingCart.user.mail}"></span></p>
+
+        <div class=" row ">
+            <div class=" row justify-end">
+                <a class=" mx-1 btn-delete bDelete ta-center" onclick="clearCart()"
+                    style="width: 180px;color: white;"><i class="fas fa-eraser"></i>
                     Vaciar carrito</a>
                 <a class="btn-send bEdit ta-center" onclick="buyout()" style="width: 180px;color: white;"> <i
                         class="fas fa-check-double"></i>

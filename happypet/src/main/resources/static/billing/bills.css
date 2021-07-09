@@ -1,0 +1,49 @@
+.bSearch,
+.bReload {
+	padding: 0.2em;
+	cursor: pointer;
+}
+
+.search__input {
+	padding: 0.2em;
+	outline: none;
+}
+
+.search__input:focus {
+	border: 2px solid var(--clr-primary-200);
+}
+
+.search__container {
+	align-self: center;
+}
+
+.tContainer {
+	border: 1px solid var(--clr-neutral-200);
+	height: 18em;
+	overflow: auto;
+}
+
+.pagging {
+	color: white;
+	margin-right: 0.3em;
+	margin-top: 0.5em;
+	display: inline-block;
+	text-align: center;
+}
+
+.activeButton {
+	background-color: var(--clr-accent-300);
+}
+
+#filterContent {
+	width: 11em;
+}
+
+.per_page__container {
+	margin-top: 0.2em;
+}
+
+.per_page {
+	padding: 0.8em;
+	width: 6em;
+}

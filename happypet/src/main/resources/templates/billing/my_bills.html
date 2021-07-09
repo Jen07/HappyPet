@@ -4,6 +4,7 @@
 <head>
     <div th:replace="~{animals/layout/head_block :: head}"></div>
     <link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
+    <link th:href="@{/billing/bills.css}" Content-Type: text/css rel="stylesheet" />
 </head>
 
 <body th:id="${user}">
@@ -14,8 +15,6 @@
 
     <div class="container ">
 
-
-
         <div id="table_cont">
             <div th:replace="~{billing/fragments/bill_table :: table}"></div>
         </div>
@@ -25,7 +24,7 @@
     <footer>
         <div th:replace="~{general/footer :: foot}"></div>
     </footer>
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script th:src="@{/animals/assets/scripts/billing/my_bills.js}"></script>
     <script th:src="@{/animals/assets/scripts/billing/bill_detail.js}"></script>
     <script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>

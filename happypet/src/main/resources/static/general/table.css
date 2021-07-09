@@ -55,6 +55,7 @@
 	background-size: 50%;
 	color: black;
 	line-height: 2em;
+	cursor: pointer;
 }
 
 .bEdit:hover {

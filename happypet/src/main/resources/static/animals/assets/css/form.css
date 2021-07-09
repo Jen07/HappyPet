@@ -23,7 +23,7 @@
 
 .formulario__validacion-estado {
 	position: relative;
-	left: 275px;
+	left: 230px;
 	bottom: 30px;
 	z-index: 100;
 	font-size: 16px;
@@ -52,4 +52,16 @@
 
 .subtitle {
 	font-weight: bold;
+}
+
+.formulario__grupo-correcto .formulario__validacion-estado {
+	color: #1ed12d;
+	opacity: 1;
+	visibility: visible;
+}
+
+.formulario__grupo-incorrecto .formulario__validacion-estado {
+	color: red;
+	opacity: 1;
+	visibility: visible;
 }

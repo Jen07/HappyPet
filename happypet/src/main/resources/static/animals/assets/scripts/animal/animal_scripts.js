@@ -165,7 +165,7 @@ let animalsPG = [];
 //Contenedor de filas.
 let animalsTD = [];
 // Registros por pagina.
-let perPage = 10;
+let perPage = 5;
 
 // Obtiene los animales y los envia a convertir a HTML
 const getAnimals = () => {

@@ -33,21 +33,26 @@
 
                             <div class="formulario__grupo col s5" id="grupo__owner">
                                 <label for="combo_client" class="formulario__label subtitle">Dueño</label>
+                              
                                 <select id="combo_client" name="owner" class="input_field formulario__input">
                                     <div th:replace="~{animals/fragments/user_options :: options}"></div>
                                 </select>
                                 <i class="formulario__validacion-estado fas fa-times-circle"></i>
+
                                 <p class="formulario__input-error">Debe seleccionar una opcion</p>
                             </div>
 
+                          
+                                
+                              
+                           
 
 
-
-                            <div class="formulario__grupo col s5">
-                                <label for="combo_client" class="formulario__label subtitle">Filtrar dueño</label>
-                                <input type="text" placeholder="Filtro..." id="combo_filter" class="input_field">
+                                <div class="formulario__grupo col s5">
+                                    <label for="combo_client" class="formulario__label subtitle">Filtrar dueño</label>
+                                    <input type="text" placeholder="Filtro..." id="combo_filter" class="input_field">
+                                </div>
                             </div>
-                        </div>
                     </th:block>
                 </th:block>
             </div>
