@@ -2,6 +2,7 @@ package cr.ac.ucr.happypet.Model.animals;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -137,6 +138,11 @@ public class Animal implements Serializable {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    public String getFormattedDate() {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        return format.format(born);
     }
 
     @Override

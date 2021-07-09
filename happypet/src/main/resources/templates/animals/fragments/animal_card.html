@@ -9,7 +9,7 @@
 
 	<ul>
 		<li>Raza: <span th:text="*{breed}"></span></li>
-		<li>Nacimiento: <span th:text="*{born}"></li>
+		<li>Nacimiento: <span th:text="*{formattedDate}"></li>
 	</ul>
 
 	<div th:switch="${animal.type}">

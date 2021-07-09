@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class Clothes_Controller extends MainController {
     @Autowired
     private IClothesService svClothes;
     private LogicProduct log = new LogicProduct();
-    Calendar calendario = new GregorianCalendar();
+ 
 
     @RequestMapping("/inicio")
     public ModelAndView inicio() {
