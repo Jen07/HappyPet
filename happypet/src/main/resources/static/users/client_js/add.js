@@ -1,4 +1,4 @@
-function inicio() {
+window.onload = function(){
     document.getElementById("op2").style.background='#BC4944';
     document.getElementById("op4").style.background='#BC4944';
 }
@@ -211,8 +211,11 @@ function registrar() {
     datos.append("address", document.getElementById("address").value);
 
     if (document.getElementById("imagen").value != '') { // edita la imagen
-        var file_data = $("#imagen").prop("files")[0];
-        datos.append("imagen", file_data);
+        // var file_data = $("#imagen").prop("files")[0];
+        // datos.append("imagen", file_data);
+
+        reduceFileSize(document.getElementById('imagen').files[0], 500 * 1024, 1000, Infinity, 0.9, blob => {
+            datos.append('imagen', blob, blob.name || "file.jpg");
 
         $.ajax({
             type: "POST",
@@ -244,6 +247,7 @@ function registrar() {
                 console.log(data);
             }
         });
+    });
     } else {
         $.ajax({
             type: "POST",

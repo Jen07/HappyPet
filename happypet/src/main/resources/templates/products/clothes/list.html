@@ -8,8 +8,6 @@
     <!-- style-->
     <link rel="stylesheet" type="text/css" href="/general/style.css" />
     <link rel="stylesheet" type="text/css" href="/products/productsCSS/style.css" />
-<link rel="stylesheet" type="text/css" href="/general/header.css" />
-
     <!-- Icon -->
     <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
 </head>
@@ -27,9 +25,9 @@
 
             <div class="dSearch">
                 <select id="cxBuscar" name="index">
-                <option value="codigo">c&oacute;digo</option>
                 <option value="name">Nombre</option>
-                <option value="price">Precio</option>
+                <option value="color">Color</option>
+                <option value="talla">Talla</option>
                 <option value="type">Tipo de Animal</option>
             </select>
                 <input type="text" id="search" name="search" onkeyup="limpiar()">
@@ -39,6 +37,16 @@
 
         <br/><br/><br/><br/>
         <div class="dTable" id="contenedor" th:include="/products/clothes/table"></div>
+    </div>
+
+    <div id="myModalDetails" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2>Cliente</h2>
+            </div>
+            <div class="modal-body"></div>
+        </div>
     </div>
 
     <!-- Imagenes -->

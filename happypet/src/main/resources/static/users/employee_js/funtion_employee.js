@@ -1,49 +1,58 @@
-function inicio(){
+function inicio() {
     getEmployee();
-    document.getElementById("op2").style.background='#BC4944';
-    document.getElementById("op3").style.background='#BC4944';
+    document.getElementById("op2").style.background = '#BC4944';
+    document.getElementById("op3").style.background = '#BC4944';
 }
 
- //Formato numerico
- function formatNumber(number) {
-     number = String(number).replace(/\D/g, "");
-     return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
- }
+//Formato numerico
+function formatNumber(number) {
+    number = String(number).replace(/\D/g, "");
+    return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
+}
 
-function bDetail2(id){
-    $.getJSON('/employee/detail2/' + id, function(employee) {
-		var modal = '';
-		modal+='<div class="cardD">';
-		modal+='<ul>';
-		modal+=' <li> Cédula: <label >'+employee.id+'</label></li>';
-		modal+=' <li> Nombre: <label>'+employee.name+'</label></li>';
-		modal+=' <li> Apellido: <label>'+employee.lastName+'</label></li>';
-        modal+=' <li> Salario: <label>'+ formatNumber(employee.salary)+'</label></li>';
-		modal+=' <li> Tipo: <label>'+employee.type+'</label></li>';
-		modal+=' <li> Teléfono: <label>'+employee.phone+'</label></li>';
-		modal+=' <li> Correo: <label>'+employee.mail+'</label></li>';
-		modal+='<li> Dirreción:  <label>'+employee.address+'</label></li>';
-		modal+='</ul>';
-		modal+='<div>';
-		modal+='</div>';
-		$('.modal-body').html(modal);
-		openModal();
-	});
+
+
+function bDetail2(id) {
+    $.getJSON('/employee/detail2/' + id, function (employee) {
+        var modal = '';
+        modal += '<div class="cardD">';
+        modal += '<ul>';
+        if(employee.imagen!=null){
+            modal += `<li><div class="card__image" style="max-width: 20%"> 
+            <img src="/users/imageEmployee/${employee.imagen}"></img></div>
+            </li>`;
+        }else{
+            modal += `<li><div class="card__image" style="max-width: 20%">
+         <img src="/users/imageEmployee/default.jpg"></img></div></li>`;
+        }
+        modal += ' <li> Cédula: <label >' + employee.id + '</label></li>';
+        modal += ' <li> Nombre: <label>' + employee.name + '</label></li>';
+        modal += ' <li> Apellido: <label>' + employee.lastName + '</label></li>';
+        modal += ' <li> Salario: ₡<label>' + formatNumber(employee.salary) + '</label></li>';
+        modal += ' <li> Tipo: <label>' + employee.type + '</label></li>';
+        modal += ' <li> Teléfono: <label>' + employee.phone + '</label></li>';
+        modal += ' <li> Correo: <label>' + employee.mail + '</label></li>';
+        modal += '<li> Dirreción:  <label>' + employee.address + '</label></li>';
+        modal += '</ul>';
+        modal += '<div>';
+        $('.modal-body').html(modal);
+        openModal();
+    });
 }
 
 function closeModal() {
-	var modal = document.getElementById("myModalDetails");
-	modal.style.display = "none";
+    var modal = document.getElementById("myModalDetails");
+    modal.style.display = "none";
 }
 
 function openModal() {
-	var modal = document.getElementById("myModalDetails");
-	modal.style.display = "block";
+    var modal = document.getElementById("myModalDetails");
+    modal.style.display = "block";
 }
 
 
-function bEdit(id){
-	var xhttp = new XMLHttpRequest();
+function bEdit(id) {
+    var xhttp = new XMLHttpRequest();
     xhttp.open("POST", "/getEdit", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send("id=" + id);
@@ -68,54 +77,54 @@ function bDelete(id) {
             xhttp.open("POST", "/employee/delete", true);
             xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhttp.send("id=" + id);
-			var res=xhttp.responseText;
+            var res = xhttp.responseText;
             xhttp.onreadystatechange = function () {
                 if (xhttp.readyState == 4 && xhttp.status === 200) {
-				if(res="Elimino"){
-                    Swal.fire({
-                        position: '',
-                        icon: 'success',
-                        title: 'Se Elimino con Exito!',
-                        showConfirmButton: false,
-                        timer: 2000
-                    })
-                    resetTable();
+                    if (res = "Elimino") {
+                        Swal.fire({
+                            position: '',
+                            icon: 'success',
+                            title: 'Se Elimino con Exito!',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        resetTable();
+                    }
                 }
-               }
             }
         }
     })
 }
 
-function bSearch(){
-var filtar = document.getElementById("cxBuscar").value;
-var text = document.getElementById("search").value;
-var div = document.getElementById("contenedor");
-var xhttp = new XMLHttpRequest();
+function bSearch() {
+    var filtar = document.getElementById("cxBuscar").value;
+    var text = document.getElementById("search").value;
+    var div = document.getElementById("contenedor");
+    var xhttp = new XMLHttpRequest();
 
-xhttp.open("POST", "/employee/search", true);
+    xhttp.open("POST", "/clothes/search", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("text=" + text+"&filtro="+filtar);
+    xhttp.send("text=" + text + "&filtro=" + filtar);
 
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4 && xhttp.status === 200) {
             employeePG = [];
             employeeTD = [];
             loadRows([...JSON.parse(xhttp.responseText)]);
         }
-        if(xhttp.status !==200){
+        if (xhttp.status !== 200) {
             alert("Fallas temporales");
         }
     };
 }
 
 //ve si el campo de busqueda esta vacio
-function limpiar(){
+function limpiar() {
     var text = document.getElementById("search").value;
     var div = document.getElementById("contenedor");
     var xhttp = new XMLHttpRequest();
 
-    if(text=' '){
+    if (text = ' ') {
         resetTable();
     }
 }

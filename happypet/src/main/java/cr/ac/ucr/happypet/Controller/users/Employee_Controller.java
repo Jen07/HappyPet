@@ -54,15 +54,6 @@ public class Employee_Controller extends MainController {
 		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 
-	/* Obtiene la información del empleado a mostrar en detalles */
-	@PostMapping("/detail")
-	public ModelAndView getDetailEmployee(@RequestParam int id, Model model) {
-		model.addAttribute("employee", svEmployee.findByid(id));
-
-		ModelAndView view = new ModelAndView();
-		view.setViewName("/users/employee/div_Detail");
-		return view;
-	}
 
 	/* Obtiene la información del empleado a mostrar en detalles */
 	@GetMapping("/detail2/{id}")

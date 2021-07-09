@@ -1,4 +1,5 @@
 @charset "ISO-8859-1";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
 
 /* dise�o en conjunto*/
 
@@ -11,7 +12,11 @@ select {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
 }
+
+
 
 #bSearch {
     width: 50px;
@@ -60,13 +65,51 @@ select {
     float: right;
 }
 
-
 /*Dise�o de la tabla*/
-
 .dTable {
-    width: 85%;
-    overflow-x: auto;
-    margin: 0px auto;
+    justify-content: center;
+}
+
+.table__container{
+	height: 290px;
+    overflow: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0%;
+}
+
+#table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-left: auto;
+    margin-left: auto;
+}
+
+.buttonPag{
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#pagging{
+    margin-left: 45px;
+}
+
+.pagging2 {
+    width: 28%;
+}
+
+.pagging {
+	color: white;
+	display: inline-block;
+	text-align: center;
+}
+
+#peerPage{
+    width: 25%;
+    padding: 0 0;
 }
 
 #encabesado {
@@ -81,10 +124,6 @@ select {
     width: 160px;
 }
 
-#table {
-    border-collapse: collapse;
-    width: 100%;
-}
 
 #table td,
 #table th {
@@ -105,17 +144,6 @@ select {
     text-align: center;
 }
 
-
-/*
-.bEdit{
-    background-image:url('/imageEmployee/editar1.png');
-    background-color: #F8ED0C ;
-}
-
-.bDetail{
-    background-image:url('/imageEmployee/curriculum.png');
-}*/
-
 .bDelete,
 .bDetail,
 .bEdit {
@@ -131,6 +159,8 @@ select {
     color: black;
 }
 
+
+
 .bEdit:hover {
     background-color: #80ff80;
 }
@@ -145,4 +175,104 @@ select {
 
 .container {
     padding: 7px 15px;
+}
+
+/*Modal*/
+/* Modal Content */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 40px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    
+  }
+  
+  .modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 42%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+  }
+  
+  /* Add Animation */
+  @-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+  }
+  
+  @keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+  }
+  
+  /* The Close Button */
+  .close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+  }
+  
+  .modal-body {padding: 2px 16px;}
+  
+  .modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+  }
+
+  
+
+/* css de la estructura del js*/
+
+.cardD{
+
+    max-width:	30em;
+    min-width: 15em;
+
+    box-shadow: .5em .5em 1em -1em;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.cardD ul{
+    list-style: none;
+    padding: 0;
+}
+
+.cardD li{
+    border-bottom:2px solid var(--clr-neutral-300);
+    
+    padding: 10px 10px;
+   	
+}
+
+.activeButton{
+	background-color: var(--clr-accent-300);
 }
