@@ -130,3 +130,4 @@ const makeSend = () => {
         fetch('/animal/save_image', { method: 'POST', body }).then();
     });
 }
+

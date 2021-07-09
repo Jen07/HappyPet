@@ -4,7 +4,7 @@ window.addEventListener("load", startup);
 function startup() {
 	addListeners();
 	clickSelectProvincia();
-	
+	document.getElementById("op9").style.background='#BC4944';
 }
 
 function addListeners() {

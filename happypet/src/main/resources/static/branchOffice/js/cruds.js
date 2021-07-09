@@ -5,7 +5,8 @@ window.addEventListener("load", startup);
 
 function startup() {
 	addListeners();
-	
+	document.getElementById("op9").style.background='#BC4944';
+    document.getElementById("op11").style.background='#BC4944';
 }
 
 
