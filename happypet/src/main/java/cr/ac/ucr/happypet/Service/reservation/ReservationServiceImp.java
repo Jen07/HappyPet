@@ -52,4 +52,9 @@ public class ReservationServiceImp implements IReservation {
         return repo.findById(id).get();
     }
 
+    @Override
+    public List<ReservationHotel> getReservationUser(int idUser) {
+        return repo.getReservationUser(idUser);
+    }
+
 }

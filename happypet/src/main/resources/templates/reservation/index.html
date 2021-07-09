@@ -36,8 +36,8 @@
             <img class="imagen2" src="/reservation/images/gato.jpg">
 
             <button class="btn btn-reserv" th:onclick="modalForm([[${shoppingCart.user.id}]])">RESERVAR</button>
-            <button class="btn btn-ver">RESERVACIONES</button>
-        </div>
+            <button class="btn btn-ver" th:onclick="listado([[${shoppingCart.user.id}]])">RESERVACIONES</button>
+          
 
         <div id="myModal" class="modal">
             <div class="modal-content">

@@ -89,3 +89,34 @@ function save(){
 		}
       });
 }
+
+//---------------------------------------------------------------------------------------------------
+
+//LISTADO Reservaciones 
+function listado(idUser) {
+	
+	window.location.href = `/reservacion/listado`; 
+	$.getJSON("/reservaciones/list/" + idUser, function (r) {
+		var html = '';
+		alert("hola");
+		alert(r.length);
+		if (r.length == 0) {
+              html+= '<h1>No hay reservaciones</h1>'
+		} else {
+			array.forEach(r => {
+				html += '<ul >';
+				html += '<li ><label> Nombre:     ' + r.user.name + ' </label></li> ';
+				html += '<li ><label> Mascota:     ' + r.animal.name + ' </label></li> ';
+				html += '<li ><label> Hotel:    ' + r.hotel.sucursal.ciudad + '   </label></li>';
+				html += '<li ><label>Fecha llegada:   ' + r.entryDate + ' </label></li>';
+				html += '<li ><label>Fecha Salida:     ' + r.departureDate + ' </label></li>';
+				html += '</ul>';
+			});
+		}
+		$('.body').html(html);
+
+		var modal = document.getElementById("ver");
+		modal.style.display = "block";
+	});
+
+}

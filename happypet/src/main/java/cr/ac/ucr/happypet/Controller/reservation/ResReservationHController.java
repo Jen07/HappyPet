@@ -40,8 +40,11 @@ public class ResReservationHController {
 
     @GetMapping(value="/listaHotels")
     public ResponseEntity<List<Hotel>> listaH(){
+        
         List<Hotel>lista= repoH.buscarTodas();
-       
+          for (Hotel hotel : lista) {
+              hotel.setReservations(null);
+          }
     	return new ResponseEntity<>(lista,HttpStatus.OK); 
     }
 
@@ -61,5 +64,17 @@ public class ResReservationHController {
            reservation.setUser(repoU.findById(idUser));
            repoR.save(reservation);
         return new ResponseEntity<>(HttpStatus.OK); 
+    }
+
+    @GetMapping(value="/list/{userId}")
+    public ResponseEntity<List<ReservationHotel>> list(@PathVariable int userId){
+        List<ReservationHotel> list= repoR.getReservationUser(userId);
+         for (ReservationHotel r : list) {
+            r.getAnimal().setBorn(null);
+            r.getAnimal().setImages(null);
+            r.getAnimal().setRegisterId(null);
+            r.getUser().setReservations(null);
+        }
+        return new ResponseEntity<>(list,HttpStatus.OK); 
     }
 }

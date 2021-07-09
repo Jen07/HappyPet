@@ -15,4 +15,6 @@ public interface IReservation {
 	void modify(ReservationHotel reservation, int id);
 	
 	ReservationHotel buscarPorId(Integer id); 
+
+	List<ReservationHotel> getReservationUser(int idUser);
 }
