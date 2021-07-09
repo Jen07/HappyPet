@@ -15,4 +15,5 @@ public interface iCanton extends JpaRepository<Canton, Integer>{
 	@Query(value="{call id_provincia(:idIn)}",nativeQuery = true)
 	List<Canton> idProvincia(@Param("idIn") int idInt);
 	
+	Canton findByCodigoProvinciaAndNombreCanton(int idProvincia,String nameCanton);
 }

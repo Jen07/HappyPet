@@ -2,21 +2,10 @@
 window.addEventListener("load", startup);
 
 
-window.onclick = function(event) {
-	var modal = document.getElementById("myModal");
-	if (event.target == modal) {
-		modal.style.display = "none";
-	}
-}
-
-
-
 
 function startup() {
 	addListeners();
-	ListarSucursales();
-
-
+	
 }
 
 
@@ -95,7 +84,8 @@ function DeleteSucursal(idSucursal) {
 				timerProgressBar: true,
 				timer: 2000,
 			}).then((result) => {		
-					ListarSucursales();
+				resetTable();
+				
 			})
 		},
 		error: function(errorMessage) {
@@ -112,54 +102,6 @@ function DeleteSucursal(idSucursal) {
 }
 
 
-function ListarSucursales() {
-
-	$.getJSON('/sucursales/listSucursal', function(json) {
-		var tr = '';
-		for (var i = 0; i < json.length; i++) {
-			tr += '<tr>';
-			tr += '<td>' + json[i].cedulaJuridica + '</td>';
-			tr += '<td>' + json[i].provincia + '</td>';
-			tr += '<td>' + json[i].ciudad + '</td>';
-			//tr += '<td>' + json[i].correo + '</td>';
-			//tr += '<td>' + json[i].telefono + '</td>';
-			tr += '<td> <button class="btn-sucursal btns-send  far fa-address-card fa-1x"> </button> <button class="btn-sucursal btns-delete fas fa-trash-alt fa-1x"></button> <button class="btn-sucursal btns-edit far fa-edit fa-1x"></i></button> </td>';
-			tr += '</tr>';
-		}
-		$('.tbody').html(tr);
-
-	});
-}
-
-
-/*
-function ListarSucursales() {
-	
-		
-		$('#table_sucursal').dataTable().fnDestroy();
-		
-	$.getJSON('/sucursales/listSucursal', function(data) {
-
-	$('#table_sucursal').DataTable({
-		"data": data,
-		"columns": [
-			{"data": "cedulaJuridica"},
-			{"data": "provincia"},
-			{"data": "ciudad"},
-			{"defaultContent": '<button class="btn-sucursal btns-send  far fa-address-card fa-1x"> </button> <button class="btn-sucursal btns-delete fas fa-trash-alt fa-1x"></button> <button class="btn-sucursal btns-edit far fa-edit fa-1x"></i></button>'}
-		
-		],
-		"language": {
-            "url": "//cdn.datatables.net/plug-ins/1.10.16/i18n/Spanish.json"
-        },
-		lengthMenu: [[5, 10, -1], [5, 10, "All"]],
-
-	});
-	
-	});
-}
-
-*/
 
 function getSucursalById(idSucursal) {
 
@@ -191,6 +133,7 @@ function getSucursalById(idSucursal) {
 			document.querySelector("#CedulaJuridica").addEventListener("click", alertNoedit);
 			$select.addEventListener("click", clickSelectProvincia);
 			openModal(result.ciudad);
+			paintFormUpdate();
 
 
 		},
@@ -200,7 +143,7 @@ function getSucursalById(idSucursal) {
 				text: 'Problemas conectando a la base de datos',
 				showConfirmButton: false,
 				timerProgressBar: true,
-				timer: 2000,
+				timer: 1500,
 			})
 		}
 	});
@@ -248,7 +191,7 @@ function updateSucursal() {
 		horaFinal: $('#horaFinal').val(),
 	}
 
-	if (validarCamposVacios(sucursal)) {
+	
 
 		$.ajax({
 			url: "/sucursales/updateSucursal",
@@ -267,7 +210,7 @@ function updateSucursal() {
 
 				});
 				closeModal();
-				ListarSucursales();
+				resetTable();
 
 
 			},
@@ -277,12 +220,43 @@ function updateSucursal() {
 					text: 'Problemas conectando a la base de datos',
 					showConfirmButton: false,
 					timerProgressBar: true,
-					timer: 2000,
+					timer: 1500,
 				})
 			}
 		});
+	
+}
 
-	}
+function filterTable() {
+    let filterBy = document.getElementById("selectSearch").value;
+    let filter = document.getElementById("inputSearch").value;
+	alert(filterBy);
+	alert(filter);
+
+    $.ajax({
+		type: "GET",
+		url: `/sucursales/filter_table?filterBy=${filterBy}&filter=${filter}`,
+		success: function(result) {
+			
+			sucursalPG = [];
+			sucursalTD = [];
+	
+			loadRows(result);
+	
+		},
+		error: function(errorMessage) {
+			Swal.fire({
+				icon: 'error',
+				text: 'Problemas conectando a la base de datos',
+				showConfirmButton: false,
+				timerProgressBar: true,
+				timer: 2000,
+			})
+
+		}
+	});
+    
+
 }
 
 

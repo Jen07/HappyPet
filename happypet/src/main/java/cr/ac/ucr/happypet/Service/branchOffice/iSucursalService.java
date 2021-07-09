@@ -13,6 +13,8 @@ public interface iSucursalService {
 	public int save(Sucursal s);
 	public void delete(String id);
 	public boolean update(Sucursal s);
-	
+	List<Sucursal> findByCedulaJuridica(String id);
+    List<Sucursal> findByProvincia(int id);
+    List<Sucursal> findByCiudad(String id);
 	
 }

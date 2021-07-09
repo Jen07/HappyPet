@@ -50,8 +50,11 @@ function fillSelectCiudad(codigoSucursal, ciudad) {
 		for (var i = 0; i < result.length; i++) {
 
 			const option = document.createElement('option');
-			option.value = result[i];
-			option.text = result[i];
+			option.value = result[i].codigoCanton;
+			option.text = result[i].nombreCanton;
+			if(!result[i].estado){
+				option.classList.add('cityFull');
+			}
 			$select.appendChild(option);
 
 		}
@@ -93,5 +96,19 @@ function clickSelectProvincia() {
 }
 
 
+function reloadSucursales(e,inputSearch){
+	var code = (e.which) ? e.which : e.keyCode;
 
+	if (code == 8) { // backspace.
+		
+		if(inputSearch.value ==''){
+			
+			resetTable();
+		}
+	} 
+}
 
+function cleanInputAndReloadSucursales(){
+	document.getElementById("inputSearch").value="";
+	resetTable();	
+}

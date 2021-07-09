@@ -4,7 +4,7 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleInsertSucursal.css">
-<link rel="stylesheet" type="text/css" href="/branchOffice/css/style.css">
+ <link rel="stylesheet" type="text/css" href="/general/style.css">
  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleIndex.css">
   <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleform.css"> 
 </head>
@@ -20,13 +20,13 @@
     <form action="" class="formulario containerForm" id="formulario">
       <label for="" class="titulo">Registro Sucursal Veterinaria</label>
     	 <div th:replace="branchOffice/fragmentos.html :: insertS"></div>
-     	<div class="formulario__grupo formulario__grupo-btn-enviar row2">
-             <input class=" formulario__btn" type="button" value="Registrar" onclick="addSucursal()">
+     	<div class=" formulario__grupo-btn-enviar row2">
+             <input class=" formulario__btn" id="btnForm" type="submit" value="Registrar" >
    		 </div>   
     </form>
       
     </div>
-      
+    
 
  <footer th:replace="general/footer.html :: foot">
     

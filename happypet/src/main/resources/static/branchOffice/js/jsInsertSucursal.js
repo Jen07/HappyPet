@@ -9,8 +9,8 @@ function startup() {
 
 function addListeners() {
 	let $select = document.getElementById("provincia");
-	let telefono = document.getElementById("telefono");
 	$select.addEventListener("click", clickSelectProvincia);
+	
 	
 }
 
@@ -18,20 +18,20 @@ function addListeners() {
 
 function addSucursal() {
 
-
+let cantonDeleted=document.getElementById("ciudad").value;
 
 	var sucursal = {
 		cedulaJuridica: $('#CedulaJuridica').val(),
 		provincia: $('#provincia').val(),
-		ciudad: $('#ciudad').val(),
+		ciudad: $('#ciudad option:selected').html(),
 		correo: $('#correo').val(),
 		telefono: $('#telefono').val(),
 		horaInicio: $('#horaInicio').val(),
 		horaFinal: $('#horaFinal').val(),
 	}
-
+		
 		$.ajax({
-			url: "/sucursales/addSucursal",
+			url: "/sucursales/addSucursal/"+cantonDeleted,
 			data: JSON.stringify(sucursal),
 			type: "POST",
 			contentType: "application/json;charset=utf-8",
@@ -44,7 +44,7 @@ function addSucursal() {
 					confirmButtonText: `Ok`,
 				}).then((result) => {
 					if (result.isConfirmed) {
-
+						clearForm();
 						document.getElementById('CedulaJuridica').value = "";
 						document.getElementById('provincia').value = 1,
 							fillSelectCiudad(1);

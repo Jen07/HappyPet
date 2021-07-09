@@ -1,6 +1,5 @@
 package cr.ac.ucr.happypet.Service.branchOffice;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +17,29 @@ public class cantonService implements iCantonService{
 		private iCanton data;
 	
 	@Override
-	public List<String> getCantones(int codigoProvincia) {
-			List<String> cantones= new LinkedList<String>();
-			List<Canton> temp=data.idProvincia(codigoProvincia);
-			for (Canton canton : temp) {
-				cantones.add(canton.getNombre_canton());
-			}
+	public List<Canton> getCantones(int codigoProvincia) {
+			
+			List<Canton> cantones=data.idProvincia(codigoProvincia);
+			
 			
 		return cantones;
+	}
+
+	@Override
+	public void updateCanton(Canton canton) {
+		data.save(canton);
+	}
+
+	@Override
+	public Canton getCanton(int idCanton) {
+		
+		return data.getById(idCanton);
+	}
+
+	@Override
+	public Canton getCantonByNameAndProvincia(int idProvincia, String nameCanton) {
+		
+		return data.findByCodigoProvinciaAndNombreCanton(idProvincia, nameCanton);
 	}
 
 	

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import cr.ac.ucr.happypet.Model.branchOffice.Canton;
 import cr.ac.ucr.happypet.Model.branchOffice.Sucursal;
 import cr.ac.ucr.happypet.Service.branchOffice.iCantonService;
 import cr.ac.ucr.happypet.Service.branchOffice.iSucursalService;
@@ -41,10 +43,8 @@ public class apiController {
 	}
 	
 	@GetMapping("/listCantones/{codigoProvincia}")
-public ResponseEntity<List<String>> getListCantones(@PathVariable int codigoProvincia){
-		
-		System.out.println("entro a la api por cantones=        "+codigoProvincia);
-		return new ResponseEntity<List<String>>(svC.getCantones(codigoProvincia),HttpStatus.OK);
+public ResponseEntity<List<Canton>> getListCantones(@PathVariable int codigoProvincia){
+		return new ResponseEntity<List<Canton>>(svC.getCantones(codigoProvincia),HttpStatus.OK);
 	}
 
 
@@ -54,9 +54,12 @@ public ResponseEntity<List<String>> getListCantones(@PathVariable int codigoProv
 		return new ResponseEntity<Sucursal>(sv.searchById(id),HttpStatus.OK);
 	}
 
-	@PostMapping("/addSucursal")
-	public ResponseEntity<Integer> addSucursal(@RequestBody Sucursal sucursal){
-		System.out.println(sucursal.getCedulaJuridica());
+	@PostMapping("/addSucursal/{idCanton}")
+	public ResponseEntity<Integer> addSucursal(@PathVariable int idCanton,@RequestBody Sucursal sucursal){		
+	
+		Canton canton=svC.getCanton(idCanton);
+		canton.setEstado(false);
+		svC.updateCanton(canton);
 		sv.save(sucursal);
 		return new ResponseEntity<Integer>(1,HttpStatus.OK);
 	}
@@ -70,8 +73,35 @@ public ResponseEntity<List<String>> getListCantones(@PathVariable int codigoProv
 	
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<Void> deleteSucursal(@PathVariable String id){
-		
+		Sucursal sucursal =sv.searchById(id);
+		Canton canton=svC.getCantonByNameAndProvincia(sucursal.getProvincia(),sucursal.getCiudad());
+		canton.setEstado(true);
+		svC.updateCanton(canton);
 		sv.delete(id);
 		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
+	@GetMapping("/filter_table")
+    public ResponseEntity<List<Sucursal>> filterTable(@RequestParam String filterBy, String filter) {
+		System.out.println(filterBy+"-------------------------------");
+		System.out.println(filter+"-------------------------------");
+        List<Sucursal> sucursal = null;
+
+        switch (filterBy) {
+            case "cedulaJuridica":
+			sucursal = sv.findByCedulaJuridica(filter);
+                break;
+
+            case "Provincia":
+			sucursal = sv.findByProvincia(Integer.parseInt(filter));
+                break;
+
+            case "Ciudad":
+			sucursal = sv.findByCiudad(filter);
+                break;
+
+        }
+		System.out.println(sucursal.size()+"-------------------------------");
+		return new ResponseEntity<List<Sucursal>>(sucursal,HttpStatus.OK);
 	}
 }

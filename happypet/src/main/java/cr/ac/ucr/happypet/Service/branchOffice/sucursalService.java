@@ -54,6 +54,28 @@ public class sucursalService implements iSucursalService{
 	}
 
 
+	@Override
+	public List<Sucursal> findByCedulaJuridica(String id) {
+		System.out.println("entrando a encontrar cedula 2");
+		System.out.println("base de datos"+data.findByCedulaJuridica(id));
+		return data.findByCedulaJuridica(id);
+	}
+
+
+	@Override
+	public List<Sucursal> findByProvincia(int id) {
+		
+		return data.findByProvincia(id);
+	}
+
+
+	@Override
+	public List<Sucursal> findByCiudad(String id) {
+		
+		return data.findByCiudad(id);
+	}
+
+
 	
 
 

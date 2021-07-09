@@ -1,46 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Newsreader:wght@300;400;500;700&family=Roboto:ital,wght@0,300;1,100&display=swap');
 
-*, *::after, *::before{
+
+
+
+.bodylist{
+    background-color: var(--clr-neutral-200);
+    align-items: center;
+}
+
+#selectSearch, #inputSearch {
+    width: 37%;
+    padding: 10px 7px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     box-sizing: border-box;
 }
 
-:root{
-
-    font-size: 1.2em;
-
-    /*---------------------------------------------*/
-    /*                 Color-Scheme                */
-    /*---------------------------------------------*/
-
-    --clr-neutral-100: #fcfcfc;
-    --clr-neutral-200: #d9d9d9;
-    --clr-neutral-300: #999999;
-    --clr-neutral-400: #8c8c8c;
-    --clr-neutral-500: #666666;
-    --clr-neutral-600: #333333;
-
-    --clr-primary-200: #80BD5D;
-    --clr-primary-400: #517D3E;
-    --clr-accent-300: #BC4944;
-    --clr-contrast-300: #E78C4D;
-
-    --clr-delete-400: #D8524E;
-    --clr-edit-400: #EFAC50;
+#bSearch {
+    width: 50px;
+    height: 40px;
+    background-color: #80BD5D;
+    padding: 5px 10px;
+    border: none;
+    -webkit-box-shadow: inset 0 0 15px 0 rgb(0 0 0 / 30%);
+    border-radius: 7px;
+    cursor: pointer;
 }
-
-.listar-body{
-    min-height: 100%;
-    min-width: 100%;
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-   	align-items:center;
-    background-color: var(--clr-neutral-100);
-}
-
-
-
-
 
 caption{
 	border: 1px solid #000000;
@@ -85,12 +71,12 @@ caption{
   
 }
 
-/*-------------------------------estilo de botones de jenni---------------------*/
-
-
-
-
-/*-------------------------------estilo de botones de jenni---------------------*/
+.table_container{
+    margin: 0;
+    margin-top: 1em;
+    height: 34em;
+   overflow: auto;
+}
 
 .sucursal_table{
     border-collapse: collapse;
@@ -116,8 +102,58 @@ caption{
     padding: 8px;
 }
 
+.pagging {
+	color: white;
+	display: inline-block;
+	text-align: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 40px;
+    -webkit-box-shadow: inset 0 0 15px 0 rgb(0 0 0 / 50%);
+    border-radius: 7px !important;
+    border: none;
+    background-size: 50%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.activeButton{
+	background-color: var(--clr-accent-300);
+}
 
 
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.col-paggin {
+    float: left;
+    width: 70%;
+    
+  }
+  
+  .col-page {
+    float: left;
+    width: 30%;
+    
+  }
+  .col-search {
+    float: right;
+    width: 40%;
+    
+  }
+
+  #peerPage{
+    background-color: var(--clr-neutral-200);
+    border: 3px solid transparent;
+    border-radius: 3px;
+    height: 45px;
+    line-height: 45px;
+    padding: 0 40px 0 10px;
+    transition: .3s ease all;
+  }
 /*------------------------------------------------------------details---------------------------------------------------------------------*/
 
 .cardD{

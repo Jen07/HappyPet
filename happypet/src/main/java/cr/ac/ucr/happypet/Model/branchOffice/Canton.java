@@ -10,17 +10,17 @@ public class Canton {
 	
 	
 	@Id
-	private int codigo_canton;
+	private int codigoCanton;
 	private int codigoProvincia;
-	private String nombre_canton;
+	private String nombreCanton;
+	private boolean estado;
+
 	
-	
-	
-	public int getCodigo_canton() {
-		return codigo_canton;
+	public int getCodigoCanton() {
+		return codigoCanton;
 	}
-	public void setCodigo_canton(int codigo_canton) {
-		this.codigo_canton = codigo_canton;
+	public void setCodigoCanton(int codigoCanton) {
+		this.codigoCanton = codigoCanton;
 	}
 	public int getCodigoProvincia() {
 		return codigoProvincia;
@@ -28,12 +28,25 @@ public class Canton {
 	public void setCodigoProvincia(int codigoProvincia) {
 		this.codigoProvincia = codigoProvincia;
 	}
-	public String getNombre_canton() {
-		return nombre_canton;
+	public String getNombreCanton() {
+		return nombreCanton;
 	}
-	public void setNombre_canton(String nombre_canton) {
-		this.nombre_canton = nombre_canton;
+	public void setNombreCanton(String nombreCanton) {
+		this.nombreCanton = nombreCanton;
 	}
+	public boolean isEstado() {
+		return estado;
+	}
+	public void setEstado(boolean estado) {
+		this.estado = estado;
+	}
+	
+	
+	
+	
+	
+
+	
 	
 	
 

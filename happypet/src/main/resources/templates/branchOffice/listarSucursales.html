@@ -4,40 +4,75 @@
 <head>
   <meta charset="ISO-8859-1">
   <title></title>
+  <link rel="stylesheet" type="text/css" href="/general/style.css">
   <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleListadoSucursales.css">
-  <link rel="stylesheet" type="text/css" href="/branchOffice/css/style.css">
-  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleIndex.css">
   <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleInsertSucursal.css">
+  <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleform.css"> 
   <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleModalSucursal.css">
   <link rel="stylesheet"  href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+ 
 </head>
 
-<body class="listar-body">
+<body class="bodylist">
 
 
 
   <div th:replace="general/header.html :: head"></div>
 
+  <div class="container">
 
-  <div class="table__container">
+    <div class="row2">
+      <div class="col-search">
+        <select id="selectSearch" name="selectSearch" onchange="cleanInputAndReloadSucursales()">
+          <option value="cedulaJuridica">C&eacute;dula Jur&iacute;ca</option>
+          <option value="Provincia">Provincia</option>
+          <option value="Ciudad">Ciudad</option>
+      </select>
+      <input type="text" id="inputSearch" onkeyup="reloadSucursales(event,this);" name="inputSearch" >
+      <button type="submit" id="bSearch" onclick="filterTable()"><i class="fas fa-search fa-lg"></i></button>
+ 
+      </div>
+       </div>
 
-    <table id="table_sucursal" class="sucursal_table">
-      <caption>Sucursales</caption>
-      <thead>
-       <th>Cedula juridica</th>
-        <th>Provincia</th>
-        <th>Ciudad</th>
-        <th>Acciones</th>
-      </thead>
-     
-      <tbody class="tbody">
+    <div class="table_container">
+
+      <table id="table_sucursal" class="sucursal_table">
+        <caption>Sucursales</caption>
+        <thead>
+         <th>C&eacutedula jur&iacute;dica</th>
+          <th>Provincia</th>
+          <th>Ciudad</th>
+          <th>Acciones</th>
+        </thead>
+       
+        <tbody class="tbody" id="contenido">
+        
+        </tbody>
+  
       
-      </tbody>
+  
+      </table>
+    </div>
+    <div class="row2 justify-between">
+      <div id="pagging" class="col-paggin"></div>
+      <div class="col-page">
+          <label for="">Registros por pagina:</label>
+          <select name="" id="peerPage">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="25">25</option>
+          </select>
+      </div>
+    <hr>
+    </div>
 
-    
-
-    </table>
   </div>
+
+ 
+  
+
+
+
 
   <div id="myModal" class="modal">
 
@@ -48,10 +83,10 @@
         <h2>Sucursal</h2>
       </div>
       <div class="modal-body">
-       		<form >
+       		<form class="formulario containerForm" id="formulario" >
 	       		 <div th:replace="/branchOffice/fragmentos.html :: insertS"></div>
-	       		 <div class="row">
-	             <input class=" btn_insert_sucursal" type="button" value="Guardar" onclick="updateSucursal()">
+	       		 <div class="formulario__grupo-btn-enviar row2">
+	             <input class=" btn_insert_sucursal"  id="btnForm" type="submit" value="Guardar" >
 	   			 </div> 
        		</form>
       </div>
@@ -78,9 +113,10 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-  
   <script type="text/javascript" src="/branchOffice/js/cruds.js"></script>
   <script type="text/javascript" src="/branchOffice/js/validaciones.js"></script>
+  <script type="text/javascript" src="/branchOffice/js/validateform.js"></script>
+  <script type="text/javascript" src="/branchOffice/js/pagination.js"></script>
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
   

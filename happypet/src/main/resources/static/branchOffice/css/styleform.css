@@ -15,7 +15,7 @@
     position: relative;
 }
 
-.formulario__input,select{
+.formulario__input, .selectForm{
     width: 100%;
     background: #fff;
     border: 3px solid transparent;
@@ -25,6 +25,9 @@
     padding: 0 40px 0 10px;
     transition: .3s ease all;
 }
+
+
+
 
 .area{
     width: 100%;
@@ -139,4 +142,8 @@
 
 .formulario__grupo-incorrecto .formulario__input,.formulario__grupo-incorrecto .area{
     border: 3px solid red;
+}
+
+.cityFull{
+    background-color: var(--clr-delete-400);
 }
