@@ -11,7 +11,6 @@ function formatNumber(number) {
 }
 
 
-
 function bDetail2(id) {
     $.getJSON('/employee/detail2/' + id, function (employee) {
         var modal = '';

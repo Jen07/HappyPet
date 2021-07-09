@@ -7,7 +7,7 @@
 }
 
 .Dform {
-    width: 80%;
+    width: 100%;
     border-radius: 8px;
     background-color: #D9D9D9;
     padding: 5px 5px;
@@ -142,6 +142,21 @@ input[type=text], #passw, select, #tel, #mail,.area{
     cursor: pointer;
 }
 
+.formulario__input-error{
+    font-size: 12px;
+    margin-bottom: 0;
+    display: none;
+}
+
+.formulario__input-error-activo{
+    display: block;
+}
+
+.area {
+    resize: none;
+    width: 100%;
+}
+
 @media screen and (max-width: 1050px) {
 
 	.Dform {
@@ -163,14 +178,4 @@ input[type=text], #passw, select, #tel, #mail,.area{
     .container{
         width: 100%;
     }
-}
-
-.formulario__input-error{
-    font-size: 12px;
-    margin-bottom: 0;
-    display: none;
-}
-
-.formulario__input-error-activo{
-    display: block;
 }

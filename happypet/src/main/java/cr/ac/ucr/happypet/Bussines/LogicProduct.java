@@ -12,7 +12,7 @@ public class LogicProduct {
         text=text.toLowerCase();
     
         for (Clothes c : clothes) {
-          if (filtro.equals("name")) { // color
+          if (filtro.equals("color")) { // color
             if(String.valueOf(c.getColor()).toLowerCase().equals(text)){
               list.add(c);
             }

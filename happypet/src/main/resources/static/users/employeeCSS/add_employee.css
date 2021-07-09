@@ -74,10 +74,16 @@ input[type=text], #passw, select, #tel, #mail,.area{
 }
 
 
-#address {
+.area {
     resize: none;
     width: 100%;
 }
+
+#description {
+    resize: none;
+    width: 100%;
+}
+
 
 /*Format button*/
 

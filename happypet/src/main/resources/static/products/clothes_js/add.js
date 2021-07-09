@@ -1,7 +1,7 @@
-// window.onload = function(){
-//     document.getElementById("op4").style.background='#BC4944';
-//     document.getElementById("op5").style.background='#BC4944';
-// }
+window.onload = function(){
+    document.getElementById("op4").style.background='#BC4944';
+    document.getElementById("op5").style.background='#BC4944';
+}
 
 const formulario = document.getElementById("formulario");
 const inputs = document.querySelectorAll("#formulario input");
@@ -10,7 +10,7 @@ const textA = document.querySelectorAll("#formulario textarea");
 const expresiones = {
     name: /^[A-Za-zÁ-ÿ\s]{4,10}$/,
     color: /^[A-Za-zÁ-ÿ\s]{4,10}$/,
-    price: /^[0-9\.]{7,15}$/, //-----------------
+    price: /^[0-9\.]{3,15}$/, //-----------------
     description: /^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#]{4,150}$/,
 }
 
@@ -170,6 +170,7 @@ function revalidated(campo) {
         document.querySelector(`#${campo} i`).classList.remove('fa-check-circle');
     }
 }
+
 /* Quitar puntos */
 function quitar() {
     var price = document.getElementById("price").value;
@@ -185,21 +186,22 @@ function registrar() {
 
     datos.append("name", document.getElementById("name").value);
     datos.append("color", document.getElementById("color").value);
-    datos.append("price", document.getElementById("price").value);
+    datos.append("price",  quitar());
     datos.append("type", document.getElementById("type").value);
     datos.append("size", document.getElementById("size").value);
     datos.append("availability", document.getElementById("availability").value);
     datos.append("description", document.getElementById("description").value);
 
-  
 
     if (document.getElementById("imagen").value != '') { // edita la imagen
-        var file_data = $("#imagen").prop("files")[0];
-        datos.append("imagen", file_data);
+        // var file_data = $("#imagen").prop("files")[0];
+        // datos.append("imagen", file_data);
+        reduceFileSize(document.getElementById('imagen').files[0], 500 * 1024, 1000, Infinity, 0.9, blob => {
+            datos.append('imagen', blob, blob.name || "file.jpg");
 
         $.ajax({
             type: "POST",
-            url: '/employee/add',
+            url: '/clothes/add2',
             data: datos,
             processData: false,
             contentType: false,
@@ -212,21 +214,15 @@ function registrar() {
                         timerProgressBar: true,
                         timer: 2000,
                     }).then((result) => {
-                        window.location.href = `/employee/inicio`;
+                        window.location.href = `/clothes/inicio`;
                     });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ya esxiste esa cedula!',
-                        footer: 'intenta de nuevo'
-                    })
-                }
+                } 
             },
             error: function (data) {
                 console.log(data);
             }
         });
+    });
     } else {
         $.ajax({
             type: "POST",
@@ -245,13 +241,6 @@ function registrar() {
                     }).then((result) => {
                         window.location.href = `/clothes/inicio`;
                     });
-                } else {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Ya esxiste esa cedula!',
-                        footer: 'intenta de nuevo'
-                    })
                 }
             },
             error: function (data) {

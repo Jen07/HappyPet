@@ -53,9 +53,6 @@ function cleanSelect(id) {
 function closeModal() {
 	var modal = document.getElementById("myModal");
 	modal.style.display = "none";
-	var modal2 = document.getElementById("ver");
-	modal2.style.display = "none";
-
 }
 
 //Guardar Reservacion

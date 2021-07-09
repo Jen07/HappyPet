@@ -9,6 +9,14 @@ function bDetail(id){
 		var modal = '';
 		modal+='<div class="cardD">';
 		modal+='<ul>';
+        if(client.imagen!=null){
+            modal += `<li><div class="card__image" style="max-width: 20%"> 
+            <img src="/users/imageEmployee/${client.imagen}"></img></div>
+            </li>`;
+        }else{
+            modal += `<li><div class="card__image" style="max-width: 20%">
+         <img src="/users/imageEmployee/default.jpg"></img></div></li>`;
+        }
 		modal+=' <li> Cédula: <label >'+client.id+'</label></li>';
 		modal+=' <li> Nombre: <label>'+client.name+'</label></li>';
 		modal+=' <li> Apellido: <label>'+client.lastName+'</label></li>';
