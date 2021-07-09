@@ -1,4 +1,4 @@
-function inicio() {
+window.onload = function(){
     document.getElementById("op2").style.background = '#BC4944';
     document.getElementById("op3").style.background = '#BC4944';
 }
@@ -14,7 +14,7 @@ const expresiones = {
     tel: /^[0-9\-]{8,10}$/,
     salary: /^[0-9\.]{7,15}$/, //-----------------
     passw: /^[a-zA-Z0-9\-\.\ñ\_]{4,12}$/,
-    mail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+[a-zA-Z0-9-.]+$/,//--------------------------
+    mail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z]+.[a-zA-Z0-9-.]+$/,//--------------------------
     address: /^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#]{4,150}$/,
 }
 
@@ -235,6 +235,16 @@ function quitar() {
     return salary;
 }
 
+const makeSend = () => {
+
+    reduceFileSize(document.getElementById('file').files[0], 500 * 1024, 1000, Infinity, 0.9, blob => {
+        let body = new FormData();
+        body.set('id', document.animal_form.id.value);
+        body.set('file', blob, blob.name || "file.jpg");
+        fetch('/animal/save_image', { method: 'POST', body }).then();
+    });
+}
+
 
 // Cuanto toca boton agregar con los campos ya correctos
 function registrar() {
@@ -250,9 +260,12 @@ function registrar() {
     datos.append("mail", document.getElementById("mail").value);
     datos.append("address", document.getElementById("address").value);
 
-    if (document.getElementById("imagen").value != '') { // edita la imagen
-        var file_data = $("#imagen").prop("files")[0];
-        datos.append("imagen", file_data);
+    if (document.getElementById("imagen").value != '') { 
+        // var file_data = $("#imagen").prop("files")[0];
+        // datos.append("imagen", file_data);
+
+        reduceFileSize(document.getElementById('imagen').files[0], 500 * 1024, 1000, Infinity, 0.9, blob => {
+            datos.append('imagen', blob, blob.name || "file.jpg");
 
         $.ajax({
             type: "POST",
@@ -284,6 +297,7 @@ function registrar() {
                 console.log(data);
             }
         });
+    }); 
     } else {
         $.ajax({
             type: "POST",
@@ -324,6 +338,7 @@ let fileName = document.getElementById("file-name");
 inputFile.addEventListener('change', function (event) {
     let uploadedFileName = event.target.files[0].name;
     let vari = uploadedFileName.split('.');
+    
     if (vari[vari.length - 1] == "png" || vari[vari.length - 1] == "jpg" || vari[vari.length - 1] == "jpeg") {
         fileName.textContent = uploadedFileName;
     } else {

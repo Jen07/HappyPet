@@ -52,7 +52,7 @@
                         <label class="subtitle"> C&eacute;dula:</label>
                         <div class="formulario__grupo-input">
                             <input type="text" id="id" name="id" maxlength="11" th:value="${e.id}"
-                                title="Este campo no es editable" readonly="readonly"/>
+                                title="Este campo no es editable" disabled/>
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
                         <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
@@ -109,7 +109,6 @@
                     </div>
                 </div>
 
-
                 <div class="col-rigth">
                     <div class="formulario__grupo" id="grupo__type">
                         <label class="subtitle"> Tipo:</label>
@@ -131,7 +130,6 @@
                         </p>
                     </div>
                 </div>
-
 
                 <div class="col-rigth">
                     <div class="formulario__grupo" id="grupo__mail">
@@ -170,6 +168,7 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
+    <script src="/general/resizing_script.js"></script>
     <script src="/users/employee_js/edit_Employee.js"></script>
 
     <div class="footer" th:replace="~{general/footer :: foot}"></div>

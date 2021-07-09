@@ -1,4 +1,6 @@
 function inicio() {
+    var num = document.getElementById("salary").value;
+    document.getElementById("salary").value=formatNumber(num);
     document.getElementById("op2").style.background = '#BC4944';
     document.getElementById("op3").style.background = '#BC4944';
 }
@@ -217,8 +219,11 @@ function registrar() {
     datos.append("address", document.getElementById("address").value);
 
     if (document.getElementById("imagen").value != '') { // edita la imagen
-        var file_data = $("#imagen").prop("files")[0];
-        datos.append("imagen", file_data);
+        // var file_data = $("#imagen").prop("files")[0];
+        // datos.append("imagen", file_data);
+
+        reduceFileSize(document.getElementById('imagen').files[0], 500 * 1024, 1000, Infinity, 0.9, blob => {
+            datos.append('imagen', blob, blob.name || "file.jpg");
 
         $.ajax({
             type: "POST",
@@ -243,6 +248,7 @@ function registrar() {
                 console.log(data);
             }
         });
+    });
     } else {
         datos.append("oldImage", document.getElementById("oldimagen").value);
         $.ajax({
