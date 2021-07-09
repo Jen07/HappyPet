@@ -16,5 +16,7 @@ public interface iSucursalService {
 	List<Sucursal> findByCedulaJuridica(String id);
     List<Sucursal> findByProvincia(int id);
     List<Sucursal> findByCiudad(String id);
+	boolean getSucursalById(String id);
+
 	
 }

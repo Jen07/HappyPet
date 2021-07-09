@@ -54,6 +54,12 @@ public ResponseEntity<List<Canton>> getListCantones(@PathVariable int codigoProv
 		return new ResponseEntity<Sucursal>(sv.searchById(id),HttpStatus.OK);
 	}
 
+	@GetMapping("/getSucursalById/{id}")
+	public ResponseEntity<Boolean> getSucursalById(@PathVariable String id){
+		return new ResponseEntity<Boolean>(sv.getSucursalById(id),HttpStatus.OK);
+	}
+	
+
 	@PostMapping("/addSucursal/{idCanton}")
 	public ResponseEntity<Integer> addSucursal(@PathVariable int idCanton,@RequestBody Sucursal sucursal){		
 	

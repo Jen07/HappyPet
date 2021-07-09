@@ -231,8 +231,7 @@ function updateSucursal() {
 function filterTable() {
     let filterBy = document.getElementById("selectSearch").value;
     let filter = document.getElementById("inputSearch").value;
-	alert(filterBy);
-	alert(filter);
+
 
     $.ajax({
 		type: "GET",

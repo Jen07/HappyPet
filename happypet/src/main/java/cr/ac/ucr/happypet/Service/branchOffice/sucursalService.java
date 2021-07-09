@@ -76,6 +76,13 @@ public class sucursalService implements iSucursalService{
 	}
 
 
+	@Override
+	public boolean getSucursalById(String id) {
+		
+		return data.existsById(id);
+	}
+
+
 	
 
 

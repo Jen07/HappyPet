@@ -29,7 +29,8 @@ let cantonDeleted=document.getElementById("ciudad").value;
 		horaInicio: $('#horaInicio').val(),
 		horaFinal: $('#horaFinal').val(),
 	}
-		
+	
+		if(!checkCedula(idSucursal)){
 		$.ajax({
 			url: "/sucursales/addSucursal/"+cantonDeleted,
 			data: JSON.stringify(sucursal),
@@ -67,9 +68,29 @@ let cantonDeleted=document.getElementById("ciudad").value;
 					timerProgressBar: true,
 					timer: 2000,
 				})
-				alert(errorMessage.responseText);
+				
 			}
 		});
+	}else{
+		Swal.fire({
+			icon: 'error',
+			text: 'Cédula de sucursal ya exíste',
+			showConfirmButton: false,
+			timerProgressBar: true,
+			timer: 2000,
+		})
+	}
+}
+
+
+function checkCedula(idSucursal){
+	
+	$.getJSON('/sucursales/getSucursalById/' + idSucursal, function(sucursal) {
+	
+		
+		return sucursal;
+
+	});
 }
 
 
