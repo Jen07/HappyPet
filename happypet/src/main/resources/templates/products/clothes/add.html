@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
+    <title>Añadir Productos</title>
+    <link rel="stylesheet" type="text/css" href="/general/style.css" />
+    <link rel="stylesheet" type="text/css" href="/products/productsCSS/add.css"/>
+    <link rel="stylesheet" type="text/css" href="/users/employeeCSS/form.css" />
+    <!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+</head>
+<div class="navegationBar" th:replace="~{general/header :: head}"></div>
+
+<body>
+
+    <div class="container">
+
+        <form class="Dform" id="formulario" autocomplete="off" enctype="multipart/form-data" method="POST">
+
+            <h3 class="title">Nuevo Producto Ropa</h3>
+            <div class="div-form">
+
+                <div class="fila-l">
+                    <input type="file" accept="image/*" id="imagen" name="imagen">
+                    <label for="imagen"><i class="fas fa-upload"></i>&nbsp;Selecione una imagen</label>
+                    <span>
+                        <strong>Nombre imagen:</strong>
+                        <span id="file-name">ninguno</span>
+                    </span>
+                </div>
+
+                <div class="col-left">
+                    <div class="formulario__grupo" id="grupo__name">
+                        <label class="subtitle">Nombre:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="name" name="name">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar letras</p>
+                    </div>
+                </div>
+
+                <div class="col-rigth">
+                    <div class="formulario__grupo" id="grupo__color">
+                        <label class="subtitle">Color:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="color" name="color">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar letras</p>
+                    </div>
+                </div>
+
+
+                <div class="col-left">
+                    <label class="subtitle">Disponibilidad:</label><br>
+                    <select id="availability" name="availability">
+                        <option value="1">Disponible</option>
+                        <option value="0">No disponible</option>
+                    </select>
+                </div>
+
+                <div class="col-rigth">
+                    <div class="formulario__grupo" id="grupo__price">
+                        <label class="subtitle">Precio:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="price" name="price">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar letras</p>
+                    </div>
+                </div>
+
+                <div class="col-left">
+                    <label class="subtitle"> Tipo Animal:</label><br>
+                    <select id="type" name="type">
+                        <option value="Perros">Perros</option>
+                        <option value="Gatos">Gatos</option>
+                    </select>
+                </div>
+
+                <div class="col-rigth">
+                    <label class="subtitle"> talla:</label><br>
+                    <select id="size" name="size">
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                    </select>
+                </div>
+
+                <div class="fila-l">
+                    <div class="formulario__grupo" id="grupo__description">
+                        <label class="subtitle">Descripción:</label><br>
+                        <textarea class="area" id="description" name="description"></textarea>
+                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                </div>
+
+                <div class="formulario__mensaje" id="formulario__mensaje"></div>
+
+                <div class="fila-button">
+                    <br><button id="bAdd" type="submit">Agregar</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="footer" th:replace="~{general/footer :: foot}"></div>
+
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script -->
+    <script src="/general/resizing_script.js"></script>
+    <script src="/products/clothes_js/add.js"></script>
+</body>
+
+</html>

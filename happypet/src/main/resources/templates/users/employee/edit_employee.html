@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Editar Empleado</title>
+    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" href="/general/style.css" />
+    <link rel="stylesheet" type="text/css" href="/users/employeeCSS/add_employee.css" />
+    <link rel="stylesheet" type="text/css" href="/users/employeeCSS/form.css" />
+    <!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+</head>
+
+<body onload="inicio()">
+    
+    <header>
+        <div class="navegationBar" th:replace="~{general/header :: head}"></div>
+    </header>
+
+    <div class="container">
+        <form class="Dform" id="formulario" autocomplete="off">
+           
+            <div class="div-form">
+                <div class="col-left">
+                    <h2 class="title">Editar Empleado</h2>
+                </div>
+
+                <div class="col-rigth">
+                    <div class="divImagen" th:if="${e?.imagen}">
+                        <img th:src="@{'/users/imageEmployee/'+${e.imagen} }"></img>
+                    </div>
+                    <div class="divImagen" th:unless="${e.imagen}">
+                        <img th:src="@{/users/imageEmployee/default.jpg}"></img>
+                    </div>
+                </div>
+
+                <div class="fila-l">
+                    <input type="file"  accept="image/*" id="imagen" name="imagen">
+                    <label for="imagen"><i class="fas fa-upload"></i>&nbsp;Selecione una imagen</label>
+                    <span>
+                        <strong>Nombre imagen:</strong>
+                        <span id="file-name">ninguno</span>
+                    </span>
+                    <input type="hidden" id="oldimagen" th:value="${e.imagen}" />
+                </div>
+
+
+                <div class="col-left">
+                    <div class="formulario__grupo" id="grupo__id">
+                        <label class="subtitle"> C&eacute;dula:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="id" name="id" maxlength="11" th:value="${e.id}"
+                                title="Este campo no es editable" disabled/>
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+                    </div>
+                </div>
+
+                <div class="col-rigth">
+                    <div class="formulario__grupo" id="grupo__name">
+                        <label class="subtitle"> Nombre:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="name" name="name" maxlength="10" th:value="${e.name}"
+                                title="Ingresar solo letras eje:Jennifer" >
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar letras</p>
+                    </div>
+                </div>
+
+                <div class="col-left">
+                    <div class="formulario__grupo" id="grupo__lastName">
+                        <label class="subtitle"> Apellido:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="lastName" name="lastName" maxlength="10" th:value="${e.lastName}"
+                                title="Ingresar solo letras eje:Granados" >
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar letras</p>
+                    </div>
+                </div>
+
+
+                <div class="col-rigth">
+                    <div class="formulario__grupo" id="grupo__tel">
+                        <label class="subtitle"> Tel&eacute;fono:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="tel" id="tel" name="tel" maxlength="9" th:value="${e.phone}"
+                                OnKeyPress="return format('####-####',this,event);"
+                                title="Ingresar solo numeros del 0-9 no separarlos eje:85472505" >
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+                    </div>
+                </div>
+
+                <div class="col-left">
+                    <div class="formulario__grupo" id="grupo__salary">
+                        <label class="subtitle"> Salario:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="salary" name="salary" maxlength="15" th:value="${e.salary}"
+                                title="Ingresar solo numeros para el salario" >
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+                    </div>
+                </div>
+
+                <div class="col-rigth">
+                    <div class="formulario__grupo" id="grupo__type">
+                        <label class="subtitle"> Tipo:</label>
+                        <select id="type" name="type">
+                            <option th:selected="${e.type=='Administrador'}" value="Administrador">Administrador</option>
+                            <option th:selected="${e.type=='Servicio'}" value="Servicio">Servicio</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-left">
+                    <div class="formulario__grupo" id="grupo__passw">
+                        <label class="subtitle"> Contrase&ntilde;a:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="password" id="passw" name="passw" maxlength="12" th:value="${e.password}" >
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros 0-9 caracteres . - _
+                        </p>
+                    </div>
+                </div>
+
+                <div class="col-rigth">
+                    <div class="formulario__grupo" id="grupo__mail">
+                        <label class="subtitle">Correo electr&oacute;nico:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="email" id="mail" name="mail" th:value="${e.mail}"
+                            placeholder="xxx@gmail.com" >
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar correo valido</p>
+                    </div>
+                </div>
+
+                <div class="fila-l">
+                    <div class="formulario__grupo" id="grupo__address">
+                        <label class="subtitle">Direcci&oacute;n:</label>
+                            <textarea class="area" id="address" name="address" 
+                            resize:none th:text="${e.address}"></textarea>
+                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                </div>
+
+                <div class="formulario__mensaje" id="formulario__mensaje"></div>
+
+                <div class="fila-button">
+                    <br><button id="bAdd" type="submit">Modificar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script -->
+    <script src="/general/resizing_script.js"></script>
+    <script src="/users/employee_js/edit_Employee.js"></script>
+
+    <div class="footer" th:replace="~{general/footer :: foot}"></div>
+</body>
+
+
+</html>

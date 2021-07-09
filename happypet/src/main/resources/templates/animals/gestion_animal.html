@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{animals/layout/head_block :: head}"></div>
+
+
+
+	<link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
+	<link th:href="@{/animals/assets/css/animal.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+	<header>
+		<div th:replace="~{general/header :: head}"></div>
+	</header>
+
+	<div class="container">
+
+		<h1 class="ta-center">Centro de gestión animal.</h1>
+
+		<div class="row justify-between">
+
+
+
+			<div class="col s6">
+				<div class="row">
+					<a th:href="@{/animal/register_form/gestion}" class="btn register__button"><i
+							class="fas fa-plus-square fa-2x"></i><span>Animal
+							de gestion.</span></a>
+
+					<a th:href="@{/animal/register_form/user}" class="btn register__button"><i
+							class="fas fa-plus-square fa-2x"></i><span>Animal de
+							usuario.</span></a>
+				</div>
+
+			</div>
+
+			<div class="col s4">
+
+				<form method="POST" class="animal_filter" th:action="@{/animal/gestion_animal}">
+
+					<div class="row">
+
+						<div id="filterContainer">
+							<div th:replace="~{animals/fragments/filter_gestion :: filter}"></div>
+						</div>
+
+						<div>
+
+							<select id="filterBy" onchange="changeFilter()">
+								<option>Nombre</option>
+								<option>Raza</option>
+								<option>Especie</option>
+								<option>Tipo</option>
+							</select>
+						</div>
+
+						<div>
+							<a type="submit" id="bSearch" class="btn filter_button" onclick="filterTable()"><i
+									class="fas fa-search fa-lg"></i></a>
+						</div>
+					</div>
+				</form>
+			</div>
+
+
+
+		</div>
+
+		<div id="animalTable">
+			<div th:replace="~{animals/fragments/animal_table :: table}"></div>
+		</div>
+
+
+		<hr>
+
+	</div>
+
+	<div id="myModalDetails" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="closeModal()">&times;</span>
+
+				<h2>Detalles del animal</h2>
+			</div>
+			<div class="modal-body"></div>
+		</div>
+	</div>
+
+
+	<footer>
+		<div th:replace="~{general/footer :: foot}"></div>
+	</footer>
+
+	
+
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+	<script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
+	<script th:src="@{/animals/assets/scripts/animal/animal_scripts.js}"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script>
+		stilishGestion();
+	</script>
+</body>
+
+</html>

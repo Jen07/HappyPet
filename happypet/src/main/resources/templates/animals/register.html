@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{animals/layout/head_block :: head}"></div>
+
+	<link th:href="@{/animals/assets/css/animal.css}" rel="stylesheet" />
+	<link th:href="@{/animals/assets/css/form.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+	<header>
+		<div th:replace="~{general/header :: head}"></div>
+	</header>
+
+	<div class="container">
+
+		<div class="row justify-center">
+			<div th:replace="~{animals/fragments/animal_form :: register}"></div>
+		</div>
+
+
+	</div>
+
+	<footer>
+		<div th:replace="~{general/footer :: foot}"></div>
+	</footer>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+	<script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
+	<script th:src="@{/animals/assets/scripts/animal/animal_form_elements.js}"></script>
+	<script th:src="@{/animals/assets/scripts/animal/form_animal.js}"></script>
+	<script>
+		stilishGestion();
+	</script>
+</body>
+
+</html>

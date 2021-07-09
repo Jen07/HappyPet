@@ -1,0 +1,4 @@
+<th:block th:fragment="options">
+    <option selected value="">Seleccione una raza</option>
+    <option th:each="temp : ${breeds}" th:text="${temp.breed}" th:value="${temp.breed}"></option>
+</th:block>

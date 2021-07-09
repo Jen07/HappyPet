@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+	<!--icon-->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+    <link th:href="@{/animals/assets/css/style.css}" type= "text/css" rel="stylesheet"/> 
+	<link rel="stylesheet" type="text/css" href="/general/style.css">
+	<link rel="stylesheet" type="text/css" href="/branchOffice/css/styleIndex.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+
+</head>
+<body>
+    
+
+    <div th:replace="general/header.html :: head"> </div>
+
+
+
+<div class="index-content">
+	<div class="carrousel-content">
+
+		  <div id="image-slider" class="splide">
+	<div class="splide__track">
+	
+		<ul class="splide__list">
+			<li class="splide__slide">
+				  <img src="/branchOffice/images/blair1.jpeg">
+			</li>
+			<li class="splide__slide">
+				<img src="/branchOffice/images/gato2.jpeg">
+			</li>
+			<li class="splide__slide">
+				  <img src="/branchOffice/images/perritos.jpeg">
+			</li>
+		</ul>
+	</div>
+	
+	<div class="splide__progress">
+		<div class="splide__progress__bar">
+		</div>
+	</div>
+</div>
+	</div>
+	<div class="register-content">
+		<div class="row2 title">
+			<label for="" class="titleContent">HappyPets</label>
+		</div>
+		<hr>
+		<div class="row2">
+			<div class="col-left">
+				<label for="" style="font-weight: bold;">Nuestras Sucursales:</label>
+			</div>
+			<div class="col-rigth">
+				<select name="listSucursales" id="listSucursales" class="inputList">
+					
+				</select>
+			</div>
+			
+		</div>
+		<div class="row2 mensaje">
+			<p>HappyPets garantiza la satisfacción de todas sus mascotas con nuestra
+			 gran cantidad de servicios que va desde atención médica hasta la relajación y cuidado 
+			 estético de sus mascotas, disponibles en todas nuestras sucursales</p>
+		</div>
+		
+		<div class="row2">
+			<img  src="/branchOffice/images/animalitos.jpg">
+		</div>
+		
+	</div>
+
+</div>
+  
+
+
+
+    <footer th:replace="general/footer.html :: foot"></footer>
+
+
+    
+
+    
+   
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+<script type="text/javascript" src="/branchOffice/js/jsindex.js"></script>
+
+</body>
+</html>
+
+ 

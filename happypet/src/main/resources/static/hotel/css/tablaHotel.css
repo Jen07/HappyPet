@@ -1,0 +1,162 @@
+@charset "ISO-8859-1";
+
+*{
+    font-family: 'Roboto', sans-serif;
+}
+
+.dSearch input,
+.dSearch select {
+    width: 37%;
+    padding: 10px 7px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#bSearch {
+    width: 50px;
+    height: 40px;
+    background-color: #80BD5D;
+    padding: 5px 10px;
+    border: none;
+    -webkit-box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.3);
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.d-btn-Add {
+    margin-left: 8%;
+    float: left;
+}
+
+.bAdd {
+    height: 50px;
+    width: 50px;
+    border: none;
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.3);
+    background-color: #80BD5D;
+}
+
+/* dise�o de boton cuando pasan mose */
+
+.bAdd:hover {
+    background-color: #80ff80;
+}
+
+#bSearch:hover {
+    background-color: #80ff80;
+}
+
+
+/*Dise�o del div buscar*/
+
+.dSearch {
+    margin-right: 3em;
+    float: right;
+}
+
+.tableContainer{
+    width: 85%;
+    overflow-x: auto;
+    margin: 0px auto;
+}
+
+#table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+caption{
+    border-bottom:solid 1px #000000;
+	font-size: 30px;
+    font-weight: bold;
+	padding: 20px;
+	font-style: italic;
+	color: #000000;
+	letter-spacing: 1px;
+	background-color: #d9d9d9;
+}
+
+#tablax tr:nth-child(event){
+    background-color: grey;
+}
+
+ th{
+   background-color: #d9d9d9;
+   color:black;
+}
+  tr:nth-of-type(even)  {
+    background-color: var(--clr-neutral-200)
+}
+
+ th,  td{
+    border: 1px solid #ddd;
+    padding:8px;
+    text-align: center;
+}
+
+.button{
+   text-decoration: none;
+    cursor: pointer;
+    padding: .5em 1em;
+    display: block;
+    text-align: center;
+    transition:transform .250s;
+    width: 80%;
+}
+
+.bDelete,
+.bDetail,
+.bEdit {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 30px;
+    width: 40px;
+    background-size: 100% 100%;
+    -webkit-box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 7px;
+    border: none;
+    background-size: 50%;
+    color: black;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.bEdit:hover {
+    background-color: #80ff80;
+}
+
+.bDetail:hover {
+    background-color: #80ff80;
+}
+
+.bDelete:hover {
+    background-color: #80ff80;
+}
+.pagging {
+	color: white;
+	margin-top: 20px;
+	display: inline-block;
+	text-align: center;
+}
+
+.activeButton{
+	background-color: var(--clr-accent-300);
+}
+
+.registro{
+    margin-top: 20px;
+}
+.buttons{
+    margin-left: 75px;
+}
+.registro select{
+    width: 60%;
+    font-size: 16px;
+}
+
+
+

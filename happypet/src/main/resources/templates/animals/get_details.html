@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<div th:replace="~{animals/layout/head_block :: head}"></div>
+
+	<link th:href="@{/animals/assets/css/animal.css}" rel="stylesheet" />
+	<link rel="stylesheet" th:href="@{/animals/assets/css/splide.css}">
+</head>
+
+<body>
+	<header>
+		<div th:replace="~{general/header :: head}"></div>
+	</header>
+
+	<div class="container">
+		<div th:replace="~{animals/fragments/animal_banner :: banner}"></div>
+
+
+
+		<div th:replace="~{animals/fragments/animal_carousel :: carousel}"></div>
+
+		<div th:if="${animal.type.toString() == 'C'}">
+			<a class="btn register__button" th:href="@{/animal/images/{id} (id = ${animal.id})}" style="width: 100px;">
+				Gestión de fotos
+			</a>
+		</div>
+
+		<div th:switch="${animal.type.toString()}">
+
+			<div th:case="C">
+
+				<h2 class="ta-center">
+					Servicios recibidos.
+				</h2>
+
+				<h3 th:if="${services.size()==0}" class="ta-center">
+					<p>
+						<span th:text="${animal.name}"></span>
+						no ha recibido ningún servicio hasta la fecha.
+					</p>
+				</h3>
+
+				<div class="row">
+					<div th:each=" service : ${services}" class="col s4 m-1">
+						<div th:replace="~{animals/fragments/service_card :: card}"></div>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- <div class="row justify-center">
+				<div class="col s4 ">
+					<a th:case="A" th:href="@{/gestion/register_adopt/{id} (id = ${id})}" class="btn btn-delete m-2">
+						Confirmar envio de solicitud de adopción.
+					</a>
+
+					<a th:case="S" th:href="@{/gestion/register_sale/{id} (id = ${id})}" class="btn btn-delete m-2">
+						Confirmar envío de solicitud de compra.
+					</a>
+				</div>
+			</div> -->
+
+		</div>
+
+
+
+	</div>
+
+	<footer>
+		<div th:replace="~{general/footer :: foot}"></div>
+	</footer>
+
+	<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+	<script th:src="@{/animals/assets/scripts/animal/details_splide.js}"></script>
+	<script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
+
+	<th:block th:if="${animal.type.toString() == 'C'}">
+		<script>
+			stilishMyAnimals();
+		</script>
+	</th:block>
+</body>
+
+
+</html>

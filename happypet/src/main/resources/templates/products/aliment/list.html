@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <meta charset="UTF-8">
+    <title>Productos Alimento</title>
+    <!-- style-->
+    <link rel="stylesheet" type="text/css" href="/general/style.css" />
+    <link rel="stylesheet" type="text/css" href="/products/productsCSS/style.css" />
+<link rel="stylesheet" type="text/css" href="/general/header.css" />
+
+    <!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+</head>
+<div class="navegationBar" th:replace="~{general/header :: head}"></div>
+
+<body onload="inicio()">
+
+    <div class="container">
+        <div>
+            <div class="d-btn-Add">
+                <a href="/aliment/showAdd">
+                    <button class="bAdd"><i class="fas fa-plus fa-3x"></i></button>
+                </a>
+            </div>
+
+            <div class="dSearch">
+                <select id="cxBuscar" name="index">
+                <option value="codigo">c&oacute;digo</option>
+                <option value="name">Nombre</option>
+                <option value="price">Precio</option>
+                <option value="type">Tipo de Animal</option>
+            </select>
+                <input type="text" id="search" name="search" onkeyup="limpiar()">
+                <button type="submit" id="bSearch" th:onclick="bSearch()"><i class="fas fa-search fa-lg"></i></button>
+            </div>
+        </div>
+
+
+        <br/><br/><br/><br/>
+        <div class="dTable" id="contenedor" th:include="/products/aliment/table_products"></div>
+    </div>
+
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script -->
+    <script src="/products/aliment_js/listar.js"></script>
+</body>
+<div class="footer" th:replace="~{general/footer :: foot}"></div>
+
+</html>

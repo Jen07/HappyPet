@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<link href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+	<div th:replace="~{animals/layout/head_block :: head}"></div>
+	<link th:href="@{/animals/assets/css/animal.css}" rel="stylesheet" />
+	<link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
+</head>
+
+<input type="hidden" th:value="${id}" id="opt">
+
+<body th:id="${animal.id}">
+	<header>
+		<div th:replace="~{general/header :: head}"></div>
+	</header>
+
+	<div class="container">
+		<h1>
+			Gestión de imágenes de <span th:text="${animal.name}"></span>.
+		</h1>
+
+		<a onclick="openModal()" class="btn register__button" style="width: 80px;">
+			<i class="fas fa-plus-square fa-2x"></i></a>
+
+		<div id="imagesTable">
+			<div th:replace="~{animals/fragments/images_table :: table}"></div>
+		</div>
+
+		<div class="row justify-center">
+			<div class="col s3">
+				<a class="btn btn-edit"
+					onclick="window.location.href = (window.location.href.toString().replace('images', 'details'))">Volver</a>
+			</div>
+		</div>
+	</div>
+
+	<div id="myModalDetails" class="modal">
+		<div class="modal-content">
+			<div class="modal-header">
+				<span class="close" onclick="closeModal()">&times;</span>
+
+				<h2>Agregar foto</h2>
+			</div>
+			<div class="modal-body" style="width: 55vw; padding: 1em;">
+				<div th:replace="~{animals/fragments/image_form :: form}"></div>
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<div th:replace="~{general/footer :: foot}"></div>
+	</footer>
+
+	<script th:src="@{/animals/assets/scripts/animal/resizing_script.js}"></script>
+
+	<script th:src="@{/animals/assets/scripts/animal/image_preview.js}"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+	<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+	<script th:src="@{/animals/assets/scripts/animal/animal_scripts_images.js}"></script>
+
+
+</body>
+
+
+
+</html>

@@ -1,0 +1,5 @@
+<th:block th:fragment="options">
+    <option selected value="">Seleccione un dueño</option>
+    <option th:each="temp : ${users}" th:if="${temp.type} == 'Cliente' " th:text="${temp.name} + ' ' + ${temp.lastName}"
+        th:value="${temp.id}"></option>
+</th:block>

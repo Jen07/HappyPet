@@ -1,0 +1,58 @@
+<th:block th:fragment="table">
+    <div class="row justify-between">
+        <div>
+            <p>Facturas archivadas: <span id="totalArchieved" th:text="${archievedTotal}"></span></p>
+        </div>
+
+        <div class="search__container">
+
+            <input type="date" value="date" id="search__input" class="search__input" name="search__input">
+
+            </form>
+            <a class=" btn-send bDelete bSearch tip" onclick="filterBills()"><i class="fas fa-search"
+                    title="Filtrar"></i></a>
+            <a class=" btn-edit bDelete bReload tip" onclick="resetTable()"><i class="fas fa-undo-alt"
+                    title="Reiniciar"></i></a>
+        </div>
+
+    </div>
+
+    <div class="tContainer">
+        <table id="table">
+            <thead id="encabesado">
+                <tr>
+                    <th>Numero</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+
+                </tr>
+            </thead>
+            <tbody class="tbody" id="contenido">
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="row justify-between">
+        <div id="pagging"></div>
+        <div class="per_page__container">
+            <label for="">Registros por página:</label>
+            <select name="" id="peerPage" class="per_page">
+                <option value="5" selected>5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row justify-end">
+        <a class=" btn-send bDelete ta-center my-1" th:onclick="onUnArchive([[${user}]])"
+            style="width: 250px;color: white;"><i class="fas fa-outdent"></i>
+            Desarchivar facturas</a>
+    </div>
+
+
+
+
+</th:block>

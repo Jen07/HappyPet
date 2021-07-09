@@ -1,0 +1,48 @@
+<div th:fragment="bill" style="background-color: #d9d9d9; width: 100%; margin: 0;">
+
+    <div style="background-color: #80BD5D; padding: .2em;">
+        <h1 style="color: #fcfcfc;text-align: center;">Happy Pet</h1>
+    </div>
+
+    <div style="background-color: #fcfcfc; margin: 0;">
+        <p style="margin: 0; padding: .2em; text-align: right;">Fecha: <span th:text="${bill.formattedDate}"></span></p>
+        <h2 style="margin: 0; padding: .2em; text-align: center;">Factura #<span th:text="${bill.id}"></span></h2>
+        <p style="margin: 0; padding: .2em;">Cliente: <span
+                th:text="${bill.client.name} + ' ' + ${bill.client.lastName}"></span> </p>
+        <p style="margin: 0; padding: .2em;">Correo de facturación: <span th:text="${bill.client.mail}"></span>
+        </p>
+
+        <h2 style="margin: 0; padding: .5em; text-align: center;">Detalle</h2>
+
+        <table id="table">
+            <thead id="encabesado">
+                <tr>
+                    <th style="padding: 1em;"> Nombre </th>
+                    <th> Descripción </th>
+                    <th> Precio unitario </th>
+                    <th> Unidades </th>
+                    <th> Precio total </th>
+                </tr>
+            </thead>
+            <tbody class="tbody" id="contenido">
+
+
+                <tr style="text-align: center;" th:each=" line : ${bill.lines}">
+                    <td style="padding: .5em;" th:text="${line.product.name}"></td>
+                    <td th:text="${line.product.description}"></td>
+                    <td th:text="${line.product.getTotalString()}"></td>
+                    <td th:text="${line.quantity}"></td>
+                    <td th:text="${line.getTotalString()}"></td>
+                </tr>
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="4" style="text-align: right; padding: 1em;"> Total: </td>
+                    <td style="text-align: center;" th:text="${bill.getTotalString()}"> </td>
+                </tr>
+            </tfoot>
+        </table>
+
+    </div>
+</div>

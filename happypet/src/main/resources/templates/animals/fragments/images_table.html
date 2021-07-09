@@ -1,0 +1,27 @@
+<h2 class="ta-center" th:unless="${images}">
+    No se han recuperado imagenes.
+</h2>
+
+<div class="row justify-evenly" th:if="${images}">
+
+    <h2 class="ta-center" th:if="${images.size() == 0}">
+        No hay imagenes para mostrar
+    </h2>
+
+    <div th:unless="${images.size() == 0}">
+
+        <div class="table__container table__images" th:fragment="table">
+            <table id="table">
+                <thead id="encabesado">
+                    <tr>
+                        <th colspan="3">Fotos</th>
+                    </tr>
+                </thead>
+                <tbody class="tbody" id="contenido"></tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>

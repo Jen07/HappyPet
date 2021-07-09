@@ -1,0 +1,42 @@
+@charset "ISO-8859-1";
+
+ul {
+    height: 50px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#80BD5D;
+}
+
+li {
+    float: left;
+}
+
+#cerrarSesion {
+    float: right;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px 15px;
+    text-decoration: none;
+    font-style: italic;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+li a:hover {
+    background-color: #F06A08 ;
+    color: white;
+}
+
+
+.mensaje{
+	padding: 50px 50px;
+	color: white;
+	background-color: red;
+	text-align: center;
+}

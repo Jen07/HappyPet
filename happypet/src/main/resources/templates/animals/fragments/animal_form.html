@@ -1,0 +1,359 @@
+<th:block th:fragment="register">
+
+    <form method="post" th:action="@{/animal/register}" class="formulario animal__form" id="formulario">
+
+        <h1 class="ta-center">Registro de animal.</h1>
+
+        <div class="row justify-evenly row-separator">
+            <div class="col s12">
+                <th:block th:switch="${register_type}">
+
+                    <th:block th:case="gestion">
+                        <label class="subtitle">Tipo de gestion</label>
+
+                        <div class="row justify-evenly row-separator">
+                            <div class="col s6">
+                                <input type="radio" name="type" value="S" class="form-check-input" id="radio_s" checked>
+                                <label for="radio_s" class="form-check-label ">Venta</label>
+                            </div>
+                            <div class="col s6">
+                                <input type="radio" name="type" value="A" class="form-check-input" id="radio_a">
+                                <label for="radio_a" class="form-check-label ">Adopcion</label>
+                            </div>
+                        </div>
+                        <input type="hidden" name="owner" value="0">
+                    </th:block>
+
+                    <th:block th:case="user">
+
+                        <input type="hidden" name="type" value="C">
+                        <div class="row row-separator justify-evenly">
+
+
+
+                            <div class="formulario__grupo col s5" id="grupo__owner">
+                                <label for="combo_client" class="formulario__label subtitle">Dueño</label>
+                              
+                                <select id="combo_client" name="owner" class="input_field formulario__input">
+                                    <div th:replace="~{animals/fragments/user_options :: options}"></div>
+                                </select>
+                                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+
+                                <p class="formulario__input-error">Debe seleccionar una opcion</p>
+                            </div>
+
+                          
+                                
+                              
+                           
+
+
+                                <div class="formulario__grupo col s5">
+                                    <label for="combo_client" class="formulario__label subtitle">Filtrar dueño</label>
+                                    <input type="text" placeholder="Filtro..." id="combo_filter" class="input_field">
+                                </div>
+                            </div>
+                    </th:block>
+                </th:block>
+            </div>
+        </div>
+
+
+
+        <div class="row justify-evenly row-separator">
+            <div class="formulario__grupo col s5" id="grupo__name">
+
+                <label for="name" class="formulario__label subtitle">Nombre </label>
+                <div class="formulario__grupo-input">
+                    <input type="text" name="name" id="name" class="formulario__input" placeholder="Nombre..."
+                        maxlength="15">
+                </div>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Solo se pueden ingresar de 3 a 15 letras</p>
+            </div>
+
+
+            <div class="formulario__grupo col s5" id="grupo__born">
+                <label for="born" class="formulario__label subtitle">Nacimiento</label>
+
+                <input type="date" name="born" id="born" class="input_field formulario__input">
+
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Debe seleccionar una fecha</p>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="row justify-evenly">
+            <div class="formulario__grupo col s5" id="grupo__specie">
+                <label for="combo_specie" class="formulario__label subtitle">Especie</label>
+
+                <select id="combo_specie" name="specie" class="input_field formulario__input">
+                    <div th:replace="~{animals/fragments/species_options :: options}"></div>
+                </select>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Debe seleccionar una opcion</p>
+            </div>
+
+            <div class="formulario__grupo col s5" id="grupo__breed">
+                <label for="combo_breed" class="formulario__label subtitle">Raza</label>
+                <select id="combo_breed" name="breed" class="input_field formulario__input">
+                    <div th:replace="~{animals/fragments/breeds_options :: options}"></div>
+                </select>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Debe seleccionar una opcion</p>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row justify-evenly row-separator">
+            <div class="col s5">
+                <label class="subtitle">Sexo</label>
+                <div class="row">
+
+                    <div class="col s6">
+                        <div>
+                            <input type="radio" name="gender" id="gender-m" value="M" checked>
+                            <label for="gender-m">Macho</label>
+
+                        </div>
+                    </div>
+                    <div class="col s6">
+                        <div class="form-check">
+                            <input type="radio" name="gender" id="gender-f" value="F">
+                            <label for="gender-f">Hembra</label>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s5"></div>
+        </div>
+
+        <div class="row justify-evenly">
+
+
+            <div class="formulario__grupo col s5" id="grupo__height">
+                <label for="height" class="formulario__label subtitle">Altura (cm)</label>
+                <div class="formulario__grupo-input tagged_input">
+                    <input type="text" name="height" id="height" class="formulario__input" placeholder="100" min="1"
+                        max="10000">
+                </div>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+            </div>
+
+            <div class="formulario__grupo col s5" id="grupo__weight">
+                <label for="weight" class="formulario__label subtitle">Peso (gr)</label>
+                <div class="formulario__grupo-input tagged_input">
+                    <input type="text" name="weight" id="weight" class="formulario__input" placeholder="100" min="1"
+                        max="50000">
+                </div>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+            </div>
+
+        </div>
+
+        <div class="row justify-evenly">
+            <div class="col s11">
+                <input type="checkbox" name="neutered" id="neutered" />
+                <label for="neutered">Está castrado</label>
+            </div>
+        </div>
+
+        <div class="formulario__mensaje" id="formulario__mensaje" style="display: none;">
+            <p> <i class="fas fa-exclamation-triangle"></i> <b>Error:</b>
+                Porfavor llenar el formulario correctamente </p>
+        </div>
+
+
+        <div class="row justify-center">
+            <div class="col s4 formulario__grupo formulario__grupo-btn-enviar">
+                <input id="boton" type="submit" class="btn btn-send formulario__btn">
+            </div>
+        </div>
+
+    </form>
+</th:block>
+
+<!--      Fragmento        -->
+
+<th:block th:fragment="modify">
+
+    <form method="get" action="/animal/modify" class="formulario animal__form" id="formulario" th:object="${animal}">
+
+        <h1 class="ta-center">Modificar animal.</h1>
+
+        <input type="hidden" name="id" th:value="*{id}">
+        <div class="row justify-evenly row-separator">
+            <div class="col s12">
+
+
+                <th:block th:if="*{type }!='C' ">
+                    <label class="subtitle">Tipo de gestion</label>
+
+                    <div class="row justify-evenly row-separator">
+                        <div class="col s6">
+                            <input type="radio" name="type" value="S" class="form-check-input" id="radio_s"
+                                th:checked="*{type}== 'S'">
+                            <label for="radio_s" class="form-check-label">Venta</label>
+                        </div>
+                        <div class="col s6">
+                            <input type="radio" name="type" value="A" class="form-check-input" id="radio_a"
+                                th:checked="*{type}== 'A'">
+                            <label for="radio_a" class="form-check-label">Adopcion</label>
+                        </div>
+                    </div>
+                    <input type="hidden" name="owner" value="0">
+                </th:block>
+
+
+                <th:block th:if="*{type}== 'C'">
+                    <h3>Mascota de: <span th:text="${owner.getName} + ' ' + ${owner.getLastName}"></span></h3>
+                    <input type="hidden" name="type" value="C">
+                </th:block>
+
+
+            </div>
+        </div>
+
+
+
+        <div class="row justify-evenly row-separator">
+            <div class="formulario__grupo col s5" id="grupo__name">
+
+                <label for="name" class="formulario__label subtitle">Nombre </label>
+                <div class="formulario__grupo-input">
+                    <input type="text" name="name" id="name" class="formulario__input" placeholder="Nombre..."
+                        maxlength="15" th:value="*{name}">
+                </div>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Solo se pueden ingresar de 3 a 15 letras</p>
+            </div>
+
+
+            <div class="formulario__grupo col s5" id="grupo__born">
+                <label for="born" class="formulario__label subtitle">Nacimiento</label>
+
+                <input type="date" name="born" id="born" class="input_field formulario__input" th:value="*{born}">
+
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Debe seleccionar una fecha</p>
+            </div>
+
+
+
+        </div>
+
+        <div class="row justify-evenly">
+            <div class="formulario__grupo col s5" id="grupo__specie">
+                <label for="combo_specie" class="formulario__label subtitle">Especie</label>
+
+                <select id="combo_specie" name="specie" class="input_field formulario__input">
+                    <option th:each="temp:${species}" th:value="${temp.specie}" th:text="${temp.specie}"
+                        th:selected="${temp.specie==animal.specie}"></option>
+                </select>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Debe seleccionar una opcion</p>
+            </div>
+
+            <div class="formulario__grupo col s5" id="grupo__breed">
+                <label for="combo_breed" class="formulario__label subtitle">Raza</label>
+                <select id="combo_breed" name="breed" class="input_field formulario__input">
+                    <option th:each="temp:${breeds}" th:value="${temp.breed}" th:text="${temp.breed}"
+                        th:selected="${temp.breed==animal.breed}"></option>
+                </select>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Debe seleccionar una opcion</p>
+            </div>
+        </div>
+
+
+
+
+
+
+        <div class="row justify-evenly row-separator">
+            <div class="col s5">
+                <label class="subtitle">Sexo</label>
+                <div class="row">
+
+                    <div class="col s6">
+                        <div>
+                            <input type="radio" name="gender" id="gender-m" value="M" th:checked="*{gender} == 'M'">
+                            <label for="gender-m">Macho</label>
+                        </div>
+                    </div>
+
+                    <div class="col s6">
+                        <div class="form-check">
+                            <input type="radio" name="gender" id="gender-f" value="F" th:checked="*{gender} == 'F'">
+                            <label for="gender-f">Hembra</label>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col s5"></div>
+        </div>
+
+        <div class="row justify-evenly">
+
+
+            <div class="formulario__grupo col s5" id="grupo__height">
+                <label for="height" class="formulario__label subtitle">Altura (cm)</label>
+                <div class="formulario__grupo-input tagged_input">
+                    <input type="text" name="height" id="height" class="formulario__input" placeholder="100" min="1"
+                        max="10000" th:value="*{height}">
+                </div>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+            </div>
+
+            <div class="formulario__grupo col s5" id="grupo__weight">
+                <label for="weight" class="formulario__label subtitle">Peso (gr)</label>
+                <div class="formulario__grupo-input tagged_input">
+                    <input type="text" name="weight" id="weight" class="formulario__input" placeholder="100" min="1"
+                        max="50000" th:value="*{weight}">
+                </div>
+                <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                <p class="formulario__input-error">Solo se pueden ingresar n&uacute;meros</p>
+            </div>
+
+        </div>
+
+        <div class="row justify-evenly">
+            <div class="col s11">
+                <input type="checkbox" name="neutered" id="neutered" th:checked="*{neutered}" />
+                <label for="neutered">Está castrado</label>
+            </div>
+        </div>
+
+        <div class="formulario__mensaje" id="formulario__mensaje" style="display: none;">
+            <p> <i class="fas fa-exclamation-triangle"></i> <b>Error:</b>
+                Porfavor llenar el formulario correctamente </p>
+        </div>
+
+
+        <div class="row justify-center">
+            <div class="col s4 formulario__grupo formulario__grupo-btn-enviar">
+                <input id="boton" type="submit" class="btn btn-send formulario__btn">
+            </div>
+        </div>
+
+    </form>
+
+
+
+</th:block>

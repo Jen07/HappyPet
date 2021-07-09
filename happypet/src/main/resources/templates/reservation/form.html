@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Insert title here</title>
+</head>
+
+<body>
+
+    <div th:fragment="formReservation" class="form__container">
+
+        <div class="main2">
+
+            <form action="" class="formulario" id="formulario">
+                <!-- combo box animal -->
+                <div id="grupo__animal">
+                    <label for="animal" class="formulario__label">Mascota: </label>
+                    <div class="formulario__grupo-input">
+                        <select name="idAnimal" id="idAnimal">
+                            <option th:each="a : ${animales}" th:value="${a.id}" th:text="${a.name}"> </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- combo box Hotel-->
+                <div id="grupo__animal">
+                    <label for="hotel" class="formulario__label">Hotel: </label>
+                    <div class="formulario__grupo-input">
+                        <select name="codeHotel" id="codeHotel">
+                            <option th:each="h : ${hoteles}" th:value="${h.code}" th:text="${a.sucursal.ciudad}"> </option>
+                        </select>
+                    </div>
+                </div>
+
+                 <!-- Fecha llegada-->
+                <div class="formulario__grupo" id="grupo__entryDate">
+                     <label for="entryDate" class="formulario__label">Fecha de llegada:</label>
+                    <div class="formulario__grupo-input ">
+                      <input type="date" class="formulario__input" id="entryDate" name="entryDate">
+                      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <p class="formulario__input-error"></p>
+                  </div>
+
+                 <!-- Fecha salida-->
+                <div class="formulario__grupo" id="grupo__departureDate">
+                    <label for="departureDate" class="formulario__label">Fecha de salida:</label>
+                    <div class="formulario__grupo-input ">
+                      <input type="date" class="formulario__input" id="departureDate" name="departureDate">
+                      <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                    <p class="formulario__input-error"></p>
+                  </div>
+
+
+                <div class="formulario__grupo-btn-enviar">
+                    <button id="boton" class="formulario__btn" title="Guardar el registro"
+                        type="submit" onclick="save()">Reservar</button>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
