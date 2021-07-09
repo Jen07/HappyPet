@@ -1,13 +1,17 @@
 package  cr.ac.ucr.happypet.Model.hotel;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import cr.ac.ucr.happypet.Model.branchOffice.Sucursal;
+import cr.ac.ucr.happypet.Model.reservation.ReservationHotel;
 
 @Entity
 @Table(name="tb_hotel")
@@ -28,6 +32,8 @@ public class Hotel {
 	 @JoinColumn (name="cedulaJuridica")
 	 private Sucursal sucursal;
 	
+	 @OneToMany(mappedBy = "hotel")
+	 private List<ReservationHotel> reservations;
 	
 
 	public int getCode() {
@@ -85,8 +91,15 @@ public class Hotel {
 	 public void setSucursal(Sucursal sucursal) {
 	 	this.sucursal = sucursal;
 	 }
-	
-	
+	 
+
+	public List<ReservationHotel> getReservations() {
+		return reservations;
+	}
+
+	public void setReservations(List<ReservationHotel> reservations) {
+		this.reservations = reservations;
+	}
 
 	@Override
 	public String toString() {

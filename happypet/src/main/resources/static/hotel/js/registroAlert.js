@@ -234,11 +234,7 @@ function registrar() {
 				timerProgressBar: true,
 				timer: 2000,
 			}).then((result)=>{
-				  formulario.reset();
-				  document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) =>{
-					  icono.classList.remove('formulario__grupo-correcto');
-				  });
-				 
+				window.location.href = `/hotel/mostrar`; 
 			})
 
 			

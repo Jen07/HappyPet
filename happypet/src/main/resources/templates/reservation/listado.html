@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org"> 
+<head>
+<meta charset="ISO-8859-1">
+
+<link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
+<link rel="stylesheet" type="text/css" href="/reservation/css/styleReservation.css">
+<title>Listado Reservaciones</title>
+
+</head>
+<body>
+
+    <header>
+		<div th:replace="~{general/header :: head}"></div>
+	</header>
+    <div class="container">
+		<h1 class="ta-center">Mis mascotas.</h1>
+
+		<h2 class="ta-center" th:unless="${animals}">
+			No se han recuperado las mascotas.
+		</h2>
+
+		<div class="row justify-evenly" th:if="${animals}">
+			<h2 class="ta-center" th:if="${animals.size() == 0}">
+				Aun no tienes mascotas registradas.
+			</h2>
+
+			<div class="col s3 m-1" th:unless="${animals.size() == 0}" th:each="animal : ${animals}">
+				<div th:replace="~{animals/fragments/animal_card :: card}"></div>
+			</div>
+		</div>
+	</div>
+
+    <footer>
+		<div th:replace="~{general/footer :: foot}"></div>
+	</footer>
+
+</body>
+</html>

@@ -1,10 +1,15 @@
 package cr.ac.ucr.happypet.Model.users;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import cr.ac.ucr.happypet.Model.reservation.ReservationHotel;
 
 @Entity
 @Table(name = "tb_user")
@@ -21,6 +26,9 @@ public class User {
     private String password;
     private String type;
     private String imagen;
+
+    @OneToMany(mappedBy = "user")
+    private List<ReservationHotel> reservations;
 
     public User() {
     }
@@ -120,6 +128,14 @@ public class User {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public List<ReservationHotel> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<ReservationHotel> reservations) {
+        this.reservations = reservations;
     }
 
     @Override

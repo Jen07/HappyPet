@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Index</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
+    <link rel="stylesheet" type="text/css" href="/reservation/css/styleReservation.css">
+    <link rel="stylesheet" type="text/css" href="/reservation/css/styleForm.css">
+    <link rel="stylesheet" type="text/css" href="/reservation/css/styleModal.css">
+</head>
+
+<body>
+
+    <div class="navegationBar" th:replace="~{general/header :: head}"></div>
+
+    <div class="container2">
+
+        <div class="imag">
+            <img class="imagen" src="/reservation/images/hospedaje.png">
+        </div>
+
+        <div class="info">
+            <h1 class="titu">HOSPEDAJE ESPECIALIZADO</h1>
+            <p>Contamos con las mejores instalaciones para el cuidado de su mascota.
+                Viaja tranquilo y nosotros nos encargaremos de darle los cuidados y todo el cariño que tu mascota
+                merece.
+                Área exclusiva para su estadía con supervisión médica las 24 horas.
+            </p>
+        </div>
+
+        <div class="hotel">
+
+            <img class="imagen1" src="/reservation/images/perrito.jpg">
+            <img class="imagen2" src="/reservation/images/gato.jpg">
+
+            <button class="btn btn-reserv" th:onclick="modalForm([[${shoppingCart.user.id}]])">RESERVAR</button>
+            <button class="btn btn-ver">RESERVACIONES</button>
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()"> &times;</span>
+                <div class="modal-header">
+                     <h1>Reservaci&oacute;n de Hotel</h1>
+                   
+                </div>
+                <div class="modal-body">
+                    <div th:replace="~{reservation/form::formReservation}"> </div>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+
+    <footer th:replace="general/footer.html :: foot"> </footer>
+
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="/reservation/js/jsReservation.js"></script>
+
+</body>
+
+</html>
