@@ -22,10 +22,28 @@ function readFile(input) {
 }
 
 const setPreviewer = () => {
-    let fileUpload = document.getElementById('file');
-    fileUpload.onchange = function (e) {
-        readFile(e.srcElement);
-    }
+
+
+    let inputFile = document.getElementById("file");
+
+    inputFile.addEventListener('change', function (event) {
+        let uploadedFileName = event.target.files[0].name;
+
+        if (uploadedFileName.endsWith("png") || uploadedFileName.endsWith("jpg") || uploadedFileName.endsWith("jpeg")) {
+            readFile(event.srcElement);
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Solo se permiten imágenes',
+                timer: 2000
+            });
+            document.getElementById('file-preview').innerHTML = "";
+            document.getElementById("file").value = "";
+        }
+    });
+
 }
 
 setPreviewer();
+
+
