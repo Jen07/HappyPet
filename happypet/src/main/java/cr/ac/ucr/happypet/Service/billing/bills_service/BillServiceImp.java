@@ -9,8 +9,8 @@ import cr.ac.ucr.happypet.Model.billing.Bill;
 import cr.ac.ucr.happypet.Repository.billing.BillsRepository;
 
 @Service
-public class BillServiceImp implements IBillService{
-    
+public class BillServiceImp implements IBillService {
+
     @Autowired
     BillsRepository repo;
 
@@ -21,13 +21,13 @@ public class BillServiceImp implements IBillService{
 
     @Override
     public Bill save(Bill bill) {
-        
+
         return repo.save(bill);
     }
 
     @Override
     public void unArchieveBills(int owner) {
-       repo.unArchieveBills(owner);
+        repo.unArchieveBills(owner);
     }
 
     @Override
@@ -45,4 +45,14 @@ public class BillServiceImp implements IBillService{
         repo.archieveBill(id);
     }
 
+    @Override
+    public List<Bill> findAll() {
+
+        return repo.findAll();
+    }
+
+    @Override
+    public void delete(int id) {
+        repo.deleteById(id);
+    }
 }

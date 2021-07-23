@@ -27,6 +27,8 @@ public class Bill {
     private int id;
     private Date receivedAt;
 
+    private int archived = 0;
+
     @ManyToOne
     @JoinColumn(name = "idClient")
     private User client;
@@ -94,6 +96,14 @@ public class Bill {
         }
 
         return total;
+    }
+
+    public int getArchived() {
+        return archived;
+    }
+
+    public void setArchived(int archived) {
+        this.archived = archived;
     }
 
     public String getTotalString() {

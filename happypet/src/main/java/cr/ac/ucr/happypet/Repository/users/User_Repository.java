@@ -15,4 +15,6 @@ public interface User_Repository extends JpaRepositoryImplementation<User, Integ
 
     List<User> findByNameContaining(String filter);
 
+    List<User> findByType(String type);
+
 }

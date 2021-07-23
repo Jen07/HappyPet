@@ -66,12 +66,19 @@ public class BillingController extends MainController {
         return "billing/bill_detail";
     }
 
+    @GetMapping("/bill_admin_detail/{id}")
+    public String billAdminDetail(@PathVariable int id, Model mod) {
+        mod.addAttribute("bill", billsRepo.findById(id));
+        return "billing/bill_admin_detail";
+    }
+
     @GetMapping("/my_bills/{id}")
     public String myanimals(Model mod, @PathVariable Integer id) {
 
         List<Bill> bills = billsRepo.getUnArchievedBills(id);
         mod.addAttribute("bills", bills);
         mod.addAttribute("user", id);
+
         mod.addAttribute("archievedTotal", billsRepo.getCountArchievedBills(id));
         return "billing/my_bills";
     }
@@ -96,4 +103,20 @@ public class BillingController extends MainController {
         return "billing/fragments/bill_table";
     }
 
+    @GetMapping("/all_Bills")
+    public String allBills(Model mod) {
+
+        List<Bill> bills = billsRepo.findAll();
+        mod.addAttribute("bills", bills);
+        mod.addAttribute("totalUsers", usersRepo.getClients().size());
+        mod.addAttribute("totalBills", billsRepo.findAll().size());
+
+        return "billing/bill_gestion";
+
+    }
+
+    @GetMapping("/bills_total")
+    public Integer getTotalBills() {
+        return billsRepo.findAll().size();
+    }
 }

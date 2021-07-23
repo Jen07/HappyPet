@@ -3,6 +3,9 @@ package cr.ac.ucr.happypet.Controller.animals;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,24 +28,23 @@ import cr.ac.ucr.happypet.Service.animals.images_service.IImagesService;
 @Controller
 @RequestMapping(value = "/animal")
 
-public class ImagesController extends MainController{
-    
-	@Autowired
-	IAnimalsService animalsRepo;
-    
-	@Autowired
-	IImagesService imagesRepo;
+public class ImagesController extends MainController {
 
-    @GetMapping(value="/images/{id}")
-	public String imagesFormulary(@PathVariable int id, Model mod) {
-		mod.addAttribute("animal", animalsRepo.findById(id));
-		mod.addAttribute("images", imagesRepo.findByAnimalId(id));
-		return "animals/gestion_images";
-	}
+    @Autowired
+    IAnimalsService animalsRepo;
 
-	@PostMapping(path = "/save_image")
-    public String saveImage(@RequestParam("file") MultipartFile file, @RequestParam final int id)
-            throws IOException {
+    @Autowired
+    IImagesService imagesRepo;
+
+    @GetMapping(value = "/images/{id}")
+    public String imagesFormulary(@PathVariable int id, Model mod) {
+        mod.addAttribute("animal", animalsRepo.findById(id));
+        mod.addAttribute("images", imagesRepo.findByAnimalId(id));
+        return "animals/gestion_images";
+    }
+
+    @PostMapping(path = "/save_image2")
+    public String saveImage2(@RequestParam("file") MultipartFile file, @RequestParam final int id) throws IOException {
 
         if (!file.isEmpty()) {
 
@@ -59,10 +61,40 @@ public class ImagesController extends MainController{
         return String.format("redirect:/animal/images/%s", id);
     }
 
-	@GetMapping(path = "/delete_image")
-    public String deleteImage(@RequestParam final int id){
+    @PostMapping(path = "/save_image")
+    public String saveImage(@RequestParam("file") MultipartFile file, @RequestParam final int id) throws IOException {
 
-    	imagesRepo.delete(imagesRepo.findById(id));
+        if (!file.isEmpty()) {
+
+            Image img = new Image();
+
+            img.setAnimal(animalsRepo.findById(id));
+            img.setName(file.getOriginalFilename());
+            img.setType(file.getContentType());
+            img.setSize(file.getSize());
+            img.setPixel(file.getBytes());
+
+            imagesRepo.save(img);
+
+            Image savedImage = imagesRepo.findByAnimalId(id).get(imagesRepo.findByAnimalId(id).size() - 1);
+
+            Path addressImagen = Paths.get("src//main//resources//static//animals//assets/pictures");
+            String addresAbsolute = addressImagen.toFile().getAbsolutePath();
+
+            byte[] byteImagen;
+            byteImagen = file.getBytes();
+
+            Path allAddress = Paths.get(addresAbsolute + "//" + savedImage.getId() + ".jpg");
+            Files.write(allAddress, byteImagen);
+        }
+
+        return String.format("redirect:/animal/images/%s", id);
+    }
+
+    @GetMapping(path = "/delete_image")
+    public String deleteImage(@RequestParam final int id) {
+
+        imagesRepo.delete(imagesRepo.findById(id));
         return "redirect:/test_image";
     }
 
@@ -74,14 +106,8 @@ public class ImagesController extends MainController{
         Image img = imagesRepo.findById(id);
         // Conversion del array de bytes.
         InputStream is = new ByteArrayInputStream(img.getPixel());
-        //Asignacion de imagen a la respuesta.
+        // Asignacion de imagen a la respuesta.
         IOUtils.copy(is, response.getOutputStream());
     }
 
-   
-	@GetMapping("/get_images_table")
-	public String getImageTable(@RequestParam int id, Model mod) {
-		mod.addAttribute("images", imagesRepo.findByAnimalId(id));
-		return "animals/fragments/images_table";
-	}
 }

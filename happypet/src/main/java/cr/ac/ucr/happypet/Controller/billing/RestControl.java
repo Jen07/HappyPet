@@ -45,8 +45,7 @@ public class RestControl extends MainController {
     @GetMapping("/buyout")
     public ResponseEntity<Integer> billDetail(@ModelAttribute ShoppingCart shoppingCart) {
         Bill bill = new Bill();
-        // ------------------------------------------------------------>Usurio estatico
-        // cambiar por actual.
+
         bill.setClient(shoppingCart.getUser());
         bill.setReceivedAt(new Date(Calendar.getInstance().getTime().getTime()));
 
@@ -95,14 +94,56 @@ public class RestControl extends MainController {
 
         for (Bill bill : full) {
             if (bill.getFormattedDate().equals(date)) {
-                System.out.println(bill.getFormattedDate());
-                System.out.println(date);
-                System.out.println(bill.getFormattedDate().equals(date));
+
                 simpleBills.add(new SimpleBill(bill.getId(), bill.getFormattedDate(), bill.getTotalString()));
             }
         }
 
         return simpleBills;
+    }
+
+    @GetMapping("/getFilteredDateAll/")
+    public List<SimpleBill> getFilteredDateAll(@RequestParam String date) {
+
+        List<Bill> full = billsRepo.findAll();
+
+        List<SimpleBill> simpleBills = new LinkedList<>();
+
+        for (Bill bill : full) {
+            if (bill.getFormattedDate().equals(date)) {
+
+                simpleBills.add(new SimpleBill(bill.getId(), bill.getFormattedDate(), bill.getTotalString(),
+                        (bill.getClient().getName() + " " + bill.getClient().getLastName())));
+            }
+        }
+
+        return simpleBills;
+    }
+
+    @GetMapping("/all_bills")
+    public List<SimpleBill> getAllBills() {
+
+        List<Bill> full = billsRepo.findAll();
+        List<SimpleBill> simpleBills = new LinkedList<>();
+
+        for (Bill bill : full) {
+            simpleBills.add(new SimpleBill(bill.getId(), bill.getFormattedDate(), bill.getTotalString(),
+                    (bill.getClient().getName() + " " + bill.getClient().getLastName())));
+        }
+
+        return simpleBills;
+    }
+
+    @GetMapping("/delete/{id}")
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        billsRepo.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("/total_bills")
+    public Integer totalBills() {
+
+        return billsRepo.findAll().size();
     }
 
 }

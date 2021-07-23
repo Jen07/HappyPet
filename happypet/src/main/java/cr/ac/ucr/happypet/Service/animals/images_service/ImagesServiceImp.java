@@ -35,8 +35,11 @@ public class ImagesServiceImp implements IImagesService {
     }
 
     @Override
-    public void save(Image img) {
-        repo.save(img);
+    public Image save(Image img) {
+        return repo.save(img);
+
+      
+
     }
 
     @Override

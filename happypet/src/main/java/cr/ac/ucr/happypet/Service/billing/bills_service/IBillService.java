@@ -16,4 +16,8 @@ public interface IBillService {
     int getCountArchievedBills(int owner);
 
     void archieveBill(int id);
+
+    List<Bill> findAll();
+
+    void delete(int id);
 }

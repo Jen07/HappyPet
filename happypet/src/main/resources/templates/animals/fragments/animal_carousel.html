@@ -17,7 +17,8 @@
                     <div class="splide__track">
                         <ul class="splide__list">
                             <li class="splide__slide" style="width: 250px" th:each="temp : ${animal.images}">
-                                <img th:src="@{'/animal/build_image/' + ${temp.id}}">
+                                <img th:src="@{'/animals/assets/pictures/' + ${temp.id} + '.jpg'}">
+
                             </li>
                         </ul>
                     </div>

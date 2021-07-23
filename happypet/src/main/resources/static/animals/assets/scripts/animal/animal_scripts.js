@@ -107,24 +107,6 @@ function changeFilter() {
     });
 }
 
-const getAnimalsFiltered = (filter, value) => {
-
-    const xhr = new XMLHttpRequest();
-
-    xhr.open("GET", `/animal/get_All`, true);
-    xhr.send();
-
-    xhr.addEventListener("loadend", (info) => {
-
-        // Se reinicia el images para cargarlo con nuevos datos.
-        // Solo al eliminar y agregar.
-        animalsPG = [];
-        animalsTD = [];
-
-        loadRows([...JSON.parse(info.target.response)]);
-    });
-}
-
 function filterTable() {
     let filterBy = document.getElementById("filterBy").value;
     let filter = document.getElementById("filterContent").value;
@@ -171,12 +153,16 @@ let perPage = 5;
 const getAnimals = () => {
     const xhr = new XMLHttpRequest();
 
-    xhr.open("GET", `/animal/get_All`, true);
-    xhr.send();
+    xhr.addEventListener("loadstart", () => {
+        content.innerHTML = '<td colspan="5" class="ta-center" style="cursor: progress;">Cargando...</td>';
+    });
 
     xhr.addEventListener("loadend", (info) => {
         loadRows([...JSON.parse(info.target.response)]);
     });
+
+    xhr.open("GET", `/animal/get_All`, true);
+    xhr.send();
 }
 
 // Carga las filas.
@@ -232,8 +218,6 @@ const changePage = (page) => {
     content.innerHTML = "";
 
     // Asigna el contenido de la pagina indicada
-
-
 
     for (let i = 0; i < animalsPG[page].length; i++) {
         content.innerHTML += animalsPG[page][i];

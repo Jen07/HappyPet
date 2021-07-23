@@ -15,5 +15,5 @@ public interface IImagesService {
 
     void deleteAll(List<Image> img);
 
-    void save(Image img);
+    Image save(Image img);
 }

@@ -47,3 +47,13 @@
 	padding: 0.8em;
 	width: 6em;
 }
+
+.icon-box {
+	background-color: var(--clr-accent-300);
+	color: var(--clr-neutral-100);
+	padding: 0 1em;
+	border-radius: 0.2em;
+	box-shadow: 1px 1px 3px 3px #8888889d;
+	width: 100px;
+	margin-right: 1em;
+}

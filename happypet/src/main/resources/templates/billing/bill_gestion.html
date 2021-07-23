@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <div th:replace="~{animals/layout/head_block :: head}"></div>
+    <link th:href="@{/general/table.css}" Content-Type: text/css rel="stylesheet" />
+    <link th:href="@{/billing/bills.css}" Content-Type: text/css rel="stylesheet" />
+</head>
+
+<body th:id="${user}">
+
+    <header>
+        <div th:replace="~{general/header :: head}"></div>
+    </header>
+
+
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class=" col s1 icon-box">
+                        <p> <span id="total_Users" th:text="${totalUsers}"></span> <i class="fas fa-users"></i> </p>
+                        <p>Clientes</p>
+                    </div>
+                    <div class=" col s1 icon-box">
+                        <p> <span id="total_Bills"></span> <i class="fas fa-copy"></i> </p>
+                        <p>Facturas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="table_cont">
+            <div th:replace="~{billing/fragments/allBills_table :: table}"></div>
+        </div>
+
+    </div>
+
+    <div id="loading__table"
+        style="width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.486);display: none;cursor: progress;">
+
+        <div style="margin: auto;">
+            <p>Cargando...</p>
+        </div>
+
+    </div>
+
+    <footer>
+        <div th:replace="~{general/footer :: foot}"></div>
+    </footer>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script th:src="@{/animals/assets/scripts/billing/all_bills.js}"></script>
+    <script th:src="@{/animals/assets/scripts/billing/bill_detail.js}"></script>
+    <script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
+
+</body>
+
+
+
+</html>

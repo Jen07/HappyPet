@@ -363,6 +363,7 @@ td {
 /*                         De aqui en adelante clases de utility.                   */
 /*----------------------------------------------------------------------------------*/
 
+
 .money:before {
 	content: "¢";
 }
@@ -648,5 +649,3 @@ body.cart a.cart {
 	border: 1px solid var(--clr-neutral-200);
 	border-radius: 0.25rem;
 }
-
-

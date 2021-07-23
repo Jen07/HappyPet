@@ -120,18 +120,31 @@ const getImages = () => {
     let id = document.getElementById("opt").value;
     const xhr = new XMLHttpRequest();
 
-    xhr.open("GET", `/animal/get_animal_images/${id}`, true);
-    xhr.send();
+
+
+    xhr.addEventListener("loadstart", () => {
+        content.innerHTML = '<td colspan="3" class="ta-center"  style="cursor: progress;">Cargando...</td>';
+    });
 
     xhr.addEventListener("loadend", (info) => {
-
-        // Se reinicia el images para cargarlo con nuevos datos.
-        // Solo al eliminar y agregar.
         imagesTD = [];
 
         setTable([...JSON.parse(info.target.response)]);
     });
+
+    xhr.open("GET", `/animal/get_animal_images/${id}`, true);
+    xhr.send();
 }
+
+
+
+
+
+
+
+
+
+
 
 
 const setTable = (imagesArray) => {
@@ -181,12 +194,13 @@ const appendImage = (id) => {
     <td class="animal_images ">
     <div class= "my-1 row s-12 justify-center">
        <div class="image_frame ">
-         <img src= "/animal/build_image/ + ${id}"  class="animal-img">
+
+         <img src= "/animals/assets/pictures/${id}.jpg"  class="animal-img">
        </div>
     </div>
     <div class="row justify-evenly">
     <div class="col s5">
-    <a class="btn btn-send b-img-Detail" onClick="detailsAlert('/animal/build_image/${id}')">
+    <a class="btn btn-send b-img-Detail" onClick="detailsAlert('/animals/assets/pictures/${id}.jpg')">
     <i class="far fa-address-card"></i></a>
     </div>
     <div class="col s5">

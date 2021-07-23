@@ -53,4 +53,9 @@ public class UserServiceImp implements IUserService {
 		repo.deleteById(id);
 	}
 
+	@Override
+	public List<User> getClients() {
+		return repo.findByType("Cliente");
+	}
+
 }
