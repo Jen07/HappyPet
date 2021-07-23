@@ -44,12 +44,12 @@
 
                 <div class="col-rigth input-field">
                     <i class="fas fa-phone"></i>
-                    <input type="text" placeholder="Teléfono" name="phone" id="phone" maxlength="9" pattern="[0-9]{8}"
+                    <input type="tel" placeholder="Teléfono" name="phone" id="phone" maxlength="9" pattern="[0-9-]{9}$"
                         title="Ingresar solo números del 0-9 no separarlos eje:85472505" required="required"
                         OnKeyPress="return format('####-####',this,event);">     
                 </div>
 
-                <div class="fila-l input-field">
+                <div class="fila-l input-field2">
                     <i class="fas fa-envelope"></i>
                     <input type="email" placeholder="Correo" name="mail" id="mail" maxlength="25"
                         title="Ingrese un correo válido" required="required">

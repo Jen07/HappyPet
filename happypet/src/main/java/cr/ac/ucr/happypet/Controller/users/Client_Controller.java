@@ -120,7 +120,9 @@ public class Client_Controller extends MainController {
                 Files.write(allAddress, byteImagen);
             }
 
+      
             User client = new User(id, name, lastName, passw, mail, phone, address, nombreImag, "Cliente");
+            System.out.println(client.toString());
             svClient.add(client);
 
         } else {

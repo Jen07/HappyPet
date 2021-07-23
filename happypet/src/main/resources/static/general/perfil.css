@@ -1,0 +1,424 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
+.letra {
+    font-family: 'Roboto', sans-serif;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    line-height: 1.4;
+}
+
+.container {
+    padding: 0%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*=====================================
+estilos de la utilidad
+Copiar esto
+=====================================*/
+
+.seccion-perfil-usuario .perfil-usuario-body, .seccion-perfil-usuario {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.seccion-perfil-usuario .perfil-usuario-header {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(#d8524e, transparent);
+    margin-bottom: 1.25rem;
+}
+
+/*Arriba*/
+
+.seccion-perfil-usuario .perfil-usuario-portada {
+    display: block;
+    position: relative;
+    width: 90%;
+    height: 9rem;
+    background: linear-gradient(45deg, #d8524e, #666666);
+    border-radius: 0 0 20px 20px;
+}
+
+.seccion-perfil-usuario .perfil-usuario-portada .boton-portada {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: 0;
+    border-radius: 8px;
+    padding: 12px 25px;
+    background-color: rgba(0, 0, 0, .5);
+    color: #fff;
+    cursor: pointer;
+}
+
+.seccion-perfil-usuario .perfil-usuario-portada .boton-portada i {
+    margin-right: 1rem;
+}
+
+.seccion-perfil-usuario .perfil-usuario-avatar {
+    display: flex;
+    width: 180px;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+    border: 7px solid #FFFFFF;
+    background-color: #DFE5F2;
+    border-radius: 50%;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    position: absolute;
+    bottom: -40px;
+    left: calc(50% - 90px);
+    z-index: 1;
+}
+
+.seccion-perfil-usuario .perfil-usuario-avatar img {
+    width: 100%;
+    position: relative;
+    border-radius: 50%;
+}
+
+.seccion-perfil-usuario .perfil-usuario-avatar .boton-avatar {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    border: 0;
+    background-color: #fff;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.seccion-perfil-usuario .perfil-usuario-body {
+    width: 70%;
+    position: relative;
+    max-width: 750px;
+    margin-bottom: 1em;
+}
+
+/*Diseño de perfil*/
+
+.seccion-perfil-usuario .perfil-usuario-body .titulo {
+    display: block;
+    width: 100%;
+    font-size: 1.75em;
+    margin-bottom: 0.5rem;
+}
+
+.seccion-perfil-usuario .perfil-usuario-body .texto {
+    color: #848484;
+    font-size: 0.95em;
+}
+
+/*Container info*/
+
+.seccion-perfil-usuario .perfil-usuario-footer, .seccion-perfil-usuario .perfil-usuario-bio {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 0 12px rgba(0, 0, 0, .2);
+    background-color: #fff;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.seccion-perfil-usuario .perfil-usuario-bio {
+    margin-bottom: 1.25rem;
+    text-align: center;
+}
+
+/* lista para abajo*/
+
+.seccion-perfil-usuario .lista-datos {
+    width: 50%;
+    list-style: none;
+}
+
+/*Lista al lado*/
+
+.seccion-perfil-usuario .lista-datos li {
+    padding: 5px 0;
+}
+
+.seccion-perfil-usuario .lista-datos li>.icono {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+/*         Botones         */
+
+.boton-redes {
+    margin-left: 5rem;
+    /*text-decoration: none;*/
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 50px;
+    border-radius: 10%;
+    background-color: #80bd5d;
+    color: black;
+    cursor: pointer;
+}
+
+.boton-redes:hover {
+    background-color: #e78c4d;
+}
+
+/****************** CSS Editar *************************/
+
+.input-field {
+    width: 100%;
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    height: 55px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+}
+
+.input-field2 {
+    width: 100%;
+    background-color: #f0f0f0;
+    height: 50px;
+    border-radius: 55px;
+    display: grid;
+    grid-template-columns: 10% 85%;
+    padding: 0 0.4rem;
+    position: relative;
+}
+
+.input-field i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+}
+
+.input-field2 i {
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+}
+
+.input-field input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.input-field2 input {
+    background: none;
+    outline: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.input-field input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+}
+
+.col-rigth {
+    padding-right: 0px !important;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+    width: 46% !important;
+    padding: 3px;
+}
+
+.col-left {
+    padding-left: 0px !important;
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+    width: 46% !important;
+    padding: 3px;
+}
+
+.fila-l {
+    padding-left: 0px;
+    margin-left: 0% !important;
+    margin-right: 1% !important;
+    width: 96% !important;
+}
+
+.div-form {
+    position: relative !important;
+    width: 100% !important;
+    height: 70%!important;
+    align-items: center !important;
+    justify-content: center !important;
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'Roboto', sans-serif;
+}
+
+/********        Imagen del swal *******/
+
+.divImagen {
+    display: block;
+    border-radius: 20px;
+}
+
+.divImagen {
+    max-width: 20%;
+    display: block;
+    border-radius: 20px;
+    float: right;
+}
+
+#ima {
+    display: none;
+}
+
+#ima+label {
+    background-color: #08379c;
+    padding: 5px;
+    color: #fff;
+    border: 2px solid black;
+    border-radius: 9px;
+}
+
+#ima+label:hover {
+    background-color: #2263EF;
+    border-color: #ccc;
+    cursor: pointer;
+}
+
+/**************** Modal Content *****************/
+
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 40px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 60%;
+    height: 75%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* The Close Button */
+
+.close {
+    color: red;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-save {
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 50px;
+    width: 100px;
+    font-weight: bold;
+    background-size: 100% 100%;
+    -webkit-box-shadow: inset 0 0 15px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 7px;
+    border: none;
+    background-size: 50%;
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.btn-save:hover {
+    background-color: #80ff80;
+}
+
+.bDetail:hover {
+    background-color: #80ff80;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {
+    padding: 2px 16px;
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.activeButton {
+    background-color: var(--clr-accent-300);
+}
+
+/* adactacion a dispositivos */
+
+@media (max-width: 750px) {
+    .seccion-perfil-usuario .lista-datos {
+        width: 100%;
+    }
+    .seccion-perfil-usuario .perfil-usuario-portada, .seccion-perfil-usuario .perfil-usuario-body {
+        width: 95%;
+    }
+}

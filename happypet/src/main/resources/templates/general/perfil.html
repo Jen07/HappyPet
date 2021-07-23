@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- style-->
+    <link rel="stylesheet" type="text/css" href="/general/style.css" />
+    <link rel="stylesheet" type="text/css" href="/general/perfil.css" />
+    <title>Perfil de Personas</title>
+    <!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+</head>
+
+<body>
+
+    <header>
+        <div class="navegationBar" th:replace="~{general/header :: head}"></div>
+    </header>
+
+    <div class="container">
+        <section class="seccion-perfil-usuario">
+            <div class="perfil-usuario-header">
+                <div class="perfil-usuario-portada">
+
+                    <div class="perfil-usuario-avatar">
+
+                        <div th:if="${shoppingCart.getUser()?.getImagen()} ">
+                            <img th:src="@{'/users/imageEmployee/'+${shoppingCart.getUser().getImagen()}}"
+                                alt="img-avatar"></img>
+                        </div>
+                        <div th:unless="${shoppingCart.getUser().getImagen()}">
+                            <img th:src="@{/users/imageEmployee/default.jpg}"></img>
+                        </div>
+
+                        <input type="hidden" th:value="${shoppingCart.getUser().getImagen()}" id="imaName" />
+                        <button type="button" id="editUser" class="boton-avatar" th:onclick="imagen()"
+                            title="Expandir la imagen de perfil">
+                            <i class="fas fa-expand"></i>
+                        </button>
+
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="perfil-usuario-body">
+                <div class="perfil-usuario-bio">
+                    <h3 class="titulo"
+                        th:text="${shoppingCart.getUser().getName()} +' '+ ${shoppingCart.getUser().getLastName()}">
+                    </h3>
+
+                    <a th:onclick="relocate('/animal/my_animals',[[${shoppingCart.user.id}]])">
+                        <button class="boton-redes fas fa-dog letra">Mis
+                            Mascotas</button></a>
+
+                    <a th:onclick="relocate('/billing/my_bills',[[${shoppingCart.user.id}]])">
+                    <button class="boton-redes fa fa-file-invoice-dollar letra">Mis Factura</button></a>
+
+                    <button onclick="editar()" class="boton-redes fas fa-user-alt"><a class="letra">Editar
+                            Perfil</a></button>
+                </div>
+                <div class="perfil-usuario-footer">
+                    <ul class="lista-datos">
+                        <li><i class="icono far fa-address-card"></i>Cédula:</li>
+                        <li><i class="icono fas fa-phone-alt"></i>Teléfono:</li>
+                        <li><i class="icono fas fa-envelope"></i>Correo:</li>
+                        <li><i class="icono fas fa-map-signs"></i>Dirección:</li>
+                    </ul>
+                    <ul class="lista-datos">
+                        <li th:text="${shoppingCart.getUser().getId()}"></li>
+                        <li th:text="${shoppingCart.getUser().getPhone()}"></li>
+                        <li th:text="${shoppingCart.getUser().getMail()}"></li>
+                        <li th:text="${shoppingCart.getUser().getAddress()}"></li>
+                    </ul>
+                    <!-- Datos del Cliente -->
+                    <input type="hidden" th:value="${shoppingCart.getUser().getId()}" id="user-id" />
+                    <input type="hidden" th:value="${shoppingCart.getUser().getName()}" id="user-name" />
+                    <input type="hidden" th:value="${shoppingCart.getUser().getLastName()}" id="user-lastName" />
+                    <input type="hidden" th:value="${shoppingCart.getUser().getMail()}" id="user-mail" />
+                    <input type="hidden" th:value="${shoppingCart.getUser().getAddress()}" id="user-address" />
+                    <input type="hidden" th:value="${shoppingCart.getUser().getPassword()}" id="user-password" />
+                    <input type="hidden" th:value="${shoppingCart.getUser().getPhone()}" id="user-phone" />
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 style="text-align: center;">Editar mi perfil</h2>
+            </div>
+            <div class="modal-body">
+                <br>
+                <br>
+                    
+                <div class="div-form">
+                    
+                    <div class="fila-l">
+                        <input type="file" accept="image/*" id="ima" name="ima" onchange="listener(event)">
+                        <label for="ima"><i class="fas fa-upload"></i>&nbsp;Selecione una imagen</label>
+                        <span>
+                            <strong>Nombre imagen:</strong>
+                            <span id="file-name">ninguno</span>
+                            <input type="hidden" id="oldimagen" th:value="${shoppingCart.getUser().getImagen()}" />
+                        </span>
+                    </div>
+                    <br>
+                    <br>
+
+                    <div class="col-rigth input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Nombre" name="name" id="name" maxlength="9"
+                            pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Jennifer"
+                            required="required" th:value="${shoppingCart.getUser().getName()}">
+                    </div>
+
+                    <div class="col-left input-field">
+                        <i class="fas fa-user"></i>
+                        <input type="text" placeholder="Apellido" name="lastName" id="lastName" maxlength="9"
+                            pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]" title="Ingresar solo letras eje:Granados"
+                            required="required" th:value="${shoppingCart.getUser().getLastName()}">
+                    </div>
+
+                    <div class="col-rigth input-field">
+                        <i class="fas fa-phone"></i>
+                        <input type="tel" placeholder="Teléfono" name="phone" id="phone" maxlength="9"
+                            pattern="[0-9-]{9}$" title="Ingresar solo números del 0-9 no separarlos eje:85472505"
+                            required="required" OnKeyPress="return format('####-####',this,event);" th:value="${shoppingCart.getUser().getPhone()}">
+                    </div>
+
+                    <div class="col-left input-field">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" placeholder="Correo" name="mail" id="mail" maxlength="25"
+                            title="Ingrese un correo válido" required="required" th:value="${shoppingCart.getUser().getMail()}">
+                    </div>
+
+                    <div class="fila-l input-field2">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <input type="text" placeholder="Dirección" name="address" id="address" maxlength="45"
+                            title="Ingrese dirrecion exacta" required="required" th:value="${shoppingCart.getUser().getAddress()}">
+                    </div>
+                    
+                    <div class="d-btns">
+                        <br>
+                        <button onclick="save()" class="btn-save btn-edit">Guardar</button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Imagenes -->
+    <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+    <!-- JQUERY -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <!-- Alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <!-- Script -->
+    <script src="/general/perfil.js"></script>
+
+    <div class="footer" th:replace="~{general/footer :: foot}"></div>
+</body>
+
+</html>
