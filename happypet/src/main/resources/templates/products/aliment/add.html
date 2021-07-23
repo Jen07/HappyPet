@@ -5,12 +5,11 @@
 	<meta charset="ISO-8859-1">
 	<meta charset="UTF-8">
 	<title>Añadir Productos</title>
-
-	<link rel="stylesheet" type="text/css" href="/general/style.css" />
-	<link rel="stylesheet" type="text/css" href="/products/productsCSS/add.css" />
-	<link rel="stylesheet" type="text/css" href="/general/header.css" />
-	<!-- Icon -->
-	<link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/general/style.css" />
+    <link rel="stylesheet" type="text/css" href="/products/productsCSS/add.css"/>
+    <link rel="stylesheet" type="text/css" href="/users/employeeCSS/form.css" />
+    <!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
 </head>
 <div class="navegationBar" th:replace="~{general/header :: head}"></div>
 
@@ -18,45 +17,89 @@
 
 	<div class="container">
 
-		<form class="Dform" id="formulario" autocomplete="off" enctype="multipart/form-data" method="POST">
-			<h3 class="title">Nuevo Producto Alimento</h3>
-			<div class="row">
-			<div class="col.s4">
-				<label class="subtitle">Nombre:</label> <input type="text" id="name" name="name" pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]"  required="required">
-			</div>
-			<div class="col.s4">
-				<label class="subtitle">Marca:</label> <input type="text" id="brand" name="brand" pattern="[A-Za-z áéíóú](?=.*).{1,}[A-Za-zñ]"  required="required">
-			</div>
-		  </div>
-			<div class="row">
-				<div class="col.s4">
-					<label class="subtitle">Precio</label> <input type="text" id="price" name="price"  required="required">
-				</div>
-				<div class="col.s6">
-                    <label class="subtitle"> Tipo Animal:</label> <select id="type" name="type">
+        <form class="Dform" id="formulario" autocomplete="off" enctype="multipart/form-data" method="POST">
+
+            <h3 class="title">Nuevo Producto Alimento</h3>
+            <div class="div-form">
+
+                <div class="col-left">
+                    <div class="formulario__grupo" id="grupo__name">
+                        <label class="subtitle">Nombre:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="name" name="name">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar letras</p>
+                    </div>
+                </div>
+
+
+				<div class="col-left">
+                    <div class="formulario__grupo" id="grupo__brand">
+                        <label class="subtitle">Marca:</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" id="brand" name="brand">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar letras</p>
+                    </div>
+                </div>
+
+				<div class="col-rigth">
+                    <label class="subtitle"> Tamaño:</label><br>
+                    <select id="size" name="size">
+                        <option value="Pequeño">Pequeño</option>
+                        <option value="Mediano">Mediano</option>
+                        <option value="Grande">Grande</option>
+                    </select>
+                </div>
+
+                <div class="col-left">
+                    <label class="subtitle">Tipo Animal:</label><br>
+                    <select id="type" name="type">
                         <option value="Perros">Perros</option>
                         <option value="Gatos">Gatos</option>
                     </select>
                 </div>
-				<div class="col.s6">
-                    <label class="subtitle"> Tamaño:</label> <select id="size" name="size">
-                        <option value="Pequeño">Pequeño</option>
-                        <option value="Mediano">Mediano</option>
-						<option value="Grande">Grande</option>
-                    </select>
+
+				<div class="col-rigth">
+                    <div class="formulario__grupo" id="grupo__price">
+                        <label class="subtitle">Precio:</label>
+                        <div class="formulario__grupo-input input-field">
+                            <span class="colon">₡</span>
+                            <input type="text" id="price" name="price">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">Solo se pueden ingresar letras</p>
+                    </div>
                 </div>
-			</div>
 
-			<label class="subtitle">Descripción:</label>
-			<textarea id="description" name="description" resize:none required="required"></textarea>
-			<br><button id="bAdd" type="submit">Agregar</button>
-		</form>
-	</div>
+                <div class="fila-l">
+                    <div class="formulario__grupo" id="grupo__description">
+                        <label class="subtitle">Descripción:</label><br>
+                        <textarea class="area" id="description" name="description"></textarea>
+                        <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                    </div>
+                </div>
 
-	<!-- JQUERY -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<!-- Alert -->
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+                <div class="formulario__mensaje" id="formulario__mensaje"></div>
+
+                <div class="fila-button">
+                    <br><button id="bAdd" type="submit">Agregar</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+	
+
+	 <!-- Imagenes -->
+	 <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
+	 <!-- JQUERY -->
+	 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	 <!-- Alert -->
+	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 	<!-- Script -->
 	<script src="/products/aliment_js/addProducts.js"></script>
 </body>

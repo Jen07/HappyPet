@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import cr.ac.ucr.happypet.Model.products.Clothes;
 import cr.ac.ucr.happypet.Repository.products.Clothes_Repository;
+import java.util.Optional;
+
 
 
 @Service
@@ -36,6 +38,15 @@ public class ClothesServiceImp implements IClothesService{
     public Clothes findById(int id){
         return repo.findById(id).get();
     }
+
+    //EDITAR
+	@Override
+	public void edit(int id,Clothes c) {
+         Optional<Clothes> opcional = repo.findById(id);
+		  if (opcional.isPresent()) {
+		       repo.save(c); 
+		  }
+	}
 
 
     

@@ -10,7 +10,7 @@ const textA = document.querySelectorAll("#formulario textarea");
 const expresiones = {
     name: /^[A-Za-zÁ-ÿ\s]{4,10}$/,
     color: /^[A-Za-zÁ-ÿ\s]{4,10}$/,
-    price: /^[0-9\.]{3,15}$/, //-----------------
+    price: /^[0-9\.]{2,15}$/, //-----------------
     description: /^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#]{4,150}$/,
 }
 
@@ -193,37 +193,6 @@ function registrar() {
     datos.append("description", document.getElementById("description").value);
 
 
-    if (document.getElementById("imagen").value != '') { // edita la imagen
-        // var file_data = $("#imagen").prop("files")[0];
-        // datos.append("imagen", file_data);
-        reduceFileSize(document.getElementById('imagen').files[0], 500 * 1024, 1000, Infinity, 0.9, blob => {
-            datos.append('imagen', blob, blob.name || "file.jpg");
-
-        $.ajax({
-            type: "POST",
-            url: '/clothes/add2',
-            data: datos,
-            processData: false,
-            contentType: false,
-            success: function (data) {
-                if (data === "Agregado") {
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Se agregó Correctamente',
-                        showConfirmButton: false,
-                        timerProgressBar: true,
-                        timer: 2000,
-                    }).then((result) => {
-                        window.location.href = `/clothes/inicio`;
-                    });
-                } 
-            },
-            error: function (data) {
-                console.log(data);
-            }
-        });
-    });
-    } else {
         $.ajax({
             type: "POST",
             url: '/clothes/add',
@@ -247,28 +216,7 @@ function registrar() {
                 console.log(data);
             }
         });
-    }
 }
 
-let inputFile = document.getElementById("imagen");
-let fileName = document.getElementById("file-name");
-
-inputFile.addEventListener('change', function (event) {
-    let uploadedFileName = event.target.files[0].name;
-    let vari = uploadedFileName.split('.'); 
-     
-    alert(vari.endsWith("png"));
-    if (vari[vari.length - 1] == "png" || vari[vari.length - 1] == "jpg" || vari[vari.length - 1] == "jpeg") {
-        fileName.textContent = uploadedFileName;
-    } else {
-        Swal.fire({
-            icon: 'error',
-            title: 'Solo se permiten imágenes',
-            timer: 2000
-        });
-        fileName.textContent = "ninguno";
-        document.getElementById("imagen").value = "";
-    }
-});
 
   

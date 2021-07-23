@@ -50,8 +50,8 @@ public class Client_Controller extends MainController {
     // Manda la lista para js
     @RequestMapping("/listar")
     public ResponseEntity<List<User>> listar() {
-        List<User> lista = log.listarCliente(svClient.getAll());
-        return new ResponseEntity<>(lista, HttpStatus.OK);
+        // List<User> lista = ;
+        return new ResponseEntity<>(log.listarCliente(svClient.getAll()), HttpStatus.OK);
     }
 
     // Obtiene la información del cliente a mostrar en detalles

@@ -11,5 +11,6 @@ public interface IAlimentService {
     void save(Aliment a);
     void delete(int id);
     Aliment findById(int id);
+    void edit(int id,Aliment c);
     
 }

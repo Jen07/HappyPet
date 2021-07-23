@@ -54,7 +54,6 @@ public class Employee_Controller extends MainController {
 		return new ResponseEntity<>(lista, HttpStatus.OK);
 	}
 
-
 	/* Obtiene la información del empleado a mostrar en detalles */
 	@GetMapping("/detail2/{id}")
 	public Employee getDetailEmployee2(@PathVariable int id) {

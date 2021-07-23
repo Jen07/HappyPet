@@ -10,5 +10,6 @@ public interface IClothesService {
     void save(Clothes a);
     void delete(int id);
     Clothes findById(int id);
+    void edit(int id,Clothes c);
     
 }

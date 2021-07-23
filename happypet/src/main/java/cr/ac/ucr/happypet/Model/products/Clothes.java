@@ -13,6 +13,16 @@ private boolean availability;
 
 public Clothes(){}
 
+
+public Clothes(int cod_product, String name, int price, String description, String type_animal, String size,
+        String color, boolean availability) {
+    super(cod_product, name, price, description, type_animal);
+    this.size = size;
+    this.color = color;
+    this.availability = availability;
+}
+
+
 public Clothes(String name, int price, String description, String type_animal, String size, String color,
         boolean availability) {
     super(name, price, description, type_animal);

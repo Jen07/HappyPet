@@ -75,7 +75,7 @@ function bDelete(id) {
                     Swal.fire({
                         position: '',
                         icon: 'success',
-                        title: 'Se Elimino con Exito!',
+                        title: 'Se eliminó con correctamente!',
                         showConfirmButton: false,
                         timer: 2000
                     })
@@ -111,12 +111,10 @@ xhttp.open("POST", "/client/search", true);
 }
 
 //ve si el campo de busqueda esta vacio
-function limpiar(){
+function limpiar() {
     var text = document.getElementById("search").value;
-    var div = document.getElementById("contenedor");
-    var xhttp = new XMLHttpRequest();
 
-    if(text=' '){
+    if (text === '') {
         resetTable();
     }
 }
@@ -155,6 +153,8 @@ const getClient = () => {
 let actualPage = 0;
 
 const loadRows = (clientArray) => {
+
+    console.log(clientArray);
     content.innerHTML = "";
     control = 0;
 

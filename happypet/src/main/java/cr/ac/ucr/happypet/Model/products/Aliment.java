@@ -13,6 +13,13 @@ public class Aliment extends Product{
     
     public Aliment(){}
 
+    public Aliment(int cod_product, String name, int price, String description, String type_animal, String brand,
+            String size) {
+        super(cod_product, name, price, description, type_animal);
+        this.brand = brand;
+        this.size = size;
+    }
+
     public Aliment(String name, int price, String description, String type_animal, String brand, String size) {
         super(name, price, description, type_animal);
         this.brand = brand;

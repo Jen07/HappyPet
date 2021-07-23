@@ -11,10 +11,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -61,7 +63,6 @@ public class Clothes_Controller extends MainController {
 
     @GetMapping("/detail/{codigo}")
     public Clothes getDetail(@PathVariable int codigo) {
-        System.out.println("Dtalle ropa");
         return svClothes.findById(codigo);
     }
 
@@ -72,16 +73,42 @@ public class Clothes_Controller extends MainController {
         return log.search(svClothes.listarTodo(), text, filtro);
     }
 
+    // Direciona a paguina Editar
+	@RequestMapping(value = "getEdit", method = RequestMethod.GET)
+	public ModelAndView getEdit(@RequestParam("id") int id, Model model) {//
+		model.addAttribute("producto", svClothes.findById(id));
+        
+        System.out.println(svClothes.findById(id));
+        System.out.println(svClothes.findById(id).isAvailability());
+
+		ModelAndView view = new ModelAndView();
+		view.setViewName("/products/clothes/edit");
+		return view;
+	}
+
     @PostMapping("/add")
     public String saveClothes(@RequestParam String name, @RequestParam int price,
      @RequestParam String description,@RequestParam("type") String type_animal,
-    @RequestParam String color, @RequestParam String size,@RequestParam boolean availability) {
+     @RequestParam String color, @RequestParam String size,@RequestParam boolean availability) {
 
         Clothes c = new Clothes(name, price, description, type_animal, size, color, availability);
         svClothes.save(c);
 
         return "Agregado";
     }
+
+    @PostMapping("/edit") // sin foto
+    public String editSinImagen(@RequestParam int cod_product,@RequestParam String name, @RequestParam int price,
+    @RequestParam String description,@RequestParam("type") String type_animal,
+    @RequestParam String color, @RequestParam String size,@RequestParam boolean availability) {
+
+      Clothes c = new Clothes(cod_product, name, price, description, type_animal, size, color, availability);
+      svClothes.edit(cod_product, c);
+        return "Listo";
+    }
+
+
+     /****************************************************** */
 
     // Agrega con imagen
     @PostMapping("/add2")

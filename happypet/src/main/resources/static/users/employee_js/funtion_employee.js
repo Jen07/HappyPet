@@ -83,7 +83,7 @@ function bDelete(id) {
                         Swal.fire({
                             position: '',
                             icon: 'success',
-                            title: 'Se Elimino con Exito!',
+                            title: 'Se eliminó con correctamente!',
                             showConfirmButton: false,
                             timer: 2000
                         })
@@ -101,9 +101,12 @@ function bSearch() {
     var div = document.getElementById("contenedor");
     var xhttp = new XMLHttpRequest();
 
-    xhttp.open("POST", "/clothes/search", true);
+    xhttp.open("POST", "/employee/search", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhttp.send("text=" + text + "&filtro=" + filtar);
+
+    console.log(text);
+    console.log(filtar);
 
     xhttp.onreadystatechange = function () {
         if (xhttp.readyState == 4 && xhttp.status === 200) {
@@ -120,10 +123,8 @@ function bSearch() {
 //ve si el campo de busqueda esta vacio
 function limpiar() {
     var text = document.getElementById("search").value;
-    var div = document.getElementById("contenedor");
-    var xhttp = new XMLHttpRequest();
 
-    if (text = ' ') {
+    if (text === '') {
         resetTable();
     }
 }
@@ -157,7 +158,6 @@ const getEmployee = () => {
 
 // Carga las filas.
 // Recibe un JSON del objeto a convertir en HTML.
-
 let actualPage = 0;
 
 const loadRows = (employeeArray) => {

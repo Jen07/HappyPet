@@ -1,7 +1,7 @@
 package cr.ac.ucr.happypet.Service.products;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,4 +37,12 @@ public class AlimentServiceImp implements IAlimentService{
     }
 
 
+      	//EDITAR
+	@Override
+	public void edit(int id,Aliment c) {
+         Optional<Aliment> opcional = repo.findById(id);
+		  if (opcional.isPresent()) {
+		       repo.save(c); 
+		  }
+	}
 }

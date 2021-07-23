@@ -22,15 +22,6 @@
             <h3 class="title">Nuevo Producto Ropa</h3>
             <div class="div-form">
 
-                <div class="fila-l">
-                    <input type="file" accept="image/*" id="imagen" name="imagen">
-                    <label for="imagen"><i class="fas fa-upload"></i>&nbsp;Selecione una imagen</label>
-                    <span>
-                        <strong>Nombre imagen:</strong>
-                        <span id="file-name">ninguno</span>
-                    </span>
-                </div>
-
                 <div class="col-left">
                     <div class="formulario__grupo" id="grupo__name">
                         <label class="subtitle">Nombre:</label>
@@ -65,7 +56,8 @@
                 <div class="col-rigth">
                     <div class="formulario__grupo" id="grupo__price">
                         <label class="subtitle">Precio:</label>
-                        <div class="formulario__grupo-input">
+                        <div class="formulario__grupo-input input-field">
+                            <span class="colon">₡</span>
                             <input type="text" id="price" name="price">
                             <i class="formulario__validacion-estado fas fa-times-circle"></i>
                         </div>
@@ -120,7 +112,6 @@
     <!-- Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!-- Script -->
-    <script src="/general/resizing_script.js"></script>
     <script src="/products/clothes_js/add.js"></script>
 </body>
 

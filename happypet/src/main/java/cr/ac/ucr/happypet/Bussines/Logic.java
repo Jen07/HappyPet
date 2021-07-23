@@ -12,6 +12,7 @@ public class Logic {
 
     for (User user : lista) {  
       if(user.getType().equals("Cliente")){
+        System.out.println(user.toString());
         clients.add(user);
       }
     }

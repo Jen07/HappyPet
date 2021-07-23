@@ -24,6 +24,17 @@ public class Product {
     public Product() {
     }
 
+
+    public Product(int cod_product, String name, int price, String description, String type_animal) {
+        this.cod_product = cod_product;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.type_animal = type_animal;
+    }
+
+
+
     public Product(String name, int price, String description, String type_animal) {
         this.name = name;
         this.price = price;

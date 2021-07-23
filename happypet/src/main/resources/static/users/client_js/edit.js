@@ -183,7 +183,7 @@ function registrar() {
                 if (data === "Listo") {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Se modifico Correctamente',
+                        title: 'Se editó Correctamente',
                         showConfirmButton: false,
                         timerProgressBar: true,
                         timer: 2000,
@@ -211,7 +211,7 @@ function registrar() {
                     Swal.fire({
                         position: '',
                         icon: 'success',
-                        title: 'Se modifico Correctamente',
+                        title: 'Se editó Correctamente',
                         showConfirmButton: false,
                         timer: 2000
                     }).then((result) => {

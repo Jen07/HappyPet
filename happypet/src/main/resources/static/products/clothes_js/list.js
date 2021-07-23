@@ -19,7 +19,14 @@ function bDetail(codigo) {
         modal += ' <li> Precio:₡<label>' + formatNumber(client.price) + '</label></li>';
         modal += ' <li> Tipo de animal: <label>' + client.type_animal + '</label></li>';
         modal += ' <li> Color: <label>' + client.color + '</label></li>';
-        modal += ' <li> Disponibilidad: <label>' + client.availability + '</label></li>';
+        modal += ' <li> Talla: <label>' + client.size + '</label></li>';
+        console.log(client.availability);
+        if(client.availability){
+            modal += ' <li> Disponibilidad: <label>Disponible</label></li>';
+        }else{
+            modal += ' <li> Disponibilidad: <label>No Disponible</label></li>';
+        }
+       
         modal += '<li>Descripción:  <label>' + client.description + '</label></li>';
         modal += '</ul>';
         modal += '<div>';
@@ -61,8 +68,9 @@ function bDelete(codigo) {
                         Swal.fire({
                             position: '',
                             icon: 'success',
-                            title: 'Se Elimino con Exito!',
-                            showConfirmButton: true,
+                            title: 'Se eliminó con correctamente!',
+                            showConfirmButton: false,
+                            timer: 2000
                         })
                         resetTable();
                     }
@@ -99,14 +107,11 @@ function bSearch() {
 //ve si el campo de busqueda esta vacio
 function limpiar() {
     var text = document.getElementById("search").value;
-    var div = document.getElementById("contenedor");
-    var xhttp = new XMLHttpRequest();
 
-    if (text = ' ') {
+    if (text === '') {
         resetTable();
     }
 }
-
 
 /*---------------------------------------------------------------------------------------------------------- */
 
@@ -218,7 +223,7 @@ const appendClothes = (p) => { //&#162
     <button type="button" class="btn-detail bDetail" name="btn-detail" onclick="bDetail(${p.cod_product})">
     <i class="far fa-address-card fa-lg"></i></button>
 
-        <a href="/employee/getEdit?id=${p.cod_product}">
+        <a href="/clothes/getEdit?id=${p.cod_product}">
         <button type="button" class="bEdit btn-edit" name="btn-edit">
         <i class="far fa-edit fa-lg"></i></button></a>
                 
