@@ -81,8 +81,11 @@
                     </div>
                 </li>
 
-                <li class="dropdown" id="op7">
-                    <a id="cerrarSesion" href="/entryLogin" class="head__link">Cerrar sesi&oacute;n</a>
+                <li class="dropdown" id="op8">
+                    <a href="#perfil"  id="op9" class="head__link" th:text="${shoppingCart.getUser().getName()}"></a>
+                    <div class="dropdown-content">
+                        <a href="/">Cerrar sesión</a>
+                    </div>
                 </li>
             </th:block>
             <!-- ------------------------------------------------------------------------------------------------------->
@@ -102,7 +105,6 @@
                     <div class="dropdown-content">
                         <a id="op6" href="#ropa">Ropa</a>
                         <a id="op7" href="#alimentos">Alimentos</a>
-                        <a href="#veterinarios">Veterinarios</a>
                     </div>
                 </li>
 
@@ -117,8 +119,9 @@
                 </li>
 
                 <li class="dropdown" id="an6">
-                    <a href="#perfil" class="head__link">Perfil</a>
+                    <a href="/perfil" class="head__link" th:text="${shoppingCart.getUser().getName()}"></a>
                     <div class="dropdown-content">
+                        <a href="/perfil" id="op9">Mi perfil</a>
 
                         <a th:onclick="relocate('/animal/my_animals',[[${shoppingCart.user.id}]])" id="an7"
                             style="cursor: pointer;">Mis mascotas</a>

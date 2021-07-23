@@ -49,4 +49,10 @@ public class HomeController extends MainController {
         return "general/inicioS";
     }
 
+    @GetMapping("/perfil")
+    public String perfil() {
+        return "/general/perfil";
+    }
+
+
 }
