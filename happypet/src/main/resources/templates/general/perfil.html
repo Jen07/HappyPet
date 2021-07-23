@@ -56,10 +56,13 @@
                             Mascotas</button></a>
 
                     <a th:onclick="relocate('/billing/my_bills',[[${shoppingCart.user.id}]])">
-                    <button class="boton-redes fa fa-file-invoice-dollar letra">Mis Factura</button></a>
+                        <button class="boton-redes fa fa-file-invoice-dollar letra">Mis Factura</button></a>
 
                     <button onclick="editar()" class="boton-redes fas fa-user-alt"><a class="letra">Editar
                             Perfil</a></button>
+
+                    <button onclick="changePassw()" class="boton-redes fas fa-key letra">Cambiar
+                        Contraseña</button>
                 </div>
                 <div class="perfil-usuario-footer">
                     <ul class="lista-datos">
@@ -96,9 +99,9 @@
             <div class="modal-body">
                 <br>
                 <br>
-                    
+                <form id="formulario">
                 <div class="div-form">
-                    
+                   
                     <div class="fila-l">
                         <input type="file" accept="image/*" id="ima" name="ima" onchange="listener(event)">
                         <label for="ima"><i class="fas fa-upload"></i>&nbsp;Selecione una imagen</label>
@@ -129,32 +132,71 @@
                         <i class="fas fa-phone"></i>
                         <input type="tel" placeholder="Teléfono" name="phone" id="phone" maxlength="9"
                             pattern="[0-9-]{9}$" title="Ingresar solo números del 0-9 no separarlos eje:85472505"
-                            required="required" OnKeyPress="return format('####-####',this,event);" th:value="${shoppingCart.getUser().getPhone()}">
+                            required="required" OnKeyPress="return format('####-####',this,event);"
+                            th:value="${shoppingCart.getUser().getPhone()}">
                     </div>
 
                     <div class="col-left input-field">
                         <i class="fas fa-envelope"></i>
                         <input type="email" placeholder="Correo" name="mail" id="mail" maxlength="25"
-                            title="Ingrese un correo válido" required="required" th:value="${shoppingCart.getUser().getMail()}">
+                            title="Ingrese un correo válido" required="required"
+                            th:value="${shoppingCart.getUser().getMail()}">
                     </div>
 
                     <div class="fila-l input-field2">
                         <i class="fas fa-map-marked-alt"></i>
                         <input type="text" placeholder="Dirección" name="address" id="address" maxlength="45"
-                            title="Ingrese dirrecion exacta" required="required" th:value="${shoppingCart.getUser().getAddress()}">
-                    </div>
-                    
-                    <div class="d-btns">
-                        <br>
-                        <button onclick="save()" class="btn-save btn-edit">Guardar</button>
+                            title="Ingrese dirrecion exacta" required="required"
+                            th:value="${shoppingCart.getUser().getAddress()}">
                     </div>
 
+                    <div class="d-btns">
+                        <br>
+                        <button  type="submit" class="btn-save btn-edit">Guardar</button>
+                    </div>
+               
                 </div>
+            </form>
 
             </div>
 
         </div>
     </div>
+
+    <div id="myModalPassword" class="modal2">
+        <div class="modal-content2">
+            <div class="modal-header">
+                <span class="close" onclick="closeModal2()">&times;</span>
+                <h2>Cambios de Contraseña</h2>
+            </div>
+            <div class="modal-body">
+            <form id="formulario2">
+                <div class="div-form">
+                    <div class=" input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Contraseña actual" name="passwordA" id="passwordA"
+                            minlength="4" maxlength="12" required="required">
+                    </div>
+                    <div class=" input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Contraseña Nueva" name="password1" id="password1"
+                            minlength="4" maxlength="12" required="required">
+                    </div>
+                    <div class=" input-field">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" placeholder="Confirmar Contraseña " name="password2" id="password2"
+                            minlength="4" maxlength="12" required="required">
+                    </div>
+                    <div class="d-btns">
+                        <button type="submit" class="btn-save btn-edit">Guardar</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Imagenes -->
     <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>

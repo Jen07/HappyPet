@@ -98,7 +98,6 @@ function bDelete(id) {
 function bSearch() {
     var filtar = document.getElementById("cxBuscar").value;
     var text = document.getElementById("search").value;
-    var div = document.getElementById("contenedor");
     var xhttp = new XMLHttpRequest();
 
     xhttp.open("POST", "/employee/search", true);

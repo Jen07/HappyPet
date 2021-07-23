@@ -12,8 +12,8 @@ import cr.ac.ucr.happypet.Model.billing.ShoppingCart;
 import cr.ac.ucr.happypet.Model.users.User;
 import cr.ac.ucr.happypet.Service.users.IUserService;
 
-@Controller
 
+@Controller
 public class HomeController extends MainController {
 
     @Autowired
@@ -53,6 +53,16 @@ public class HomeController extends MainController {
     public String perfil() {
         return "/general/perfil";
     }
+
+    @PostMapping(value="/password")
+    @ResponseBody
+    public String changePassWord(@RequestParam int id,@RequestParam String password) {
+        User client =svUser.findById(id);
+        client.setPassword(password);
+        svUser.edit(id,client);
+        return "Listo";
+    }
+    
 
 
 }
