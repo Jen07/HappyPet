@@ -1,6 +1,8 @@
 window.onload = function(){
-    document.getElementById("op4").style.background='#BC4944';
-    document.getElementById("op6").style.background='#BC4944';
+    var num = document.getElementById("price").value;
+    document.getElementById("price").value=formatNumber(num);
+    document.getElementById("op5").style.background='#BC4944';
+    document.getElementById("op7").style.background='#BC4944';
 }
 
 

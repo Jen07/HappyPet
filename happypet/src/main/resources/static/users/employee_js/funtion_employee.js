@@ -31,7 +31,7 @@ function bDetail2(id) {
         modal += ' <li> Tipo: <label>' + employee.type + '</label></li>';
         modal += ' <li> Teléfono: <label>' + employee.phone + '</label></li>';
         modal += ' <li> Correo: <label>' + employee.mail + '</label></li>';
-        modal += '<li> Dirreción:  <label>' + employee.address + '</label></li>';
+        modal += '<li> Dirección:  <label>' + employee.address + '</label></li>';
         modal += '</ul>';
         modal += '<div>';
         $('.modal-body').html(modal);
@@ -62,13 +62,14 @@ y actualiza solo la tabla sin recargar la paguina */
 function bDelete(id) {
 
     Swal.fire({
-        title: '¿Estas seguro de eliminar al Empleado ?',
+        title: '¿Está seguro de eliminar al Empleado ?',
         text: "Esta acción es definitiva!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#80BD5D',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Sí,Eliminar!'
+        confirmButtonText: 'Sí,Eliminar!',
+        cancelButtonText: 'Cancelar!'
     }).then((result) => {
         if (result.isConfirmed) {
 

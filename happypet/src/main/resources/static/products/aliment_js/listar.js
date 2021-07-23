@@ -11,17 +11,17 @@ function formatNumber(number) {
 }
 
 function bDetail(codigo) {
-    $.getJSON('/aliment/detail/'+codigo, function (client) { 
+    $.getJSON('/aliment/detail/'+codigo, function (producto) { 
         var modal = '';
         modal += '<div class="cardD">';
         modal += '<ul>';
-        modal += ' <li> Código:  <label >' + client.cod_product+ '</label></li>';
-        modal += ' <li> Nombre: <label>' + client.name + '</label></li>';
-        modal += ' <li> Precio:₡<label>' + formatNumber(client.price) + '</label></li>';
-        modal += ' <li> Tipo de animal: <label>' + client.type_animal + '</label></li>';
-        modal += ' <li> Tamaño: <label>' + client.size + '</label></li>';
-        modal += ' <li> Marca: <label>' + client.brand + '</label></li>';
-        modal += '<li>Descripción:  <label>' + client.description + '</label></li>';
+        modal += ' <li> Código:  <label >' + producto.cod_product+ '</label></li>';
+        modal += ' <li> Nombre: <label>' + producto.name + '</label></li>';
+        modal += ' <li> Precio:₡<label>' + formatNumber(producto.price) + '</label></li>';
+        modal += ' <li> Tipo de animal: <label>' + producto.type_animal + '</label></li>';
+        modal += ' <li> Tamaño: <label>' + producto.size + '</label></li>';
+        modal += ' <li> Marca: <label>' + producto.brand + '</label></li>';
+        modal += '<li>Descripción:  <label>' + producto.description + '</label></li>';
         modal += '</ul>';
         modal += '<div>';
         $('.modal-body').html(modal);
@@ -41,13 +41,15 @@ function openModal() {
 
 function bDelete(codigo) {
     Swal.fire({
-        title: 'Estas seguro de eliminar este producto?',
+        title: '¿Está seguro de eliminar este producto?',
         text: "Esta acción es definitiva!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes,Eliminar!'
+        confirmButtonText: 'Sí,Eliminar!',
+        cancelButtonText: 'Cancelar!'
+
     }).then((result) => {
         if (result.isConfirmed) {
 
@@ -209,8 +211,9 @@ const setButtons = () => {
 const appendClothes = (p) => { //&#162
     let row = `
     <td>${p.name}</td>
+    <td>${p.brand}</td>
     <td>${p.size}</td>
-    <td>₡${p.price}</td>
+    <td>₡${formatNumber(p.price)}</td>
     <td>${p.type_animal}</td>  
     <td id="buttonsAcions">
 

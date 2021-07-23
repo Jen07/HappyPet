@@ -1,6 +1,6 @@
 window.onload = function(){
-    document.getElementById("op4").style.background='#BC4944';
-    document.getElementById("op6").style.background='#BC4944';
+    document.getElementById("op5").style.background='#BC4944';
+    document.getElementById("op7").style.background='#BC4944';
 }
 
 

@@ -47,13 +47,14 @@ function openModal() {
 
 function bDelete(codigo) {
     Swal.fire({
-        title: 'Estas seguro de eliminar este producto?',
+        title: '¿Está seguro de eliminar este producto?',
         text: "Esta acción es definitiva!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes,Eliminar!'
+        confirmButtonText: 'Sí,Eliminar!',
+        cancelButtonText: 'Cancelar!'
     }).then((result) => {
         if (result.isConfirmed) {
 
