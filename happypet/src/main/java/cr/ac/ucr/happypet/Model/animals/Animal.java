@@ -1,6 +1,5 @@
 package cr.ac.ucr.happypet.Model.animals;
 
-import java.io.Serializable;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -21,7 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_animals")
 
-public class Animal implements Serializable {
+public class Animal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

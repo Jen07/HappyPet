@@ -15,8 +15,6 @@
 
 
     <div class="container">
-
-
         <div class="row">
             <div class="col">
                 <div class="row">
@@ -35,12 +33,10 @@
         <div id="table_cont">
             <div th:replace="~{billing/fragments/allBills_table :: table}"></div>
         </div>
-
     </div>
 
     <div id="loading__table"
         style="width: 100vw; height: 100vh; position: fixed; top: 0; left: 0; background-color: rgba(0, 0, 0, 0.486);display: none;cursor: progress;">
-
         <div style="margin: auto;">
             <p>Cargando...</p>
         </div>
@@ -56,7 +52,4 @@
     <script th:src="@{/animals/assets/scripts/animal/stylish.js}"></script>
 
 </body>
-
-
-
 </html>

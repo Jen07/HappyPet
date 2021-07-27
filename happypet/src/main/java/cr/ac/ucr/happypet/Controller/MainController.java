@@ -24,8 +24,6 @@ public class MainController {
             ln.setQuantity(5);
 
             shoppingCart.addLine(ln);
-
-            System.out.println("Entra");
         }
 
         return shoppingCart;

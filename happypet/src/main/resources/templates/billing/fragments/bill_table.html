@@ -1,18 +1,29 @@
 <th:block th:fragment="table">
     <div class="row justify-between">
-        <div>
-            <p>Facturas archivadas: <span id="totalArchieved" th:text="${archievedTotal}"></span></p>
+
+        <div class="col">
+            <div class="row">
+
+                <div class=" col s1 icon-box">
+                    <p class="ta-center"> <span id="totalArchieved" th:text="${archievedTotal}"></span> <i
+                            class="fas fa-copy"></i>
+                    </p>
+                    <p>Archivadas</p>
+                </div>
+            </div>
         </div>
 
-        <div class="search__container">
 
-            <input type="date" value="date" id="search__input" class="search__input" name="search__input">
+        <div class="row justify-end">
+            <div class="search__container">
 
-            </form>
-            <a class=" btn-send bDelete bSearch tip" onclick="filterBills()"><i class="fas fa-search"
-                    title="Filtrar"></i></a>
-            <a class=" btn-edit bDelete bReload tip" onclick="resetTable()"><i class="fas fa-undo-alt"
-                    title="Reiniciar"></i></a>
+                <input type="date" value="date" id="search__input" class="search__input" name="search__input">
+                </form>
+                <a class=" btn-send bDelete bSearch tip" onclick="filterBills()"><i class="fas fa-search"
+                        title="Filtrar"></i></a>
+                <a class=" btn-edit bDelete bReload tip" onclick="resetTable()"><i class="fas fa-undo-alt"
+                        title="Reiniciar"></i></a>
+            </div>
         </div>
 
     </div>

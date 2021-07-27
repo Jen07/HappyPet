@@ -1,6 +1,5 @@
 package cr.ac.ucr.happypet.Controller.animals;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -90,18 +89,7 @@ public class AnimalController extends MainController {
 	@GetMapping(value = "/gestion_animal")
 	public String gestion(Model mod) {
 
-		List<Animal> animals = new LinkedList<Animal>();
-		HashMap<Integer, String> userMap = new HashMap<>();
-
-		for (User user : usersRepo.getAll()) {
-			userMap.put(user.getId(), (user.getName() + " " + user.getLastName()));
-		}
-
-		animals = animalsRepo.findReversedAll();
-
 		mod.addAttribute("filterBy", "Nombre");
-		mod.addAttribute("animals", animals);
-		mod.addAttribute("users", userMap);
 		return "animals/gestion_animal";
 	}
 
@@ -164,7 +152,6 @@ public class AnimalController extends MainController {
 			case "Raza":
 				mod.addAttribute("breeds", breedsRepo.getAll());
 				break;
-
 		}
 
 		mod.addAttribute("filterBy", filterBy);

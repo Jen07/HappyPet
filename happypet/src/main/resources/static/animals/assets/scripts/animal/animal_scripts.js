@@ -270,4 +270,4 @@ document.getElementById("peerPage").addEventListener("change", (e) => {
     getAnimals();
 })
 
-getAnimals();
+window.addEventListener("load", getAnimals());
