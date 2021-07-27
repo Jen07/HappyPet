@@ -5,7 +5,7 @@
 	<meta charset="ISO-8859-1">
 
 	<link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
-	<link rel="stylesheet" type="text/css" href="/reservation/css/styleReservation.css">
+	<link rel="stylesheet" type="text/css" href="/reservation/css/styleModal.css">
 	<title>Listado Reservaciones</title>
 </head>
 
@@ -16,11 +16,14 @@
 	</header>
 	<div class="container">
 		<h1 class="ta-center">Reservaciones</h1>
+		<input type="hidden" name="idUser" id="idUser" th:value="${idUser}" >
 
+		<div class= "row justify-evenly">
 		<div class="cardH">
-			<div class="body">
+			<div class="body" id="body">
 			</div>
 		</div>
+	</div>
 
 	</div>
 
@@ -31,7 +34,7 @@
 	<script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
 	<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-	<script type="text/javascript" src="/reservation/js/jsReservation.js"></script>
+	<script type="text/javascript" src="/reservation/js/list.js"></script>
 
 </body>
 

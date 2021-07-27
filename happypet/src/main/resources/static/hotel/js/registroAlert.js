@@ -9,38 +9,44 @@ const textA = document.querySelectorAll("#formulario textarea");
 
 
 /*Validaciones numericas y mascaras  */
-function formatNum(id, e) {
-    const number = document.querySelector("#" + id);
+ 
 
-    if (valideKey(e)) {
-        const element = e.target;
-        const value = element.value;
-        element.value = formatNumber(value);
-    }
+$("#price").keypress(function () {
+    const number = document.querySelector('#price');
+    number.addEventListener('keyup', (e) => {
+            const element = e.target;
+            const value = element.value;
+            element.value = formatNumber(value);
+    });
+});
 
-}
 
-//Formato numerico
-function formatNumber(number) {
-    number = String(number).replace(/\D/g, "");
-    return number === '' ? number : Number(number).toLocaleString(['ban', 'id']);
-}
+ function formatNumber(n) {
+     n = String(n).replace(/\D/g, "");
+     return n === '' ? n : Number(n).toLocaleString(['ban', 'id']);
+ }
 
-//validacion de campos del formulario 
-function valideKey(evt) {
+ $('#price').keypress(function (tecla) {
+     if (tecla.charCode < 48 || tecla.charCode > 57) {
+        return false;
+     }
+ }); 
+
+ //validacion de campos del formulario 
+ function valideKey(evt) {
 		
-	// code is the decimal ASCII representation of the pressed key.
-	var code = (evt.which) ? evt.which : evt.keyCode;
+ 	// code is the decimal ASCII representation of the pressed key.
+ 	var code = (evt.which) ? evt.which : evt.keyCode;
 
-	if (code == 8) { // backspace.
-		return true;
+ 	if (code == 8) { // backspace.
+ 		return true;
 	} else if (code >= 48 && code <= 57) { // is a number.
 		
 		return true;
 	} else { // other keys.
 		return false;
 	}
-}
+ }
 
 function format(mascara, documento,evt) {
 	
@@ -63,7 +69,7 @@ function format(mascara, documento,evt) {
 
 const expresiones={
 	precio: /^[0-9\.]{4,12}/,
-	telefono: /^[0-9\-]{8,10}/,
+	telefono: /^[0-9\-]{9,9}/,
 	habitaciones: /^\d{1,20}$/,
 	descripcion: /^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#\,]{4,150}$/,
 	direccion: /^[a-zA-Z0-9Á-ÿ\s\-\.\ñ\_\#\,]{4,150}$/

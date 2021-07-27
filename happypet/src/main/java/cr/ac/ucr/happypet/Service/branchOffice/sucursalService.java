@@ -83,6 +83,13 @@ public class sucursalService implements iSucursalService{
 	}
 
 
+	@Override
+	public List<Sucursal> getNoSucursal() {
+		
+		return data.getNoSucursal();
+	}
+
+
 	
 
 

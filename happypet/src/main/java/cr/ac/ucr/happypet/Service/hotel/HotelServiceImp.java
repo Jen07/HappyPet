@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import cr.ac.ucr.happypet.Model.hotel.Hotel;
 import cr.ac.ucr.happypet.Repository.hotel.HotelRepositorio;
 
@@ -77,6 +78,7 @@ public class HotelServiceImp implements IHotel {
 
 		return lista;
 	}
+
 
 
 }

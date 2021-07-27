@@ -1,12 +1,18 @@
 var idU;
 
+$(document).ready(function () {
+	document.getElementById("s1").style.background='#BC4944';
+    document.getElementById("s3").style.background='#BC4944';
+});
+
 //es el modal de form reservaciones
 function modalForm(idUser) {
 
-    idU=idUser;
+     idU=idUser;
+	 
      var address ="/reservaciones/listaAnimals/"+idU;
      var id ="#idAnimal";
-
+     
     fillSelect(address,id,true);
     cleanSelect(id);
     
@@ -22,8 +28,10 @@ function modalForm(idUser) {
 
 //llena el select de modificar
 function fillSelect(address,id,type) { // añadir dire como variable 
+	
 	$.getJSON(address, function (lista) {
 		var select = document.querySelector(id);
+	
 		for (var i = 0; i < lista.length; i++) {
 			var option = document.createElement("option");
 
@@ -71,6 +79,7 @@ function save(){
 		contentType: "application/json;charset=utf-8",
 		dataType: "json",
 		success: function() {
+			alert("succes");
                Swal.fire({
 				icon: 'success',
 				text: "Reservación Realizada Exitosamente",
@@ -82,38 +91,11 @@ function save(){
 			})	
 		},
 		error: function(errorMessage) {
+			alert("ERROR");
 			alert(errorMessage.responseText);
 		}
       });
 }
 
-//---------------------------------------------------------------------------------------------------
 
-//LISTADO Reservaciones 
-function listado(idUser) {
-	
-	window.location.href = `/reservacion/listado`; 
-	$.getJSON("/reservaciones/list/" + idUser, function (r) {
-		var html = '';
-		alert("hola");
-		alert(r.length);
-		if (r.length == 0) {
-              html+= '<h1>No hay reservaciones</h1>'
-		} else {
-			array.forEach(r => {
-				html += '<ul >';
-				html += '<li ><label> Nombre:     ' + r.user.name + ' </label></li> ';
-				html += '<li ><label> Mascota:     ' + r.animal.name + ' </label></li> ';
-				html += '<li ><label> Hotel:    ' + r.hotel.sucursal.ciudad + '   </label></li>';
-				html += '<li ><label>Fecha llegada:   ' + r.entryDate + ' </label></li>';
-				html += '<li ><label>Fecha Salida:     ' + r.departureDate + ' </label></li>';
-				html += '</ul>';
-			});
-		}
-		$('.body').html(html);
 
-		var modal = document.getElementById("ver");
-		modal.style.display = "block";
-	});
-
-}

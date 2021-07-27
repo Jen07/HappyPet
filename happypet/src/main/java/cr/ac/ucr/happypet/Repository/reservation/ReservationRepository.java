@@ -7,7 +7,7 @@ import cr.ac.ucr.happypet.Model.reservation.ReservationHotel;
 
 public interface ReservationRepository extends JpaRepositoryImplementation<ReservationHotel,Integer>{
   
-	@Query(value="SELECT * FROM tb_reservation r WHERE r.userId= ?1",
+	@Query(value="SELECT * FROM tb_reservation WHERE userId= ?1",
 			nativeQuery = true)	
 	List<ReservationHotel> getReservationUser(int userId);
 }

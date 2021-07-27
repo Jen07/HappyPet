@@ -93,13 +93,7 @@ public class Hotel {
 	 }
 	 
 
-	public List<ReservationHotel> getReservations() {
-		return reservations;
-	}
-
-	public void setReservations(List<ReservationHotel> reservations) {
-		this.reservations = reservations;
-	}
+	
 
 	@Override
 	public String toString() {

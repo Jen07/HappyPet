@@ -18,4 +18,7 @@ public interface IHotel {
 	Hotel buscarPorId(Integer id);
 	
 	List<Hotel> buscar(String texto, String filtro);
+	
+	
+
 }

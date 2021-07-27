@@ -1,8 +1,8 @@
 var codeModificar;
 var ciudadhotel;
 $(document).ready(function () {
-	document.getElementById("op8").style.background='#BC4944';
-    document.getElementById("op10").style.background='#BC4944';
+	document.getElementById("h1").style.background='#BC4944';
+    document.getElementById("h2").style.background='#BC4944';
 });
 
 //busca el nombre de la ciudad
@@ -172,7 +172,7 @@ function listado(id) {
 		html += '<ul >';
 		html += '<li ><label> Ciudad Veterinaria:     ' + hotel.sucursal.ciudad + ' </label></li> ';
 		html += '<li ><label># habitaciones:     ' + hotel.numberOfRooms + ' </label></li> ';
-		html += '<li ><label>Precio:    ' + hotel.price + '   </label></li>';
+		html += '<li ><label>Precio ₡:    ' + hotel.price + '   </label></li>';
 		html += '<li ><label>Tel&eacute;fono:   ' + hotel.phone + ' </label></li>';
 		html += '<li ><label>Direcci&oacute;n:     ' + hotel.address + ' </label></li>';
 		html += '<li ><label>Descripci&oacute;n:    ' + hotel.description + ' </label></li>';
@@ -282,7 +282,7 @@ const appendhotel = (lista) => {
 	html += '<tr class="trlist">';
 	html += '<td>' + lista.sucursal.ciudad + '</td>';
 	html += '<td>' + lista.numberOfRooms + '</td>';
-	html += '<td> &#162;' + lista.price + '</td>';
+	html += '<td> ₡' + lista.price + '</td>';
 	html += '<td><button type="button" class="btn-detail bDetail far fa-address-card fa-1x" name="btn-detail" onclick="listado(' + lista.code + ')"></button>' +
 		'<button type="button" class="bEdit btn-edit far fa-edit fa-1x" name="btn-edit" onclick="modal(' + lista.code + ')" ></class=></button></a>' +
 		'<button type="button" class="btn-delete bDelete fas fa-trash-alt fa-1x" onclick="obtenerCiudad(' + lista.code + ')" ></button></td>';
