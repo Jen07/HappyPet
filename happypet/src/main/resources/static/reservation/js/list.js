@@ -10,7 +10,7 @@ function listado() {
 	
  	$.getJSON("/reservaciones/list/" + idUser, function (list) {
 		var html = '';
-		alert(list.length);
+		
 		if (list.length == 0) {
               html+= '<h1>No hay reservaciones</h1>'
 		} else {
