@@ -72,7 +72,9 @@ public class ResReservationHController {
     public ResponseEntity<List<ReservationHotel>> list(@PathVariable int userId){
       
         List<ReservationHotel> list= repoR.getReservationUser(userId);
-
+          for (ReservationHotel r: list) {
+              r.getAnimal().setImages(null);
+          }
         return new ResponseEntity<>(list,HttpStatus.OK); 
     }
 }

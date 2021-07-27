@@ -15,6 +15,7 @@ function listado() {
               html+= '<h1>No hay reservaciones</h1>'
 		} else {
 			list.forEach(r => {
+				html += '<div class="cardH">';
 				html += '<ul >';
 				html += '<li ><label> Nombre Dueño:     ' + r.user.name + ' </label></li> ';
 				html += '<li ><label> Mascota:     ' + r.animal.name + ' </label></li> ';
@@ -23,6 +24,7 @@ function listado() {
 				html += '<li ><label>Fecha Salida:     ' + r.departureDate + ' </label></li>';
                 html += '<li ><label>Precio a pagar por dia:     ' + r.hotel.price + ' </label></li>';
 				html += '</ul>';
+				html += '</div>';
 			});
 		}
 		$('.body').html(html);
