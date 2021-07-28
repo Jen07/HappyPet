@@ -74,7 +74,11 @@ public class ResReservationHController {
         List<ReservationHotel> list= repoR.getReservationUser(userId);
           for (ReservationHotel r: list) {
               r.getAnimal().setImages(null);
+
           }
         return new ResponseEntity<>(list,HttpStatus.OK); 
     }
+
+ 
+
 }

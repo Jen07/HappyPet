@@ -1,6 +1,7 @@
 package cr.ac.ucr.happypet.Model.reservation;
 
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -89,6 +90,10 @@ public class ReservationHotel {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    public String getFormattedDate() {
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        return format.format(entryDate);
     }
 
     @Override

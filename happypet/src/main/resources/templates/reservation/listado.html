@@ -6,6 +6,8 @@
 
 	<link rel="stylesheet" type="text/css" th:href="@{/general/style.css}">
 	<link rel="stylesheet" type="text/css" href="/reservation/css/styleModal.css">
+	<!-- Icon -->
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" /> 
 	<title>Listado Reservaciones</title>
 </head>
 
@@ -18,11 +20,7 @@
 		<h1 class="ta-center">Reservaciones</h1>
 		<input type="hidden" name="idUser" id="idUser" th:value="${idUser}">
 
-		<div class="row justify-evenly">
-
-			<div class="body" id="body">
-
-			</div>
+		<div class="row justify-evenly reserv" id="reserv">
 		</div>
 
 	</div>
