@@ -1,8 +1,12 @@
+// Contenido de la tabla
+const content = document.getElementById("contenido");
+
 function inicio() {
     getClothes();
     document.getElementById("op5").style.background = '#BC4944';
     document.getElementById("op6").style.background = '#BC4944';
 }
+
 
 function formatNumber(number) {
     number = String(number).replace(/\D/g, "");
@@ -21,13 +25,13 @@ function bDetail(codigo) {
         modal += ' <li> Color: <label>' + client.color + '</label></li>';
         modal += ' <li> Talla: <label>' + client.size + '</label></li>';
         console.log(client.availability);
-        if(client.availability){
-            modal += ' <li> Disponibilidad: <label>Disponible</label></li>';
+        if(client.availability=='true'){
+            modal += '<li> Disponibilidad: <label>Disponible</label></li>';
         }else{
-            modal += ' <li> Disponibilidad: <label>No Disponible</label></li>';
+            modal += '<li> Disponibilidad: <label>No Disponible</label></li>';
         }
        
-        modal += '<li>Descripción:  <label>' + client.description + '</label></li>';
+        modal += '<li> Descripción:  <label>' + client.description + '</label></li>';
         modal += '</ul>';
         modal += '<div>';
         $('.modal-body').html(modal);
@@ -120,8 +124,8 @@ function limpiar() {
     Trae todos los empleados del servidor
 */
 
-// Contenido de la tabla
-const content = document.getElementById("contenido");
+
+
 // Contenedor de paginas.
 let clothesPG = [];
 //Contenedor de filas.
@@ -135,6 +139,8 @@ const getClothes = () => {
 
     xhr.open("GET", `/clothes/listar`, true);
     xhr.send();
+    
+    content.innerHTML = '<td colspan="5" class="ta-center"  style="cursor: progress;">Cargando...</td>';
 
     xhr.addEventListener("loadend", (info) => {
         loadRows([...JSON.parse(info.target.response)]);
@@ -227,6 +233,10 @@ const appendClothes = (p) => { //&#162
         <a href="/clothes/getEdit?id=${p.cod_product}">
         <button type="button" class="bEdit btn-edit" name="btn-edit">
         <i class="far fa-edit fa-lg"></i></button></a>
+
+        <a href="/imagenProducts/generate?id=${p.cod_product}">
+        <button type="button" class="btn-ima" name="btn-edit">
+        <i class="far fa-images fa-lg"></i></button></a>
                 
     <button type="button" class="btn-delete bDelete" onclick="bDelete(${p.cod_product})">
     <i class="fas fa-trash-alt fa-lg"></i></button>

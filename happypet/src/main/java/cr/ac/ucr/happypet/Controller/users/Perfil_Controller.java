@@ -52,7 +52,7 @@ public class Perfil_Controller  extends MainController{
       public String edit(@RequestParam("id") int id, @RequestParam("name") String name,
               @RequestParam("lastName") String lastName, @RequestParam("tel") String phone,
               @RequestParam("passw") String passw, @RequestParam("address") String address,
-              @RequestParam("mail") String mail, @RequestParam("imagen") MultipartFile imagen
+              @RequestParam("mail") String mail, @RequestParam("ima") MultipartFile imagen
               ,@ModelAttribute ShoppingCart session) throws IOException {
   
           String nombreImag = id + ".png";

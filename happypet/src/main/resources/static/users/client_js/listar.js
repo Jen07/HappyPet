@@ -143,6 +143,8 @@ const getClient = () => {
     xhr.open("GET", `/client/listar`, true);
     xhr.send();
 
+    content.innerHTML = '<td colspan="4" class="ta-center"  style="cursor: progress;">Cargando...</td>';
+
     xhr.addEventListener("loadend", (info) => {
         loadRows([...JSON.parse(info.target.response)]);
     });

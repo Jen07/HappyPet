@@ -1,5 +1,6 @@
 package cr.ac.ucr.happypet.Controller.products;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import cr.ac.ucr.happypet.Bussines.LogicProduct;
 import cr.ac.ucr.happypet.Controller.MainController;
 import cr.ac.ucr.happypet.Model.products.Aliment;
 import cr.ac.ucr.happypet.Service.products.IAlimentService;
+import cr.ac.ucr.happypet.Service.products.IImagenesServiceProduct;
 
 @RestController
 @RequestMapping("/aliment")
@@ -27,6 +29,10 @@ public class Aliment_Controller extends MainController {
     @Autowired
     private IAlimentService svAliment;
     private LogicProduct log = new LogicProduct();
+
+    @Autowired
+    private IImagenesServiceProduct svImages;
+
 
     // muestra la vista del producto
     @RequestMapping("/inicio")
@@ -39,13 +45,22 @@ public class Aliment_Controller extends MainController {
     // Lista todo los producto alimento
     @RequestMapping("/listar")
     public ResponseEntity<List<Aliment>> listar() {
-        List<Aliment> lista = svAliment.listarTodo();
+        List<Aliment> lista =  new LinkedList<>();;
+
+        for (Aliment a : svAliment.listarTodo()) {
+            Aliment aliment = new Aliment(a.getCod_product(), a.getName(), a.getPrice(), 
+            a.getDescription(), a.getType_animal(), a.getBrand(), a.getSize());
+            lista.add(aliment);
+        }
+
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
 
     // Elimina
     @PostMapping("/delete")
     public String delete(@RequestParam int codigo) {
+
+        svImages.deleteAll(svAliment.findById(codigo).getImages());
         svAliment.delete(codigo);
         return "Elimino";
     }
@@ -60,12 +75,27 @@ public class Aliment_Controller extends MainController {
 
     @PostMapping("/search")
     public List<Aliment> search(@RequestParam String text, @RequestParam String filtro) {
-        return log.searchA(svAliment.listarTodo(), text, filtro);
+
+        List<Aliment> lista =  new LinkedList<>();;
+
+        for (Aliment a : svAliment.listarTodo()) {
+            Aliment aliment = new Aliment(a.getCod_product(), a.getName(), a.getPrice(), 
+            a.getDescription(), a.getType_animal(), a.getBrand(), a.getSize());
+            lista.add(aliment);
+        }
+
+        return log.searchA(lista, text, filtro);
     }
 
     @GetMapping("/detail/{codigo}")
     public Aliment getDetail(@PathVariable int codigo) {
-        return svAliment.findById(codigo);
+
+        Aliment a=svAliment.findById(codigo);
+
+        Aliment aliment = new Aliment(a.getCod_product(), a.getName(), a.getPrice(), 
+            a.getDescription(), a.getType_animal(), a.getBrand(), a.getSize());
+
+        return aliment;
     }
 
      // Direciona a paguina Editar

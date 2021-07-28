@@ -151,6 +151,9 @@ const getEmployee = () => {
     xhr.open("GET", `/employee/listar`, true);
     xhr.send();
 
+    content.innerHTML = '<td colspan="5" class="ta-center"  style="cursor: progress;">Cargando...</td>';
+
+
     xhr.addEventListener("loadend", (info) => {
         loadRows([...JSON.parse(info.target.response)]);
     });

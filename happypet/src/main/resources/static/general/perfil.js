@@ -41,7 +41,6 @@ var formulario = document.getElementById("formulario");
 formulario.addEventListener("submit", function (e) {
     e.preventDefault();
 
-    alert("hola");
     //Ingrese su contrseña para guardar los cambios
     var passw = document.getElementById("user-password").value;
     console.log(passw);
@@ -85,6 +84,7 @@ formulario.addEventListener("submit", function (e) {
                             processData: false,
                             contentType: false,
                             success: function (data) {
+                                console.log(data);
                                 if (data === "Listo") {
                                     Swal.fire({
                                         icon: 'success',

@@ -131,6 +131,9 @@ const getProduct = () => {
     xhr.open("GET", `/aliment/listar`, true);
     xhr.send();
 
+    content.innerHTML = '<td colspan="6" class="ta-center"  style="cursor: progress;">Cargando...</td>';
+
+
     xhr.addEventListener("loadend", (info) => {
         loadRows([...JSON.parse(info.target.response)]);
     });
@@ -223,6 +226,10 @@ const appendClothes = (p) => { //&#162
         <a href="/aliment/getEdit?id=${p.cod_product}">
         <button type="button" class="bEdit btn-edit" name="btn-edit">
         <i class="far fa-edit fa-lg"></i></button></a>
+
+        <a href="/imagesAliment/generate?id=${p.cod_product}">
+        <button type="button" class="btn-ima" name="btn-edit">
+        <i class="far fa-images fa-lg"></i></button></a>
                 
     <button type="button" class="btn-delete bDelete" onclick="bDelete(${p.cod_product})">
     <i class="fas fa-trash-alt fa-lg"></i></button>

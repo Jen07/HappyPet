@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
-
+import java.util.LinkedList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +24,7 @@ import cr.ac.ucr.happypet.Bussines.LogicProduct;
 import cr.ac.ucr.happypet.Controller.MainController;
 import cr.ac.ucr.happypet.Model.products.Clothes;
 import cr.ac.ucr.happypet.Service.products.IClothesService;
+import cr.ac.ucr.happypet.Service.products.IImagenesServiceProduct;
 
 @RestController
 @RequestMapping("/clothes")
@@ -33,6 +33,9 @@ public class Clothes_Controller extends MainController {
     @Autowired
     private IClothesService svClothes;
     private LogicProduct log = new LogicProduct();
+
+    @Autowired
+    private IImagenesServiceProduct svImages;
  
 
     @RequestMapping("/inicio")
@@ -44,13 +47,21 @@ public class Clothes_Controller extends MainController {
 
     @PostMapping("/delete")
     public String delete(@RequestParam int codigo) {
+        svImages.deleteAll(svClothes.findById(codigo).getImages());
         svClothes.delete(codigo);
         return "Elimino";
     }
 
     @RequestMapping("/listar")
     public ResponseEntity<List<Clothes>> name() {
-        List<Clothes> lista = svClothes.listarTodo();
+        List<Clothes> lista = new LinkedList<>();
+
+        for (Clothes c : svClothes.listarTodo()) {
+            Clothes clo=new Clothes(c.getCod_product(), c.getName(), c.getPrice(), 
+            c.getDescription(), c.getType_animal(), c.getSize(), c.getColor(),c.isAvailability());
+            lista.add(clo);
+        }
+
         return new ResponseEntity<>(lista, HttpStatus.OK);
     }
 
@@ -63,14 +74,30 @@ public class Clothes_Controller extends MainController {
 
     @GetMapping("/detail/{codigo}")
     public Clothes getDetail(@PathVariable int codigo) {
-        return svClothes.findById(codigo);
+
+        Clothes c=  svClothes.findById(codigo);
+
+
+            Clothes clothe= new Clothes(c.getCod_product(), c.getName(), c.getPrice(), 
+            c.getDescription(), c.getType_animal(), c.getSize(), c.getColor(), c.isAvailability());
+
+        return clothe;
     }
 
     // search
 
     @PostMapping("/search")
     public List<Clothes> search(@RequestParam String text, @RequestParam String filtro) {
-        return log.search(svClothes.listarTodo(), text, filtro);
+
+        List<Clothes> lista = new LinkedList<>();
+
+        for (Clothes c : svClothes.listarTodo()) {
+            Clothes clo=new Clothes(c.getCod_product(), c.getName(), c.getPrice(), 
+            c.getDescription(), c.getType_animal(), c.getSize(), c.getColor(), c.isAvailability());
+            lista.add(clo);
+        }
+
+        return log.search(lista, text, filtro);
     }
 
     // Direciona a paguina Editar

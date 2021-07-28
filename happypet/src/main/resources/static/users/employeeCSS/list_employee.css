@@ -146,7 +146,7 @@ select {
 
 .bDelete,
 .bDetail,
-.bEdit {
+.bEdit{
     background-repeat: no-repeat;
     background-position: center;
     height: 30px;

@@ -1,6 +1,8 @@
 package cr.ac.ucr.happypet.Model.products;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,10 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Product {
+public class Product implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,9 +24,22 @@ public class Product {
     private String description;
     private String type_animal;
 
+
+    @OneToMany(mappedBy = "product")
+    private List<ProductImage> images;
+
     public Product() {
     }
 
+    public Product(int cod_product, String name, int price, String description, String type_animal,
+            List<ProductImage> images) {
+        this.cod_product = cod_product;
+        this.name = name;
+        this.price = price;
+        this.description = description;
+        this.type_animal = type_animal;
+        this.images = images;
+    }
 
     public Product(int cod_product, String name, int price, String description, String type_animal) {
         this.cod_product = cod_product;
@@ -32,8 +48,6 @@ public class Product {
         this.description = description;
         this.type_animal = type_animal;
     }
-
-
 
     public Product(String name, int price, String description, String type_animal) {
         this.name = name;
@@ -81,6 +95,17 @@ public class Product {
     public void setType_animal(String type_animal) {
         this.type_animal = type_animal;
     }
+
+
+    public List<ProductImage> getImages() {
+        return images;
+    }
+
+
+    public void setImages(List<ProductImage> images) {
+        this.images = images;
+    }
+
 
     @Override
     public String toString() {
