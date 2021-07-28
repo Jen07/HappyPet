@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
+    <title>Medicina</title>
+    <link rel="icon" th:href="@{/general/logo.svg}" type="image/x-icon" />
     <link rel="stylesheet" type="text/css" href="/general/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-
+    <link rel="stylesheet" type="text/css" href="/branchOffice/css/styleModalSucursal.css">
+    <link rel="stylesheet" href="./css/calendar.css">
+    <link rel="stylesheet" href="./css/registerModal.css">
 </head>
 <body>
     
@@ -23,14 +25,18 @@
                     <li class="splide__slide">
                         <article class="card">
 
+                            <div>
+                                <img src="/branchOffice/images/examenes de laboratorio.jpg" style="height: 216px;" alt="" />
+                            </div>
+                            
                             
                             <div>
-                                <h2 class="card__title" >Cirug&iacute;a General</h2>
+                                <h2 class="card__title" >Ex&aacute;menes de laboratorio</h2>
                                 <p class="card__subtitle" >Para todo tipo de animal</p>
                             </div>
                         
                             <div>
-                                <button class="type-buttons-register">Solicitar Cita</button>
+                                <button class="type-buttons-register"  onclick="openModal()">Solicitar Cita</button>
                             </div>
                         
         
@@ -40,6 +46,10 @@
                     <li class="splide__slide">
                         <article class="card">
 
+                            <div>
+                                <img src="/branchOffice/images/radiografias.jpg" style="height: 216px;" alt="" />
+                            </div>
+                            
                             
                             <div>
                                 <h2 class="card__title" >Radiograf&iacute;as</h2>
@@ -57,6 +67,9 @@
                     <li class="splide__slide">
                         <article class="card">
 
+                            <div>
+                                <img src="/branchOffice/images/vacunacion.jpg" style="height: 216px;" alt="" />
+                            </div>
                             
                             <div>
                                 <h2 class="card__title" >Vacunaci&oacute;n</h2>
@@ -74,9 +87,13 @@
                     <li class="splide__slide">
                         <article class="card">
 
-                            
                             <div>
-                                <h2 class="card__title" >Radiograf&iacute;as</h2>
+                                <img src="/branchOffice/images/cirugia.jpg" style="height: 216px;" alt="" />
+                            </div>
+                            
+
+                            <div>
+                                <h2 class="card__title" >Cirug&iacute;a general</h2>
                                 <p class="card__subtitle" >solamente animales pequeños</p>
                             </div>
                         
@@ -91,10 +108,14 @@
                     <li class="splide__slide">
                         <article class="card">
 
-                            
                             <div>
-                                <h2 class="card__title" >Radiograf&iacute;as</h2>
-                                <p class="card__subtitle" >solamente animales pequeños</p>
+                                <img src="/branchOffice/images/odontologia.jpg" style="height: 216px;" alt="" />
+                            </div>
+                            
+
+                            <div>
+                                <h2 class="card__title" >Odontolog&iacute;a</h2>
+                                <p class="card__subtitle" >Para todo tipo de animal</p>
                             </div>
                         
                             <div>
@@ -109,13 +130,114 @@
             </div>
         </div>
 
+        <div id="myModal" class="modal">
+
+            <div class="modal-content3">
+              <div class="modal-header">
+                <span class="close" onclick="closeModal()">&times;</span>
+          
+                <h2>Exámen de laboratorio</h2>
+              </div>
+              <div class="modal-body">
+                <div class="root">
+                    <div class="calendar" id="calendar">
+                 
+                    </div>
+
+                    <div class="fechas">
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="08:00" class="btn-time">08:00 AM</button>
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="09:00" class="btn-time">09:00 AM</button>
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="10:00" class="btn-time">10:00 AM</button>
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="11:00" class="btn-time">11:00 AM</button>
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="13:00" class="btn-time">01:00 PM</button>
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="14:00" class="btn-time">02:00 PM</button>
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="15:00" class="btn-time">03:00 PM</button>
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="16:00" class="btn-time">04:00 PM</button>
+                        <button onclick="select(this)" id="timeCita" name="timeCita" value="17:00" class="btn-time">05:00 PM</button>
+                    </div>
+                    
+                    <div class="register">
+
+                
+
+
+                            <label class="containerCheck">Exámen de sangre
+                                <input type="checkbox"  id="sangre" name="sangre" value="Examen de sangre">
+                                <span class="checkmark" ></span>
+                              </label>
+                              <label class="containerCheck">Exámen de orina
+                                <input type="checkbox" id="orina" name="orina" value="Examen de orina">
+                                <span class="checkmark"></span>
+                              </label>
+                              <label class="containerCheck">Exámen de heces
+                                <input type="checkbox" id="heces" name="heces" value="Examen de heces">
+                                <span class="checkmark"></span>
+                              </label>
+
+
+                              <button class="btn-submit">Registrar Cita</button>
+                               
+                    </div>
+            
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+
     </div>
+
+
+  
+
+
+
     <footer th:replace="general/footer.html :: foot"></footer>
 
 
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
     <script src="https://kit.fontawesome.com/7248008f92.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/medicine/js/indexMedicine.js"></script>
-    
+    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script  type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+    <script  type="text/javascript" src="./js/calendar.js"></script>
+   
+   <script type="text/javascript">
+        let calendar = new Calendar('calendar');
+        calendar.getElement().addEventListener('click', e => {
+            let fecha=calendar.value().format('YYYY-MM-DD');
+           
+            alert(fecha);
+        });
+
+
+       
+        function select(e){
+
+            let botones = document.querySelectorAll("#timeCita");
+            
+        botones.forEach((boton) =>{
+              
+            boton.classList.remove('btn-selected');
+        });
+           
+	    	e.classList.add('btn-selected');
+        }
+
+      
+
+        function closeModal() {
+	var modal = document.getElementById("myModal");
+	modal.style.display = "none";
+}
+
+function openModal() {
+	var modal = document.getElementById("myModal");
+	modal.style.display = "block";
+
+}
+
+    </script>
 </body>
 </html>

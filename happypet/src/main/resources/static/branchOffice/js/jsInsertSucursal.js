@@ -30,7 +30,7 @@ let cantonDeleted=document.getElementById("ciudad").value;
 		horaFinal: $('#horaFinal').val(),
 	}
 	
-		if(!checkCedula(idSucursal)){
+		if(!checkCedula(sucursal.cedulaJuridica)){
 		$.ajax({
 			url: "/sucursales/addSucursal/"+cantonDeleted,
 			data: JSON.stringify(sucursal),

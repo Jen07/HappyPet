@@ -1,6 +1,6 @@
 
 window.addEventListener("load", startup);
-
+var cantonAntiguo;
 
 
 function startup() {
@@ -34,7 +34,6 @@ function onTable(e) {
 		let selectedId = e.target.parentElement.parentElement.children[0].textContent;
 		getSucursalById(selectedId);
 		
-
 	}
 
 	// Boton de eliminacion
@@ -133,8 +132,10 @@ function getSucursalById(idSucursal) {
 
 			document.querySelector("#CedulaJuridica").addEventListener("click", alertNoedit);
 			$select.addEventListener("click", clickSelectProvincia);
-			openModal(result.ciudad);
+			openModal();
+			
 			paintFormUpdate();
+
 
 
 		},
@@ -182,10 +183,12 @@ function getSucursalById2(idSucursal) {
 
 function updateSucursal() {
 
+	let cantonDeleted=document.getElementById("ciudad").value;
+
 	var sucursal = {
 		cedulaJuridica: $('#CedulaJuridica').val(),
 		provincia: $('#provincia').val(),
-		ciudad: $('#ciudad').val(),
+		ciudad: $('#ciudad option:selected').html(),
 		correo: $('#correo').val(),
 		telefono: $('#telefono').val(),
 		horaInicio: $('#horaInicio').val(),
@@ -195,7 +198,7 @@ function updateSucursal() {
 	
 
 		$.ajax({
-			url: "/sucursales/updateSucursal",
+			url: "/sucursales/updateSucursal/"+cantonDeleted+"/"+cantonAntiguo,
 			data: JSON.stringify(sucursal),
 			type: "PUT",
 			contentType: "application/json;charset=utf-8",

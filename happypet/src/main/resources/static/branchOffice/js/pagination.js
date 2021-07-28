@@ -11,7 +11,7 @@ let sucursalPG = [];
 //Contenedor de filas.
 let sucursalTD = [];
 // Registros por pagina.
-let perPage = 10;
+let perPage = 5;
 
 
 
@@ -95,11 +95,12 @@ const setButtons = () => {
 
 // Crea el HTML apartir del JSON.
 const appendSucursal = (json) => {
+    const province=["San José","Alajuela","Cartago","Heredia","Guanacaste","Puntarenas","Limon"];
     
     var tr = '';
     tr += '<tr>';
 			tr += '<td>' + json.cedulaJuridica + '</td>';
-			tr += '<td>' + json.provincia + '</td>';
+			tr += '<td>' + province[json.provincia-1] + '</td>';
 			tr += '<td>' + json.ciudad + '</td>';
 			tr += '<td> <button class="btn-sucursal btns-send  far fa-address-card fa-1x"> </button> <button class="btn-sucursal btns-delete fas fa-trash-alt fa-1x"></button> <button class="btn-sucursal btns-edit far fa-edit fa-1x"></i></button> </td>';
 			tr += '</tr>';

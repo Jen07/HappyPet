@@ -27,6 +27,7 @@ public class cantonService implements iCantonService{
 
 	@Override
 	public void updateCanton(Canton canton) {
+		
 		data.save(canton);
 	}
 

@@ -52,6 +52,7 @@ function fillSelectCiudad(codigoSucursal, ciudad) {
 			const option = document.createElement('option');
 			option.value = result[i].codigoCanton;
 			option.text = result[i].nombreCanton;
+
 			if(!result[i].estado){
 				option.classList.add('cityFull');
 			}
@@ -68,10 +69,17 @@ function fillSelectCiudad(codigoSucursal, ciudad) {
 
 
 function setCiudad(ciudad,$select){
+
+	
+
+	
 	
 	for (var i = 0; i < $select.length; i++) {
 				
-				if (ciudad == $select.options[i].value) {
+				//	alert(ciudad +"=="+ $select.options[i].value);
+				if (ciudad == $select.options[i].text) {
+					cantonAntiguo=$select.options[i].value;
+					
 					$select.selectedIndex = i;
 					
 				}

@@ -101,7 +101,8 @@ formulario.addEventListener('submit', (e) => {
 				});
 			}
 		} else {
-			if (!CitySelected[0].className == '') {
+			
+			if (CitySelected[0].className == '') {
 				updateSucursal();
 			} else {
 				Swal.fire({

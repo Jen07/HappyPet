@@ -70,8 +70,22 @@ public ResponseEntity<List<Canton>> getListCantones(@PathVariable int codigoProv
 		return new ResponseEntity<Integer>(1,HttpStatus.OK);
 	}
 	
-	@PutMapping("/updateSucursal")
-	public ResponseEntity<Integer> updateSucursal(@RequestBody Sucursal sucursal){
+	@PutMapping("/updateSucursal/{idCanton}/{idCantonAntiguo}")
+	public ResponseEntity<Integer> updateSucursal(
+		@PathVariable int idCanton,
+	@PathVariable int idCantonAntiguo,
+	@RequestBody Sucursal sucursal){
+
+		
+		Canton canton=svC.getCanton(idCanton);
+		canton.setEstado(false);
+		svC.updateCanton(canton);
+
+		
+		Canton cantonAntiguo=svC.getCanton(idCantonAntiguo);
+		cantonAntiguo.setEstado(true);
+		svC.updateCanton(cantonAntiguo);
+
 		sv.update(sucursal);
 		return new ResponseEntity<Integer>(1,HttpStatus.OK);
 	}
@@ -89,8 +103,7 @@ public ResponseEntity<List<Canton>> getListCantones(@PathVariable int codigoProv
 
 	@GetMapping("/filter_table")
     public ResponseEntity<List<Sucursal>> filterTable(@RequestParam String filterBy, String filter) {
-		System.out.println(filterBy+"-------------------------------");
-		System.out.println(filter+"-------------------------------");
+		
         List<Sucursal> sucursal = null;
 
         switch (filterBy) {
@@ -107,7 +120,7 @@ public ResponseEntity<List<Canton>> getListCantones(@PathVariable int codigoProv
                 break;
 
         }
-		System.out.println(sucursal.size()+"-------------------------------");
+	
 		return new ResponseEntity<List<Sucursal>>(sucursal,HttpStatus.OK);
 	}
 }
